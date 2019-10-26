@@ -23,12 +23,7 @@ Things you may want to cover:
 
 * ...
 
-ニックネーム、メールアドレス、パスワード
-生年月日
-苗字名前フリガナ（カタカナ）
-郵便番号、都道府県、市町村区、番地、マンション名や号室
-電話番号
-アバター画像
+<!-- ニックネーム、メールアドレス、パスワード、生年月日、苗字名前フリガナ（カタカナ）、アバター画像 -->
 ## usersテーブル
 
 |Column|Type|Options|
@@ -43,23 +38,11 @@ Things you may want to cover:
 |Lastname|string|null: false|
 |FirstNamePhonetic|string|null: false|
 |LasttNamePhonetic|string|null: false|
-|PostalCode|integer|null: false|
-|Prefecture|string|null: false|
-|City|string|null: false|
-|HouseNumber|string|null: false|
-|BuildingName|string||
-|PhoneNumber|integer|null: false|
 |avatar|string||
 |point|integer||
 
 
-商品
-いいね
-コメント
-取引グループ(取引後のメッセージ送信に使用)
-取引中のメッセージ
-所持ポイント
-やることリスト
+<!-- 商品、いいね、コメント、取引グループ(取引後のメッセージ送信に使用)、取引中のメッセージ、所持ポイント、クレジットカード、レビュー -->
 ### Association
 - has_many :products
 - has_many :likes
@@ -68,10 +51,39 @@ Things you may want to cover:
 - has_many :trades, through: :trades_users
 - has many :messages
 - has many :points
-- has many :ToDoLists
+- belongs_to :credit-card
+- has many :reviews
 
 
-タイトル、画像、詳細、商品状態、値段、サイズ、他
+<!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室、電話番号 -->
+## adresssテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|PostalCode|integer|null: false|
+|Prefecture|string|null: false|
+|City|string|null: false|
+|HouseNumber|string|null: false|
+|BuildingName|string||
+|PhoneNumber|integer|null: false|
+
+
+### Association
+- belongs_to :user
+
+## adress_usersテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|adress_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :adress
+- belongs_to :user
+
+
+<!-- タイトル、画像、詳細、商品状態、配送負担（出品者購入者）、発送方法、発送元地域、発送までの日数値段、サイズ、他 -->
 ## productsテーブル
 
 |Column|Type|Options|
@@ -82,20 +94,36 @@ Things you may want to cover:
 |brand_id|references|null: false, foreign_key|
 |trade_id|references|null: false, foreign_key|
 |title|text|null: false|
-|image_url|text|null: false|
 |detail|text|null: false|
 |condition|string|null: false|
+|ShippingBurden|string|null: false, foreign_key: true|
+|method|string|null: false, foreign_key|
+|area|string|null: false, foreign_key|
+|shipping_period|string|null: false, foreign_key|
 |price|integer|null: false|
 |size|string||
 
+
 ### Association
 - belongs_to :user
-- has_many :categories
-- has_many :brands
-- has_many :likes
-- has_many :comments
+- has_many :categories, dependent: :destroy
+- has_many :brands, dependent: :destroy
+- has_many :likes, dependent: :destroy
+- has_many :comments, dependent: :destroy
+- has_many :images, dependent: :destroy
 - has_one :shipping
-- has_one :trading
+- belongs_to :trade
+
+## imagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|products_id|integer|null: false, foreign_key: true|
+|image_url|text|null: false|
+
+
+### Association
+- belongs_to :product
 
 
 ## likesテーブル
@@ -108,10 +136,10 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
-- belongs_to ::products
+- belongs_to :product
 
 
-取引グループ(取引後のメッセージ送信に使用)chatspaceでのグループテーブルの役割
+<!-- 取引グループ(取引後のメッセージ送信に使用)chatspaceでのグループテーブルの役割 -->
 ## tradesテーブル
 
 |Column|Type|Options|
@@ -122,6 +150,8 @@ Things you may want to cover:
 - has_many :trades_users
 - has_many :users, through: :trades_users
 - has_many :messages
+
+<!-- belongs_to :productが必要かもしれない -->
 
 
 ## trades_usersテーブル
@@ -180,8 +210,7 @@ Things you may want to cover:
 - belongs_to :product
 
 
-クレジットカードナンバー
-有効期限
+<!-- クレジットカードナンバー、有効期限 -->
 ## credit-cardsテーブル
 
 |Column|Type|Options|
@@ -207,8 +236,18 @@ Things you may want to cover:
 - belongs_to :product
 
 
+## pointsテーブル
 
-ブランドやカテゴリは少しだけ設定
+|Column|Type|Options|
+|------|----|-------|
+|point|integer||
+
+### Association
+- belongs_to :user
+
+
+
+<!-- ブランドやカテゴリは少しだけ設定 -->
 ## categoriesテーブル(経路列挙モデル)
 
 |Field|Type|Options|
@@ -242,14 +281,15 @@ belongs_to :product
 
 ### Association
 - belongs_to :product
-- has_many :brand-groups
+- has_many :brands-initials
 
 
-## brands-initialテーブル
+## brands-initialsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |initial-a|string||
+|initial-b|string||
 
 ### Association
 - belongs_to :brand
@@ -260,11 +300,11 @@ belongs_to :product
 
 
 
-今後必要かもしれないもの
+<!-- 今後必要かもしれないもの
 middle-categoriesテーブル（経路列挙モデルで作成する場合は不要になる）
-small-categoriesテーブル（経路列挙モデルで作成する場合は不要になる）
+small-categoriesテーブル（経路列挙モデルで作成する場合は不要になる） -->
 
-
+<!-- 
 履歴テーブル
 売上金
 ## Historyテーブル
@@ -275,6 +315,21 @@ small-categoriesテーブル（経路列挙モデルで作成する場合は不�
 
 ### Association
 - belongs_to :user
+
+
+## ToDoListsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|ToDo|string||
+
+### Association
+- belongs_to :user
+
+
+usersテーブル
+- has many :ToDoLists
+ -->
 
 
 
