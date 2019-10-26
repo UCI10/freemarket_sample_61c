@@ -1,10 +1,16 @@
-.default-container-sai
-  .sp-header-sai
-    .sp-header-sai__inner
-      .logo
-        = link_to root_path do  
-          = image_tag ’’
-
-    .search-bar-sai
+.single-container-sai
+  .single-header-sai
+    %h1.single-header-sai
+      = link_to root_path do
+        = image_tag 'mercari-logo.png', size: '185x49'
+    .single-main-sai
+      .l-single-container-sai
+        .l-single-head-sai
+          商品情報を入力
+        .sell-form-sai
+          .sell-upload-box-sai
+            .sell-upload-head-sai 出品画像
+            %span.form-require-sai 必須
+            %p 最大10枚までアップロードできます
 
     
