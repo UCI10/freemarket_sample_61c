@@ -31,13 +31,13 @@
   |nickname|string|null: false|
   |email|string|null: false, unique: true|
   |encrypted_password|string|null: false, unique: true|
-  |BirthYear|string|null: false|
-  |BirthMonth|string|null: false|
-  |BirthDay|string|null: false|
-  |Firstname|string|null: false|
-  |Lastname|string|null: false|
-  |FirstNamePhonetic|string|null: false|
-  |LasttNamePhonetic|string|null: false|
+  |birth_year|string|null: false|
+  |birth_month|string|null: false|
+  |birth_day|string|null: false|
+  |first_name|string|null: false|
+  |last_name|string|null: false|
+  |first_name_phonetic|string|null: false|
+  |last_name_phonetic|string|null: false|
   |avatar|string||
   |point|integer||
 
@@ -60,12 +60,12 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |PostalCode|integer|null: false|
-  |Prefecture|string|null: false|
-  |City|string|null: false|
-  |HouseNumber|string|null: false|
-  |BuildingName|string||
-  |PhoneNumber|integer|null: false|
+  |postalcode|integer|null: false|
+  |prefecture|string|null: false|
+  |city|string|null: false|
+  |housenumber|string|null: false|
+  |buildingname|string||
+  |phonenumber|integer|null: false|
 
 
   ### Association
@@ -96,7 +96,7 @@
   |title|text|null: false|
   |detail|text|null: false|
   |condition|string|null: false|
-  |ShippingBurden|string|null: false, foreign_key: true|
+  |shippingburden|string|null: false, foreign_key: true|
   |method|string|null: false, foreign_key|
   |area|string|null: false, foreign_key|
   |shipping_period|string|null: false, foreign_key|
@@ -180,23 +180,6 @@
   - belongs_to :user
 
 
-  配送負担（出品者購入者）
-  発送方法
-  発送元地域
-  発送までの日数
-  ## shippingsテーブル
-
-  |Column|Type|Options|
-  |------|----|-------|
-  |ShippingBurden|string|null: false, foreign_key: true|
-  |method|string|null: false, foreign_key|
-  |area|string|null: false, foreign_key|
-  |shipping_period|string|null: false, foreign_key|
-
-  ### Association
-  - belongs_to :product
-
-
   ## commentsテーブル
 
   |Column|Type|Options|
@@ -215,8 +198,8 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |Cardnumber|integer|null: false, unique: true|
-  |ExpirationDate|integer|null: false, unique: true|
+  |cardnumber|integer|null: false, unique: true|
+  |expirationdate|integer|null: false, unique: true|
 
   ### Association
   - belongs_to :user
