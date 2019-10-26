@@ -1,336 +1,295 @@
-# README
+  # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  This README would normally document whatever steps are necessary to get the
+  application up and running.
 
-Things you may want to cover:
+  Things you may want to cover:
 
-* Ruby version
+  * Ruby version
 
-* System dependencies
+  * System dependencies
 
-* Configuration
+  * Configuration
 
-* Database creation
-
-* Database initialization
+  * Database creation
+
+  * Database initialization
 
-* How to run the test suite
+  * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+  * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+  * Deployment instructions
+
+  * ...
 
-<!-- ニックネーム、メールアドレス、パスワード、生年月日、苗字名前フリガナ（カタカナ）、アバター画像 -->
-## usersテーブル
+  <!-- ニックネーム、メールアドレス、パスワード、生年月日、苗字名前フリガナ（カタカナ）、アバター画像 -->
+  ## usersテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|nickname|string|null: false|
-|email|string|null: false, unique: true|
-|encrypted_password|string|null: false, unique: true|
-|BirthYear|string|null: false|
-|BirthMonth|string|null: false|
-|BirthDay|string|null: false|
-|Firstname|string|null: false|
-|Lastname|string|null: false|
-|FirstNamePhonetic|string|null: false|
-|LasttNamePhonetic|string|null: false|
-|avatar|string||
-|point|integer||
+  |Column|Type|Options|
+  |------|----|-------|
+  |nickname|string|null: false|
+  |email|string|null: false, unique: true|
+  |encrypted_password|string|null: false, unique: true|
+  |BirthYear|string|null: false|
+  |BirthMonth|string|null: false|
+  |BirthDay|string|null: false|
+  |Firstname|string|null: false|
+  |Lastname|string|null: false|
+  |FirstNamePhonetic|string|null: false|
+  |LasttNamePhonetic|string|null: false|
+  |avatar|string||
+  |point|integer||
 
 
-<!-- 商品、いいね、コメント、取引グループ(取引後のメッセージ送信に使用)、取引中のメッセージ、所持ポイント、クレジットカード、レビュー -->
-### Association
-- has_many :products
-- has_many :likes
-- has_many :comments
-- has_many :trades_users
-- has_many :trades, through: :trades_users
-- has many :messages
-- has many :points
-- belongs_to :credit-card
-- has many :reviews
+  <!-- 商品、いいね、コメント、取引グループ(取引後のメッセージ送信に使用)、取引中のメッセージ、所持ポイント、クレジットカード、レビュー -->
+  ### Association
+  - has_many :products
+  - has_many :likes
+  - has_many :comments
+  - has_many :trades_users
+  - has_many :trades, through: :trades_users
+  - has many :messages
+  - has many :points
+  - belongs_to :credit-card
+  - has many :reviews
 
 
-<!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室、電話番号 -->
-## adresssテーブル
+  <!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室、電話番号 -->
+  ## adresssテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|PostalCode|integer|null: false|
-|Prefecture|string|null: false|
-|City|string|null: false|
-|HouseNumber|string|null: false|
-|BuildingName|string||
-|PhoneNumber|integer|null: false|
+  |Column|Type|Options|
+  |------|----|-------|
+  |PostalCode|integer|null: false|
+  |Prefecture|string|null: false|
+  |City|string|null: false|
+  |HouseNumber|string|null: false|
+  |BuildingName|string||
+  |PhoneNumber|integer|null: false|
 
 
-### Association
-- belongs_to :user
+  ### Association
+  - belongs_to :user
 
-## adress_usersテーブル
+  ## adress_usersテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|references|null: false, foreign_key: true|
-|adress_id|references|null: false, foreign_key: true|
+  |Column|Type|Options|
+  |------|----|-------|
+  |user_id|references|null: false, foreign_key: true|
+  |adress_id|references|null: false, foreign_key: true|
 
-### Association
-- belongs_to :adress
-- belongs_to :user
+  ### Association
+  - belongs_to :adress
+  - belongs_to :user
 
 
-<!-- タイトル、画像、詳細、商品状態、配送負担（出品者購入者）、発送方法、発送元地域、発送までの日数値段、サイズ、他 -->
-## productsテーブル
+  <!-- タイトル、画像、詳細、商品状態、配送負担（出品者購入者）、発送方法、発送元地域、発送までの日数値段、サイズ、他 -->
+  ## productsテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|references|null: false, foreign_key|
-|category_id|references|null: false, foreign_key|
-|shipping_id|references|null: false, foreign_key|
-|brand_id|references|null: false, foreign_key|
-|trade_id|references|null: false, foreign_key|
-|title|text|null: false|
-|detail|text|null: false|
-|condition|string|null: false|
-|ShippingBurden|string|null: false, foreign_key: true|
-|method|string|null: false, foreign_key|
-|area|string|null: false, foreign_key|
-|shipping_period|string|null: false, foreign_key|
-|price|integer|null: false|
-|size|string||
+  |Column|Type|Options|
+  |------|----|-------|
+  |user_id|references|null: false, foreign_key|
+  |category_id|references|null: false, foreign_key|
+  |shipping_id|references|null: false, foreign_key|
+  |brand_id|references|null: false, foreign_key|
+  |trade_id|references|null: false, foreign_key|
+  |title|text|null: false|
+  |detail|text|null: false|
+  |condition|string|null: false|
+  |ShippingBurden|string|null: false, foreign_key: true|
+  |method|string|null: false, foreign_key|
+  |area|string|null: false, foreign_key|
+  |shipping_period|string|null: false, foreign_key|
+  |price|integer|null: false|
+  |size|string||
 
 
-### Association
-- belongs_to :user
-- has_many :categories, dependent: :destroy
-- has_many :brands, dependent: :destroy
-- has_many :likes, dependent: :destroy
-- has_many :comments, dependent: :destroy
-- has_many :images, dependent: :destroy
-- has_one :shipping
-- belongs_to :trade
+  ### Association
+  - belongs_to :user
+  - has_many :categories, dependent: :destroy
+  - has_many :brands, dependent: :destroy
+  - has_many :likes, dependent: :destroy
+  - has_many :comments, dependent: :destroy
+  - has_many :images, dependent: :destroy
+  - has_one :shipping
+  - belongs_to :trade
 
-## imagesテーブル
+  ## imagesテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|products_id|integer|null: false, foreign_key: true|
-|image_url|text|null: false|
+  |Column|Type|Options|
+  |------|----|-------|
+  |products_id|integer|null: false, foreign_key: true|
+  |image_url|text|null: false|
 
 
-### Association
-- belongs_to :product
+  ### Association
+  - belongs_to :product
 
 
-## likesテーブル
+  ## likesテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|id|integer||
-|products_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key|
+  |Column|Type|Options|
+  |------|----|-------|
+  |id|integer||
+  |products_id|integer|null: false, foreign_key: true|
+  |user_id|integer|null: false, foreign_key|
 
-### Association
-- belongs_to :user
-- belongs_to :product
+  ### Association
+  - belongs_to :user
+  - belongs_to :product
 
 
-<!-- 取引グループ(取引後のメッセージ送信に使用)chatspaceでのグループテーブルの役割 -->
-## tradesテーブル
+  <!-- 取引グループ(取引後のメッセージ送信に使用)chatspaceでのグループテーブルの役割 -->
+  ## tradesテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
+  |Column|Type|Options|
+  |------|----|-------|
+  |name|string|null: false|
 
-### Association
-- has_many :trades_users
-- has_many :users, through: :trades_users
-- has_many :messages
+  ### Association
+  - has_many :trades_users
+  - has_many :users, through: :trades_users
+  - has_many :messages
 
-<!-- belongs_to :productが必要かもしれない -->
+  <!-- belongs_to :productが必要かもしれない -->
 
 
-## trades_usersテーブル
+  ## trades_usersテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|references|null: false, foreign_key: true|
-|trade_id|references|null: false, foreign_key: true|
+  |Column|Type|Options|
+  |------|----|-------|
+  |user_id|references|null: false, foreign_key: true|
+  |trade_id|references|null: false, foreign_key: true|
 
-### Association
-- belongs_to :trade
-- belongs_to :user
+  ### Association
+  - belongs_to :trade
+  - belongs_to :user
 
 
-## messagesテーブル
+  ## messagesテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key|
-|trade_id|integer|null: false, foreign_key|
-|content|text||
-|image|string||
+  |Column|Type|Options|
+  |------|----|-------|
+  |user_id|integer|null: false, foreign_key|
+  |trade_id|integer|null: false, foreign_key|
+  |content|text||
+  |image|string||
 
-### Association
-- belongs_to :trade
-- belongs_to :user
+  ### Association
+  - belongs_to :trade
+  - belongs_to :user
 
 
-配送負担（出品者購入者）
-発送方法
-発送元地域
-発送までの日数
-## shippingsテーブル
+  配送負担（出品者購入者）
+  発送方法
+  発送元地域
+  発送までの日数
+  ## shippingsテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|ShippingBurden|string|null: false, foreign_key: true|
-|method|string|null: false, foreign_key|
-|area|string|null: false, foreign_key|
-|shipping_period|string|null: false, foreign_key|
+  |Column|Type|Options|
+  |------|----|-------|
+  |ShippingBurden|string|null: false, foreign_key: true|
+  |method|string|null: false, foreign_key|
+  |area|string|null: false, foreign_key|
+  |shipping_period|string|null: false, foreign_key|
 
-### Association
-- belongs_to :product
+  ### Association
+  - belongs_to :product
 
 
-## commentsテーブル
+  ## commentsテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|references|null: false, foreign_key|
-|product_id|references|null: false, foreign_key|
-|content|text|null: false|
+  |Column|Type|Options|
+  |------|----|-------|
+  |user_id|references|null: false, foreign_key|
+  |product_id|references|null: false, foreign_key|
+  |content|text|null: false|
 
-### Association
-- belongs_to :user
-- belongs_to :product
+  ### Association
+  - belongs_to :user
+  - belongs_to :product
 
 
-<!-- クレジットカードナンバー、有効期限 -->
-## credit-cardsテーブル
+  <!-- クレジットカードナンバー、有効期限 -->
+  ## credit-cardsテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|Cardnumber|integer|null: false, unique: true|
-|ExpirationDate|integer|null: false, unique: true|
+  |Column|Type|Options|
+  |------|----|-------|
+  |Cardnumber|integer|null: false, unique: true|
+  |ExpirationDate|integer|null: false, unique: true|
 
-### Association
-- belongs_to :user
+  ### Association
+  - belongs_to :user
 
 
-## reviewsテーブル
+  ## reviewsテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|user_id|references|null: false, foreign_key|
-|product_id|references|null: false, foreign_key|
-|rate|integer|null: false|
-|review|text|null: false|
+  |Column|Type|Options|
+  |------|----|-------|
+  |user_id|references|null: false, foreign_key|
+  |product_id|references|null: false, foreign_key|
+  |rate|integer|null: false|
+  |review|text|null: false|
 
-### Association
-- belongs_to :user
-- belongs_to :product
+  ### Association
+  - belongs_to :user
+  - belongs_to :product
 
 
-## pointsテーブル
+  ## pointsテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|point|integer||
+  |Column|Type|Options|
+  |------|----|-------|
+  |point|integer||
 
-### Association
-- belongs_to :user
+  ### Association
+  - belongs_to :user
 
 
 
-<!-- ブランドやカテゴリは少しだけ設定 -->
-## categoriesテーブル(経路列挙モデル)
+  <!-- ブランドやカテゴリは少しだけ設定 -->
+  ## categoriesテーブル(経路列挙モデル)
 
-|Field|Type|Options|
-|------|----|-------|
-|id|integer|null: false|
-|path|text||
-|name|text|null: false, foreign_key|
+  |Field|Type|Options|
+  |------|----|-------|
+  |id|integer|null: false|
+  |path|text||
+  |name|text|null: false, foreign_key|
 
-|id|path|name|
-|------|----|-------|
-|1|1/|categories|
-|1|1/2|ladies|
-|1|1/3|mens|
-|1|1/2/1|tops|
-|1|1/2/2|JacketOuter|
-|1|1/2/3|pants|
-|1|1/2/4|skirt|
-|1|1/3/1|tops|
-|1|1/3/2|JacketOuter|
+  |id|path|name|
+  |------|----|-------|
+  |1|1/|categories|
+  |1|1/2|ladies|
+  |1|1/3|mens|
+  |1|1/2/1|tops|
+  |1|1/2/2|JacketOuter|
+  |1|1/2/3|pants|
+  |1|1/2/4|skirt|
+  |1|1/3/1|tops|
+  |1|1/3/2|JacketOuter|
 
-### Association
-belongs_to :product
+  ### Association
+  belongs_to :product
 
 
-ブランド
-## brandsテーブル
+  ブランド
+  ## brandsテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|luis-vutton|string||
+  |Column|Type|Options|
+  |------|----|-------|
+  |luis-vutton|string||
 
-### Association
-- belongs_to :product
-- has_many :brands-initials
+  ### Association
+  - belongs_to :product
+  - has_many :brands-initials
 
 
-## brands-initialsテーブル
+  ## brands-initialsテーブル
 
-|Column|Type|Options|
-|------|----|-------|
-|initial-a|string||
-|initial-b|string||
+  |Column|Type|Options|
+  |------|----|-------|
+  |initial-a|string||
+  |initial-b|string||
 
-### Association
-- belongs_to :brand
-
-
-
-
-
-
-
-<!-- 今後必要かもしれないもの
-middle-categoriesテーブル（経路列挙モデルで作成する場合は不要になる）
-small-categoriesテーブル（経路列挙モデルで作成する場合は不要になる） -->
-
-<!-- 
-履歴テーブル
-売上金
-## Historyテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|sales|integer||
-
-### Association
-- belongs_to :user
-
-
-## ToDoListsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|ToDo|string||
-
-### Association
-- belongs_to :user
-
-
-usersテーブル
-- has many :ToDoLists
- -->
-
-
-
-
+  ### Association
+  - belongs_to :brand
