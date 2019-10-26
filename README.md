@@ -23,59 +23,56 @@ Things you may want to cover:
 
 * ...
 
-
+ニックネーム、メールアドレス、パスワード
+生年月日
+苗字名前フリガナ（カタカナ）
+郵便番号、都道府県、市町村区、番地、マンション名や号室
+電話番号
+アバター画像
 ## usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-<!-- ニックネーム、メールアドレス、パスワード -->
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
 |encrypted_password|string|null: false, unique: true|
-<!-- 生年月日 -->
 |BirthYear|string|null: false|
 |BirthMonth|string|null: false|
 |BirthDay|string|null: false|
-<!-- 苗字名前フリガナ（カタカナ） -->
 |Firstname|string|null: false|
 |Lastname|string|null: false|
 |FirstNamePhonetic|string|null: false|
 |LasttNamePhonetic|string|null: false|
-<!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室 -->
 |PostalCode|integer|null: false|
 |Prefecture|string|null: false|
 |City|string|null: false|
 |HouseNumber|string|null: false|
 |BuildingName|string||
-<!-- 電話番号 -->
 |PhoneNumber|integer|null: false|
-<!-- アバター画像 -->
 |avatar|string||
 |point|integer||
 
-<!-- 今後必要かもしれないもの -->
-<!-- |review_id|references||
 
-
+商品
+いいね
+コメント
+取引グループ(取引後のメッセージ送信に使用)
+取引中のメッセージ
+所持ポイント
+やることリスト
 ### Association
-
-<!-- 商品 -->
 - has_many :products
-<!-- いいね -->
 - has_many :likes
-<!-- コメント -->
 - has_many :comments
-<!-- 取引グループ(取引後のメッセージ送信に使用) -->
 - has_many :trades_users
 - has_many :trades, through: :trades_users
-<!-- 取引中のメッセージ -->
 - has many :messages
-<!-- 所持ポイント -->
 - has many :points
-<!-- やることリスト -->
 - has many :ToDoLists
 
-## :productssテーブル
+
+タイトル、画像、詳細、商品状態、値段、サイズ、他
+## productsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -84,7 +81,6 @@ Things you may want to cover:
 |shipping_id|references|null: false, foreign_key|
 |brand_id|references|null: false, foreign_key|
 |trade_id|references|null: false, foreign_key|
-<!-- タイトル、画像、詳細、商品状態、値段、サイズ -->
 |title|text|null: false|
 |image_url|text|null: false|
 |detail|text|null: false|
@@ -101,6 +97,7 @@ Things you may want to cover:
 - has_one :shipping
 - has_one :trading
 
+
 ## likesテーブル
 
 |Column|Type|Options|
@@ -113,7 +110,8 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to ::products
 
-<!-- 取引グループ(取引後のメッセージ送信に使用)chatspaceでのグループテーブルの役割 -->
+
+取引グループ(取引後のメッセージ送信に使用)chatspaceでのグループテーブルの役割
 ## tradesテーブル
 
 |Column|Type|Options|
@@ -125,6 +123,7 @@ Things you may want to cover:
 - has_many :users, through: :trades_users
 - has_many :messages
 
+
 ## trades_usersテーブル
 
 |Column|Type|Options|
@@ -135,6 +134,7 @@ Things you may want to cover:
 ### Association
 - belongs_to :trade
 - belongs_to :user
+
 
 ## messagesテーブル
 
@@ -149,17 +149,18 @@ Things you may want to cover:
 - belongs_to :trade
 - belongs_to :user
 
+
+配送負担（出品者購入者）
+発送方法
+発送元地域
+発送までの日数
 ## shippingsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-<!-- 配送負担（出品者購入者） -->
 |ShippingBurden|string|null: false, foreign_key: true|
-<!-- 発送方法 -->
 |method|string|null: false, foreign_key|
-<!-- 発送元地域 -->
 |area|string|null: false, foreign_key|
-<!-- 発送までの日数 -->
 |shipping_period|string|null: false, foreign_key|
 
 ### Association
@@ -179,17 +180,18 @@ Things you may want to cover:
 - belongs_to :product
 
 
+クレジットカードナンバー
+有効期限
 ## credit-cardsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-<!-- クレジットカードナンバー -->
 |Cardnumber|integer|null: false, unique: true|
-<!-- 有効期限 -->
 |ExpirationDate|integer|null: false, unique: true|
 
 ### Association
 - belongs_to :user
+
 
 ## reviewsテーブル
 
@@ -205,8 +207,8 @@ Things you may want to cover:
 - belongs_to :product
 
 
-<!-- ブランドやカテゴリは少しだけ設定 -->
 
+ブランドやカテゴリは少しだけ設定
 ## categoriesテーブル(経路列挙モデル)
 
 |Field|Type|Options|
@@ -231,22 +233,22 @@ Things you may want to cover:
 belongs_to :product
 
 
+ブランド
 ## brandsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-<!-- ブランド -->
 |luis-vutton|string||
 
 ### Association
 - belongs_to :product
 - has_many :brand-groups
 
+
 ## brands-initialテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-<!-- ブランド -->
 |initial-a|string||
 
 ### Association
@@ -258,21 +260,21 @@ belongs_to :product
 
 
 
-<!-- 今後必要かもしれないもの -->
-<!-- middle-categoriesテーブル（経路列挙モデルで作成する場合は不要になる）
-small-categoriesテーブル（経路列挙モデルで作成する場合は不要になる） -->
+今後必要かもしれないもの
+middle-categoriesテーブル（経路列挙モデルで作成する場合は不要になる）
+small-categoriesテーブル（経路列挙モデルで作成する場合は不要になる）
 
-<!-- 履歴テーブル -->
-<!-- ## Historyテーブル
+
+履歴テーブル
+売上金
+## Historyテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-<!-- 売上金 -->
-<!-- |sales|integer||
+|sales|integer||
 
 ### Association
-- belongs_to :user -->
-
+- belongs_to :user
 
 
 
