@@ -54,19 +54,20 @@
   - has many :points
   - has many :credit-cards
   - has many :reviews
+  - has many :adress
 
 
   <!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室、電話番号 -->
-  ## adresssテーブル
+  ## adressテーブル
 
   |Column|Type|Options|
   |------|----|-------|
   |postalcode|integer|null: false|
   |prefecture|string|null: false|
   |city|string|null: false|
-  |housenumber|string|null: false|
-  |buildingname|string||
-  |phonenumber|integer|null: false|
+  |house_number|string|null: false|
+  |building_name|string||
+  |phone_number|integer|null: false|
 
   ### Association
   - belongs_to :user
@@ -84,7 +85,7 @@
   |title|text|null: false|
   |detail|text|null: false|
   |condition|string|null: false|
-  |shippingburden|string|null: false, foreign_key: true|
+  |shipping_burden|string|null: false, foreign_key: true|
   |method|string|null: false, foreign_key|
   |area|string|null: false, foreign_key|
   |shipping_period|string|null: false, foreign_key|
@@ -186,8 +187,8 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |cardnumber|integer|null: false, unique: true|
-  |expirationdate|integer|null: false, unique: true|
+  |card_number|integer|null: false, unique: true|
+  |expiration_date|integer|null: false, unique: true|
 
   ### Association
   - belongs_to :user
@@ -259,8 +260,8 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |initial-a|string||
-  |initial-b|string||
+  |initial_a|string||
+  |initial_b|string||
 
   ### Association
   - belongs_to :brand
