@@ -1,0 +1,44 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .default-container-sai{
+//   background-color: gray;
+//   height: 100px;
+//   width: 100px;
+
+// }
+
+.sp-header-sai{
+  font-weight: 500;
+    position: relative;
+    z-index: 1000;
+    background: #fff;
+
+    &__inner{
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 6px 10px 0;
+    .logo{
+      width: 132px;
+    }
+    
+
+
+
+    }
+
+    .search-bar-sai{
+      margin: 10px 10px 0;
+    padding-bottom: 8px;
+    position: relative;
+    }
+}
+
+
+
