@@ -52,7 +52,7 @@
   - has_many :trades, through: :trades_users
   - has many :messages
   - has many :points
-  - has many :credit-card
+  - has many :credit-cards
   - has many :reviews
 
 
