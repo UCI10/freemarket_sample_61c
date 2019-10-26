@@ -39,6 +39,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.5'
+  gem 'pry-rails'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+
 end
 
 group :development do
@@ -66,3 +74,9 @@ group :production do
 end
 
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
+
+gem 'carrierwave'
+gem 'devise'
+gem 'fog-aws'
+gem 'font-awesome-sass', '~> 5.4.1'
+gem 'mini_magick'
