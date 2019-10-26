@@ -52,7 +52,7 @@
   - has_many :trades, through: :trades_users
   - has many :messages
   - has many :points
-  - belongs_to :credit-card
+  - has many :credit-card
   - has many :reviews
 
 
@@ -68,21 +68,8 @@
   |buildingname|string||
   |phonenumber|integer|null: false|
 
-
   ### Association
   - belongs_to :user
-
-  ## adress_usersテーブル
-
-  |Column|Type|Options|
-  |------|----|-------|
-  |user_id|references|null: false, foreign_key: true|
-  |adress_id|references|null: false, foreign_key: true|
-
-  ### Association
-  - belongs_to :adress
-  - belongs_to :user
-
 
   <!-- タイトル、画像、詳細、商品状態、配送負担（出品者購入者）、発送方法、発送元地域、発送までの日数値段、サイズ、他 -->
   ## productsテーブル
