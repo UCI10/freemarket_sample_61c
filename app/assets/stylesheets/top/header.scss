@@ -90,20 +90,25 @@
         position: relative;
         height: 40px;
         width: 100vw;
+        
 
-        a {
+        a:link {
           color: black;
           text-decoration: none;
           }
+
+        a:visited {
+            color :black;
+            }  
           
         a:hover {
           color: black;
           }
           
-        a:visited {
-          color :black;
-          }
 
+          a:active {
+            color: #0099e8;
+         }
 
 
           .top-header-box-take__high-row__search__box{
@@ -331,9 +336,6 @@
         color: #333;
         font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
         font-weight: 500;
-        box-sizing: inherit;
-        font-size: inherit;
-        line-height: inherit;
         border-style: solid;
         border-width: 0;
         background-repeat: no-repeat;
@@ -348,9 +350,6 @@
           color: #333;
           font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
           font-weight: 500;
-          box-sizing: inherit;
-          font-size: inherit;
-          line-height: inherit;
           border-style: solid;
           border-width: 0;
           background-repeat: no-repeat;
@@ -366,9 +365,6 @@
           font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
           font-weight: 500;
           list-style: none;
-          box-sizing: inherit;
-          font-size: inherit;
-          line-height: inherit;
           border-style: solid;
           border-width: 0;
           background-repeat: no-repeat;
@@ -382,11 +378,6 @@
           border-radius: 4px;
           font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
           font-weight: 500;
-          list-style: none;
-          box-sizing: inherit;
-          font-size: inherit;
-          touch-action: manipulation;
-          text-decoration: none;
           background: #ea352d;
           border: 1px solid #ea352d;
           color: #fff;
@@ -408,11 +399,6 @@
           font: 66.66667% sans-serif;
           font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
           font-weight: 500;
-          list-style: none;
-          box-sizing: inherit;
-          font-size: inherit;
-          touch-action: manipulation;
-          text-decoration: none;
           border-radius: 4px;
           text-align: center;
           padding: 0 10px;
