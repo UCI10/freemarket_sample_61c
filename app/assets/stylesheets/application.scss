@@ -15,10 +15,9 @@
  */
 
  @import "products";
+ @import "config/reset";
+ @import "config/variable";
+ @import "tops";
 
-//  @import "product/exhibit";
-//  @import "product/show";
-//  @import "product/purchase";
-
-
+@import "mixins/crearfix";
 
