@@ -1,0 +1,360 @@
+  .wrapper-take{
+    color: rgb(51, 51, 51);
+    box-sizing: border-box;
+    vertical-align: baseline;
+    margin:0 auto;
+    padding: 0px;
+    // border-width: 0px;
+    // border-style: initial;
+    // border-color: initial;
+    // border-image: initial;
+    font: inherit;
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    flex-direction: column;
+
+  .top-header-take{
+    height: 100px;
+    color: rgb(51, 51, 51);
+    box-sizing: border-box;
+    vertical-align: baseline;
+    margin: 0px;
+    padding: 0px;
+    // border-width: 0px;
+    // border-style: initial;
+    // border-color: initial;
+    // border-image: initial;
+    // font: inherit;
+    display: block;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    position: relative;
+    z-index: 3;
+
+    .top-header-box-take{
+      width: 1020px;
+      height: 100px;
+      color: rgb(51, 51, 51);
+      box-sizing: border-box;
+      vertical-align: baseline;
+      border-width: 0px;
+      // border-style: initial;
+      // border-color: initial;
+      // border-image: initial;
+      // font: inherit;
+      margin: 0px auto;
+      padding: 8px 0px 0px;
+
+      &__high__row{
+        height: 40px;
+        width: 1020px;
+        color: rgb(51, 51, 51);
+        box-sizing: border-box;
+        vertical-align: baseline;
+        margin: 0px;
+        padding: 0px;
+        border-width: 0px;
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+
+        &__left__box{
+          color: rgb(51, 51, 51);
+          box-sizing: border-box;
+          vertical-align: baseline;
+          margin: 0px;
+          padding: 0px;
+          border-width: 0px;
+          -webkit-box-align: center;
+          align-items: center;
+          display: flex;
+          height: 40px;
+          margin-right: 45px;
+        &__logo{
+          box-sizing: border-box;
+          vertical-align: baseline;
+          margin: 0px;
+          padding: 0px;
+          border-width: 0px;
+          color: inherit;
+          text-decoration: none;
+        }
+      }
+
+
+      .form{
+        color: #000;
+        box-sizing: border-box;
+        margin: 0;
+        height: 90px;
+        padding: 20px 40px;
+        background-color: #ddd;
+      
+        .new_message{
+          color: #000;
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          display: flex;
+      
+          input {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            width: 100vw;
+          } 
+      
+          .input-box{
+            color: #000;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            width: 100%;
+      
+          input{
+            box-sizing: border-box;
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            height: 50px;
+            width: 100%;
+            padding: 0 40px 0 10px;
+            color: #434a54;
+            border-style: none;
+          }
+      
+          &__text{
+            box-sizing: border-box;
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            height: 50px;
+            width: 100%;
+            padding: 0 40px 0 10px;
+            color: #434a54;
+            border-style: none;
+          }
+      
+          &__image{
+            color: #000;
+            box-sizing: border-box;
+            font-size: 1.3rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+          
+        &__file{
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: inherit;
+          font-size: inherit;
+          font-weight: inherit;
+          display: none;
+          }
+        }
+      }
+        .input.submit-btn{
+          box-sizing: border-box;
+          margin: 0;
+          font-family: inherit;
+          font-size: inherit;
+          font-weight: inherit;
+          width: 100px;
+          height: 50px;
+          padding: 0 30px;
+          margin-left: 15px;
+          background-color: #38aef0;
+          color: white;
+          cursor: pointer;
+          line-height: 50px    
+          }
+        }
+      }  
+      
+
+
+
+
+
+
+
+
+      .search-form{
+        color: rgb(51, 51, 51);
+        box-sizing: border-box;
+        vertical-align: baseline;
+        margin: 0px;
+        padding: 0px;
+        border-width: 0px;
+        position: relative;
+        height: 40px;
+        width: 100vw;
+
+
+
+        // &__search{
+        //   color: rgb(51, 51, 51);
+        //   box-sizing: border-box;
+        //   vertical-align: baseline;
+        //   margin: 0px;
+        //   padding: 0px;
+        //   border-width: 0px;
+        //   border-style: initial;
+        //   border-color: initial;
+        //   border-image: initial;
+        //   font: inherit;
+        //   position: relative;
+        //   width: 100%;
+          .top-header-box-take__high-row__search__box{
+            box-sizing: border-box;
+            font-family: inherit;
+            background-color: rgb(245, 245, 245);
+            font-size: 16px;
+            height: 40px;
+            line-height: 1.4em;
+            position: relative;
+            width: 100%;
+            -webkit-appearance: none;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(204, 204, 204);
+            border-image: initial;
+            border-radius: 4px;
+            outline: none;
+            padding: 0px 50px 0px 10px;
+            transition: all 0.3s ease-out 0s;
+
+          }
+
+          .search-button{
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 100%;
+            background-color: transparent;
+            cursor: pointer;
+            height: 40px;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 40px;
+            -webkit-appearance: none;
+            border-width: initial;
+            border-style: none;
+            border-color: initial;
+            border-image: initial;
+            border-radius: 0px 4px 4px 0px;
+            padding: 0px;
+            &__icon{
+              font-family: inherit;
+              font-size: 100%;
+              cursor: pointer;
+              box-sizing: border-box;
+              max-width: 100%;
+              max-height: 100%;
+              color: rgb(34, 34, 34);
+              height: 14px;
+              margin-top: 2px;
+              width: 14px;
+
+
+            }  
+
+
+            
+
+
+
+          } 
+
+
+
+        }
+      }
+
+
+
+
+    
+    &__low__row{
+      color: rgb(51, 51, 51);
+      box-sizing: border-box;
+      vertical-align: baseline;
+      margin: 0px;
+      padding: 0px;
+      border-width: 0px;
+      border-style: initial;
+      border-color: initial;
+      border-image: initial;
+      font: inherit;
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      margin-top: 8px;
+      
+      &__left{
+        color: rgb(51, 51, 51);
+        box-sizing: border-box;
+        vertical-align: baseline;
+        margin: 0px;
+        border-width: 0px;
+        border-style: initial;
+        border-color: initial;
+        border-image: initial;
+        font: inherit;
+        cursor: pointer;
+        height: 44px;
+        position: relative;
+        z-index: 3;
+        padding: 0px 10px;
+        padding-left: 0px;
+
+      }
+
+
+    }
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -243,6 +243,8 @@
   ### Association
   belongs_to :product
 
+  <!-- ancesstoryのgem -->
+
 
   ブランド
   ## brandsテーブル
