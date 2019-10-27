@@ -13,3 +13,11 @@
             %span.form-require-sai 必須
             %br/
             %p 最大10枚までアップロードできます
+          .sell-dropbox-container-sai
+            .sell-upload-image-sai
+              %label
+                %input.sell-upload-image-file-sai
+                %pre.visible-pc-sai 
+                  ドラッグアンドドロップ　またはクリックしてファイルをアップロード
+                  = link_to root_path do
+                    = fa_icon 'instagram', class: "contents__btn--icon"
