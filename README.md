@@ -55,12 +55,12 @@
   - has many :points
   - has many :credit-cards
   - has many :reviews, dependent: :destroy
-  - has many :adress
+  - has many :address
 
 
 
   <!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室、電話番号 -->
-  ## adressテーブル
+  ## addressテーブル
 
   |Column|Type|Options|
   |------|----|-------|
@@ -95,7 +95,6 @@
   |price|integer|null: false|
   |category_id|integer|null: false, foreign_key|
   |size_id|integer|null: false, foreign_key|
-
 
 ### Association
 - belongs_to :user
@@ -224,7 +223,6 @@
 
    - rate
 
-
   ## pointsテーブル
 
   |Column|Type|Options|
@@ -234,7 +232,6 @@
 
   ### Association
   - belongs_to :user
-
 
 
   <!-- ブランドやカテゴリは少しだけ設定 -->
