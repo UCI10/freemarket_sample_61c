@@ -101,7 +101,7 @@
 - belongs_to :user
 - belongs_to :category
 - belongs_to :size
-- belongs_to :brands
+- belongs_to :brand
 - has_many :likes, dependent: :destroy
 - has_many :comments, dependent: :destroy
 - has_many :images, dependent: :destroy
@@ -273,7 +273,7 @@
   |luis-vutton|string||
 
   ### Association
-  - belongs_to :product
+  - has_many :products
   - has_many :brands-initials
 
 
