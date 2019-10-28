@@ -265,12 +265,22 @@
   <!-- ancesstoryのgem -->
 
 
-  ブランド
-  ## brandsテーブル
+   <!-- ブランドやカテゴリは少しだけ設定 -->
+  <!-- ancestryというgemを使います -->
+  ## brandsテーブル(経路列挙モデル)
 
-  |Column|Type|Options|
+  |Field|Type|Options|
   |------|----|-------|
-  |name|string||
+  |id|integer|null: false|
+  |path|text||
+  |name|text|null: false, foreign_key|
+
+  |id|path|name|
+  |------|----|-------|
+  |1|1/|brands|
+  |1|1/2|a|
+  |1|1/2/1|aveve|
+  |1|1/2/2|ahkah|
 
   ### Association
   - has_many :products
