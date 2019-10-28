@@ -95,7 +95,6 @@
   |price|integer|null: false|
   |category_id|integer|null: false, foreign_key|
   |size_id|integer|null: false, foreign_key|
-  |brand_id|integer|null: false, foreign_key|
 
 
 ### Association
@@ -200,6 +199,7 @@
   |------|----|-------|
   |card_number|integer|null: false, unique: true|
   |expiration_date|integer|null: false, unique: true|
+  |user_id|references|null: false, foreign_key|
 
   ### Association
   - belongs_to :user
@@ -213,7 +213,6 @@
   |trade_id|integer|null: false,foreign_key: true|
   |reviewer_id|integer|null: false, foreign_key|
   |reviewed_id|integer|null: false, foreign_key|
- 
   |review|text|null: false|
 
   ### Association
@@ -230,6 +229,7 @@
 
   |Column|Type|Options|
   |------|----|-------|
+  |user_id|references|null: false, foreign_key|
   |point|integer||
 
   ### Association
