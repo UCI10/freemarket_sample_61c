@@ -24,7 +24,7 @@
   * ...
 
 
-  <!-- ニックネーム、メールアドレス、パスワード、生年月日、苗字名前フリガナ（カタカナ）、アバター画像 -->
+  <!-- ニックネーム、メールアドレス、パスワード、プロフィール、生年月日、苗字名前、フリガナ（カタカナ）、アバター画像、所持ポイント、支払い方法 -->
   ## usersテーブル
 
   |Column|Type|Options|
@@ -90,7 +90,7 @@
   |shipping_burden|integer|null: false|
   |shipping_method|integer|null: false|
   |area|integer|null: false|
-  |shipping_period|string|null: false, foreign_key|
+  |shipping_period|integer|null: false, foreign_key|
   |likes_count|integer|null: false|
   |price|integer|null: false|
   |category_id|integer|null: false, foreign_key|
@@ -220,7 +220,7 @@
   - belongs_to :reviewed, class_name: 'User'
 
    ### enum
-
+   
    - rate
 
   ## pointsテーブル
