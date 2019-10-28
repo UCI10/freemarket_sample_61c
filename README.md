@@ -59,16 +59,6 @@
 
 
 
-### enum
-
-- status
-- prefecuture
-- expense
-- shipping_method
-- arrival_date
-
-
-
   <!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室、電話番号 -->
   ## adressテーブル
 
@@ -248,6 +238,7 @@
 
 
   <!-- ブランドやカテゴリは少しだけ設定 -->
+  <!-- ancestryというgemを使います -->
   ## categoriesテーブル(経路列挙モデル)
 
   |Field|Type|Options|
