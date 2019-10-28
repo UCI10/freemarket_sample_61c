@@ -32,6 +32,7 @@
   |nickname|string|null: false|
   |email|string|null: false, unique: true|
   |encrypted_password|string|null: false, unique: true|
+  |profile|text||
   |birth_year|string|null: false|
   |birth_month|string|null: false|
   |birth_day|string|null: false|
@@ -41,20 +42,31 @@
   |last_name_phonetic|string|null: false|
   |avatar|string||
   |point|integer||
+  |payment_method|string|null: false|
 
 
   <!-- 商品、いいね、コメント、取引グループ(取引後のメッセージ送信に使用)、取引中のメッセージ、所持ポイント、クレジットカード、レビュー -->
   ### Association
-  - has_many :products
-  - has_many :likes
-  - has_many :comments
-  - has_many :trades_users
-  - has_many :trades, through: :trades_users
-  - has many :messages
+  - has_many :products, through: :trades
+  - has_many :buyer_trades, class_name: 'Trade', foreign_key: :buyer_id, dependent: :destroy
+  - has_many :seller_trades, class_name: 'Trade', foreign_key: :seller_id, dependent: :destroy
+  - has_many :likes, dependent: :destroy
+  - has_many :comments, dependent: :destroy
   - has many :points
   - has many :credit-cards
-  - has many :reviews
+  - has many :reviews, dependent: :destroy
   - has many :adress
+
+
+
+### enum
+
+- status
+- prefecuture
+- expense
+- shipping_method
+- arrival_date
+
 
 
   <!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室、電話番号 -->
@@ -62,15 +74,16 @@
 
   |Column|Type|Options|
   |------|----|-------|
+  |phone_number|integer|null: false, unique: true|
   |postalcode|integer|null: false|
   |prefecture|string|null: false|
   |city|string|null: false|
   |house_number|string|null: false|
   |building_name|string||
-  |phone_number|integer|null: false|
 
-  ### Association
-  - belongs_to :user
+
+### Association
+- belongs_to :user
 
   <!-- タイトル、画像、詳細、商品状態、配送負担（出品者購入者）、発送方法、発送元地域、発送までの日数値段、サイズ、他 -->
   ## productsテーブル
@@ -78,37 +91,54 @@
   |Column|Type|Options|
   |------|----|-------|
   |user_id|references|null: false, foreign_key|
-  |category_id|references|null: false, foreign_key|
   |shipping_id|references|null: false, foreign_key|
   |brand_id|references|null: false, foreign_key|
   |trade_id|references|null: false, foreign_key|
-  |title|text|null: false|
+  |title|text|null: false, add_index|
   |detail|text|null: false|
   |condition|string|null: false|
-  |shipping_burden|string|null: false, foreign_key: true|
-  |method|string|null: false, foreign_key|
-  |area|string|null: false, foreign_key|
+  |shipping_burden|integer|null: false|
+  |shipping_method|integer|null: false|
+  |area|integer|null: false|
   |shipping_period|string|null: false, foreign_key|
+  |likes_count|integer|null: false|
   |price|integer|null: false|
-  |size|string||
+  |category_id|integer|null: false, foreign_key|
+  |size_id|integer|null: false, foreign_key|
+  |brand_id|integer|null: false, foreign_key|
 
 
-  ### Association
-  - belongs_to :user
-  - has_many :categories, dependent: :destroy
-  - has_many :brands, dependent: :destroy
-  - has_many :likes, dependent: :destroy
-  - has_many :comments, dependent: :destroy
-  - has_many :images, dependent: :destroy
-  - has_one :shipping
-  - belongs_to :trade
+### Association
+- belongs_to :user
+- belongs_to :category
+- belongs_to :size
+- belongs_to :brands
+- has_many :likes, dependent: :destroy
+- has_many :comments, dependent: :destroy
+- has_many :images, dependent: :destroy
+- has_one :shipping
+- belongs_to :trade
+- has_many :buyer_trades, class_name: 'Trade', foreign_key: :buyer_id, dependent: :destroy
+- has_many :seller_deals, class_name: 'Trade', foreign_key: :seller_id, dependent: :destroy
+- has_many :seller, class_name: 'User', foreign_key: :seller_id, through: :trades
+- has_many :buyer, class_name: 'User', foreign_key: :buyer_id, through: :trades
+- has many :messages
+
+### enum
+
+- condition
+- area
+- shipping_burden
+- shipping_method
+- shipping_period
+
 
   ## imagesテーブル
 
   |Column|Type|Options|
   |------|----|-------|
   |products_id|integer|null: false, foreign_key: true|
-  |image_url|text|null: false|
+  |image_url|string|null: false|
 
 
   ### Association
@@ -133,28 +163,19 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |name|string|null: false|
+  |product_id|integer|null: false, foreign_key: true|
+  |seller_id|integer|null: false, foreign_key: true|
+  |buyer_id|integer|null: false, foreign_key: true|
 
   ### Association
-  - has_many :trades_users
-  - has_many :users, through: :trades_users
+  - has_one :review
+  - belongs_to :product
+  - belongs_to :seller, class_name: 'User', foreign_key: :seller_id
+  - belongs_to :buyer, class_name: 'User', foreign_key: :buyer_id
   - has_many :messages
+<!-- belongs_to :productが必要かもしれない -->
 
-  <!-- belongs_to :productが必要かもしれない -->
-
-
-  ## trades_usersテーブル
-
-  |Column|Type|Options|
-  |------|----|-------|
-  |user_id|references|null: false, foreign_key: true|
-  |trade_id|references|null: false, foreign_key: true|
-
-  ### Association
-  - belongs_to :trade
-  - belongs_to :user
-
-
+<!-- 取引でのメッセージ -->
   ## messagesテーブル
 
   |Column|Type|Options|
@@ -168,7 +189,7 @@
   - belongs_to :trade
   - belongs_to :user
 
-
+<!-- 商品へのコメント -->
   ## commentsテーブル
 
   |Column|Type|Options|
@@ -198,14 +219,21 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |user_id|references|null: false, foreign_key|
-  |product_id|references|null: false, foreign_key|
   |rate|integer|null: false|
+  |trade_id|integer|null: false,foreign_key: true|
+  |reviewer_id|integer|null: false, foreign_key|
+  |reviewed_id|integer|null: false, foreign_key|
+ 
   |review|text|null: false|
 
   ### Association
-  - belongs_to :user
-  - belongs_to :product
+  - belongs_to :trade
+  - belongs_to :reviewer, class_name: 'User'
+  - belongs_to :reviewed, class_name: 'User'
+
+   ### enum
+
+   - rate
 
 
   ## pointsテーブル

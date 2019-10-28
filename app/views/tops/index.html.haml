@@ -1,41 +1,18 @@
 .wrapper-take
-  .top-header-take
-    .top-header-box-take
-      .top-header-box-take__high__row
-        .top-header-box-take__high__row__left__box
-          .top-header-box-take__high__row__logo
-            = link_to root_path do
-              = image_tag 'mercari-top-logo.png', size: '134x40'
-        %form.search-form   
-          %input.top-header-box-take__high-row__search__box{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
-          %button.search-button{:height => "16", :viewbox => "0 0 16 16", :width => "16"}
-            %label.search-button__icon
-              = link_to root_path do
-                %i.fa.fa-search
-             
-      .top-header-box-take__low__row
-        .top-header-box-take__low__row__left
-          .top-header-box-take__low__row__left__category
-            .top-header-box-take__low__row__left__category__btn
-              = link_to root_path do
-                %i.fa.fa-list-ul
-                %h2 カテゴリーから探す
+  = render 'topheader'
 
-          .top-header-box-take__low__row__left__brand
-            .top-header-box-take__low__row__left__brand__btn
-              = link_to root_path do
-                %i.brand-tag
-                  = image_tag 'mercari-top-icon-tag.png', size: '22x20'
-                %h2 ブランドから探す
+  .content
 
-        .top-header-box-take__low__row__right
-          %ul
-            %li.top-header-box-take__low__row__right__register
-              = link_to root_path do
-                %h3 新規会員登録
-            %li.top-header-box-take__low__row__right__login
-              = link_to root_path do
-                %h4 ログイン
+    .low-header
+      = render 'lowheader'
+    .main-content 
+      = render 'content'
+
+
+
+
+
+
 
 
 
