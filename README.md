@@ -270,19 +270,8 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |luis-vutton|string||
+  |name|string||
 
   ### Association
   - has_many :products
-  - has_many :brands-initials
 
-
-  ## brands-initialsテーブル
-
-  |Column|Type|Options|
-  |------|----|-------|
-  |initial_a|string||
-  |initial_b|string||
-
-  ### Association
-  - belongs_to :brand
