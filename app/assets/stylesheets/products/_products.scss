@@ -472,14 +472,17 @@ background-color: #bddfff;
 
 .single-footer-sai{
   padding-top: 40px;
+  text-align: center;
+  margin: 0 auto;
 &__nokori{
   padding: 0 5px;
+  margin: 0 auto;
   display: flex;
   font-size: 15px;
   list-style: none;
 
+  justify-content: center;
   &__p{
-
     padding: 0 30px;
   a{
     text-decoration: none;
