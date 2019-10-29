@@ -1,23 +1,133 @@
 .single-container-sai
-  .single-header-sai
-    %h1.single-header-sai
+  .header-logo-sai
+    %h1.header-logo-sai__link
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
     .single-main-sai
       .l-single-container-sai
-        .l-single-head-sai
+        .product-menu-sai
           商品情報を入力
         .sell-form-sai
-          .sell-upload-box-sai
-            .sell-upload-head-sai 出品画像
-            %span.form-require-sai 必須
+          .sell-form-sai__upload
+            .sell-form-sai__upload__head 出品画像
+            %span.sell-form-sai__upload__require 必須
             %br/
             %p 最大10枚までアップロードできます
           .sell-dropbox-container-sai
-            .sell-upload-image-sai
-              %label
-                %input.sell-upload-image-file-sai
-                %pre.visible-pc-sai 
+            %label{for: "sample1"}
+              .sell-dropbox-container-sai__image
+                %input#sample1.sell-dropbox-container-sai__image__file{type: "file"}
+                  = fa_icon 'camera', class: "icon-camera"
+                %pre.sell-dropbox-container-sai__image__visible 
                   ドラッグアンドドロップ　またはクリックしてファイルをアップロード
-                  = link_to root_path do
-                    = fa_icon 'instagram', class: "contents__btn--icon"
+          .sell-content-sai.clearfix
+            .form-group-sai.clearfix
+              .form-group-sai__head 商品名
+              %span.form-group-sai__require 必須
+              %br/
+              %input.form-group-sai__default{:placeholder => "商品名（必須 40文字まで)"}/
+            .form-group-sai2.clearfix
+              .form-group-sai2__head.clear-fix 商品の説明
+              %span.form-group-sai2__require 必須
+              %br/
+              %textarea.form-group-sai2__default{:placeholder => "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+          .sell-content-sai.clearfix
+            %h3.sell-content-sai__sub 商品の詳細
+            .sell-content-sai__box.clearfix
+              .sell-content-sai__box__Category カテゴリー
+              %span.sell-content-sai__box__require 必須
+              %br/
+              .select-wrap
+                .icon-arrow-bottom-sai
+                  = fa_icon 'chevron-down'
+                %select.select-wrap-sai__default.select-icon
+                  %option ---
+                  
+              .sell-content-sai__box__Category 商品の状態
+              %span.sell-content-sai__box__require 必須
+              %br/
+              .select-wrap
+                .icon-arrow-bottom-sai
+                  = fa_icon 'chevron-down'
+                %select.select-wrap-sai__default.select-icon
+                  %option --
+          .sell-content-sai.clearfix
+            %h3.sell-content-sai__sub 配送について 
+            %br/
+            .question-link
+              = link_to root_path  do
+                = fa_icon 'question'
+              %br/
+            .sell-content-sai__box.clearfix
+              .sell-content-sai__box__Category 配送料の負担
+              %span.sell-content-sai__box__require 必須
+              %br/
+              
+              .select-wrap
+                .icon-arrow-bottom-sai
+                  = fa_icon 'chevron-down'
+                %select.select-wrap-sai__default.select-icon
+                  %option ---
+            .sell-content-sai__box.clearfix
+              .sell-content-sai__box__Category　発送元の地域
+              %span.sell-content-sai__box__require 必須
+              %br/
+              
+              .select-wrap
+                .icon-arrow-bottom-sai
+                  = fa_icon 'chevron-down'
+                %select.select-wrap-sai__default.select-icon
+                  %option ---
+              .sell-content-sai__box.clearfix
+              .sell-content-sai__box__Category 発送までの日数
+              %span.sell-content-sai__box__require 必須
+              %br/
+              
+              .select-wrap
+                .icon-arrow-bottom-sai
+                  = fa_icon 'chevron-down'
+                %select.select-wrap-sai__default.select-icon
+                  %option ---
+
+
+          .sell-content-sai.clearfix
+            %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
+            = link_to root_path, class: "question-link" do
+              = fa_icon 'question'
+            .sell-form-box
+              .sell-content-sai__box__Category 価格
+              %span.sell-content-sai__box__require 必須
+            .l-right-sai.clearfix
+              
+              %span.l-right-sai__en ¥
+              %input.l-right-sai__input{placeholder: "例)300"}
+            .margin-sai.clearfix
+              .l-left
+                販売手数料
+            .margin-sai.clearfix
+              .margin-sai__margin
+                販売利益
+            .sell-content
+              %p.sell-content__sentence 禁止されている出品、行為を必ずご確認ください。
+              %p.sell-content__sentence またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり
+              %p.sell-content__sentence 処罰される可能性があります。
+              %p.sell-content__sentence また、出品をもちまして加盟店規約に同意したことになります。
+            %button.btn-default{type: "submit"}　出品する
+
+            .btn-gray
+              = link_to root_path do
+                戻る
+        .single-footer-sai
+          %ul.clear-fix.single-footer-sai__nokori
+            %li.cleap-fix.single-footer-sai__nokori__p
+              = link_to root_path do
+                プライバシーポリシー
+            %li.cleap-fix.single-footer-sai__nokori__p
+              = link_to root_path do
+                メルカリ利用規約
+            %li.cleap-fix.single-footer-sai__nokori__p
+              = link_to root_path do
+                特定商取引に関する表記
+          = link_to root_path do
+            = link_to root_path do
+              = image_tag 'mercari-logo-footer.png', size: '120x130'
