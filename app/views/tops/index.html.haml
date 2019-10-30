@@ -1,48 +1,42 @@
 .wrapper-take
-  .top-header-take
-    .top-header-box-take
-      .top-header-box-take__high__row
-        .top-header-box-take__high__row__left__box
-          .top-header-box-take__high__row__logo
-            = link_to root_path do
-              = image_tag 'mercari-top-logo.png', size: '134x40'
-        %form.form
-        .new_message
-          %input{:type => "hidden"}/
-          .input-box
-            %input{:type => "text", :placeholder => "type a message"}/
-            %label.input-box__image{:for => "message_image"}
-              %i.fa.fa-image
-                %input#message_image.input-box__image__file{:name => "message[image]", :type => "file"}/
-          .input.submit-btn{"data-disable-with" => "Send", :type => "submit", :value => "Send"}/
-          Send
+  = render 'topheader'
+  .content
+    .low-header
+      = render 'lowheader'
+    .main-content 
+      = render 'content'
+  .top-exhibit-fix-btn
+    = render 'topexhibit'
+.footer-take
+  = render 'topfooter'    
 
 
 
 
-        -# %form.form   
-        -# .search-form   
-        -#   %input{:type => "hidden"}/
-        -#   .input-box
-        -#     %input.top-header-box-take__high-row__search__box{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
-        -#     %label.search-button__icon{:for => "message_image"}
-        -#       %i.fa.fa-image
-        -#         %input#message_image.input-box__image__file{:name => "message[image]", :type => "file"}/
-        -#   .input.submit-btn{"data-disable-with" => "Send", :type => "submit", :value => "Send"}/
-        -#   Send
 
 
-        -# %form.search-form   
-          -# %input.top-header-box-take__high-row__search__box{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
-        -#   %button.search-button{:height => "16", :viewbox => "0 0 16 16", :width => "16"}
-        -#     %label.search-button__icon
-        -#       -# = link_to root_path do
-        -#       %i.fa.fa-image
-        -#       %input.input-box-search
-            
-      .top-header-box-take__low__row
-        .top-header-box-take__low__row__left
-          .top-header-box-take__low__row__left__category
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
 
 
 
