@@ -2,9 +2,7 @@
   .topfooter-take{
     box-sizing: border-box;
     color: rgb(255, 255, 255);
-    background: url("https://web-jp-assets.mercdn.net/_next/static/images/download_app_bg-b57d6f1a32f2aebd89cf6f43bc2e4b39.jpg") center center / cover;
-    background-position: center center;
-    
+    background: url("footer-background.jpg");    
 
   .topfootertake-box{
     height: 260px;
@@ -26,7 +24,7 @@
         color: white;
     }
 
-    .topfootertake-box__left{
+    &__left{
       height: 260px;
       width: 750px;
       display: flex;
@@ -35,51 +33,35 @@
       justify-content: center;
 
 
-      .topfootertake-box__left__1{
+      &__1{
         color: rgb(255, 255, 255);
         font-size: 24px;
         font-weight: 600;
         margin-bottom: 10px;
       }
 
-      .topfootertake-box__left__2{
+      &__2{
         color: rgb(255, 255, 255);
         font-size: 32px;
         margin-bottom: 20px;
       }
 
-      .topfootertake-box__left__3{
+      &__3{
         height:68px;
         width:418px;
-        
-
-        .topfootertake-box__left__3__img{
+        display: flex;
+        justify-content: center;  
+        align-items: center; 
+      
+        &__img{
           height: 68px;
           width: 68px;
           margin-right: 20px;
         }
-
-        .topfootertake-box__left__3__download{
-      
-          margin-right: 8px;
-          margin-bottom: 14px;
-          // width: 144px;
-          line-height: 40px;
-
-          a:link {
-            color: white;
-            text-decoration: none;
-            margin-right: 8px;
-            margin-bottom: 14px;
-            // width: 144px;
-            line-height: 40px;
-            }
-        }
       }
     }
 
-
-    .topfootertake-box__right{
+    &__right{
       height: 260px;
       width: 300px;
 
@@ -100,8 +82,7 @@
       margin:0 auto;
       padding-top: 18px;
       vertical-align: top;
-
-      .topfooter-take-lowbox__guidebox__bottom{
+      &__bottom{
         width: auto;
         padding: 0px 40px 0px 0px;
         
@@ -144,7 +125,7 @@
             color:$white;
         }
 
-          .topfooter-guidebox__icon  {
+          &__icon  {
             margin-top: 30px;
           }
         }

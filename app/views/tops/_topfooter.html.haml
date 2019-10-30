@@ -6,14 +6,14 @@
       .topfootertake-box__left__2
         今すぐ無料ダウンロード！
       .topfootertake-box__left__3
-        %img.topfootertake-box__left__3__img{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/mercari_icon-f75780e32e41e052c8aaa8b446331cd8.png"}/
+        .topfootertake-box__left__3__img
+          = image_tag 'mercari_footer_icon.png', size: '68x68'
         = link_to root_path do
-          %img.topfootertake-box__left__3__download{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/app-store-a5c17948c6fd6d5b60b13d421cd60b35.svg"}/
+          = image_tag 'appstore_icon.svg', size: '144x40'
         = link_to root_path do
-          %img.topfootertake-box__left__3__download{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/google-play-495575abb895b405aa6336b2a4304958.svg"}/
+          = image_tag 'googleplay_icon.svg', size: '144x40'
     .topfootertake-box__right
-      %img.topfootertake-box__right__img{:alt => "", :src => "https://web-jp-assets.mercdn.net/_next/static/images/download_app_pc-a4418175e8be071827ac88d073f40e4a.png"}/
-
+      = image_tag 'download_app_pc.png', size: '300x260'
   .topfooter-take-lowbox
     .topfooter-take-lowbox__guidebox.displayflex
       .topfooter-take-lowbox__guidebox__bottom
