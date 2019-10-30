@@ -1,0 +1,494 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .default-container-sai{
+//   background-color: gray;
+//   height: 100px;
+//   width: 100px;
+
+// }
+
+
+
+
+.btn-gray{
+  width: 50%;
+  height: 50px;
+  margin: 40px auto;
+  padding-top: 5px;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  font-size: 15px;
+  background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
+  cursor: pointer;
+
+  a{
+    width: 100%;
+    height: 100%;
+    
+    color: white;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+
+}
+.question-link{
+padding-left: 2px;
+float:left;
+cursor: pointer;
+}
+
+.select-icon{
+width: 10px;
+height: 10px;
+}
+
+#sample1{
+display:none;
+}
+
+@mixin clearfix {
+clear: both;
+}
+
+.clearfix {
+clear: both;
+}
+
+.single-container-sai{
+padding: 0 0 250px;
+background: #f5f5f5;
+
+.btn-default{
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  margin: 40px 0 0;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  font-size: 15px;
+  
+}
+
+.sell-content{
+  padding: 40px 0px;
+    border-top: 1px solid #eee;
+
+    &__sentence{
+      float: left;
+      font-size: 13px;
+      line-height: 20px;
+    }
+  }
+
+.header-logo-sai{
+text-align: center;
+
+&__link {
+display: inline-block;
+margin: 11px 0 12px;
+}
+}
+
+.l-single-container-sai{
+background: White;
+height: 2000px;
+width: 700px;
+margin: 0 auto;
+
+.product-menu-sai{
+padding: 24px 8px;
+font-size: 18px;
+line-height: 1.5;
+text-align: center;
+
+}
+
+.sell-form-sai{
+border-top: 1px solid #eee;
+
+&__upload{
+padding: 40px 2.5%;
+
+&__head{
+float: left;
+font-size: 16px;
+}
+
+&__require {
+float: left;
+background: #ea352d;
+margin: 0 0 0 8px;
+padding: 2px 4px;
+border-radius: 2px;
+color: #fff;
+font-size: 12px;
+vertical-align: top;
+
+}
+
+p{
+float: left;
+margin: 8px 0 0;
+line-height: 1.5;
+font-size: 10px;
+}
+}
+.sell-dropbox-container-sai{
+display: block;
+width: 520px;
+margin: 0 auto;
+background-color: #ccc;
+&__image {
+cursor: pointer;
+position: relative;
+height: 162px;
+width: 520px;
+
+&__file{
+// display: none;
+background: #f5f5f5;
+border: 1px dashed #ccc;
+font-size: 0;
+text-align: center;
+
+position: relative;
+height: 162px;
+background: #f5f5f5;
+border: 1px dashed #ccc;
+font-size: 0;
+text-align: center;
+width: 100%;
+border: 0;
+outline: 0;
+cursor: pointer;
+}
+&__visible{
+display: none;
+}
+
+.icon-camera{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 14px;
+i{
+display: inline-block;
+font-family: 'icon-font';
+font-style: normal;
+font-weight: 400;
+font-variant: normal;
+text-transform: none;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+}
+}
+}
+
+
+.sell-content-sai{
+padding: 40px;
+border-top: 1px solid #eee;
+@include clearfix;
+background-color: white;
+
+.margin-sai{
+  width: 100%;
+  padding: 40px 0;
+  border-top: 1px solid #eee;
+  background-color: white;
+
+  &__margin{
+    float: left;
+
+  }
+
+  .l-left{
+  float: left;
+  color: #888;
+  }
+
+}
+
+
+.l-right-sai{
+float: right;
+display: flex;
+
+  &__en{
+    line-height: 60px;
+    padding-right: 10px;
+  }
+
+  &__input{
+    margin-bottom: 10px;
+    height: 48px;
+    padding: 10px 16px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    line-height: 1.5;
+    font-size: 16px;
+    width:350px;
+
+  }
+
+
+
+}
+
+.sell-form-box{
+margin: 40px 0 0;
+
+&__price{
+list-style: none;
+
+
+.form-group-sai{
+  padding: 0 0 24px;
+  
+  
+  
+  .l-left-sai{
+
+    width: 50%;
+    line-height: 48px;
+    float: right;
+
+    &__require{
+      margin: 0 0 0 8px;
+      padding: 2px 4px;
+      border-radius: 2px;
+      color: #fff;
+      font-size: 12px;
+      vertical-align: top;
+
+    }
+  }
+
+  .l-right-sai{
+    padding: 5px;
+    width: 50%;
+    line-height: 48px;
+  }
+
+}
+}
+}
+
+&__sub{
+background-color: white;
+float: left;
+color: #888;
+font-size: 14px;
+}
+
+&__box{
+    float: right;
+    width: 400px;
+
+&__Category {
+float: left;
+font-size: 16px;
+}
+
+&__require{
+float: left;
+background: #ea352d;
+margin: 0 0 0 8px;
+padding: 2px 4px;
+border-radius: 2px;
+color: #fff;
+font-size: 12px;
+vertical-align: top;
+
+}
+
+.select-wrap{
+position: relative;
+background: #fff;
+.icon-arrow-bottom-sai{
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  z-index: 2;
+  color: #888;
+  font-size: 8px;
+  width: 10px;
+  height: 10px;
+
+}
+
+.select-wrap-sai__default{
+  width:100%;
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+}
+
+
+}
+
+.form-group-sai{
+
+&__head{
+float: left;
+}
+
+&__require{
+float: left;
+background: #ea352d;
+margin: 0 0 0 8px;
+padding: 2px 4px;
+border-radius: 2px;
+color: #fff;
+font-size: 12px;
+vertical-align: top;
+}
+
+
+&__default{
+  margin: 0 auto;
+  margin-top:  5px;
+  width: 90%;
+float: left;
+height: 43px;
+padding: 10px 16px 8px;
+border-radius: 4px;
+border: 1px solid #ccc;
+background: #fff;
+line-height: 1.5;
+font-size: 16px;
+
+touch-action: manipulation;
+}
+}
+
+.form-group-sai2{
+padding-top: 40px;
+&__head{
+float: left;
+}
+
+&__require{
+float: left;
+background: #ea352d;
+margin: 0 0 0 8px;
+padding: 2px 4px;
+border-radius: 2px;
+color: #fff;
+font-size: 12px;
+vertical-align: top;
+}
+
+&__default{
+display: block;
+width: 100%;
+max-width: 100%;
+min-height: 104px;
+padding: 10px;
+border: 1px solid #ccc;
+background: #fff;
+font-size: 16px;
+line-height: 1.5;
+}
+
+
+}
+
+
+
+} 
+
+
+}
+
+}
+}
+
+
+input {
+text-rendering: auto;
+color: initial;
+letter-spacing: normal;
+word-spacing: normal;
+text-transform: none;
+text-indent: 0px;
+text-shadow: none;
+display: inline-block;
+text-align: start;
+background-color: white;
+cursor: text;
+margin: 0em;
+font: 400 11px system-ui;
+padding: 1px;
+border-width: 2px;
+border-style: inset;
+border-color: initial;
+border-image: initial;
+}
+
+
+
+.sell-content3{
+padding: 40px;
+border-top: 1px solid #eee;
+
+}
+
+select {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+margin-bottom: 20px;
+padding: 7px 30px 7px 10px;
+font-size: 93%;
+line-height: 1.1em;
+border-radius: 5px;
+border: none;
+background-image: url(./images/icon_arrow.svg);
+background-repeat: no-repeat;
+background-size: 12px 10px;
+background-position: right 10px center;
+background-color: #bddfff;
+}
+
+.single-footer-sai{
+  padding-top: 40px;
+  text-align: center;
+  margin: 0 auto;
+&__nokori{
+  padding: 0 5px;
+  margin: 0 auto;
+  display: flex;
+  font-size: 15px;
+  list-style: none;
+
+  justify-content: center;
+  &__p{
+    padding: 0 30px;
+  a{
+    text-decoration: none;
+  }
+  }
+}
+  
+  
+}
