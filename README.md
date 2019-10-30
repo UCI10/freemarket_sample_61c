@@ -24,7 +24,7 @@
   * ...
 
 
-  <!-- ニックネーム、メールアドレス、パスワード、生年月日、苗字名前フリガナ（カタカナ）、アバター画像 -->
+  <!-- ニックネーム、メールアドレス、パスワード、プロフィール、生年月日、苗字名前、フリガナ（カタカナ）、アバター画像、所持ポイント、支払い方法 -->
   ## usersテーブル
 
   |Column|Type|Options|
@@ -59,6 +59,7 @@
 
 
 
+
 ### enum
 
 - status
@@ -70,7 +71,7 @@
 
 
   <!-- 郵便番号、都道府県、市町村区、番地、マンション名や号室、電話番号 -->
-  ## adressテーブル
+  ## addressテーブル
 
   |Column|Type|Options|
   |------|----|-------|
@@ -100,7 +101,7 @@
   |shipping_burden|integer|null: false|
   |shipping_method|integer|null: false|
   |area|integer|null: false|
-  |shipping_period|string|null: false, foreign_key|
+  |shipping_period|integer|null: false, foreign_key|
   |likes_count|integer|null: false|
   |price|integer|null: false|
   |category_id|integer|null: false, foreign_key|
@@ -108,11 +109,12 @@
   |brand_id|integer|null: false, foreign_key|
 
 
+
 ### Association
 - belongs_to :user
 - belongs_to :category
 - belongs_to :size
-- belongs_to :brands
+- belongs_to :brand
 - has_many :likes, dependent: :destroy
 - has_many :comments, dependent: :destroy
 - has_many :images, dependent: :destroy
@@ -210,6 +212,7 @@
   |------|----|-------|
   |card_number|integer|null: false, unique: true|
   |expiration_date|integer|null: false, unique: true|
+  |user_id|references|null: false, foreign_key|
 
   ### Association
   - belongs_to :user
@@ -223,7 +226,6 @@
   |trade_id|integer|null: false,foreign_key: true|
   |reviewer_id|integer|null: false, foreign_key|
   |reviewed_id|integer|null: false, foreign_key|
- 
   |review|text|null: false|
 
   ### Association
@@ -236,18 +238,23 @@
    - rate
 
 
+   ### enum
+   
+   - rate
+
   ## pointsテーブル
 
   |Column|Type|Options|
   |------|----|-------|
+  |user_id|references|null: false, foreign_key|
   |point|integer||
 
   ### Association
   - belongs_to :user
 
 
-
   <!-- ブランドやカテゴリは少しだけ設定 -->
+  <!-- ancestryというgemを使います -->
   ## categoriesテーブル(経路列挙モデル)
 
   |Field|Type|Options|
@@ -274,24 +281,23 @@
   <!-- ancesstoryのgem -->
 
 
-  ブランド
-  ## brandsテーブル
+   <!-- ブランドやカテゴリは少しだけ設定 -->
+  <!-- ancestryというgemを使います -->
+  ## brandsテーブル(経路列挙モデル)
 
-  |Column|Type|Options|
+  |Field|Type|Options|
   |------|----|-------|
-  |luis-vutton|string||
+  |id|integer|null: false|
+  |path|text||
+  |name|text|null: false, foreign_key|
+
+  |id|path|name|
+  |------|----|-------|
+  |1|1/|brands|
+  |1|1/2|a|
+  |1|1/2/1|aveve|
+  |1|1/2/2|ahkah|
 
   ### Association
-  - belongs_to :product
-  - has_many :brands-initials
+  - has_many :products
 
-
-  ## brands-initialsテーブル
-
-  |Column|Type|Options|
-  |------|----|-------|
-  |initial_a|string||
-  |initial_b|string||
-
-  ### Association
-  - belongs_to :brand

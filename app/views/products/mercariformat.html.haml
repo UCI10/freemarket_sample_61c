@@ -1,0 +1,38 @@
+-# 白紙の部分の高さを変更する場合、
+-# .l-single-container-sai2のクラスを書き換えて
+-# 高さを変更する調整できます。したが例です。
+-# .l-single-container-sai3 {
+-#   background: White;
+-#   height: 1000px;
+-#   width: 700px;
+-#   margin: 0 auto;
+-# }
+-# IDのクラスを指定して高さを上書きする方法もあります。
+.single-container-sai
+  .header-logo-sai
+    %h1.header-logo-sai__link
+      = link_to root_path do
+        = image_tag 'mercari-logo.png', size: '155x50'
+    .single-main-sai
+      .l-single-container-sai2
+         .single-main
+
+
+
+  
+
+
+      .single-footer-sai
+        %ul.clear-fix.single-footer-sai__nokori
+          %li.cleap-fix.single-footer-sai__nokori__p
+            = link_to root_path do
+              プライバシーポリシー
+          %li.cleap-fix.single-footer-sai__nokori__p
+            = link_to root_path do
+              メルカリ利用規約
+          %li.cleap-fix.single-footer-sai__nokori__p
+            = link_to root_path do
+              特定商取引に関する表記
+        = link_to root_path do
+          = link_to root_path do
+            = image_tag 'mercari-logo-footer.png', size: '120x130'
