@@ -2,11 +2,84 @@
   .main-advertising__image
     = link_to root_path do
       %img{:alt => "メルカリなら新品も中古もお得！キャンプ用品 大特集！", :src => "//www-mercari-jp.akamaized.net/assets/img/featured/camp/index/index_keyvisual.png?1248199994", :height => "380", :width => "680"}/
-      -# = image_tag 'main-advertising.png'
 
-      -# %img{:alt => "メルカリなら新品も中古もお得！キャンプ用品 大特集！", :src => "index_keyvisual.png", :height => "500", :width => "100%"}/
-      -# %img{:src => "assets/images/main-advertising.png", :height => "500", :width => "100%"}/
-      -# %img{:alt => "", :height => "500px", :src => "main-advertising.png", :width => "100%"}/
+.popular-list
+  .popular-category
+    .popular-category-header
+      .popular-category-header__highbox
+        人気のカテゴリー
+      .popular-category-header__lowhbox.displayflex
+        %ul.popular-category-header__lowhbox__btn.displayflex
+          %li
+            = link_to root_path do
+              レディース 
+          %li  
+            = link_to root_path do
+              メンズ 
+          %li
+            = link_to root_path do
+              家電・スマホ・カメラ 
+          %li 
+            = link_to root_path do 
+              おもちゃ・ホビー・グッズ
+    .popular-category-content.displayflex
+      .popular-category-content__box
+        = render 'newladies'
+        = render 'newmens'
+        = render 'newksc'
+        = render 'newohg'
+
+
+  .popular-brand
+    .popular-brand-header
+      .popular-brand-header__highbox
+        人気のブランド
+      .popular-brand-header__lowhbox.displayflex
+        %ul.popular-brand-header__lowhbox__btn.displayflex
+          %li
+            = link_to root_path do
+              シャネル
+          %li  
+            = link_to root_path do
+              ルイヴィトン
+          %li
+            = link_to root_path do
+              シュプリーム
+          %li 
+            = link_to root_path do 
+              ナイキ
+
+    .popular-brand-content.displayflex
+      .popular-brand-content__box
+        = render 'newchanel'
+        = render 'newlouisvuitton'
+        = render 'newsupreme'
+        = render 'newnike'
+
+
+
+
+                                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

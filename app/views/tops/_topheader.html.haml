@@ -17,21 +17,42 @@
         .top-low-row-left__category
           .top-low-row-left__category__btn
             = link_to root_path do
-              %i.fa.fa-list-ul
+              %i
+                = fa_icon 'list-ul', class: 'icon'
               %h2 カテゴリーから探す
 
         .top-low-row-left__brand
           .top-low-row-left__brand__btn
             = link_to root_path do
-              %i.fa.fa-tags
-                -# = image_tag 'mercari-top-icon-tag.png', size: '22x20'
+              %i
+                = fa_icon 'tags', class: 'icon'              
               %h2 ブランドから探す
 
       .top-low-row-right
-        %ul
-          %li.top-low-row-right__register
-            = link_to root_path do
-              %h3 新規会員登録
-          %li.top-low-row-right__login
-            = link_to root_path do
-              %h4 ログイン
+        .top-low-row-right-list
+        
+          .top-low-row-right-list__like
+            .top-low-row-right-list__like__btn
+              = link_to root_path do
+                %i
+                  = fa_icon 'heart', class: 'icon'              
+                %h4 いいね！一覧
+          .top-low-row-right-list__news
+            .top-low-row-right-list__news__btn
+              = link_to root_path do
+                %i
+                  = fa_icon 'bell', class: 'icon'              
+                %h4 お知らせ
+          .top-low-row-right-list__todo   
+            .top-low-row-right-list__todo__btn 
+              = link_to root_path do
+                %i
+                  = fa_icon 'check', class: 'icon'              
+                %h4 やることリスト
+          .top-low-row-right-list__mypage   
+            .top-low-row-right-list__mypage__btn   
+              = link_to root_path do
+                %i
+                  = fa_icon 'user-circle', class: 'icon'              
+                %h4 マイページ             
+
