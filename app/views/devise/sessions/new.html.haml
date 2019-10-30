@@ -1,0 +1,61 @@
+.single-container-sai
+  .header-logo-sai
+    %h1.header-logo-sai__link
+      = link_to root_path do
+        = image_tag 'mercari-logo.png', size: '155x50'
+    .single-main-sai
+      .l-single-container-sai2#login-1-sai
+        .single-main
+          
+          .login-sai
+            %p アカウントをお持ちでない方はこちら
+            .login-no-account-sai#login-width
+              = link_to root_path do
+                新規会員登録
+          .login-form-inner2-sai
+            .login-no-account-sai#facebook-form
+              = link_to root_path do
+                = fa_icon 'facebook', class: "facebook-icon"
+                %span
+                  Facebookでログイン
+            .login-no-account-sai#googlesai-form
+              = link_to root_path do
+                = fa_icon 'google', class: "googlesai-icon"
+                %span
+                  googleでログイン
+      
+        .login-form-inner-sai
+          .login-form-inner-sai__form
+            %input{:name => "email", :placeholder => "メールアドレス", :type => "email", :value => ""}/ 
+          .login-form-inner-sai__form#login-form-inner-sai__form
+            %input{:name => "password", :placeholder => "パスワード", :type => "password"}/
+          .g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6LdtOsAUAAAAAB48_GUOATmS_P4Dl0ejnacH1x4L"}
+        .login-sai
+          .login-no-account-sai#loginred-sai
+            = link_to root_path do
+              ログイン
+          .login-sai__passwordlast
+            = link_to root_path do
+              パスワードをお忘れの方
+
+
+
+             
+
+  
+
+
+      .single-footer-sai
+        %ul.clear-fix.single-footer-sai__nokori
+          %li.cleap-fix.single-footer-sai__nokori__p
+            = link_to root_path do
+              プライバシーポリシー
+          %li.cleap-fix.single-footer-sai__nokori__p
+            = link_to root_path do
+              メルカリ利用規約
+          %li.cleap-fix.single-footer-sai__nokori__p
+            = link_to root_path do
+              特定商取引に関する表記
+        = link_to root_path do
+          = link_to root_path do
+            = image_tag 'mercari-logo-footer.png', size: '120x130'
