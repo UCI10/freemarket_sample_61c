@@ -55,7 +55,18 @@
   - has many :points
   - has many :credit-cards
   - has many :reviews, dependent: :destroy
-  - has many :address
+  - has many :adress
+
+
+
+
+### enum
+
+- status
+- prefecuture
+- expense
+- shipping_method
+- arrival_date
 
 
 
@@ -95,6 +106,9 @@
   |price|integer|null: false|
   |category_id|integer|null: false, foreign_key|
   |size_id|integer|null: false, foreign_key|
+  |brand_id|integer|null: false, foreign_key|
+
+
 
 ### Association
 - belongs_to :user
@@ -126,7 +140,7 @@
   |Column|Type|Options|
   |------|----|-------|
   |products_id|integer|null: false, foreign_key: true|
-  |image_url|text|null: false|
+  |image_url|string|null: false|
 
 
   ### Association
@@ -218,6 +232,11 @@
   - belongs_to :trade
   - belongs_to :reviewer, class_name: 'User'
   - belongs_to :reviewed, class_name: 'User'
+
+   ### enum
+
+   - rate
+
 
    ### enum
    
