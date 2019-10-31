@@ -1,3 +1,10 @@
+.recaptchalogin{
+  padding: 10px 0px;
+  display: block;
+  height: 100px;
+  width: 100px;
+}
+
 .login-sai{
   padding: 24px 32px;
   text-align: center;
@@ -19,7 +26,20 @@
 
 }
 
+
+
+
+.googlerelative{
+ position: relative; 
+}
+
+.facebookrelative{
+position: relative;
+
+}
+
 .login-no-account-sai a{
+  border-radius: 4px;
   display: block;
     margin: 8px 0 0;
     border: 1px solid #0099e8;
@@ -56,11 +76,21 @@
 }
 
 .facebook-icon{
- padding-right: 30px;
+  position: absolute;
+  top: 10px;
+  left:16px;
+  height:20px;
+  width: 20px;
+  background-color: white;
+  color: #191970;
+
+  
 }
 
 .googlesai-icon{
-  padding-right: 50px;
+  top: 10px;
+  left: 10px;
+position: absolute;
  }
 
 #login-width{
