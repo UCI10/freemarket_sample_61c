@@ -26,10 +26,10 @@
       
         .login-form-inner-sai
           .login-form-inner-sai__form
-            %input{name: "email", placeholder: "メールアドレス", type: "email", :value => ""}/ 
+            %input{name: "email", placeholder: "メールアドレス", type: "email", value: ""}/ 
           .login-form-inner-sai__form#login-form-inner-sai__form
             %input{name: "password", placeholder: "パスワード", type: "password"}/
-          .g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6LdtOsAUAAAAAB48_GUOATmS_P4Dl0ejnacH1x4L"}
+            = recaptcha_tags
         .login-sai
           .login-no-account-sai#loginred-sai
             = link_to root_path do
