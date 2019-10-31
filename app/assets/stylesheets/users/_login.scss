@@ -1,0 +1,114 @@
+.login-sai{
+  padding: 24px 32px;
+  text-align: center;
+  border-bottom: 1px solid #f8f8f8;
+
+  &__passwordlast{
+    padding-top: 20px;
+    margin: left;
+    padding-left:20px;
+    text-align: left;
+   a{
+
+    text-decoration: none;
+    color: skyblue;
+
+   }
+
+  }
+
+}
+
+.login-no-account-sai a{
+  display: block;
+    margin: 8px 0 0;
+    border: 1px solid #0099e8;
+    background: #0099e8;
+    color: #fff;
+    line-height: 40px;
+    text-decoration: none;
+}
+
+
+#login-1-sai{
+  height: 700px;
+  width: 456px;
+}
+
+.login-form-inner2-sai{
+  padding: 32px 64px;
+
+  &__facebook a{
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    -webkit-transition: all ease-out .3s;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+    height: 20px;
+    width:20px;
+
+  }
+
+}
+
+.facebook-icon{
+ padding-right: 30px;
+}
+
+.googlesai-icon{
+  padding-right: 50px;
+ }
+
+#login-width{
+  margin: 0 auto;
+  width: 325px;
+}
+
+#facebook-form a{
+  border:1px solid #191970;
+ background-color: #191970;
+
+}
+
+#googlesai-form a{
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
+
+.login-form-inner-sai{
+  padding: 24px 64px 32px;
+
+  &__form{
+    margin-top: 20px;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 16px;
+
+   
+    input{  
+      height: 100%;
+      width: 100%;
+  
+    }
+    }
+
+}
+
+#login-form-inner-sai__form{
+  margin-bottom: 20px;
+}
+
+#loginred-sai a{
+  border: 1px solid red;
+  background-color: red;
+  margin: 0 auto;
+  width: 350px;
+}
