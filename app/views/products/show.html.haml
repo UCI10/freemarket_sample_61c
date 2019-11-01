@@ -1,0 +1,334 @@
+.products-show-header
+  = render 'tops/topheader'
+.products-show-content
+  .products-show-maincontent
+    .products-exhibit-box
+      %h1
+        ピンクトップス
+      %p
+        あああああああああ  
+      .products-show-centerbox.displayflex
+        .product-exhibit-photo
+          .product-exhibit-photo__high
+            = image_tag 'topspink.jpg', :height => "300", :width => "300"
+          .ul.product-exhibit-photo__low.displayflex
+            %li
+              = image_tag 'topspink.jpg', :height => "60", :width => "60"
+            %li
+              = image_tag 'blacktops.jpg', :height => "60", :width => "60"
+            %li 
+              = image_tag 'whitetops.jpg', :height => "60", :width => "60"
+
+
+        .product-exhibit-details__table
+          .product-exhibit-details-box.displayflex
+            .product-exhibit-details-box__heading
+              出品者
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                = link_to root_path do
+                  name
+              .exhibit-table__lowrow
+                .product-exhibit-reviewrate-rating.displayflex
+                  .product-exhibit-reviewrate-rating__good.displayflex
+                    .product-exhibit-reviewrate-rating__good__icon
+                      = image_tag 'icon-good.png', :height => "18", :width => "18"
+                    .product-exhibit-reviewrate-rating__good__rate
+                      70
+                  .product-exhibit-reviewrate-rating__normal.displayflex 
+                    .product-exhibit-reviewrate-rating__normal__icon
+                      = image_tag 'icon-normal.png', :height => "18", :width => "18"
+                    .product-exhibit-reviewrate-rating__normal__rate
+                      2
+                  .product-exhibit-reviewrate-rating__bad.displayflex 
+                    .product-exhibit-reviewrate-rating__bad__icon
+                      = image_tag 'icon-bad.png', :height => "18", :width => "18"
+                    .product-exhibit-reviewrate-rating__bad__rate
+                      0
+
+          .product-exhibit-details-box
+            .product-exhibit-details-box__heading
+              カテゴリー
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                = link_to root_path do
+                  レディース
+              .exhibit-table__middlerow
+                = link_to root_path do
+                  〉トップス 
+
+              .exhibit-table__lowrow
+                = link_to root_path do
+                  〉シャツ/ブラウス（七分/長袖）
+
+          .product-exhibit-details-box
+            .product-exhibit-details-box__heading
+              ブランド
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                = link_to root_path do
+                  スライ
+
+          .product-exhibit-details-box
+            .product-exhibit-details-box__heading
+              商品のサイズ
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                FREE SIZE
+
+          .product-exhibit-details-box
+            .product-exhibit-details-box__heading
+              商品の状態
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                新品、未使用         
+ 
+          .product-exhibit-details-box
+            .product-exhibit-details-box__heading
+              配送料の負担
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                送料込み(出品者負担)
+                  
+          .product-exhibit-details-box
+            .product-exhibit-details-box__heading
+              配送の方法
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                らくらくメルカリ便
+
+          .product-exhibit-details-box
+            .product-exhibit-details-box__heading
+              配送元地域
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                = link_to root_path do
+                  東京都
+
+          .product-exhibit-details-box
+            .product-exhibit-details-box__heading
+              発送日の目安
+            .product-exhibit-details-box__info  
+              .exhibit-table__highrow
+                1~2日で発送
+
+    .products-exhibit-price-box.displayflex
+      .products-exhibit-price
+        ¥1,111      
+      .products-exhibit-tax  
+        (税込)  
+      .products-exhibit-shipping-fee
+        着払い
+    .products-exhibit-buy-btn   
+      = link_to root_path do
+        購入画面に進む
+    .products-exhibit-description
+      .products-exhibit-description__box
+        ウール１００％ピンクトップス。
+        即購入Okです。 
+    .products-exhibit-button-container
+      .products-exhibit-button-left.displayflex
+        .products-exhibit-button-like.displayflex
+          .products-exhibit-button-like__img
+            = link_to root_path do
+              %i.fa.fa-heart
+          .products-exhibit-button-like__text
+            いいね！
+          .products-exhibit-button-like__fadeindown
+            3
+        .products-exhibit-button-report.displayflex   
+          .products-exhibit-button-report__img 
+            = link_to root_path do
+              %i.fa.fa-flag
+          .products-exhibit-button-like__text
+            不適切な商品の報告
+
+
+      .products-exhibit-button-right.displayflex
+        .products-exhibit-button-safety.displayflex
+          .products-exhibit-button-safety__img
+            = link_to root_path do
+              %i.fa.fa-lock
+          .products-exhibit-button-safety__text
+            %h2
+              あんしん・あんぜんへの取り組み
+
+
+
+  .products-show-comment          
+    .products-show-comment__box
+      .products-show-comment__box__form
+        .products-show-comment-container.displayflex
+          .products-show-comment-container__icon
+            = link_to root_path do
+              %i
+                = fa_icon 'user-circle', class: 'icon'    
+          .products-show-comment-container__box
+            .products-show-comment__name
+              nozomi
+            .products-show-comment-box__text  
+              .products-show-comment__text
+                コメント内容
+              .products-show-comment__time  
+              .products-show-comment__time__left.displayflex
+                .comment__time__icon
+                  = image_tag 'icon-watch.png', size: '16x16'
+                .comment__time__text
+                  ２３時間前
+              .products-show-comment__time__right
+                .comment__flag__icon
+                  = image_tag 'icon-flag.png', size: '16x16'
+
+
+        .products-show-comment-caution
+          %p1
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %input{:name => "product_id", :type => "hidden", :value => ""}/
+        .products-show-comment-textarea  
+          %textarea.textarea-product-comment{:name => "content", :type => "text", :value => ""}
+          %button.textarea-product-comment__btn{:type => "submit"}
+            = link_to root_path do
+              %p2
+                コメントする
+
+  .products-show-prevnext
+    .products-show-prevnext__box
+      .products-show-prev-link  
+        = link_to root_path do
+          %h2
+            <ホワイトトップス        
+      .products-show-next-link  
+        = link_to root_path do
+          %h2
+            ブラックトップス>                    
+
+  .products-show-sns
+    .products-show-sns__box
+      %ul.social-media-box.displayflex
+        %li
+          = link_to root_path do  
+            = fa_icon 'facebook-square', class: 'facebook-icon' 
+        %li
+          = link_to root_path do  
+            = fa_icon 'twitter-square', class: 'twitter-icon' 
+        %li
+          = link_to root_path do  
+            = fa_icon 'pinterest-square', class: 'pinterest-icon'  
+
+  .products-show-seller-exhidition 
+    .products-show-seller-exhidition__box
+      .products-show-seller-name-link  
+        = link_to root_path do
+          %h3
+            nameさんのその他の出品
+ 
+  .products-show-other-exhidition 
+    .products-show-other-exhidition__box
+      .product-otherlist.displayflex
+        .product-otherlist__box
+          %ul
+            .product-otherlist__box__image
+              = link_to root_path do
+                = image_tag 'topspink.jpg', size: '220x220'
+                .product-otherlist__box__price
+                  ¥1,200
+            .product-otherlist__box__title
+              .product-otherlist__title
+                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
+
+        .product-otherlist__box
+          %ul
+            .product-otherlist__box__image
+              = link_to root_path do
+                = image_tag 'topspink.jpg', size: '220x220'
+                .product-otherlist__box__price
+                  ¥1,200
+            .product-otherlist__box__title
+              .product-otherlist__title
+                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
+
+
+        .product-otherlist__box
+          %ul
+            .product-otherlist__box__image
+              = link_to root_path do
+                = image_tag 'topspink.jpg', size: '220x220'
+                .product-otherlist__box__price
+                  ¥1,200
+            .product-otherlist__box__title
+              .product-otherlist__title
+                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
+
+
+
+        .product-otherlist__box
+          %ul
+            .product-otherlist__box__image
+              = link_to root_path do
+                = image_tag 'topspink.jpg', size: '220x220'
+                .product-otherlist__box__price
+                  ¥1,200
+            .product-otherlist__box__title
+              .product-otherlist__title
+                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
+
+
+        .product-otherlist__box
+          %ul
+            .product-otherlist__box__image
+              = link_to root_path do
+                = image_tag 'topspink.jpg', size: '220x220'
+                .product-otherlist__box__price
+                  ¥1,200
+            .product-otherlist__box__title
+              .product-otherlist__title
+                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
+
+
+
+        .product-otherlist__box
+          %ul
+            .product-otherlist__box__image
+              = link_to root_path do
+                = image_tag 'topspink.jpg', size: '220x220'
+                .product-otherlist__box__price
+                  ¥1,200
+            .product-otherlist__box__title
+              .product-otherlist__title
+                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
+
+.footer-take
+  = render 'tops/topfooter'        
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+          
+
+
+
+
+
