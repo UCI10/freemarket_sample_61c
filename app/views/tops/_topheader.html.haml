@@ -15,9 +15,8 @@
     .top-low-row
       .top-low-row-left
         .top-low-row-left__category
-          .top-low-row-left__category__btn
+          .top-low-row-left__category__btn.displayflex
             = link_to root_path do
-            
               %i
                 = fa_icon 'list-ul', class: 'icon'
 
@@ -26,14 +25,13 @@
         .top-low-row-left__brand
           .top-low-row-left__brand__btn
             = link_to root_path do
-
               %i
                 = fa_icon 'tags', class: 'icon'              
               %h2 ブランドから探す
 
       .top-low-row-right
         .top-low-row-right-list
-        
+        - if user_signed_in?
           .top-low-row-right-list__like
             .top-low-row-right-list__like__btn
               = link_to root_path do
@@ -58,4 +56,10 @@
                 %i
                   = fa_icon 'user-circle', class: 'icon'              
                 %h4 マイページ             
-
+        - else
+        .top-low-row-right__signin
+          %ul
+            %li.top-low-row-right__register
+              = link_to "新規登録", new_user_registration_path, :class => 'post'
+            %li.top-low-row-right__login
+              = link_to "ログイン", new_user_session_path, :class => 'post'  
