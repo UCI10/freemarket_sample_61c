@@ -1,41 +1,21 @@
-.single-container-sai
-  .header-logo-sai
-    %h1.header-logo-sai__link
-      = link_to root_path do
-        = image_tag 'mercari-logo.png', size: '155x50'
-    .single-main-sai
-      .l-single-container-sai2#login-1-sai
-        .single-main
-          
-          .login-sai
-            %p アカウントをお持ちでない方はこちら
-            .login-no-account-sai#login-width
-              = link_to root_path do
-                新規会員登録
-          .login-form-inner2-sai
-            .login-no-account-sai#facebook-form
-              = link_to root_path, class: "facebookrelative" do
-                = fa_icon 'facebook', class: "facebook-icon"
-                %span
-                  Facebookでログイン
-            .login-no-account-sai#googlesai-form
-              = link_to root_path, class: "googlerelative" do
-                = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
-                googleでログイン
-
-      
-        .login-form-inner-sai
-          .login-form-inner-sai__form
-            %input{name: "email", placeholder: "メールアドレス", type: "email", value: ""}/ 
-          .login-form-inner-sai__form#login-form-inner-sai__form
-            %input{name: "password", placeholder: "パスワード", type: "password"}/
-          .g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6LdtOsAUAAAAAB48_GUOATmS_P4Dl0ejnacH1x4L"}
-        .login-sai
-          .login-no-account-sai#loginred-sai
-            = link_to root_path do
-              ログイン
-          .login-sai__passwordlast
-            = link_to root_path do
-              パスワードをお忘れの方
-              
-      = render 'products/footer'
+#account-page.account-page
+  .account-page__inner.clearfix
+    .account-page__inner--left.account-page__header
+      %h2 Log in
+      %h5 登録しているユーザーでログイン
+      = render "devise/shared/links"
+    .account-page__inner--right.user-form
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          .field-label
+            = f.label :email
+          .field-input
+            = f.email_field :email, autofocus: true
+          .field
+            .field-label
+              = f.label :password
+              %i (英数字8文字以上)
+            .field-input
+              = f.password_field :password, autocomplete: "off"
+          .actions
+            = f.submit "Log in", class: 'btn'

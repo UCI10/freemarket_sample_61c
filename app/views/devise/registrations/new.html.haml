@@ -1,30 +1,32 @@
-.single-container-sai
-  .header-logo-sai
-    %h1.header-logo-sai__link
-      = link_to root_path do
-        = image_tag 'mercari-logo.png', size: '155x50'
-    .single-main-sai
-
-      .l-single-container-sai2#register1-height
-        .single-main
-        
-          %h2.registration-sai
-            新規会員登録
-          .registration-form-sai
-            .registration-form-sai__max
-              .registration-form-sai__max__mail
-                = link_to root_path, class: "btn-default" do
-                  = fa_icon 'envelope', width: "20", height: "20", class: "googlesai-icon"
-                  メールアドレスで登録する。
-
-
-            .login-no-account-sai#facebook-form
-              = link_to root_path, class: "facebookrelative" do
-                = fa_icon 'facebook', class: "facebook-icon"
-                %span
-                  Facebookでログイン
-            .login-no-account-sai#googlesai-form
-              = link_to root_path, class: "googlerelative" do
-                = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
-                  googleでログイン
-      = render 'products/footer'
+#account-page.account-page
+  .account-page__inner.clearfix
+    .account-page__inner--left.account-page__header
+      %h2 Create Account
+      %h5 新規アカウントの作成
+      = render "devise/shared/links"
+    .account-page__inner--right.user-form
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = devise_error_messages!
+        .field
+          .field-label
+            = f.label :nickname
+          .field-input
+            = f.text_field :nickname, autofocus: true
+        .field
+          .field-label
+            = f.label :email
+          .field-input
+            = f.email_field :email
+        .field
+          .field-label
+            = f.label :password
+            %i (英数字8文字以上)
+          .field-input
+            = f.password_field :password, autocomplete: "off"
+        .field
+          .field-label
+            = f.label :password_confirmation
+          .field-input
+            = f.password_field :password_confirmation, autocomplete: "off"
+        .actions
+          = f.submit "Create Account", class: 'btn'
