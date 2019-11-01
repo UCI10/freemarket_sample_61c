@@ -14,7 +14,7 @@ body{
       position: relative;
       padding: 20px;
       height:160px;
-      background: url(https://www.lafary.net/wp-content/uploads/2018/04/IMG_1843-1024x768.jpg);
+      background: url("https://www.lafary.net/wp-content/uploads/2018/04/IMG_1843-1024x768.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       text-align: center;
@@ -56,6 +56,14 @@ body{
       &__todo{
       margin:0;
       height:400px;
+      a{
+        position: relative;
+        display: block;
+        color: $black;
+        font-size: 16px;
+        line-height: 72px;
+        text-decoration: none;
+      }
         &__tab{
         border: 0;
           &__left{
@@ -63,26 +71,19 @@ body{
           display: inline-block;
           text-align: center;
           vertical-align: top;
-          float:left;
           background-color: $white;
           border-top:2px solid $red;
-          }
-          a{
-          position: relative;
-          display: block;
-          color: $black;
-          font-size: 16px;
-          line-height: 72px;
+          float:left;
           }
           &__right{
           width:50%;
           display: inline-block;
           text-align: center;
           vertical-align: top;
-          float:right;
+          float:right
           }
-          }
-          }
+        }
+      }
       &__footer{
       margin:40px 0 0;
       h3{
@@ -91,8 +92,8 @@ body{
       background:$gray-hover;
       font-size:16px;
       font-weight: bold;
-        }
+     }
       }
-    }
+    }  
   }
 }
