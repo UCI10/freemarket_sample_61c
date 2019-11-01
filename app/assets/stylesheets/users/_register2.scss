@@ -1,0 +1,221 @@
+.progress {
+  padding: 40px 0 0 44px;
+  border: 0;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0;
+  text-align: center;
+
+  margin-bottom: 30px;
+
+  &-bar{
+    margin: 0;
+    li{
+      margin: 0 40px 0 0;
+      padding: 0;
+      position: relative;
+      z-index: 40;
+      display: inline-block;
+      min-width: 60px;
+      font-size: 12px;
+      color: gray;
+      .progress-status{
+        position: absolute;
+        left: 40%;
+        width: 12px;
+        height: 12px;
+        margin: 8px auto 0;
+        background: gray;
+        border-radius: 50%;
+        z-index: 30;
+      }
+    }
+  }
+}
+
+// デフォルトのプログレスバー
+.progress-status_bar {
+position: absolute;
+left: 50%;
+top: 25px;
+bottom: 5px;
+display: block;
+width: 130px;
+height: 2px;
+background: gray;
+z-index: 10;
+}
+
+.end .progress-status_bar {
+width: 0px;
+}
+.payment .progress-status_bar {
+width: 100px;
+}
+#through{
+color: #ea352d;
+.progress-status{
+  background: #ea352d;
+}
+}
+
+#through .progress-status_bar{
+  background: #ea352d;
+}
+#active{
+  color: #ea352d;
+  .progress-status{
+    background: #ea352d;
+  }
+}
+
+form {
+  padding: 24px 16px 40px;
+}
+
+.l-single-content {
+  max-width: 343px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin: 40px 0 0;
+
+  &__text-let{
+    font-size: 14px;
+  }
+
+}
+
+.form-require{
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  vertical-align: top;
+  background-color: red;
+}
+
+.input-default{
+  height: 48px;
+    padding: 10px 16px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    line-height: 1.5;
+    font-size: 16px;
+
+    width: 100%;
+    margin: 8px 0 0;
+}
+
+.half {
+  width: calc(50% - 6px);
+}
+
+.form-group {
+  margin: 24px 0 0;
+
+
+   
+  &__info-text{
+    margin: 8px 0 0;
+    color: #888;
+    line-height: 1.5;
+}
+
+
+}
+
+#registar2-height{
+  height:1450px;
+}
+
+.displayinline-sai{
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-default.half:first-of-type {
+  margin-right: 8px;
+}
+
+.birthday-select-wrap .select-wrap {
+  display: inline-block;
+  width: calc(30% - 17px);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-bottom: 20px;
+  padding: 7px 30px 7px 10px;
+  font-size: 93%;
+  line-height: 1.1em;
+  border-radius: 5px;
+  border: none;
+  background-image: url(./images/icon_arrow.svg);
+  background-repeat: no-repeat;
+  background-size: 12px 10px;
+  background-position: right 10px center;
+  background-color: #bddfff;
+}
+
+.select-default {
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.form-group select {
+  width: 100%;
+}
+
+
+.text-center{
+  text-align: center;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.l-single-text{
+  margin: 8px 0 0;
+  padding: 0;
+
+} 
+
+
+
+a {
+  text-decoration: none;
+  color: skyblue;
+
+
+}
+
+.icon-relative{
+  position: relative;
+
+  &__absolute {
+    position: absolute;
+    top: 12px;
+    left: 60px;
+    font-size: 25px;
+  }
+}
+
+.angle-right-skyblue{
+  color: skyblue;
+}
+
