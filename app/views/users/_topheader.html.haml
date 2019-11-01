@@ -6,8 +6,8 @@
           = link_to root_path do
             = image_tag 'mercari-top-logo.png', size: '134x40'
       %form.top-search-form   
-        %input.top-search__box{:name => "keyword", :placeholder => "何かお探しですか？", :type => "search", :value => ""}/
-        %button.search-button{:height => "16", :viewbox => "0 0 16 16", :width => "16"}
+        %input.top-search__box{name: "keyword", placeholder: "何かお探しですか？", type: "search", value: ""}/
+        %button.search-button{height: "16", viewbox: "0 0 16 16", width: "16"}
           %label.search-button__icon
             = link_to root_path do
               %i.fa.fa-search
