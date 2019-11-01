@@ -183,10 +183,10 @@
         .products-show-comment-caution
           %p1
             相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %input{:name => "product_id", :type => "hidden", :value => ""}/
+          %input{name: "product_id", type: "hidden", value: ""}/
         .products-show-comment-textarea  
-          %textarea.textarea-product-comment{:name => "content", :type => "text", :value => ""}
-          %button.textarea-product-comment__btn{:type => "submit"}
+          %textarea.textarea-product-comment{name: "content", type: "text", value: ""}
+          %button.textarea-product-comment__btn{type: "submit"}
             = link_to root_path do
               %p2
                 コメントする
@@ -207,13 +207,13 @@
       %ul.social-media-box.displayflex
         %li
           = link_to root_path do  
-            = fa_icon 'facebook-square', class: 'facebook-icon' 
+            = fa_icon 'facebook-square', class: 'products-show-facebook-icon' 
         %li
           = link_to root_path do  
-            = fa_icon 'twitter-square', class: 'twitter-icon' 
+            = fa_icon 'twitter-square', class: 'products-show-twitter-icon' 
         %li
           = link_to root_path do  
-            = fa_icon 'pinterest-square', class: 'pinterest-icon'  
+            = fa_icon 'pinterest-square', class: 'products-show-pinterest-icon'  
 
   .products-show-seller-exhidition 
     .products-show-seller-exhidition__box

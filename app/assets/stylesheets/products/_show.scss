@@ -437,7 +437,6 @@
                 font-weight: 600;
                 padding: 3px;
 
-
               }
 
               .products-show-comment-box__text  {
@@ -591,40 +590,40 @@
       width: 780px;
       background-color: $white;
 
-      a{
-        text-decoration: none;
-        background-color: $white;
-        
-      }
 
       ul{
-
         justify-content: center; 
         align-items: center; 
-      }
+      
 
       li{
         font-size: 48px;
         margin: 0 8px 8px 0;
 
-        .facebook-icon{
+        a{
+          text-decoration: none;
+          background-color: $white;
+          
+        }
+
+        .products-show-facebook-icon{
           background-color: $white;
           color: #01579b;
           padding: 2px;
         }
 
-        .twitter-icon{
+        .products-show-twitter-icon{
           background-color: $white;
           color: #0099e8;
           padding: 2px;
 
         }
         
-        .pinterest-icon{
+        .products-show-pinterest-icon{
           background-color: $white;
           color: #aa262a;
           padding: 2px;
-
+        }
         }
       }
     }
