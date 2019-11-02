@@ -1,0 +1,12 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+  background-color: $gray-back;
+  .u-display-clearfix-ito{
+    width:1020px;
+    margin:40px auto;
+    box-sizing: border-box;
+    display: flex;
+  }
+}

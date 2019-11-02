@@ -3,29 +3,88 @@
     %h1.header-logo-sai__link
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
+
     = render 'progress'
-    .single-main-sai
 
-      .l-single-container-sai2#register1-height
-        .single-main
+  .single-main-sai
+
+    .l-single-container-sai2#registar2-height
+      .single-main
+        .h2.registration-sai  会員情報入力
+        %form
+          %input{type: "hidden"}/
+          .l-single-content
+            .form-group
+              %label{for: "nickname"} ニックネーム
+              %span.form-require
+                必須
+              %input.input-default{name: "nickname", placeholder: "例) メルカリ太郎", type: "text", value: ""}/
+            .form-group
+              %label{for: "email"} メールアドレス
+              %span.form-require
+                必須
+              %input.input-default{name: "email", placeholder: "PC・携帯どちらでも可", type: "email", value: ""}/
+            .form-group
+              %label{for: "nickname"} パスワード
+              %span.form-require
+                必須
+              %input.input-default{name: "password", placeholder: "7文字以上", type: "password", value: ""}/
+            .form-group
+              %label{for: "nickname"} パスワード(確認)
+              %span.form-require
+                必須
+              %input.input-default{name: "password2", placeholder: "7文字以上", type: "password", value: ""}/
+            .form-group
+              %h3.form-group__text-let 本人確認
+              %p 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+            .form-group
+              %label{for: "nickname"}  お名前（全角）
+              %span.form-require 必須
+              .displayinline-sai
+                %input.input-default.half{name: "family_name_kanji", placeholder: "例) 山田", type: "text", value: ""}/
+                %input.input-default.half{name: "first_name_kanji", placeholder: "例) 彩", type: "text", value: ""}/
+            .form-group
+              %label{for: "nickname"}  お名前カナ（全角）
+              %span.form-require 必須
+              .displayinline-sai
+                %input.input-default.half{name: "family_name_kanji", placeholder: "例) ヤマダ", type: "text", value: ""}/
+                %input.input-default.half{name: "first_name_kanji", placeholder: "例) アヤ", type: "text", value: ""}/
+            .form-group
+              %label{for: "birthday"} 生年月日
+              %span.form-require 必須
+              %br
+              .birthday-select-wrap
+                .select-wrap.icon-relative
+                  = fa_icon 'angle-down', class: "icon-relative__absolute"
+                  %select.select-default
+                    %option ---
+                %span 年
+                .select-wrap.select-wrap__month.icon-relative
+                  = fa_icon 'angle-down', class: "icon-relative__absolute"
+                  %select.select-default
+                    %option ---
+                %span 月
+                .select-wrap.select-wrap__day.icon-relative
+
+                  = fa_icon 'angle-down', class: "icon-relative__absolute"
+                  %select.select-default.icon-relative
+                    %option ---
+          
+                %p.form-group__info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
         
-          %h2.registration-sai
-            新規会員登録
-          .registration-form-sai
-            .registration-form-sai__max
-              .registration-form-sai__max__mail
-                = link_to root_path, class: "btn-default" do
-                  = fa_icon 'envelope', width: "20", height: "20", class: "googlesai-icon"
-                  メールアドレスで登録する。
+                = recaptcha_tags
+                .form-group
+                  .l-single-text.text-center
+                    %P 
+                      次へ進む」のボタンを押すことにより、
+                  
+                      = link_to "利用規約", "root_path"
+    
+                      に同意したものとみなします
+                %button.btn-default.btn-red{:type => "submit"} 次へ進む
+                .form-group.text-right
+                  %p 
+                    = link_to "本人情報の登録について", "root_path"
+                    = fa_icon 'angle-right', class: 'angle-right-skyblue'
 
-
-            .login-no-account-sai#facebook-form
-              = link_to root_path, class: "facebookrelative" do
-                = fa_icon 'facebook', class: "facebook-icon"
-                %span
-                  Facebookでログイン
-            .login-no-account-sai#googlesai-form
-              = link_to root_path, class: "googlerelative" do
-                = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
-                googleでログイン
-    = render 'signup/footer'
+  = render 'products/footer'
