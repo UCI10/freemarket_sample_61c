@@ -10,14 +10,17 @@
 @import "products/products";
 @import "products/new";
 @import "products/show";
-@import "users/login";
-@import "users/register1";
-@import "users/register2";
+@import "users/entry_signin";
+@import "users/entry_signup";
+@import "users/step1";
 @import "users/index";
 @import "users/userside";
 @import "users/mypage";
 @import "users/profile";
 @import "users/logout";
+
+@import "users/step2";
+@import "users/progress";
 
 .wrapper-take{
   color: rgb(51, 51, 51);
