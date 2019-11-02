@@ -8,5 +8,11 @@ body{
     margin:40px auto;
     box-sizing: border-box;
     display: flex;
+    .u-side-ito{
+      float:left;
+    }
+    .u-content{
+      float:right;
+    }
   }
 }
