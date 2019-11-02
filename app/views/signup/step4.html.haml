@@ -44,40 +44,40 @@
                     .select-card-month.half.displayflex.relative
                       = fa_icon 'angle-down', class: "credit-card-angle-down__absolute"
                       %select#payment_card_expiration_mm.select-default
-                        %option{:value => "01"} 01
-                        %option{:value => "02"} 02
-                        %option{:value => "03"} 03
-                        %option{:value => "04"} 04
-                        %option{:value => "05"} 05
-                        %option{:value => "06"} 06
-                        %option{:value => "07"} 07
-                        %option{:value => "08"} 08
-                        %option{:value => "09"} 09
-                        %option{:value => "10"} 10
-                        %option{:value => "11"} 11
-                        %option{:value => "12"} 12
+                        %option{value: "01"} 01
+                        %option{value: "02"} 02
+                        %option{value: "03"} 03
+                        %option{value: "04"} 04
+                        %option{value: "05"} 05
+                        %option{value: "06"} 06
+                        %option{value: "07"} 07
+                        %option{value: "08"} 08
+                        %option{value: "09"} 09
+                        %option{value: "10"} 10
+                        %option{value: "11"} 11
+                        %option{value: "12"} 12
                       %h3 月  
 
                   .card-expiration-year-box
                     .select-card-year.half.displayflex.relative
                       = fa_icon 'angle-down', class: "credit-card-angle-down__absolute"
                       %select#payment_card_expire_yy.select-default
-                        %option{:value => "19"} 19
-                        %option{:value => "20"} 20
-                        %option{:value => "21"} 21
-                        %option{:value => "22"} 22
-                        %option{:value => "23"} 23
-                        %option{:value => "24"} 24
-                        %option{:value => "25"} 25
-                        %option{:value => "26"} 26
-                        %option{:value => "27"} 27
-                        %option{:value => "28"} 28
-                        %option{:value => "29"} 29
+                        %option{value: "19"} 19
+                        %option{value: "20"} 20
+                        %option{value: "21"} 21
+                        %option{value: "22"} 22
+                        %option{value: "23"} 23
+                        %option{value: "24"} 24
+                        %option{value: "25"} 25
+                        %option{value: "26"} 26
+                        %option{value: "27"} 27
+                        %option{value: "28"} 28
+                        %option{value: "29"} 29
                       %h3 年
                     
               .signup-form-security_code
                 .signup-form-security_code__heading.displayflex
-                  %label{:for => "payment_card_security_code"} セキュリティコード
+                  %label{for: "payment_card_security_code"} セキュリティコード
                   %span.form-require 必須
                 .signup-form-security_code-box 
                   %input#payment_card_security_code.input-default{placeholder: "カード背面4桁もしくは3桁の番号", value: ""}/
@@ -92,7 +92,7 @@
          
               .card-info-submit
                 .card-info-submit__btn
-                  %button#submit-button.btn-default.btn-red{:type => "button"} 追加する
+                  %button#submit-button.btn-default.btn-red{type: "button"} 追加する
 
 
 
