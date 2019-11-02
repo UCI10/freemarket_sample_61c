@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   resources :signup do
     collection do
-      get 'step0'
+      get 'entry_signin'
+      get 'entry_signup'
+
       get 'step1'
       get 'step2'
       get 'step3'
