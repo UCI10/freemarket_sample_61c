@@ -43,6 +43,7 @@
   |avatar|string||
   |point|integer||
   |payment_method|string|null: false|
+  |phone_number|integer|null: false, unique: true|
 
 
   <!-- 商品、いいね、コメント、取引グループ(取引後のメッセージ送信に使用)、取引中のメッセージ、所持ポイント、クレジットカード、レビュー -->
@@ -75,7 +76,7 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |phone_number|integer|null: false, unique: true|
+  |user|references|null: false, foreign_key: true|
   |postalcode|integer|null: false|
   |prefecture|string|null: false|
   |city|string|null: false|
@@ -85,6 +86,10 @@
 
 ### Association
 - belongs_to :user
+
+## enum
+- prefectures
+
 
   <!-- タイトル、画像、詳細、商品状態、配送負担（出品者購入者）、発送方法、発送元地域、発送までの日数値段、サイズ、他 -->
   ## productsテーブル

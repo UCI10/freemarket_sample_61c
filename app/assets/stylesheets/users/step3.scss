@@ -99,7 +99,7 @@
     position: absolute;
     left: 0px;
 
-  .form-group-address__prefecture__box{
+    &__box{
     width:  350px;
     margin: 8px 0 ;
     height: 30px;
@@ -112,6 +112,17 @@
     position: absolute;
     left: 0px;
 
+    .address-select-prefecture{
+      width: 350px;
+      margin: 8px 0;
+      height: 30px;
+      padding: 10px 16px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background: #fff;
+      line-height: 1.5;
+      font-size: 28px;
+
     .address-select-prefecture-box{
       width: 350px;
       margin: 8px 0;
@@ -123,16 +134,7 @@
       line-height: 1.5;
       font-size: 16px;
 
-    .address-select-prefecture{
-      width: 350px;
-      margin: 8px 0;
-      height: 30px;
-      padding: 10px 16px 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      background: #fff;
-      line-height: 1.5;
-      font-size: 28px;
+
       
       i{  
 
