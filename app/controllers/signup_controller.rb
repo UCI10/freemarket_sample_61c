@@ -33,6 +33,8 @@ def step3
   # session[:last_name_kana] = user_params[:last_name_kana]
   # session[:first_name_kana] = user_params[:first_name_kana]
   @user = User.new # 新規インスタンス作成
+  @address = Address.new
+  
 end
 
 def create

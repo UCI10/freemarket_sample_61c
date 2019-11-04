@@ -1,4 +1,4 @@
-.single-container-sai
+.single-container-sai#step3-position
   .header-logo-sai
     %h1.header-logo-sai__link
       = link_to root_path do
@@ -6,9 +6,75 @@
 
     = render 'progress'
     
-  .single-main-sai
+    .single-main-sai
+      .l-single-container-sai2#step3-height
+        .single-main-box
+          .register-heading-take
+            住所入力
+        = form_for '' do |f|    
+          .register-content-box-take
+            .l-single-content-take
+              .form-group-address
+                .form-group-address__heading.displayflex
+                  %label{for: "address_name"} お名前
+                  %span.form-require 必須
+                .form-group-address__list 
+                  %input.address_last_name.address-form-box{maxlength: "35", placeholder: "例）山田", name: "last_name", type: "string", value: ""}/
+                  %input.address_first_name.address-form-box{maxlength: "35", placeholder: "例）彩", name: "first_name", type: "string", value: ""}/
 
-    .l-single-container-sai2#register1-height
-      .single-main
+                .form-group-address__phonetic.address-heading-row
+                  %label{for: "address_name_phonetic"} お名前カナ
+                  %span.form-require 必須
+                .form-group-address__list 
+                  %input.address_last_name.address-form-box{maxlength: "35", placeholder: "例）ヤマダ", name: "last_name_phonetic", type: "string", value: ""}/
+                  %input.address_first_name.address-form-box{maxlength: "35", placeholder: "例）アヤ", name: "first_name_phonetic", type: "string", value: ""}/
+                
+                .form-group-address__postalcode.address-heading-row
+                  %label{for: "address_name_postalcode"} 郵便番号
+                  %span.form-require 必須
+                .form-group-address__list 
+                  %input.address_postalcode.address-form-box{maxlength: "7", placeholder: "例）123-4567", name: "postalcode", type: "integer", value: ""}/
 
-  = render 'signup/footer'
+                .form-group.address-prefecture-form
+                  .form-group.address-prefecture-form__heading.displayflex
+                    %label{for: "select-prefecture_pn"} 都道府県
+                    %span.form-require 必須 
+
+                  .address-prefecture-select   
+                    .address-prefecture-select-box
+                      .address-prefecture-select-down.relative
+                        .angle-position
+                          = fa_icon 'angle-down', class: "address-prefecture-angle-down__absolute.angle-position"
+                        = f.collection_select :prefectures , Prefecture.all, :id, :name,{prompt:"--"},{class:"input-default"}  
+
+                .form-group-address__phonetic.address-heading-row
+                  %label{for: "address_city"} 市区町村
+                  %span.form-require 必須
+                .form-group-address__list 
+                  %input.address_city.address-form-box{maxlength: "50", placeholder: "例）横浜市緑区", name: "city", type: "string", value: ""}/
+                
+                .form-group-address__phonetic.address-heading-row
+                  %label{for: "address_house_number"} 番地
+                  %span.form-require 必須
+                .form-group-address__list 
+                  %input.address_house_number.address-form-box{ maxlength: "100", placeholder: "例）青山1-1-1", name: "house_number", type: "string", value: ""}/
+                
+                .form-group-address__phonetic.address-heading-row
+                  %label{for: "address_building_name"} 建物名
+                  %span.form-require.heading-gray 任意
+                .form-group-address__list 
+                  %input.address_building_name.address-form-box{"data-input-type" => "address", maxlength: "100", placeholder: "例）柳ビル103", name: "building_name", type: "string", value: ""}/
+                
+                .form-group-address__phonetic.address-heading-row
+                  %label{for: "address_phone_number"} 電話
+                  %span.form-require.heading-gray 任意
+                .form-group-address__list 
+                  %input.address_phone_number.address-form-box{maxlength: "100", placeholder: "例）09012345678", name: "phone_number", type: "integer", value: ""}/
+            
+              .step3-info-submit
+                .step3-info-submit__btn
+                  %button#step3-submit-button.btn-default.btn-red{type: "button"} 次へ進む
+
+      .credit-register-footer
+        = render 'signup/footer'
+
