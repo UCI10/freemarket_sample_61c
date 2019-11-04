@@ -1,0 +1,32 @@
+.single-container-sai
+  .header-logo-sai
+    %h1.header-logo-sai__link
+      = link_to root_path do
+        = image_tag 'mercari-logo.png', size: '155x50'
+
+    = render 'progress'
+    
+    .single-main-sai
+      .l-single-container-sai2#done-height
+        .single-main-box
+          .register-heading-take
+            会員登録完了
+          .register-content-box-take
+            .l-single-content-take
+              .form-group-done
+                .form-group-done__text
+                  ありがとうございます。
+                %br  
+                  会員登録が完了しました。
+         
+              .done-info-submit
+                .card-info-submit__btn
+                  %button#submit-button.btn-default.btn-red{type: "button"} メルカリをはじめる
+
+
+        .done-register-download-footer
+          =render 'tops/downloadfooter'
+
+      .done-register-footer
+        = render 'signup/footer'
+
