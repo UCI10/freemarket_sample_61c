@@ -76,7 +76,7 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |phone_number|integer|unique: true|
+  |user|references|null: false, foreign_key: true|
   |postalcode|integer|null: false|
   |prefecture|string|null: false|
   |city|string|null: false|
