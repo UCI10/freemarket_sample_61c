@@ -32,8 +32,11 @@ def step3
   # session[:first_name] = user_params[:first_name]
   # session[:last_name_kana] = user_params[:last_name_kana]
   # session[:first_name_kana] = user_params[:first_name_kana]
+
   session[:phone_number] = session =[:phone_number]
-  @user = User.new
+
+  @user = User.new # 新規インスタンス作成
+
 end
 
 def step4
