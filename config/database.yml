@@ -55,5 +55,3 @@ production:
   password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
 
-
-  nnnnn
