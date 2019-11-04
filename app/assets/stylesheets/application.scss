@@ -10,6 +10,7 @@
 @import "products/products";
 @import "products/new";
 @import "products/show";
+@import "users/step4";
 @import "users/entry_signin";
 @import "users/entry_signup";
 @import "users/step1";
@@ -18,9 +19,11 @@
 @import "users/mypage";
 @import "users/profile";
 @import "users/logout";
-
 @import "users/step2";
 @import "users/progress";
+@import "users/done";
+@import "users/creditdisplay";
+
 
 .wrapper-take{
   color: rgb(51, 51, 51);

@@ -6,9 +6,95 @@
 
     = render 'progress'
     
-  .single-main-sai
+    .single-main-sai
+      .l-single-container-sai2#step4-height
+        .single-main-box
+          .register-heading-take
+            クレジットカード情報入力
+          .register-content-box-take
+            .l-single-content-take
+              .form-group-card
+                .form-group-card__heading.displayflex
+                  %label{for: "payment_card_num"} カード番号
+                  %span.form-require 必須
+                %input.payment_card_num.input-default{"data-input-type" => "card", maxlength: "19", placeholder: "半角数字のみ", type: "text", value: ""}/
+                .card-icons-box.displayflex
+                  %ul
+                    = image_tag 'icon-visa.svg', size: '49x20'
+                  %li  
+                    = image_tag 'master-card.svg', size: '34x20'
+                  %li  
+                    = image_tag 'saison-card.svg', size: '30x20'                    
+                  %li  
+                    = image_tag 'jcb.svg', size: '32x20'
+                  %li  
+                    = image_tag 'american_express.svg', size: '21x20'   
+                  %li  
+                    = image_tag 'dinersclub.svg', size: '32x20'
+                  %li  
+                    = image_tag 'discover.svg', size: '32x20'   
 
-    .l-single-container-sai2#register1-height
-      .single-main
+              .form-group.signup-form-expire
+                .form-group.signup-form-expire__heading.displayflex
+                  %label{for: "payment_card_expire"} 有効期限
+                  %span.form-require 必須      
+                .card-expiration.displayflex    
+                  .card-expiration-month-box
+                    .select-card-month.half.displayflex.relative
+                      = fa_icon 'angle-down', class: "credit-card-angle-down__absolute"
+                      %select#payment_card_expiration_mm.select-default
+                        %option{value: "01"} 01
+                        %option{value: "02"} 02
+                        %option{value: "03"} 03
+                        %option{value: "04"} 04
+                        %option{value: "05"} 05
+                        %option{value: "06"} 06
+                        %option{value: "07"} 07
+                        %option{value: "08"} 08
+                        %option{value: "09"} 09
+                        %option{value: "10"} 10
+                        %option{value: "11"} 11
+                        %option{value: "12"} 12
+                      %h3 月  
 
-  = render 'signup/footer'
+                  .card-expiration-year-box
+                    .select-card-year.half.displayflex.relative
+                      = fa_icon 'angle-down', class: "credit-card-angle-down__absolute"
+                      %select#payment_card_expire_yy.select-default
+                        %option{value: "19"} 19
+                        %option{value: "20"} 20
+                        %option{value: "21"} 21
+                        %option{value: "22"} 22
+                        %option{value: "23"} 23
+                        %option{value: "24"} 24
+                        %option{value: "25"} 25
+                        %option{value: "26"} 26
+                        %option{value: "27"} 27
+                        %option{value: "28"} 28
+                        %option{value: "29"} 29
+                      %h3 年
+                    
+              .signup-form-security_code
+                .signup-form-security_code__heading.displayflex
+                  %label{for: "payment_card_security_code"} セキュリティコード
+                  %span.form-require 必須
+                .signup-form-security_code-box 
+                  %input#payment_card_security_code.input-default{placeholder: "カード背面4桁もしくは3桁の番号", value: ""}/
+                .signup-seqcode-help
+                  .signup-seqcode__text.displayflex
+                    .signup-seqcode__text__icon
+                      %i
+                        = fa_icon 'question', class: "credit-card-question"
+                    .signup-seqcode__text__help
+                      %h5
+                        カード裏面の番号とは？
+         
+              .card-info-submit
+                .card-info-submit__btn
+                  %button#submit-button.btn-default.btn-red{type: "button"} 次へ進む
+
+
+
+      .credit-register-footer
+        = render 'signup/footer'
+
