@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  validates :email, {presence: true}
+  # validates :email, {presence: true}
 
-#   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-#   validates :email, {presence: true, , format: { with: VALID_EMAIL_REGEX }}
-# end
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true,  format: { with: VALID_EMAIL_REGEX }
+
 
 # before_save { self.email = email.downcase }
 
@@ -17,4 +17,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :addresss
 end
