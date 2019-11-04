@@ -1,11 +1,10 @@
 .u-content
   %h2.u-content__profile プロフィール
-  %form
-    .u-content__picture
-      %figure
-        = image_tag 'mypage_icon.png'
-      %input.u-content__picture__name{name: "email", placeholder: "足長おじちゃん", type: "email", value: ""}/
-    .u-content__introduction
-      %textarea.u-content__introduction__textarea{:name => "introduction", :placeholder => "例）こんにちは、みんなの足長おじさんです。貢ぎますよ。"}
-      %button.u-content__introduction__button{:type => "submit"} 変更する
+  .u-content__picture
+    %figure
+      = image_tag 'mypage_icon.png'
+    %input.u-content__picture__name{name: "email", placeholder: "足長おじちゃん", type: "email", value: ""}/
+  .u-content__introduction
+    %textarea.u-content__introduction__textarea{:name => "introduction", :placeholder => "例）こんにちは、みんなの足長おじさんです。貢ぎますよ。"}
+    %button.u-content__introduction__button{:type => "submit"} 変更する
     
