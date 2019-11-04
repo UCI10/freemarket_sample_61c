@@ -43,6 +43,7 @@
   |avatar|string||
   |point|integer||
   |payment_method|string|null: false|
+  |phone_number|integer|null: false, unique: true|
 
 
   <!-- 商品、いいね、コメント、取引グループ(取引後のメッセージ送信に使用)、取引中のメッセージ、所持ポイント、クレジットカード、レビュー -->

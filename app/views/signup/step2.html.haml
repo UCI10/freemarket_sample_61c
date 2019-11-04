@@ -11,14 +11,19 @@
       .l-single-container-sai2#register3-height
         .single-main
           %h2.l-chapter-head.registration 電話番号確認
-          .form
+          = form_with model: @user, url: step3_signup_index_path, method: :get, local: true do |f|
+      
             %input{type: "hidden"}
             .l-single-content
               .form-group
+                -# = f.label :携帯電話の番号 class: "phone-number__left"
                 %label.phone-number__left{for: "phone_number"} 携帯電話の番号
+
+                -# = f.text_field :phone_number class: "input-default" 
                 %input.input-default{type: "tele"}
               %p 
                 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
+              
               %button.btn-default.btn-red{type: "submit"}
                 SMSを送信する。
               %P
