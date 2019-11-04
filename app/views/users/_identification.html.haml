@@ -1,0 +1,47 @@
+.iden-content
+  %session
+    %h2.iden-content__all 本人情報の登録
+    %form.iden-content__all__form
+      .iden-prease
+        %p お客様の本人情報をご登録ください。
+        %p 登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+        %p.iden-prease__link
+          = link_to'本人確認書類のアップロードについて',''
+          %i.fa.fa-angle-right   
+      .iden-user-infomation
+        %label お名前
+        %p 徳川　家康
+      .iden-user-infomation
+        %label お名前カナ
+        %p トクガワ　イエヤス
+      .iden-user-infomation
+        %label 生年月日
+        %p 1986/04/13
+      .iden-user-infomation
+        %label 郵便番号
+        %span.iden-user-infomation__span 任意
+        %input.iden-user-infomation__input{:name => "zip_code", :placeholder => "例）1234567", :type => "text", :value => ""}/
+      .iden-user-infomation
+        %label 都道府県
+        %span.iden-user-infomation__span 任意
+        .iden-user-infomation__select
+          %i.fa.fa-angle-down
+          %select.iden-user-infomation__select__date
+            %option --
+      .iden-user-infomation
+        %label 市長村区
+        %span.iden-user-infomation__span 任意
+        %input.iden-user-infomation__input{:name => "zip_code", :placeholder => "例) 千代田区", :type => "text", :value => ""}/    
+      .iden-user-infomation
+        %label 番地
+        %span.iden-user-infomation__span 任意
+        %input.iden-user-infomation__input{:name => "zip_code", :placeholder => "千代田１−１", :type => "text", :value => ""}/
+      .iden-user-infomation
+        %label 建物名
+        %span.iden-user-infomation__span 任意
+        %input.iden-user-infomation__input{:name => "zip_code", :placeholder => "江戸城", :type => "text", :value => ""}/
+      %button.iden-user-button 登録する
+      .iden-bottom
+        %p
+          = link_to'本人情報の登録について',''
+          %i.fa.fa-angle-right 

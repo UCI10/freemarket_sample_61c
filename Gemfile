@@ -86,7 +86,7 @@ gem 'recaptcha', require: "recaptcha/rails"
 gem 'dotenv-rails'
 
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails' 
 gem 'active_hash'
 gem 'ancestry'
 gem 'gretel'
