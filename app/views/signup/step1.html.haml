@@ -11,65 +11,92 @@
     .l-single-container-sai2#registar2-height
       .single-main
         .h2.registration-sai  会員情報入力
-        %form
+
+        = form_with model: @user, url: step2_signup_index_path, method: :get, local: true do |f|
+        
           %input{type: "hidden"}/
           .l-single-content
             .form-group
-              %label{for: "nickname"} ニックネーム
+              = f.label :nickname, value: "ニックネーム"
+              -# %label{for: "nickname"} ニックネーム
               %span.form-require
                 必須
-              %input.input-default{name: "nickname", placeholder: "例) メルカリ太郎", type: "text", value: ""}/
+              = f.text_field :nickname, placeholder: '例) メルカリ太郎', class: "input-default"
+              -# %input.input-default{name: "nickname", placeholder: "例) メルカリ太郎", type: "text", value: ""}/
             .form-group
-              %label{for: "email"} メールアドレス
+              = f.label :email, value: "メールアドレス"
+              -# %label{for: "email"} メールアドレス
               %span.form-require
                 必須
-              %input.input-default{name: "email", placeholder: "PC・携帯どちらでも可", type: "email", value: ""}/
+              = f.email_field :email, placeholder: 'PC・携帯どちらでも可', class: "input-default"
+              -# %input.input-default{name: "email", placeholder: "PC・携帯どちらでも可", type: "email", value: ""}/
             .form-group
-              %label{for: "nickname"} パスワード
+              = f.label :password, value: "パスワード"
+              -# %label{for: "password"} パスワード
               %span.form-require
                 必須
-              %input.input-default{name: "password", placeholder: "7文字以上", type: "password", value: ""}/
+              = f.password_field :password, placeholder: '7文字以上', class: "input-default"
+              -# %input.input-default{name: "password", placeholder: "7文字以上", type: "password", value: ""}/
             .form-group
-              %label{for: "nickname"} パスワード(確認)
+              = f.label :password_confirmation, value: "パスワード(確認)"
+              -# %label{for: "nickname"} パスワード(確認)
               %span.form-require
                 必須
-              %input.input-default{name: "password2", placeholder: "7文字以上", type: "password", value: ""}/
+              = f.password_field :password_confirmation, placeholder: '7文字以上', class: "input-default"
+              -# %input.input-default{name: "password2", placeholder: "7文字以上", type: "password", value: ""}/
+
+              -# = f.submit class: 'btn-default btn-red', value: "次へ進む"
+
             .form-group
               %h3.form-group__text-let 本人確認
               %p 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
             .form-group
-              %label{for: "nickname"}  お名前（全角）
+              = f.label :お名前（前角）
+              -# %label{for: "nickname"}  お名前（全角）
               %span.form-require 必須
               .displayinline-sai
-                %input.input-default.half{name: "family_name_kanji", placeholder: "例) 山田", type: "text", value: ""}/
-                %input.input-default.half{name: "first_name_kanji", placeholder: "例) 彩", type: "text", value: ""}/
+                = f.text_field :first_name, placeholder: '例) 山田', class: "input-default"
+                -# %input.input-default.half{name: "family_name_kanji", placeholder: "例) 山田", type: "text", value: ""}/
+                = f.text_field :last_name, placeholder: '例) 彩', class: "input-default"
+                -# %input.input-default.half{name: "first_name_kanji", placeholder: "例) 彩", type: "text", value: ""}/
             .form-group
               %label{for: "nickname"}  お名前カナ（全角）
               %span.form-require 必須
               .displayinline-sai
-                %input.input-default.half{name: "family_name_kanji", placeholder: "例) ヤマダ", type: "text", value: ""}/
-                %input.input-default.half{name: "first_name_kanji", placeholder: "例) アヤ", type: "text", value: ""}/
+                = f.text_field :first_name_phonetic, placeholder: '例) ヤマダ', class: "input-default"
+                -# %input.input-default.half{name: "family_name_kanji", placeholder: "例) ヤマダ", type: "text", value: ""}/
+                = f.text_field :last_name_phonetic, placeholder: '例) アヤ', class: "input-default"
+                -# %input.input-default.half{name: "first_name_kanji", placeholder: "例) アヤ", type: "text", value: ""}/
             .form-group
-              %label{for: "birthday"} 生年月日
+              = f.label :生年月日, "生年月日"
+              -# %label{for: "birthday"} 生年月日
               %span.form-require 必須
               %br
               .birthday-select-wrap
                 .select-wrap.icon-relative
-                  = fa_icon 'angle-down', class: "icon-relative__absolute"
-                  %select.select-default
-                    %option ---
+                  -# = fa_icon 'angle-down', class: "icon-relative__absolute"
+                  
+                  -# != sprintf(f.date_select(:birth_date, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+
+                  = f.text_field :birth_year, class: "select-default2"
+                  -# %select.select-default
+                    -# %option ---
                 %span 年
                 .select-wrap.select-wrap__month.icon-relative
-                  = fa_icon 'angle-down', class: "icon-relative__absolute"
-                  %select.select-default
-                    %option ---
+                  -# = fa_icon 'angle-down', class: "icon-relative__absolute"
+
+                  = f.text_field :birth_month, class: "select-default2"
+                  -# %select.select-default
+                    -# %option ---
                 %span 月
                 .select-wrap.select-wrap__day.icon-relative
 
-                  = fa_icon 'angle-down', class: "icon-relative__absolute"
-                  %select.select-default.icon-relative
-                    %option ---
-          
+                  -# = fa_icon 'angle-down', class: "icon-relative__absolute"
+
+                  = f.text_field :birth_day, class: "select-default2"
+                  -# %select.select-default.icon-relative
+                    -# %option ---
+                %span 日
                 %p.form-group__info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
         
                 = recaptcha_tags
@@ -81,7 +108,10 @@
                       = link_to "利用規約", "root_path"
     
                       に同意したものとみなします
-                %button.btn-default.btn-red{:type => "submit"} 次へ進む
+                
+                = f.submit class: 'btn-default btn-red', value: "次へ進む"
+
+                -# %button.btn-default.btn-red{:type => "submit"} 次へ進む
                 .form-group.text-right
                   %p 
                     = link_to "本人情報の登録について", "root_path"
