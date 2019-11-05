@@ -37,16 +37,17 @@
             %input{type: "hidden"}
             .l-single-content
               .form-group
-                -# = f.label :携帯電話の番号 class: "phone-number__left"
-                %label.phone-number__left{for: "phone_number"} 携帯電話の番号
+                = f.label :携帯電話の番号, class: "phone-number__left"
+                -# %label.phone-number__left{for: "phone_number"} 携帯電話の番号
 
-                -# = f.text_field :phone_number class: "input-default" 
-                %input.input-default{type: "tele"}
+                = f.text_field :phone_number, class: "input-default" 
+                -# %input.input-default{type: "tele"}
               %p 
                 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
               
-              %button.btn-default.btn-red{type: "submit"}
-                SMSを送信する。
+              = f.submit class: "btn-default btn-red", value: "SMSを送信する。"
+              -# %button.btn-default.btn-red{type: "submit"}
+              -#   SMSを送信する。
               %P
                 ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
               .form-group.text-right

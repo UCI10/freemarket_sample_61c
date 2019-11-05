@@ -77,17 +77,17 @@
               -# %label{for: "nickname"}  お名前（全角）
               %span.form-require 必須
               .displayinline-sai
-                = f.text_field :first_name, placeholder: '例) 山田', class: "input-default"
+                = f.text_field :last_name, placeholder: '例) 山田', class: "input-default"
                 -# %input.input-default.half{name: "family_name_kanji", placeholder: "例) 山田", type: "text", value: ""}/
-                = f.text_field :last_name, placeholder: '例) 彩', class: "input-default"
+                = f.text_field :first_name, placeholder: '例) 彩', class: "input-default"
                 -# %input.input-default.half{name: "first_name_kanji", placeholder: "例) 彩", type: "text", value: ""}/
             .form-group
               %label{for: "nickname"}  お名前カナ（全角）
               %span.form-require 必須
               .displayinline-sai
-                = f.text_field :first_name_phonetic, placeholder: '例) ヤマダ', class: "input-default"
+                = f.text_field :last_name_phonetic, placeholder: '例) ヤマダ', class: "input-default"
                 -# %input.input-default.half{name: "family_name_kanji", placeholder: "例) ヤマダ", type: "text", value: ""}/
-                = f.text_field :last_name_phonetic, placeholder: '例) アヤ', class: "input-default"
+                = f.text_field :first_name_phonetic, placeholder: '例) アヤ', class: "input-default"
                 -# %input.input-default.half{name: "first_name_kanji", placeholder: "例) アヤ", type: "text", value: ""}/
             .form-group
               = f.label :生年月日, "生年月日"

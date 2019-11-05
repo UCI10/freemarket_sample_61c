@@ -4,7 +4,28 @@
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
 
-    = render 'progress'
+    %nav.progress
+      %ul.progress-bar
+        %li.through#through
+          会員情報
+          .progress-status
+          .progress-status_bar
+        %li.active#through
+          電話番号認証
+          .progress-status
+          .progress-status_bar
+        %li.address#address#through
+          お届け先住所入力
+          .progress-status
+          .progress-status_bar
+        %li.payment#payment#through
+          支払い方法
+          .progress-status
+          .progress-status_bar
+        %li.end#end#active
+          完了
+          .progress-status
+          .progress-status_bar
     
     .single-main-sai
       .l-single-container-sai2#done-height
