@@ -96,55 +96,58 @@
 
   |Column|Type|Options|
   |------|----|-------|
-  |user_id|references|null: false, foreign_key|
-  |shipping_id|references|null: false, foreign_key|
-  |brand_id|references|null: false, foreign_key|
-  |trade_id|references|null: false, foreign_key|
-  |title|text|null: false, add_index|
-  |detail|text|null: false|
+  |user|references|null: false, foreign_key: true|
+  |category|references|null: false, foreign_key|
+  |brand|references|null: false, foreign_key|
+  |title|string|null: false, add_index|
+  |description|text|null: false|
   |condition|string|null: false|
   |shipping_burden|integer|null: false|
   |shipping_method|integer|null: false|
-  |area|integer|null: false|
+  |shipping_area|integer|null: false|
   |shipping_period|integer|null: false, foreign_key|
-  |likes_count|integer|null: false|
   |price|integer|null: false|
-  |category_id|integer|null: false, foreign_key|
   |size_id|integer|null: false, foreign_key|
   |brand_id|integer|null: false, foreign_key|
+  |buyer_id|integer||
+
+  <!-- まだ必要じゃないもの -->
+  <!-- |likes_count|integer|null: false| -->
+  <!-- |trade_id|references|null: false, foreign_key| -->
 
 
 
 ### Association
 - belongs_to :user
 - belongs_to :category
-- belongs_to :size
 - belongs_to :brand
-- has_many :likes, dependent: :destroy
+- has_many :likes, dependent: :delete_all
 - has_many :comments, dependent: :destroy
 - has_many :images, dependent: :destroy
-- has_one :shipping
 - belongs_to :trade
 - has_many :buyer_trades, class_name: 'Trade', foreign_key: :buyer_id, dependent: :destroy
+- has many :messages
+
+<!-- - belongs_to :buyer, class_name: "User", optional: true
 - has_many :seller_deals, class_name: 'Trade', foreign_key: :seller_id, dependent: :destroy
 - has_many :seller, class_name: 'User', foreign_key: :seller_id, through: :trades
-- has_many :buyer, class_name: 'User', foreign_key: :buyer_id, through: :trades
-- has many :messages
+- has_many :buyer, class_name: 'User', foreign_key: :buyer_id, through: :trades -->
 
 ### enum
 
 - condition
-- area
+- shipping_area
 - shipping_burden
 - shipping_method
 - shipping_period
+- size
 
 
   ## imagesテーブル
 
   |Column|Type|Options|
   |------|----|-------|
-  |products_id|integer|null: false, foreign_key: true|
+  |products|references|null: false, foreign_key: true, on_delete: :cascade|
   |image_url|string|null: false|
 
 
