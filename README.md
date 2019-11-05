@@ -225,6 +225,19 @@
   ### Association
   - belongs_to :user
 
+  ## paysテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
+|card_id|integer|null: false|
+|customer_id|string||
+
+
+## Association
+- belongs_to :user
+
 
   ## reviewsテーブル
 
