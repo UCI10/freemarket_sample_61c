@@ -4,7 +4,29 @@
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
 
-    = render 'progress'
+    -# = render 'signup-header'
+    %nav.progress
+      %ul.progress-bar
+        %li.through#through#active
+          会員情報
+          .progress-status
+          .progress-status_bar
+        %li.active
+          電話番号認証
+          .progress-status
+          .progress-status_bar
+        %li.address#address
+          お届け先住所入力
+          .progress-status
+          .progress-status_bar
+        %li.payment#payment
+          支払い方法
+          .progress-status
+          .progress-status_bar
+        %li.end#end
+          完了
+          .progress-status
+          .progress-status_bar
 
   .single-main-sai
 
@@ -55,17 +77,17 @@
               -# %label{for: "nickname"}  お名前（全角）
               %span.form-require 必須
               .displayinline-sai
-                = f.text_field :first_name, placeholder: '例) 山田', class: "input-default"
+                = f.text_field :last_name, placeholder: '例) 山田', class: "input-default"
                 -# %input.input-default.half{name: "family_name_kanji", placeholder: "例) 山田", type: "text", value: ""}/
-                = f.text_field :last_name, placeholder: '例) 彩', class: "input-default"
+                = f.text_field :first_name, placeholder: '例) 彩', class: "input-default"
                 -# %input.input-default.half{name: "first_name_kanji", placeholder: "例) 彩", type: "text", value: ""}/
             .form-group
               %label{for: "nickname"}  お名前カナ（全角）
               %span.form-require 必須
               .displayinline-sai
-                = f.text_field :first_name_phonetic, placeholder: '例) ヤマダ', class: "input-default"
+                = f.text_field :last_name_phonetic, placeholder: '例) ヤマダ', class: "input-default"
                 -# %input.input-default.half{name: "family_name_kanji", placeholder: "例) ヤマダ", type: "text", value: ""}/
-                = f.text_field :last_name_phonetic, placeholder: '例) アヤ', class: "input-default"
+                = f.text_field :first_name_phonetic, placeholder: '例) アヤ', class: "input-default"
                 -# %input.input-default.half{name: "first_name_kanji", placeholder: "例) アヤ", type: "text", value: ""}/
             .form-group
               = f.label :生年月日, "生年月日"
