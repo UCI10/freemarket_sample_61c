@@ -1,0 +1,29 @@
+.completed-ito{
+  background-color: $white;
+  margin: 0 auto;
+  width:700px;
+  text-align: center;
+  &__head{
+    background-color: #FFFFAA;
+    position: relative;
+    .fa{
+      position: absolute;
+      left:210px;
+      top:14px;
+      color:black;
+      font-size:20px;
+      color: $red
+    }
+    h2{
+      font-size:20px;
+      line-height: 50px;
+    }
+    h3{
+      font-size: 15px;
+      min-height: 30px;
+    }
+  }
+  &__main{
+    padding:0 0 40px 0;
+  }
+}
