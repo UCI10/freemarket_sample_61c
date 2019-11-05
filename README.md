@@ -211,13 +211,16 @@
 
 
   <!-- クレジットカードナンバー、有効期限 -->
-  ## credit-cardsテーブル
+  ## cardsテーブル
 
   |Column|Type|Options|
   |------|----|-------|
-  |card_number|integer|null: false, unique: true|
-  |expiration_date|integer|null: false, unique: true|
-  |user_id|references|null: false, foreign_key|
+  |user|references|null: false, foreign_key, on_delete: :cascade|
+  |card_id|integer|null: false|
+  |year|integer|null: false|
+  |month|integer|null: false|  
+  |security_code|integer|null: false|  
+ 
 
   ### Association
   - belongs_to :user
@@ -265,8 +268,8 @@
   |Field|Type|Options|
   |------|----|-------|
   |id|integer|null: false|
-  |path|text||
-  |name|text|null: false, foreign_key|
+  |path|integer||
+  |name|string|null: false, foreign_key|
 
   |id|path|name|
   |------|----|-------|
@@ -288,20 +291,11 @@
 
    <!-- ブランドやカテゴリは少しだけ設定 -->
   <!-- ancestryというgemを使います -->
-  ## brandsテーブル(経路列挙モデル)
+  ## brandsテーブル
 
-  |Field|Type|Options|
+  |Column|Type|Options|
   |------|----|-------|
-  |id|integer|null: false|
-  |path|text||
-  |name|text|null: false, foreign_key|
-
-  |id|path|name|
-  |------|----|-------|
-  |1|1/|brands|
-  |1|1/2|a|
-  |1|1/2/1|aveve|
-  |1|1/2/2|ahkah|
+  |name|string|null: false|
 
   ### Association
   - has_many :products
