@@ -42,7 +42,7 @@
   |last_name_phonetic|string|null: false|
   |avatar|string||
   |point|integer||
-  |payment_method|string|null: false|
+  |payment_method|string|
   |phone_number|integer|null: false, unique: true|
 
 
