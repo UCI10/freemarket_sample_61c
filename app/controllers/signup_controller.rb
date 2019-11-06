@@ -35,7 +35,7 @@ def step3
 
   session[:phone_number] = user_params[:phone_number]
 
-  @user = User.new # 新規インスタンス作成
+  # 新規インスタンス作成
   @address = Address.new
 
 end
@@ -112,7 +112,18 @@ def create
   if @user.save
 # ログインするための情報を保管
     session[:id] = @user.id
- 
+
+    @card = Card.new(
+      user_id: session[:id],
+      card_id: session[:card_id],
+      security_code: session[:security_code],
+      month: session[:month],
+      year: session[:year]
+    )
+  
+    @card.save
+
+    binding.pry
 
 
     @address = Address.new(
@@ -124,17 +135,11 @@ def create
       prefectures: session[:prefectures]    
     )
 
+
+
     @address.save
 
-    @card = Card.new(
-      user_id: session[:id],
-      card_id: session[:card_id],
-      security_code: session[:security_code],
-      month: session[:month],
-      year: session[:year]
-    )
-  
-    @card.save
+ 
 
     redirect_to done_signup_index_path
 
@@ -173,6 +178,12 @@ end
  
     )
   end
+
+  def params
+
+    params.permit(
+      
+    )
 
   def address_params
     params.require(:address).permit(
