@@ -20,6 +20,7 @@
               .sell-dropbox-container-sai__image
                 = f.label :image, class: 'form__mask__image' do
                   = fa_icon 'camera', class: "icon-camera"
+
                   = f.file_field :image, class: 'sample1.sell-dropbox-container-sai__image__file', id: "sample1"
                 -# %input#sample1.sell-dropbox-container-sai__image__file{type: "file"}
                 -#   = fa_icon 'camera', class: "icon-camera"
@@ -27,6 +28,7 @@
                   ドラッグアンドドロップ　またはクリックしてファイルをアップロード
 
             
+
 
           .sell-content-sai.clearfix
             .form-group-sai.clearfix
@@ -123,6 +125,7 @@
               %p.sell-content__sentence またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり
               %p.sell-content__sentence 処罰される可能性があります。
               %p.sell-content__sentence また、出品をもちまして加盟店規約に同意したことになります。
+
             = f.submit '出品する', class: 'btn-default'      
             -# %button.btn-default{type: "submit"}　出品する
 
