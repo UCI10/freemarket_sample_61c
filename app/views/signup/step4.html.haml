@@ -32,13 +32,18 @@
         .single-main-box
           .register-heading-take
             クレジットカード情報入力
+
+        = form_with model: @card, url: signup_index_path, method: :post, local: true do |f|
           .register-content-box-take
             .l-single-content-take
               .form-group-card
                 .form-group-card__heading.displayflex
-                  %label{for: "payment_card_num"} カード番号
+                  = f.label :card_id, "カード番号", for: "payment_card_num"
+            
                   %span.form-require 必須
-                %input.payment_card_num.input-default{"data-input-type" => "card", maxlength: "19", placeholder: "半角数字のみ", type: "text", value: ""}/
+
+                = f.text_field :card_id, class: "payment_card_num input-default", maxlength: "19", placeholder: "半角数字のみ", type: "text", value: "", "data-input-type" => "card"
+                
                 .card-icons-box.displayflex
                   %ul
                     = image_tag 'icon-visa.svg', size: '49x20'
@@ -57,50 +62,58 @@
 
               .form-group.signup-form-expire
                 .form-group.signup-form-expire__heading.displayflex
-                  %label{for: "payment_card_expire"} 有効期限
+                  = f.label :month, "有効期限", for: "payment_card_expire"
+                  
                   %span.form-require 必須      
                 .card-expiration.displayflex    
                   .card-expiration-month-box
                     .select-card-month.half.displayflex.relative
                       = fa_icon 'angle-down', class: "credit-card-angle-down__absolute"
-                      %select#payment_card_expiration_mm.select-default
-                        %option{value: "01"} 01
-                        %option{value: "02"} 02
-                        %option{value: "03"} 03
-                        %option{value: "04"} 04
-                        %option{value: "05"} 05
-                        %option{value: "06"} 06
-                        %option{value: "07"} 07
-                        %option{value: "08"} 08
-                        %option{value: "09"} 09
-                        %option{value: "10"} 10
-                        %option{value: "11"} 11
-                        %option{value: "12"} 12
+
+                      
+                      = f.select :month, [['01',1],['02',2],['03',3],['04',4],['05',5],['06',6],['07',7],['08',8],["09",9],['10',10],['11',11],['12',12]], {}, {id: "payment_card_expiration_mm",class: "select-default"} 
+                      -# %select#payment_card_expiration_mm.select-default
+                      -#   %option{value: "01"} 01
+                      -#   %option{value: "02"} 02
+                      -#   %option{value: "03"} 03
+                      -#   %option{value: "04"} 04
+                      -#   %option{value: "05"} 05
+                      -#   %option{value: "06"} 06
+                      -#   %option{value: "07"} 07
+                      -#   %option{value: "08"} 08
+                      -#   %option{value: "09"} 09
+                      -#   %option{value: "10"} 10
+                      -#   %option{value: "11"} 11
+                      -#   %option{value: "12"} 12
                       %h3 月  
 
                   .card-expiration-year-box
                     .select-card-year.half.displayflex.relative
                       = fa_icon 'angle-down', class: "credit-card-angle-down__absolute"
-                      %select#payment_card_expire_yy.select-default
-                        %option{value: "19"} 19
-                        %option{value: "20"} 20
-                        %option{value: "21"} 21
-                        %option{value: "22"} 22
-                        %option{value: "23"} 23
-                        %option{value: "24"} 24
-                        %option{value: "25"} 25
-                        %option{value: "26"} 26
-                        %option{value: "27"} 27
-                        %option{value: "28"} 28
-                        %option{value: "29"} 29
+  
+                      = f.select :year, [['2019',19],['2020',20],['2023',23],['2024',24],['2025',25],['2026',26],['2027',27],['2028',28],["2029",29]], {}, {id: "payment_card_expire_yy",class: "select-default"} 
+                      -# %select#payment_card_expire_yy.select-default
+                      -#   %option{value: "19"} 19
+                      -#   %option{value: "20"} 20
+                      -#   %option{value: "21"} 21
+                      -#   %option{value: "22"} 22
+                      -#   %option{value: "23"} 23
+                      -#   %option{value: "24"} 24
+                      -#   %option{value: "25"} 25
+                      -#   %option{value: "26"} 26
+                      -#   %option{value: "27"} 27
+                      -#   %option{value: "28"} 28
+                      -#   %option{value: "29"} 29
                       %h3 年
                     
               .signup-form-security_code
                 .signup-form-security_code__heading.displayflex
-                  %label{for: "payment_card_security_code"} セキュリティコード
+                  = f.label :security_coad, "セキュリティコード", for: "payment_card_security_code"
+                  -# %label{for: "payment_card_security_code"} セキュリティコード
                   %span.form-require 必須
                 .signup-form-security_code-box 
-                  %input#payment_card_security_code.input-default{placeholder: "カード背面4桁もしくは3桁の番号", value: ""}/
+                  = f.text_field :security_coad, class: "input-default", id: "payment_card_security_code",placeholder: "カード背面4桁もしくは3桁の番号", value: ""
+                  -# %input#payment_card_security_code.input-default{placeholder: "カード背面4桁もしくは3桁の番号", value: ""}/
                 .signup-seqcode-help
                   .signup-seqcode__text.displayflex
                     .signup-seqcode__text__icon
@@ -112,7 +125,8 @@
          
               .card-info-submit
                 .card-info-submit__btn
-                  %button#submit-button.btn-default.btn-red{type: "button"} 次へ進む
+                  = f.submit class: "btn-default btn-red", id: "submit-button", value: "次へ進む"
+                  -# %button#submit-button.btn-default.btn-red{type: "button"} 次へ進む
 
 
 
