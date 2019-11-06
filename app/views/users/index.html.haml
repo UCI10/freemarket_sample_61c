@@ -1,6 +1,8 @@
 %body
   .wrapper-ito
     = render 'tops/topheader'
+    - breadcrumb :users
+  = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-right')} "
   .u-display-clearfix-ito
     .u-side-ito
       = render 'userside'
