@@ -75,7 +75,7 @@
 
                 .form-group.address-prefecture-form
                   .form-group.address-prefecture-form__heading.displayflex
-                    = f.label :prefecture, "都道府県"
+                    = f.label :prefectures, "都道府県"
                     -# %label{for: "select-prefecture_pn"} 都道府県
                     %span.form-require 必須 
 
@@ -84,7 +84,7 @@
                       .address-prefecture-select-down.relative
                         .angle-position
                           = fa_icon 'angle-down', class: "address-prefecture-angle-down__absolute.angle-position"
-                        = f.collection_select :prefecture, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
+                        = f.collection_select :prefectures, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
 
                 .form-group-address__phonetic.address-heading-row
                   = f.label :address_city, "市区町村"
