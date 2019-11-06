@@ -50,7 +50,7 @@ def step4
   session[:postalcode] = address_params[:postalcode]
   session[:city] = address_params[:city]
   session[:house_number] = address_params[:house_number]
-  session[:building_name  ] = address_params[:building_name]
+  session[:building_name] = address_params[:building_name]
   session[:prefecture] = address_params[:prefecture]
 
   # @user = User.new(
@@ -77,12 +77,38 @@ def step4
 #   end
 
   #カードのアソシエーションを組むこと。
-# @user = User.new
+@card = Card.new
 
 end
 
 
 def create
+
+  session[:card_id] = card_params[:card_id]
+  session[:security_code] = card_params[:security_code]
+  session[:month] = card_params[:month]
+  session[:year] = card_params[:year]
+  
+  @card = Card.new(
+    card_id: session[:card_id],
+    security_code: session[:security_code],
+    month: session[:month],
+    year: session[:year]
+  )
+
+  @card.save
+
+  
+  @address = Address.new(
+    postalcode: session[:postalcode],
+    city: session[:city],
+    house_number: session[:house_number],
+    building_name: session[:building_name],
+    prefecture: session[:prefecture]    
+  )
+
+  @address.save
+
   @user = User.new(
     nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
     email: session[:email],
@@ -98,10 +124,12 @@ def create
     phone_number: session[:phone_number]
 
   )
+
   if @user.save
 # ログインするための情報を保管
     session[:id] = @user.id
     redirect_to done_signup_index_path
+
   else
     render '/signup/entry_signup'
   end
@@ -139,7 +167,7 @@ end
 
   def address_params
     params.require(:address).permit(
-      :prefectures,
+      :prefecture,
       :postalcode,
       :city,
       :house_number,
@@ -148,10 +176,12 @@ end
 
   end
 
-
-
-
-  
-
-
+  def card_params
+    params.require(:card).permit(
+      :card_id,
+      :year,
+      :month,
+      :security_code
+    )
+  end
 end
