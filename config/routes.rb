@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       get 'done' # 登録完了後のページ
     end
   end
+  resources :sells,only:[:index,:new,:create,:edit,:update]
+
 end
 
 

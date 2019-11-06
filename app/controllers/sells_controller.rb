@@ -1,15 +1,12 @@
-class ProductsController < ApplicationController
+class SellsController < ApplicationController
+  before_action :category_set, only: [:new, :edit]
+
   def index
 
   end
 
   def new
-    if user_signed_in?
-      @product = Product.new
-      10.products{@product.images.build}
-    else
-      redirect_to new_user_session_path
-    end
+    @product = Product.new
   end
 
   def create
@@ -24,13 +21,12 @@ class ProductsController < ApplicationController
     #   redirect_to action: :new
     # end
   end
-  
-  def show
-    @post = Post.new
+
+  private  
+
+  def category_set
+    @category = Category.where(ancestry: nil) 
   end
-
-
-private  
 
   def product_params
     params.permit(:title, :description)
@@ -41,7 +37,7 @@ private
   end  
 
   def create_params
-    params.require(:product).permit(:title, :description, :category_id, :brand_id, :size, :brand_id, :condition, :shipping_burden, :shipping_area, :shipping_method, :shipping_period, :price, :buyer_id, :created_at, :updated_at, images_attributes: [:url, :id]).merge(user_id: current_user.id)
+    params.require(:product).permit(:title, :discription).merge(user_id: current_user.id)
   end
 
 
