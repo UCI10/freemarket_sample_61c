@@ -43,7 +43,7 @@
                   = f.label :お名前, for: "address_name"
                   -# %label{for: "address_name"} お名前
                   %span.form-require 必須
-                .form-group-address__list 
+                .form-group-address__list
                   = f.text_field :last_name, class: "address_last_name address-form-box", maxlength: "35", placeholder: "例）山田", name: "last_name", type: "string", value: session[:last_name]
                   -# %input.address_last_name.address-form-box{maxlength: "35", placeholder: "例）山田", name: "last_name", type: "string", value: ""}/
                   = f.text_field :first_name, class: "address_first_name address-form-box",maxlength: "35", placeholder: "例）彩", name: "first_name", type: "string", value: session[:first_name]
@@ -51,7 +51,7 @@
 
                 .form-group-address__phonetic.address-heading-row
 
-                  = f.label :address_name_phonetic, "お名前カナ"
+                  = f.label :last_name_phonetic, "お名前カナ"
                   -# %label{for: "address_name_phonetic"} お名前カナ
 
                   %span.form-require 必須
@@ -75,8 +75,8 @@
 
                 .form-group.address-prefecture-form
                   .form-group.address-prefecture-form__heading.displayflex
-                    = f.label :prefecture, "都道府県"
-                    -# %label{for: "select-prefecture_pn"} 都道府県
+                    -# = f.label :prefectures, "都道府県"
+                    %label{for:"prefectures"} 都道府県
                     %span.form-require 必須 
 
                   .address-prefecture-select   
@@ -84,7 +84,7 @@
                       .address-prefecture-select-down.relative
                         .angle-position
                           = fa_icon 'angle-down', class: "address-prefecture-angle-down__absolute.angle-position"
-                        = f.collection_select :prefecture, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
+                        = f.collection_select :prefectures, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
 
                 .form-group-address__phonetic.address-heading-row
                   = f.label :address_city, "市区町村"
@@ -117,7 +117,7 @@
                   = f.label :phone_number, "電話"
                   %span.form-require.heading-gray 任意
                 .form-group-address__list 
-                  = f.text_field :phone_number, class: "address_phone_number address-form-box", maxlength: "100", placeholder: "例）09012345678", name: "phone_number", type: "integer", value: ""
+                  = f.text_field :phone_number, class: "address_phone_number address-form-box", maxlength: "100", placeholder: "例）09012345678", name: "phone_number", type: "integer", value: session[:phone_number]
                   -# %input.address_phone_number.address-form-box{maxlength: "100", placeholder: "例）09012345678", name: "phone_number", type: "integer", value: ""}/
             
               .step3-info-submit

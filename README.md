@@ -42,7 +42,7 @@
   |last_name_phonetic|string|null: false|
   |avatar|string||
   |point|integer||
-  |payment_method|string|null: false|
+  |payment_method|string|
   |phone_number|integer|null: false, unique: true|
 
 
@@ -78,7 +78,7 @@
   |------|----|-------|
   |user|references|null: false, foreign_key: true|
   |postalcode|integer|null: false|
-  |prefecture|string|null: false|
+  |prefectures|integer|null: false|
   |city|string|null: false|
   |house_number|string|null: false|
   |building_name|string||
