@@ -1,13 +1,13 @@
 %body
   .wrapper-ito
     = render 'tops/topheader'
-    - breadcrumb :users
+    - breadcrumb :creditdisplay
   = render 'breadcrumbs'
   .u-display-clearfix-ito
     .u-side-ito
       = render 'userside'
-    .u-content
-      = render "mypage"
+    .u-content-ito
+      = render 'creditdisplay'
   .top-exhibit-fix-btn
     = render 'tops/topexhibit'
   .footer-ito

@@ -6,6 +6,26 @@ crumb :users do
   link 'マイページ', users_path
 end
 
+crumb :profile do
+  link 'プロフィール', profile_user_path
+  parent :users
+end
+
+crumb :creditdisplay do
+  link '支払い方法', creditdisplay_user_path
+  parent :users
+end
+
+crumb :identification do
+  link '本人情報', identification_user_path
+  parent :users
+end
+
+crumb :logout do
+  link 'ログアウト', logout_user_path
+  parent :users
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
