@@ -3,9 +3,7 @@ lock '3.11.2'
 
 set :default_env, {
   rbenv_root: "/usr/local/rbenv",
-  path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
-  # RECAPTCHA_PUBLIC_KEY: ENV["RECAPTCHA_PUBLIC_KEY"],
-  # RECAPTCHA_PRIVATE_KEY: ENV["RECAPTCHA_PRIVATE_KEY"]
+  path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH"
 }
 
 set :linked_files, %w{ config/credentials.yml.enc}
