@@ -35,7 +35,7 @@ def step3
 
   session[:phone_number] = user_params[:phone_number]
 
-  @user = User.new # 新規インスタンス作成
+  # 新規インスタンス作成
   @address = Address.new
 
 end
@@ -47,11 +47,12 @@ def step4
   # session[:last_name_phonetic] = user_params[:last_name_phonetic]
   # session[:first_name_phonetic] = user_params[:first_name_phonetic]
 
-  session[:postalcode] = address_params[:postalcode]
-  session[:city] = address_params[:city]
-  session[:house_number] = address_params[:house_number]
-  session[:building_name] = address_params[:building_name]
-  session[:prefecture] = address_params[:prefecture]
+  session[:postalcode] = params[:postalcode]
+  session[:city] = params[:city]
+  session[:house_number] = params[:house_number]
+  session[:building_name] = params[:building_name]
+  
+  session[:prefectures] = address_params[:prefectures]
 
   # @user = User.new(
   #   nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
@@ -88,26 +89,10 @@ def create
   session[:security_code] = card_params[:security_code]
   session[:month] = card_params[:month]
   session[:year] = card_params[:year]
-  
-  @card = Card.new(
-    card_id: session[:card_id],
-    security_code: session[:security_code],
-    month: session[:month],
-    year: session[:year]
-  )
 
-  @card.save
+
 
   
-  @address = Address.new(
-    postalcode: session[:postalcode],
-    city: session[:city],
-    house_number: session[:house_number],
-    building_name: session[:building_name],
-    prefecture: session[:prefecture]    
-  )
-
-  @address.save
 
   @user = User.new(
     nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
@@ -116,8 +101,8 @@ def create
     password_confirmation: session[:password_confirmation],
     last_name: session[:last_name], 
     first_name: session[:first_name], 
-    last_name_kana: session[:last_name_kana], 
-    first_name_kana: session[:first_name_kana],
+    last_name_phonetic: session[:last_name_phonetic], 
+    first_name_phonetic: session[:first_name_phonetic],
     birth_year: session[:birth_year],
     birth_month: session[:birth_month],
     birth_day: session[:birth_day],
@@ -128,8 +113,37 @@ def create
   if @user.save
 # ログインするための情報を保管
     session[:id] = @user.id
+  
+    @card = Card.new(
+      user_id: @user.id,
+      card_id: session[:card_id],
+      security_code: session[:security_code],
+      month: session[:month],
+      year: session[:year]
+    )
+  
+    @card.save
+
+
+   
+    @address = Address.new(
+      user_id: @user.id,
+      postalcode: session[:postalcode],
+      city: session[:city],
+      house_number: session[:house_number],
+      building_name: session[:building_name],
+      prefectures: session[:prefectures]    
+    )
+
+
+
+    @address.save
+
+ 
+
     redirect_to done_signup_index_path
 
+    
   else
     render '/signup/entry_signup'
   end
@@ -159,19 +173,16 @@ end
       :birth_year,
       :birth_month,
       :birth_day
-
- 
- 
     )
   end
 
   def address_params
     params.require(:address).permit(
-      :prefecture,
-      :postalcode,
-      :city,
-      :house_number,
-      :building_name
+      :prefectures
+      # :postalcode,
+      # :city,
+      # :house_number,
+      # :building_name
     )
 
   end

@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_11_06_053358) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "card_id", null: false
+    t.string "card_id", null: false
     t.integer "year", null: false
     t.integer "month", null: false
     t.integer "security_code", null: false
@@ -45,9 +45,11 @@ ActiveRecord::Schema.define(version: 2019_11_06_053358) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "path", null: false
+    t.string "path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -102,13 +104,13 @@ ActiveRecord::Schema.define(version: 2019_11_06_053358) do
     t.string "last_name_phonetic", null: false
     t.string "avatar"
     t.integer "point"
-    t.string "payment_method", null: false
+    t.string "payment_method"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "phone_number", null: false
+    t.string "phone_number", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
