@@ -1,56 +1,39 @@
 #step3-height{
   height: 1500px;
   margin-top: 20px;
-  
 }
-
-
 #step3-submit-button{
   width: 380px;
   margin:0 auto;
   margin-top: 32px;
-
 }
-
-
 .form-group-address{
   font-weight: bold;
-
   &__headind{
-    
-
   }
-
   .address-heading-row{
     float: left;
     margin-top: 32px;
-
   }
-
   .form-group-address__list {
     height:100%;
     width:100%;
-
-  .address-form-box{
-    width:  350px;
-    margin: 8px 0 ;
-    height: 50px;
-    padding: 10px 16px 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: #fff;
-    line-height: 1.5;
-    font-size: 16px;
-
+    .address-form-box{
+      width:  350px;
+      margin: 8px 0 ;
+      height: 50px;
+      padding: 10px 16px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background: #fff;
+      line-height: 1.5;
+      font-size: 16px;
+    }
   }
-}
-
   .address-prefecture-form{
     &__heading{
-
       .form-require{
         margin-bottom: 5px;
-
       }
     }
     .angle-position{
@@ -60,23 +43,18 @@
       font-size: 28px;
       color:gray;
       float:right;
-
     }
-
     .address-prefecture-select{
-
-    .address-prefecture-select-box{
-      height: 50px;
-      width:  380px;
-          
-      .address-prefecture-select-down{
-        position: relative;
+      .address-prefecture-select-box{
         height: 50px;
         width:  380px;
-        text-align: right;
-        float: left;   
-      }
-
+        .address-prefecture-select-down{
+          position: relative;
+          height: 50px;
+          width:  380px;
+          text-align: right;
+          float: left;   
+        }
         .address-prefecture-angle-down__absolute{
           position: absolute;
           top: 0;
@@ -87,45 +65,18 @@
           color:gray;
           float:right;
           margin: auto;
-        
+        }
+      }
     }
-  }
-}
-
-  .form-group-address__prefecture{
-    width: 350px;
-    margin: 32px 0 8px;
-    height: 50px;
-    position: absolute;
-    left: 0px;
-
-    &__box{
-    width:  350px;
-    margin: 8px 0 ;
-    height: 30px;
-    padding: 10px 16px 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: #fff;
-    line-height: 1.5;
-    font-size: 16px;
-    position: absolute;
-    left: 0px;
-
-    .address-select-prefecture{
+    .form-group-address__prefecture{
       width: 350px;
-      margin: 8px 0;
-      height: 30px;
-      padding: 10px 16px 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      background: #fff;
-      line-height: 1.5;
-      font-size: 28px;
-
-    .address-select-prefecture-box{
-      width: 350px;
-      margin: 8px 0;
+      margin: 32px 0 8px;
+      height: 50px;
+      position: absolute;
+      left: 0px;
+      &__box{
+      width:  350px;
+      margin: 8px 0 ;
       height: 30px;
       padding: 10px 16px 8px;
       border-radius: 4px;
@@ -133,62 +84,64 @@
       background: #fff;
       line-height: 1.5;
       font-size: 16px;
-
-
-      
-      i{  
-
-      .address-prefecture-angle-down{
-        position: absolute;
-        margin-top: 100px;
-        left: 160px;
+      position: absolute;
+      left: 0px;
+      .address-select-prefecture{
+        width: 350px;
+        margin: 8px 0;
+        height: 30px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
         font-size: 28px;
-        color:gray;
-        z-index: 2;
-  
-      }
-    }
-
-      #select-prefecture_pn{
-        font-size: 14px;
-        position: relative;
-        z-index: 1;
+        .address-select-prefecture-box{
+          width: 350px;
+          margin: 8px 0;
+          height: 30px;
+          padding: 10px 16px 8px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: #fff;
+          line-height: 1.5;
+          font-size: 16px;
+          i{  
+            .address-prefecture-angle-down{
+              position: absolute;
+              margin-top: 100px;
+              left: 160px;
+              font-size: 28px;
+              color:gray;
+              z-index: 2;
+            }
+          }
+          #select-prefecture_pn{
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+            }
+          }
         }
       }
     }
-  }
-}
-
-  .form-group-address__list {
-    height:100%;
-    width:100%;
-
-  .address-form-box{
-    width:  350px;
-    margin: 8px 0 ;
-    height: 50px;
-    padding: 10px 16px 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: #fff;
-    line-height: 1.5;
-    font-size: 16px;
-
+    .form-group-address__list {
+      height:100%;
+      width:100%;
+      .address-form-box{
+        width:  350px;
+        margin: 8px 0 ;
+        height: 50px;
+        padding: 10px 16px 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 1.5;
+        font-size: 16px;
+      }
     }
   }
-}
-
-
   .heading-gray{
     background-color: #ccc;
-
-  }
-
-  .step3-info-submit{
-
-    &__btn{
-    
-    }
-
   }
 }

@@ -6,28 +6,30 @@ class SellsController < ApplicationController
   end
 
   def new
-    if user_signed_in?
-      @product = Product.new
-      @product.images.build  
-      # 10.times{@product.images.build}
-    else
-      redirect_to new_user_session_path
-    end  
+    # if user_signed_in?
+    #   @product = Product.new
+    #   @product.images.build  
+    # else
+    #   redirect_to new_user_session_path
+    # end  
 
   end
 
   def create
+    # @product = Product.new(product_params)
+    # if @product.save
+    #   # redirect_to root_path
+    # else
+    #   redirect_to action: :create
+    # end
+
+
     # Product.create(create_params)
 
     # Product.create(title: product_params[:title], description: product_params[:description], user_id: current_user.id)
     # binding.pry
     # @product = Product.create(product_params)
-    @product = Product.new(product_params)
-    if @product.save
-      # redirect_to root_path
-    else
-      redirect_to action: :new
-    end
+
     # @product.images.build   
     # image = @product.images.new(image_url: image_url)
     # image.save
