@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_one :address
   has_one :cards
 
+
   VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 
@@ -52,5 +53,7 @@ class User < ApplicationRecord
   # end
 
 
+
+  has_many :products
 
 end
