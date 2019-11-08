@@ -35,7 +35,7 @@ def step3
 
   session[:phone_number] = user_params[:phone_number]
 
-  @user = User.new # 新規インスタンス作成
+  # 新規インスタンス作成
   @address = Address.new
 
 end
@@ -47,11 +47,12 @@ def step4
   # session[:last_name_phonetic] = user_params[:last_name_phonetic]
   # session[:first_name_phonetic] = user_params[:first_name_phonetic]
 
-  session[:postalcode] = address_params[:postalcode]
-  session[:city] = address_params[:city]
-  session[:house_number] = address_params[:house_number]
-  session[:building_name] = address_params[:building_name]
-  session[:prefecture] = address_params[:prefecture]
+  session[:postalcode] = params[:postalcode]
+  session[:city] = params[:city]
+  session[:house_number] = params[:house_number]
+  session[:building_name] = params[:building_name]
+  
+  session[:prefectures] = address_params[:prefectures]
 
   # @user = User.new(
   #   nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
@@ -112,22 +113,9 @@ def create
   if @user.save
 # ログインするための情報を保管
     session[:id] = @user.id
- 
-
-
-    @address = Address.new(
-      user_id: session[:id],
-      postalcode: session[:postalcode],
-      city: session[:city],
-      house_number: session[:house_number],
-      building_name: session[:building_name],
-      prefectures: session[:prefectures]    
-    )
-
-    @address.save
-
+  
     @card = Card.new(
-      user_id: session[:id],
+      user_id: @user.id,
       card_id: session[:card_id],
       security_code: session[:security_code],
       month: session[:month],
@@ -135,6 +123,23 @@ def create
     )
   
     @card.save
+
+
+   
+    @address = Address.new(
+      user_id: @user.id,
+      postalcode: session[:postalcode],
+      city: session[:city],
+      house_number: session[:house_number],
+      building_name: session[:building_name],
+      prefectures: session[:prefectures]    
+    )
+
+
+
+    @address.save
+
+ 
 
     redirect_to done_signup_index_path
 
@@ -168,30 +173,26 @@ end
       :birth_year,
       :birth_month,
       :birth_day
-
- 
- 
     )
   end
 
   def address_params
     params.require(:address).permit(
-      :prefectures,
-      :postalcode,
-      :city,
-      :house_number,
-      :building_name
+      :prefectures
+      # :postalcode,
+      # :city,
+      # :house_number,
+      # :building_name
     )
 
   end
 
   def card_params
     params.require(:card).permit(
-      
       :card_id,
       :year,
       :month,
-      :security_coad
+      :security_code
     )
   end
 end
