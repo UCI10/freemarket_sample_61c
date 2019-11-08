@@ -51,10 +51,22 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                  
                 = f.collection_select(:name, @category, :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form")
 
-
+              .sell-content-sai__box__Category サイズ
+              %span.sell-content-sai__box__require 必須
+              %br/
+              .select-wrap
+                .icon-arrow-bottom-sai
+                  = fa_icon 'chevron-down'
+                = f.select :size, Product.sizes ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                  
+              .sell-content-sai__box__Category ブランド
+              %span.sell-content-sai__box__require 必須
+              %br/
+              .select-brand-take
+                .select-brand-box
+                  = f.text_field :brand_id, class:"select-brand-box",placeholder: "例）シャネル",value:""
                   
               .sell-content-sai__box__Category 商品の状態
               %span.sell-content-sai__box__require 必須
@@ -79,18 +91,18 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                %select.select-wrap-sai__default.select-icon
-                  %option ---
+                = f.select :shipping_burden , Product.shipping_burdens ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+
             .sell-content-sai__box.clearfix
-              .sell-content-sai__box__Category　発送元の地域
+              .sell-content-sai__box__Category 発送元の地域
               %span.sell-content-sai__box__require 必須
               %br/
               
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                %select.select-wrap-sai__default.select-icon
-                  %option ---
+                = f.collection_select :prefectures, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
+
               .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 発送までの日数
               %span.sell-content-sai__box__require 必須
@@ -99,9 +111,7 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                %select.select-wrap-sai__default.select-icon
-                  %option ---
-
+                = f.select :shipping_period, Product.shipping_periods ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
 
           .sell-content-sai.clearfix
             %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
@@ -126,16 +136,6 @@
               %p.sell-content__sentence 処罰される可能性があります。
               %p.sell-content__sentence また、出品をもちまして加盟店規約に同意したことになります。
 
-
-             
-              = f.text_field :condition, class: "content-describe__box", rows: 5, placeholder:"商品の説明", maxlength: 35
-              = f.text_field :shipping_burden, class: "content-describe__box", rows: 5, placeholder:"商品の説明", maxlength: 35
-              = f.text_field :shipping_area, class: "content-describe__box", rows: 5, placeholder:"商品の説明", maxlength: 35
-              = f.text_field :shipping_period, class: "content-describe__box", rows: 5, placeholder:"商品の説明", maxlength: 35
-              = f.text_field :shipping_method, class: "content-describe__box", rows: 5, placeholder:"商品の説明", maxlength: 35
-              = f.text_field :price, class: "content-describe__box", rows: 5, placeholder:"商品の説明", maxlength: 35
-              = f.text_field :size, class: "content-describe__box", rows: 5, placeholder:"商品の説明", maxlength: 35
-              
             = f.submit '出品する', class: 'button btn-default'
 
             .btn-gray

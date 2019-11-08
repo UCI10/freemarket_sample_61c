@@ -15,6 +15,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
+      respond_to do |format|
+        format.json
+      end
     else
       redirect_to action: :new
     end
