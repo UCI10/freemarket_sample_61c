@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'tops#index'
-  resources :products
+
+  resources :products do
+    collection do
+      post 'purchase'
+    end
+  end
 
   resources :users do
     member do
@@ -15,6 +20,7 @@ Rails.application.routes.draw do
       get :profile           #プロフィール編集
     end  
   end  
+
 
   resources :signup do
     collection do
