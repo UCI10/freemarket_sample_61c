@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
       render action: :new
     end
 
+
   end
   
   def show
