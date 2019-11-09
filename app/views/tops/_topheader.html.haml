@@ -52,16 +52,16 @@
                 %h4 やることリスト
           .top-low-row-right-list__mypage   
             .top-low-row-right-list__mypage__btn   
-              = link_to root_path do
+              = link_to users_path do
                 %i
                   = fa_icon 'user-circle', class: 'icon'              
                 %h4 マイページ             
         - else
-        .top-low-row-right__signin
-          %ul
-            %li.top-low-row-right__register
-              = link_to "新規登録", new_user_registration_path, :class => 'post'
-            %li.top-low-row-right__login
-              = link_to "ログイン", new_user_session_path, :class => 'post'  
+          .top-low-row-right__signin
+            %ul
+              %li.top-low-row-right__register
+                = link_to "新規登録", new_user_registration_path, :class => 'post'
+              %li.top-low-row-right__login
+                = link_to "ログイン", new_user_session_path, :class => 'post'  
 
 

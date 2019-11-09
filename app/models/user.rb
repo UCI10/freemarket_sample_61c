@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_one :address
   has_one :card
 
+
   VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email,                 presence: true, length:{maximum: 255}, uniqueness: true, format: {with: VALID_EMAIL_REGEX}, on: :validates_step1
@@ -50,5 +51,7 @@ class User < ApplicationRecord
   # end
 
 
+
+  has_many :products
 
 end
