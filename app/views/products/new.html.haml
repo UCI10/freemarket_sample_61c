@@ -55,7 +55,7 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                = f.collection_select(:name, Category.all, :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form")
+                = f.collection_select(:name, Category.where(ancestry: nil) , :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form")
 
               .sell-content-sai__box__Category サイズ
               %span.sell-content-sai__box__require 必須
