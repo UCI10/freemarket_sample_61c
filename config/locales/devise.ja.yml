@@ -23,3 +23,18 @@ ja:
         birth_month: 月
         birth_day: 日
         phone_number: 電話番号
+
+      address:
+        postalcode: 郵便番号
+        prefectures: 県名
+        city: 市町村
+        house_number: 番地
+      card:
+        year: 年
+        month: 月
+        security_code: セキュリティーコード
+        card_id: カード番号
+      product:
+        title: タイトル
+        description: 商品説明
+

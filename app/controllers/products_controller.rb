@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :sell, only: [:new, :edit]
-  # before_action :sell, only: [:new, :edit, :update]
 
   def index
 
@@ -14,29 +13,15 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    # if @product.save
-    #   respond_to do |format|
-    #     format.json
-    #   end
-    # else
-    #   redirect_to action: :new
-    # end
-    # Product.create(title: product_params[:title], description: product_params[:description], user_id: current_user.id)
-    # binding.pry
-    # @product = Product.create(product_params)
-    # @product = Product.new(product_params)
-    # @product.images.build   
-    # image = @product.images.new(image_url: image_url)
-    # image.save
+    
+    if @product.save
 
-    # image_url = @product.images.new(image_url: image_url)
-    # image_url.save
+    else
+      @product.images.build 
+      render action: :new
+    end
 
-    # if @product.save
-    #   redirect_to root_path
-    # else
-    #   redirect_to action: :new
-    # end
+
   end
   
   def show
@@ -67,8 +52,7 @@ private
 
   def sell
     @category = Category.where(ancestry: nil) 
-    # @children = Category.none
-    # @grandchildren = Category.none
+
   end 
 
 end

@@ -47,6 +47,7 @@
                   = f.text_field :last_name, class: "address_last_name address-form-box", maxlength: "35", placeholder: "例）山田", name: "last_name", type: "string", value: session[:last_name]
                   -# %input.address_last_name.address-form-box{maxlength: "35", placeholder: "例）山田", name: "last_name", type: "string", value: ""}/
                   = f.text_field :first_name, class: "address_first_name address-form-box",maxlength: "35", placeholder: "例）彩", name: "first_name", type: "string", value: session[:first_name]
+                  
                   -# %input.address_first_name.address-form-box{maxlength: "35", placeholder: "例）彩", name: "first_name", type: "string", value: ""}/
 
                 .form-group-address__phonetic.address-heading-row
@@ -71,6 +72,7 @@
                 .form-group-address__list 
 
                   = f.text_field :postalcode, class: "address_postalcode address-form-box", maxlength: "7", placeholder: "例）123-4567", name: "postalcode", type: "integer", value: ""
+                  = render partial: 'error-address', locals: {address: @address, column: "postalcode"}
                   -# %input.address_postalcode.address-form-box{maxlength: "7", placeholder: "例）123-4567", name: "postalcode", type: "integer", value: ""}/
 
                 .form-group.address-prefecture-form
@@ -85,6 +87,7 @@
                         .angle-position
                           = fa_icon 'angle-down', class: "address-prefecture-angle-down__absolute.angle-position"
                         = f.collection_select :prefectures, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
+                        = render partial: 'error-address', locals: {address: @address, column: "prefectures"}
 
                 .form-group-address__phonetic.address-heading-row
                   = f.label :address_city, "市区町村"
@@ -92,14 +95,16 @@
                   %span.form-require 必須
                 .form-group-address__list 
                   = f.text_field :city, class: "address_city address-form-box", maxlength: "50", placeholder: "例）横浜市緑区", name: "city", type: "string", value: ""
+                  = render partial: 'error-address', locals: {address: @address, column: "city"}
                   -# %input.address_city.address-form-box{maxlength: "50", placeholder: "例）横浜市緑区", name: "city", type: "string", value: ""}/
                 
                 .form-group-address__phonetic.address-heading-row
-                  = f.label :house_number, "番地"
+                  = f.label "番地"
                   -# %label{for: "address_house_number"} 番地
                   %span.form-require 必須
                 .form-group-address__list 
                   = f.text_field :house_number, class: "address_house_number address-form-box", maxlength: "100", placeholder: "例）青山1-1-1", name: "house_number", type: "string", value: ""
+                  = render partial: 'error-address', locals: {address: @address, column: "house_number"}
                   -# %input.address_house_number.address-form-box{ maxlength: "100", placeholder: "例）青山1-1-1", name: "house_number", type: "string", value: ""}/
                 
                 .form-group-address__phonetic.address-heading-row
@@ -126,6 +131,6 @@
                   = f.submit class: "btn-default btn-red", value: "次へ進む", id: "tep3-submit-button"
                   -# %button#step3-submit-button.btn-default.btn-red{type: "button"} 次へ進む
 
-      .credit-register-footer
-        = render 'signup/footer'
+
+  = render 'signup/footer'
 

@@ -44,7 +44,7 @@
               %span.form-require
                 必須
               = f.text_field :nickname, placeholder: '例) メルカリ太郎', class: "input-default"
-
+            
               =  render partial: 'error-messages', locals: {user: @user, column: "nickname"}
 
 
@@ -66,7 +66,7 @@
               = render partial: 'error-messages', locals: {user: @user, column: "password"}
               -# %input.input-default{name: "password", placeholder: "7文字以上", type: "password", value: ""}/
             .form-group
-              = f.label :password_confirmation, value: "パスワード(確認)"
+              = f.label "パスワード(確認)"
               -# %label{for: "nickname"} パスワード(確認)
               %span.form-require
                 必須
@@ -139,7 +139,6 @@
                 = render partial: 'error-messages', locals: {user: @user, column: "birth_month"}
                 = render partial: 'error-messages', locals: {user: @user, column: "birth_day"}
                 %p.form-group__info-text ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
-
 
         
                 .form-recapu
