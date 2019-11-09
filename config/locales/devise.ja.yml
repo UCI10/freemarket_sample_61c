@@ -23,3 +23,6 @@ ja:
         birth_month: 月
         birth_day: 日
         phone_number: 電話番号
+      product:
+        title: タイトル
+        description: 商品説明

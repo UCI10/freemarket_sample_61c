@@ -44,7 +44,7 @@
               %span.form-require
                 必須
               = f.text_field :nickname, placeholder: '例) メルカリ太郎', class: "input-default"
-
+            
               =  render partial: 'error-messages', locals: {user: @user, column: "nickname"}
 
 
