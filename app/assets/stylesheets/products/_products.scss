@@ -316,6 +316,7 @@ vertical-align: top;
 .select-wrap{
 position: relative;
 background: #fff;
+margin: 10px 0;
 .icon-arrow-bottom-sai{
   position: absolute;
   right: 16px;
@@ -527,8 +528,15 @@ footer {
 
   }
 }
-  
-  
+}
+
+.sell-content-sai__box{
+  .sell-content-sai__box__Category{
+    height: 20px;
+    padding: 2px 0 5px 0;
+    font-size: 18px;
+    z-index: 3;
+}
 }
 
 

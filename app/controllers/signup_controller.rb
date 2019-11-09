@@ -83,7 +83,9 @@ end
 
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
+
     render '/signup/step1' unless @user.valid?(:validates_step1)
+
     
   
   end
@@ -111,10 +113,11 @@ end
 
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
-    # @user.valid?(:validates_step2)
-    # binding.pry
+
    
-    render '/signup/step2' unless @user.valid?(:validates_step2)
+
+  render '/signup/step2' unless @user.valid?(:validates_step2)
+
   end 
 
 

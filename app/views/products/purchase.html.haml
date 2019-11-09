@@ -1,0 +1,53 @@
+.single-container-sai
+  .header-logo-sai
+    %h1.header-logo-sai__link
+      = link_to root_path do
+        = image_tag 'mercari-logo.png', size: '155x50'
+    .single-main-sai
+      .l-single-container-sai2 
+        
+        .l-single-container-sai2__head 購入内容の確認
+        %sction.buy-content-sai
+          .buy-content-sai__inner
+            %h3.buy-content-sai__inner__image
+              = image_tag 'mercari-logo-footer.png', size: '64x64'
+            %p.buy-content-sai__inner__lazyloaded
+              出品された商品の名前
+
+        %sction.buy-form
+          .buy-form__ja 
+            ¥1280
+            %span.buy-form__fee 送料こみ
+          %ul.buy-accordion 
+            %li.buy-accordion__toggle
+              ポイントはありません。
+          .buy-form__ja 
+            ¥1280
+            %span.buy-form__fee#sihari-sai
+              支払い金額
+          %ul.buy-accordion#red-sai
+            %li.buy-accordion__toggle
+              送料こみ。
+        %sction.buy-form
+          .buy-form__inner
+            %h3 配送先
+            %address.buy-form__inner__user
+              〒447-0871
+              %br
+              愛知県碧南市向陽町2-14サクスィード21A202斎藤大輝
+            
+            = link_to root_path, class: "buy-form__inner__henkou" do
+              変更する
+        %sction.buy-form
+          .buy-form__inner
+            支払い方法
+            .buy-form__inner__user#sharaibr
+              ********9303
+              %br
+              08/21
+            
+            = link_to root_path, class: "buy-form__inner__henkou" do
+              変更する
+
+
+  =render 'footer'  

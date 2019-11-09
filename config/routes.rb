@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post 'purchase'
     end
   end
+
   resources :users do
     member do
       get :creditdisplay     #クレジットカード情報の表示
