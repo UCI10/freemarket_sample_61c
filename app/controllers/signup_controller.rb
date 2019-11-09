@@ -41,7 +41,7 @@ end
 
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
-    render '/signup/step1' unless @user.valid?
+    # render '/signup/step1' unless @user.valid?
     
   
   end
@@ -77,7 +77,7 @@ end
       phone_number: session[:phone_number]
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
-  render '/signup/step2' unless @user.valid?(:validates_step2)
+  # render '/signup/step2' unless @user.valid?(:validates_step2)
   end 
 
 

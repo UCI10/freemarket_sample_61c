@@ -14,15 +14,17 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    
     if @product.save
-      respond_to do |format|
-        format.json
-      end
+      # respond_to do |format|
+      #   format.json
+      # end
     else
-      redirect_to action: :new
+      @product.images.build 
+      render action: :new
     end
     # Product.create(title: product_params[:title], description: product_params[:description], user_id: current_user.id)
-    # binding.pry
+    
     # @product = Product.create(product_params)
     # @product = Product.new(product_params)
     # @product.images.build   

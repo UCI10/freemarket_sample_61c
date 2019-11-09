@@ -27,13 +27,15 @@
                 ドラッグアンドドロップ またはクリックしてファイルをアップロード
                 
           .sell-content-sai.clearfix
-            .form-group-sai.clearfix
-              .form-group-sai__head 商品名
-              %span.form-group-sai__require 必須
+            .form-group-sai2.clearfix
+              .form-group-sai2__head.clear-fix 商品名
+              %span.form-group-sai2__require 必須
               %br/
 
-              .form-title
-                = f.text_field :title, class: 'form-group-sai__default', placeholder: '商品名（必須 40文字まで)'
+              
+              = f.text_field :title, class: 'form-group-sai__default', placeholder: '商品名（必須 40文字まで)'
+            .clearfix
+              =  render partial: 'error-messages', locals: {product: @product, column: "title"}
 
             
             .form-group-sai2.clearfix
@@ -41,6 +43,8 @@
               %span.form-group-sai2__require 必須
               %br/
               = f.text_area :description, class: 'form-group-sai2__default', placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+              =  render partial: 'error-messages', locals: {product: @product, column: "description"}
+
 
           .sell-content-sai.clearfix
             %h3.sell-content-sai__sub 商品の詳細
@@ -51,7 +55,7 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                = f.collection_select(:name, @category, :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form")
+                = f.collection_select(:name, Category.all, :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form")
 
               .sell-content-sai__box__Category サイズ
               %span.sell-content-sai__box__require 必須
@@ -59,14 +63,15 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                = f.select :size, Product.sizes ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                = f.select :size, Product.sizes.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
                   
               .sell-content-sai__box__Category ブランド
-              %span.sell-content-sai__box__require 必須
+              %span
               %br/
               .select-brand-take
                 .select-brand-box
-                  = f.text_field :brand_id, class:"select-brand-box",placeholder: "例）シャネル",value:""
+                  = f.text_field :name, class:"select-brand-box",placeholder: "例）シャネル",value:""
+                  
                   
               .sell-content-sai__box__Category 商品の状態
               %span.sell-content-sai__box__require 必須
@@ -74,7 +79,7 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                = f.select :condition , Product.conditions ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                = f.select :condition , Product.conditions.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
           
           .sell-content-sai.clearfix
             %h3.sell-content-sai__sub 配送について 
@@ -91,7 +96,19 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                = f.select :shipping_burden , Product.shipping_burdens ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                = f.select :shipping_burden , Product.shipping_burdens.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+
+            .sell-content-sai__box.clearfix
+              .sell-content-sai__box__Category 配送料の方法
+              %span.sell-content-sai__box__require 必須
+              %br/
+              
+              .select-wrap
+                .icon-arrow-bottom-sai
+                  = fa_icon 'chevron-down'
+                = f.select :shipping_method , Product.shipping_methods.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+
+
 
             .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 発送元の地域
@@ -101,7 +118,7 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                = f.collection_select :prefectures, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
+                = f.collection_select :shipping_area, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
 
               .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 発送までの日数
@@ -111,7 +128,7 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                = f.select :shipping_period, Product.shipping_periods ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                = f.select :shipping_period, Product.shipping_periods.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
 
           .sell-content-sai.clearfix
             %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
@@ -120,10 +137,13 @@
             .sell-form-box
               .sell-content-sai__box__Category 価格
               %span.sell-content-sai__box__require 必須
+            
+            -# %label{for: "price-box"}
+    
             .l-right-sai.clearfix
-              
               %span.l-right-sai__en ¥
-              %input.l-right-sai__input{placeholder: "例)300"}
+              
+              = f.number_field :price, class: "price-box", placeholder: "例) 300", type: "number"              
             .margin-sai.clearfix
               .l-left
                 販売手数料
