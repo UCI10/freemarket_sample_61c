@@ -2,12 +2,12 @@ class ProductsController < ApplicationController
   before_action :sell, only: [:new, :edit]
 
   def index
-
+    @product = Product.all.order("created_at DESC")
   end
 
   def new
-      @product = Product.new
-      @product.images.build    
+    @product = Product.new
+    @product.images.build    
 
   end
 

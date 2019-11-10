@@ -2,9 +2,10 @@
   = link_to root_path do
     %ul
       .new-product-toplist__box__image
+        = image_tag product.images[0].image_url.url
         .new-product-toplist__price
-          ￥ 
-          = product.price
+          %span￥
+          =product.price.to_s(:delimited)
       .new-product-toplist__box__title
         .new-product-toplist__title
           = product.title
