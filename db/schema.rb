@@ -68,19 +68,19 @@ ActiveRecord::Schema.define(version: 2019_11_07_060233) do
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.bigint "category_id"
-    t.bigint "brand_id"
-    t.string "title"
-    t.string "description"
-    t.integer "condition"
-    t.integer "shipping_burden"
-    t.integer "shipping_area"
-    t.integer "shipping_period"
-    t.integer "shipping_method"
-    t.integer "price"
-    t.integer "size"
-    t.integer "buyer_id"
+    t.bigint "brand_id", null: false
+    t.string "title", null: false
+    t.string "description", null: false
+    t.integer "condition", null: false
+    t.integer "shipping_burden", null: false
+    t.integer "shipping_area", null: false
+    t.integer "shipping_period", null: false
+    t.integer "shipping_method", null: false
+    t.integer "price", null: false
+    t.integer "size", null: false
+    t.integer "buyer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_products_on_brand_id"
