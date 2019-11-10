@@ -310,15 +310,12 @@
                 }
               }
             }  
-
               .newproduct-margin{
                 margin-top: 60px;
               }
             }
           }
         }
-
-
           .popular-brand{
             padding: 56px 0px 0px;
             background-color: $white;
@@ -338,9 +335,7 @@
           font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
           line-height: 1.4em;
           font-weight: 600;
-          
           }
-            
             .popular-brand-header{
               height: 140px;
               width: 1020px;
@@ -354,9 +349,6 @@
               padding: 0;
               font-size: 28px;
               font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
-              &__highbox{
-              
-              }
             }
               .popular-brand-header__lowhbox{
                 font-size: 14px;
@@ -364,7 +356,6 @@
                 color: rgb(51, 51, 51);
                 box-sizing: border-box;
                 vertical-align: baseline;
-
                 &__btn{
                   height: 40px;
                   width: 1020px;
@@ -378,11 +369,6 @@
                   text-align: center;
                   white-space: nowrap;
                   justify-content: center;  
-
-                  ul{
-                    
-                  }
-
                   a{
                     white-space: nowrap;
                     list-style: none;
@@ -406,8 +392,6 @@
                     box-sizing: border-box;
                     line-height: 30px;
                     justify-content: center;  
-
-                
                   li{
                     color: rgb(51, 51, 51);
                     white-space: nowrap;
@@ -421,14 +405,10 @@
                     box-sizing: border-box;
                     border-radius: 6px;
                     justify-content: center;  
-
                   }
                 }
               }
             }
-
-
-
             .popular-brand-content{
               background-color: $gray;
               color: rgb(51, 51, 51);
@@ -441,8 +421,6 @@
                 margin:0 auto;
               &__highrow{
                 width: 1020px;
-                
-                
                 .popular-brand__highrow{
                 &__leftbox{
                   width: 90%;
@@ -453,14 +431,11 @@
                   height: 40px;
                   width: 20%;
                   line-height: 33px;
-
                   h7 {
                     color: $light-blue;
                     font-size: 14px;
                     font-weight: 600;          
-          
                   }
-
                   a:link {
                     color: $light-blue;
                     text-decoration: none;
@@ -477,7 +452,6 @@
                 }
               }
             }  
-
               .popular-brand-content__box__lowrow{
                 width: 1020px;
                 color: rgb(51, 51, 51);
@@ -490,7 +464,6 @@
                 border-color: initial;
                 border-image: initial;
                 font: inherit;
-
                 .new-product-brand.displayflex{
                   color: rgb(51, 51, 51);
                   box-sizing: border-box;
@@ -500,13 +473,10 @@
                   display: flex;
                   flex-wrap: wrap;
                   justify-content: flex-start;
-                  flex-direction: row; 
-
-                  
+                  flex-direction: row;        
                   ul:hover{
                     border: 1px solid  $light-blue;
                   }
-
                   .new-product-brand__box{
                     width: 20%;
                     padding: 10px;
@@ -516,11 +486,6 @@
                     vertical-align: baseline;
                     margin: 0px;
                     border-width: 1px;
-      
-                  ul{
-
-                  }  
-
                   &__image{
                     list-style: none;
                     visibility: visible;
@@ -540,7 +505,6 @@
                     height: 0;
                     overflow: hidden;
                     padding: 0 0 100%;
-
                     .new-product-brand__price{
                       list-style: none;
                       visibility: visible;
@@ -567,10 +531,8 @@
                       padding: 0 12px;
                       position: absolute;
                       z-index: 2;
-
                     }
                   }
-
                   .new-product-brand__box__title {
                     background-color: $white;
                     list-style: none;
@@ -597,8 +559,6 @@
                     white-space: normal;
                     word-break: break-word;
                     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-
-
                     .new-product-brand__title{
                       list-style: none;
                       visibility: visible;
@@ -620,7 +580,6 @@
                       height: 2.8em;
                       overflow: hidden;
                       position: relative;
-
                     }
                   }
                 }
@@ -629,7 +588,6 @@
           }
         }
       }
-      
           .newproduct-margin{
             margin-top: 60px;
           }

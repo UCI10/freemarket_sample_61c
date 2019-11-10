@@ -3,7 +3,7 @@
     %h1.header-logo-sai__link
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
-  = form_with(model: @product, local: true, multipart: true) do |f|
+  = form_with(model: @product, local: true, id:"new_product", multipart: true) do |f|
     .single-main-sai
       .l-single-container-sai
         .product-menu-sai
@@ -137,26 +137,40 @@
             .sell-form-box
               .sell-content-sai__box__Category 価格
               %span.sell-content-sai__box__require 必須
-            
-            -# %label{for: "price-box"}
-    
+
             .l-right-sai.clearfix
               %span.l-right-sai__en ¥
-              
-              = f.number_field :price, class: "price-box", placeholder: "例) 300", type: "number"              
+              = f.number_field :price, class: "price-box", id: 'price-box', placeholder: "例) 300", type: "text", value: ""              
+            .sample_wrap
+              %div
+                %input#input{:type => "text"}/
+              %div
+                Input:
+                -# %span#output
+              %div
+                Change:
+                -# %span#output2
+            
             .margin-sai.clearfix
               .l-left
                 販売手数料
+                %span#pricefee
             .margin-sai.clearfix
               .margin-sai__margin
+
                 販売利益
+
+                .profits-result-box{id: "jsPrice", class: "profit"}
+                  %span#profits-box
+              -# = f.number_field class: "profits-box", id: 'profits-box', placeholder: "例) 300", type: "number"              
+  
             .sell-content
               %p.sell-content__sentence 禁止されている出品、行為を必ずご確認ください。
               %p.sell-content__sentence またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり
               %p.sell-content__sentence 処罰される可能性があります。
               %p.sell-content__sentence また、出品をもちまして加盟店規約に同意したことになります。
 
-            = f.submit '出品する', class: 'button btn-default'
+            = f.submit '出品する', class: "form__submit btn-default"
 
             .btn-gray
               = link_to root_path do
@@ -166,26 +180,3 @@
 
 
 
-
-
-
-
-
--# .log-body
-  -# = form_for @product, url: sells_path do |f|
--#     .content-item__name
-      -# = f.text_area :category_id, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_field :brand_id, class: "content-item__item-name__holder", placeholder:"商品名（必須40文字まで）", maxlength: 40
--#       = f.text_field :title, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :description, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :condition, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :shipping_burden, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :shipping_area, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :shipping_period, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :shipping_method, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :price, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :size, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
--#       = f.text_area :buyer_id, class: "content-describe__holder", rows: 5, placeholder:"商品の説明（必須1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", maxlength: 1000
-      
--#       = f.submit "出品する", class: "text__submit-button"                    
--# = form_with(model: @product, local: true) do |f|

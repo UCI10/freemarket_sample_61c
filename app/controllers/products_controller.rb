@@ -9,12 +9,19 @@ class ProductsController < ApplicationController
       @product = Product.new
       @product.images.build    
 
+
   end
 
   def create
     @product = Product.new(product_params)
     
     if @product.save
+
+      respond_to do |format|
+        format.html { redirect_to root_path(@product) }
+        format.json
+      end  
+      redirect_to products_path
 
     else
       @product.images.build 
@@ -25,7 +32,7 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.new
-    @product.images.build    
+    @product.images.build
   end
 
 

@@ -1,0 +1,1 @@
+json.price @product.price
