@@ -1,7 +1,6 @@
 class SignupController < ApplicationController
   before_action :validates_step1, only: :step2
   before_action :validates_step2, only: :step3
-
   before_action :validates_step3, only: :step4
   before_action :validates_step4, only: :create
 
@@ -40,10 +39,7 @@ class SignupController < ApplicationController
     # 仮で作成したインスタンスのバリデーションチェックを行う
     render '/signup/step3' unless @address.valid?
     
-  
   end
-
-
 
   # 各アクションごとに新規インスタンスを作成します
   # 各アクションごとに、遷移元のページのデータをsessionに保管していきます
@@ -85,19 +81,14 @@ end
     # 仮で作成したインスタンスのバリデーションチェックを行う
 
     render '/signup/step1' unless @user.valid?(:validates_step1)
-
-    
   
   end
 
 def step2
 
-  
   @user = User.new # @u新規インスタンス作成
 
 end
-
-
 
   def validates_step2
     # step2で入力された値をsessionに保存
@@ -120,8 +111,6 @@ end
 
   end 
 
-
-
 def step3
 
   @address = Address.new
@@ -134,10 +123,7 @@ def step4
 
 end
 
-
 def create
-
-
 
   @user = User.new(
     nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
@@ -169,8 +155,6 @@ def create
   
     @card.save
 
-
-   
     @address = Address.new(
       user_id: @user.id,
       postalcode: session[:postalcode],

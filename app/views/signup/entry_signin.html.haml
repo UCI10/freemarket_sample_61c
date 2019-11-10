@@ -3,9 +3,11 @@
     %h1.header-logo-sai__link
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
- 
+    
   .single-main
+   
     .login-panel
+       
       .login-sai
         %p アカウントをお持ちでない方はこちら
         .login-no-account-sai#login-width
@@ -21,21 +23,19 @@
             = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
             %span googleでログイン
 
-
-
-      .login-form-inner-sai
-        .login-form-inner-sai__form
-          %input{name: "email", placeholder: "メールアドレス", type: "email", value: ""}/ 
-        .login-form-inner-sai__form#login-form-inner-sai__form
-          %input{name: "password", placeholder: "パスワード", type: "password"}/
-        .g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6LdtOsAUAAAAAB48_GUOATmS_P4Dl0ejnacH1x4L"}
-      .login-sai
-        .login-no-account-sai#loginred-sai
-          = link_to root_path do
-            ログイン
-        .login-sai__passwordlast
-          = link_to root_path do
-            パスワードをお忘れの方
-
+      .login-form-inner2-sai
+        = form_with url: user_session_path, class: "formnill",local: true do |f|
+          .login-form-inner-sai__form
+            = f.email_field :email, autofocus: true
+            -# %input{name: "email", placeholder: "メールアドレス", type: "email", value: ""}/ 
+          .login-form-inner-sai__form#login-form-inner-sai__form
+            = f.password_field :password, autocomplete: "off"
+            -# %input{name: "password", placeholder: "パスワード", type: "password"}/
+          .recaptcha_tags_padding
+            = recaptcha_tags
+          
+            = f.submit "ログイン", class: "btn-default btn-red"
+            .login-sai__passwordlast
+              = link_to "パスワードをお忘れの方",root_path 
               
   = render 'products/footer'
