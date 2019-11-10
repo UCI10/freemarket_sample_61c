@@ -7,9 +7,9 @@ class ProductsController < ApplicationController
 
   def new
       @product = Product.new
-      @product.images.build    
-
-
+      @product.images.build  
+      @parents = Category.all.order("id ASC").limit(8)
+  
   end
 
   def create
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
         format.html { redirect_to root_path(@product) }
         format.json
       end  
-      redirect_to products_path
+      # redirect_to root_path
 
     else
       @product.images.build 
@@ -36,8 +36,16 @@ class ProductsController < ApplicationController
   end
 
 
-  def show
+  def search
+    respond_to do |format|
+      format.html
+      format.json do
+       @children = Category.find(params[:parent_id]).children
+       #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
+       @indirects = Category.find(params[:parent_id]).children
 
+      end
+    end
   end
 
 

@@ -1,76 +1,34 @@
-$(function() {
+$(document).on('turbolinks:load', function(){
   var $price_input = $('#price-box');// 入力価格のタグID名
-  var $price_fee = $('#pricefee');// 販売手数料
+  var $price_fee = $('#fee-box');// 販売手数料
+  var $price_profit = $('#profit-box');  // 販売利益
   var fee_rate = 0.1; // 販売手数料の割合
-  var maxPriceInput = 99999999; // 入力できる値段の上限
-  var maxPriceFee = 9999999; // 販売手数料の上限
-
+  var maxPriceInput = 100000000; // 入力できる値段の上限
+  var minPriceInput = 300; // 入力できる値段の下限
+  $('#price-box').attr('autocomplete', 'off'); //入力履歴非表示
+  $('#fee-box').text('-')  //デフォルトの表示
+  $('#profit-box').text('-') //デフォルトの表示
   $price_input.on('input', function(event) {
-    var inputval = $(this).val();  //入力した値
-    var inputval_num = Number(inputval.replace(/[^0-9]/g, '')); // 整数以外の文字列を削除し整数限定にする
-    if(inputval_num == 0) {  //入力数値が0の時
-			inputval_num = '';
-		} else if (inputval_num > maxPriceInput) { // 入力数値が上限を超える場合
-			inputval_num = maxPriceInput;
-		}
-		$(this).val(inputval_num);  
-		if(inputval_num != 0) { //入力数値が０以上上限以下の時
-			var total_price_fee = Math.floor(inputval_num * fee_rate); // 入力数値＊手数料割合を小数点以下切り捨て
-    }  else if (total_price_fee > maxPriceFee) { // 上限を超える手数料になった場合上限までとする
-      total_price_fee = maxPriceFee;
+    var input_val = $(this).val();  //入力した値
+    var input_val_num = Number(input_val.replace(/[^[0-9]+$/g, '')); // 整数以外の文字列を削除し整数限定にする
+    if(input_val_num >= minPriceInput && input_val_num < maxPriceInput) { // 入力数値が上限と下限の間の場合
+      $(this).val(input_val_num);  
+      var total_price_fee = Math.floor(input_val_num * fee_rate); // 合計販売手数料(入力数値＊手数料割合を小数点以下切り捨て)
+      var total_profit = Math.floor(input_val_num - total_price_fee); // 合計販売利益（入力数値-手数料割合を小数点以下切り捨て）
+      $price_fee.text("¥"+total_price_fee.toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,')); // 出力対象（販売手数料）のタグID名と引数、カンマをつける
+      $price_profit.text("¥"+total_profit.toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,')); // 出力対象（販売利益）のタグID名と引数、カンマをつける
     }
-      $price_fee.text(total_price_fee);	// 出力対象のタグID名と引数
-  });
- 
-  
-  
-  var $price_profit = $('#profits-box');
-  $price_input.on('input', function(event) {
-  	$price_profit.text($price_input.val());
+    else if(total_price_fee  == undefined || total_profit  == undefined){  // 入力価格がundefinedの時空欄にする(入力後削除した時undefindと表示されるため)
+      $price_fee.text('-');
+      $price_profit.text('-');
+    }
+    else{  //上限か下限どちらかを超えている時
+      $price_fee.text('-');
+      $price_profit.text('-');
+    }
   });
 });
 
-// IE 9+
-// $(function() {
-//   var $input = $('#input');
-//   var $output = $('#output');
-//   $input.on('input', function(event) {
-//     var value = $input.val();
-//     $output.text(value);
-//   });
-  
-  
-//   var $output2 = $('#output2');
-//   $input.on('change', function(event) {
-//   	$output2.text($input.val());
-//   });
-// });
-
-
-
-// $(function(){
-	// var value fee_rate= 300; // りんごの単品価格手数料部分
-	// var maxNum maxPriceInput= 100; // 注文できる個数の上限入力値の上限がここ
-// 	var tagInput $priceinput= $('#jsNum'); // 入力対象のinputタグID名
-// 	var tagOutput $pricefee= $('#jsPrice'); // 出力対象のinputタグID名
-
-// 	tagInput.on('change', function() {
-// 		var str inputval = $(this priceinput).val();
-		// var num inputvalnum = Number(str inputval.replace(/[^0-9]/g, '')); // 整数以外の文字列を削除
-		// if(num inputvalnum  == 0) {
-		// 	num = '';
-		// } else if (num > maxNum) { // 上限を超える個数を入力した場合
-		// 	num = maxNum;
-		// }
-		// $(this).val(num);
-		// if(num != 0) {
-		// 	var price = num * value;
-		// 	tagOutput.val(price);
-		// }
-// 	});
-// });
-    
-    
     
     // $.ajax({
     //   url: url,

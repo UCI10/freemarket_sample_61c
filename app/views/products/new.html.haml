@@ -55,7 +55,8 @@
               .select-wrap
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
-                = f.collection_select(:name, Category.where(ancestry: nil) , :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form")
+                = f.collection_select :category_ids, @parents, :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form", name: 'item[category_ids][]'  
+                -# = f.collection_select(:name, Category.where(ancestry: nil) , :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form")
 
               .sell-content-sai__box__Category サイズ
               %span.sell-content-sai__box__require 必須
@@ -138,31 +139,20 @@
               .sell-content-sai__box__Category 価格
               %span.sell-content-sai__box__require 必須
 
-            .l-right-sai.clearfix
-              %span.l-right-sai__en ¥
-              = f.number_field :price, class: "price-box", id: 'price-box', placeholder: "例) 300", type: "text", value: ""              
-            .sample_wrap
-              %div
-                %input#input{:type => "text"}/
-              %div
-                Input:
-                -# %span#output
-              %div
-                Change:
-                -# %span#output2
-            
-            .margin-sai.clearfix
-              .l-left
-                販売手数料
-                %span#pricefee
-            .margin-sai.clearfix
-              .margin-sai__margin
+              .l-right-sai.clearfix
+                %span.l-right-sai__en ¥
+                = f.number_field :price, class: "price-box", id: 'price-box', placeholder: "例) 300", type: "text", value: ""                
+              .margin-sai.clearfix
+                .l-left
+                  販売手数料(10%)
+                %span#fee-box.l-right-sai
+                  
+              .margin-sai.clearfix
+                .margin-sai__margin
 
-                販売利益
-
-                .profits-result-box{id: "jsPrice", class: "profit"}
-                  %span#profits-box
-              -# = f.number_field class: "profits-box", id: 'profits-box', placeholder: "例) 300", type: "number"              
+                  販売利益
+                .profits-result-box{id: "profit", class: "profit"}
+                  %span#profit-box.l-right-sai
   
             .sell-content
               %p.sell-content__sentence 禁止されている出品、行為を必ずご確認ください。

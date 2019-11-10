@@ -247,7 +247,10 @@ display: flex;
 }
 
 .sell-form-box{
-margin: 40px 0 0;
+  width: 400px;
+  margin: 40px 0 0;
+  float: right;
+
 
 &__price{
 list-style: none;
