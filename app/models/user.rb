@@ -6,11 +6,45 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, 
+         :omniauthable, omniauth_providers: %i[facebook google_oauth2]
+
+         def self.find_for_oauth(auth)
+          user = User.where(uid: auth.uid, provider: auth.provider).first
+      
+          unless user
+        
+            user = User.create(
+              uid:      auth.uid,
+              provider: auth.provider,
+              nickname:     auth.info.name,
+              email:    User.dummy_email(auth),
+              password: Devise.friendly_token[0, 20],
+              phone_number: " ",
+              birth_year: " ",
+              birth_month: " ",
+              birth_day: " ",
+              first_name: " ",
+              last_name: " ",
+              first_name_phonetic: " ",
+              last_name_phonetic: " "
+            
+            )
+          end
+      
+          user
+        end
+      
+        private
+      
+        def self.dummy_email(auth)
+          "#{auth.uid}-#{auth.provider}@example.com"
+        end
 
   has_one :address
   has_one :card
   has_many :products
+ 
 
 
   VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
