@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
       @product = Product.new
       @product.images.build  
       @parents = Category.all.order("id ASC").limit(8)
-    #   @category_parent_array = ["---"]
+    # TODO   @category_parent_array = ["---"]
     #   Category.where(ancestry: nil).each do |parent|
     #   @category_parent_array << parent.name
     #  end
