@@ -531,10 +531,46 @@ background-position: right 10px center;
 background-color: #bddfff;
 }
 
+footer {
+  display: block;
+}
+
+
+.single-footer {
+    width: 456px;
+    height: 220px;
+    margin: 0 auto;
+}
+
+// .single-footer-sai ul {
+//   font-size: 0;
+// }
+
+.single-footer-sai a {
+  display: block;
+  color: #333;
+}
+
+.single-footer-sai li {
+  margin: 16px 0 0;
+  font-size: 12px;
+}
+
+
 .single-footer-sai{
-  padding-top: 40px;
-  text-align: center;
-  margin: 0 auto;
+
+  position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    padding: 40px 0;
+    text-align: center;
+
+
+  // padding-top: 40px;
+  // text-align: center;
+  // margin: 0 auto;
 &__nokori{
   color: black;
   padding: 0 5px;
@@ -730,5 +766,9 @@ display:none;
 
 
 
+.single-footer-sai li {
+  display: inline-block;
+  margin: 0 0 0 16px;
+}
 
 

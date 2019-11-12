@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   # before_action :get_category_children, only: [:new, :edit]
 
   def index
-
+    @product = Product.all.order("created_at DESC")
   end
 
   def new
@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
     # @product = Product.new
     # @product.images.build  
   
+
   end
 
   def create
@@ -37,6 +38,7 @@ class ProductsController < ApplicationController
       render action: :new
       # format.html { redirect_to root_path(@product) }
     end
+
   end
   
   def show

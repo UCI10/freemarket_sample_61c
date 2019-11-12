@@ -14,18 +14,19 @@
           .registration-form-sai
             .registration-form-sai__max
               .registration-form-sai__max__mail
-                = link_to root_path, class: "btn-default" do
+                = link_to step1_signup_index_path, class: "btn-default" do
                   = fa_icon 'envelope', width: "20", height: "20", class: "googlesai-icon"
                   メールアドレスで登録する。
 
 
             .login-no-account-sai#facebook-form
-              = link_to root_path, class: "facebookrelative" do
+              = link_to step1_signup_index_path, class: "facebookrelative" do
                 = fa_icon 'facebook', class: "facebook-icon"
                 %span
                   Facebookでログイン
             .login-no-account-sai#googlesai-form
-              = link_to root_path, class: "googlerelative" do
+              = link_to step1_signup_index_path, class: "googlerelative" do
                 = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
                 googleでログイン
+                
   = render 'signup/footer'

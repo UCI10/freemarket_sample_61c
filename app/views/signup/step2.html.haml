@@ -40,7 +40,8 @@
                 = f.label :携帯電話の番号, class: "phone-number__left"
                 -# %label.phone-number__left{for: "phone_number"} 携帯電話の番号
 
-                = f.text_field :phone_number, class: "input-default" 
+                = f.text_field :phone_number, class: "input-default has-error" 
+                = render partial: 'error-messages2', locals: {user: @user, column: "phone_number"}
                 -# %input.input-default{type: "tele"}
               %p 
                 本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。

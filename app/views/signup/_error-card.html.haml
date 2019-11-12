@@ -1,0 +1,7 @@
+
+- if card.errors.any?
+  - unless card.valid?
+    - if errors = card.errors.full_messages_for(column.to_sym)
+      %ul.has-error-text
+        - errors.each do |error|
+          %li=error
