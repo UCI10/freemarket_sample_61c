@@ -3,18 +3,14 @@ class ProductsController < ApplicationController
   # before_action :get_category_children, only: [:new, :edit]
 
   def index
-
+    @product = Product.all.order("created_at DESC")
   end
 
   def new
       @product = Product.new
       @product.images.build  
       @parents = Category.all.order("id ASC").limit(8)
-    #   @category_parent_array = ["---"]
-    #   Category.where(ancestry: nil).each do |parent|
-    #   @category_parent_array << parent.name
-    #  end
-  
+
   end
 
   def create
@@ -34,6 +30,7 @@ class ProductsController < ApplicationController
       render action: :new
       # format.html { redirect_to root_path(@product) }
     end
+
   end
   
   def show

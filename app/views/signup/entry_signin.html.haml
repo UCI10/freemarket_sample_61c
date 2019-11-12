@@ -3,39 +3,39 @@
     %h1.header-logo-sai__link
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
-    .single-main-sai
-      .l-single-container-sai2
-        .single-main
-          
-          .login-sai
-            %p アカウントをお持ちでない方はこちら
-            .login-no-account-sai#login-width
-              = link_to root_path do
-                新規会員登録
-          .login-form-inner2-sai
-            .login-no-account-sai#facebook-form
-              = link_to root_path, class: "facebookrelative" do
-                = fa_icon 'facebook', class: "facebook-icon"
-                %span
-                  Facebookでログイン
-            .login-no-account-sai#googlesai-form
-              = link_to root_path, class: "googlerelative" do
-                = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
-                googleでログイン
+    
+  .single-main
+   
+    .login-panel
+       
+      .login-sai
+        %p アカウントをお持ちでない方はこちら
+        .login-no-account-sai#login-width
+          = link_to step1_signup_index_path do
+            新規会員登録
+      .login-form-inner2-sai
+        .login-no-account-sai#facebook-form
+          = link_to user_facebook_omniauth_authorize_path, class: "facebookrelative text-center" do
+            = fa_icon 'facebook', class: "facebook-icon"
+            %span Facebookでログイン
+        .login-no-account-sai#googlesai-form
+          = link_to user_google_oauth2_omniauth_authorize_path, class: "googlerelative text-center" do
+            = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
+            %span googleでログイン
 
       
-        .login-form-inner-sai
-          .login-form-inner-sai__form
-            %input{name: "email", placeholder: "メールアドレス", type: "email", value: ""}/ 
-          .login-form-inner-sai__form#login-form-inner-sai__form
-            %input{name: "password", placeholder: "パスワード", type: "password"}/
-          -# .g-recaptcha{"data-callback" => "clearcall", "data-sitekey" => "6LdtOsAUAAAAAB48_GUOATmS_P4Dl0ejnacH1x4L"}
-        .login-sai
-          .login-no-account-sai#loginred-sai
-            = link_to root_path do
-              ログイン
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: '.login-form-inner2-sai' }) do |f|
+        .login-form-inner-sai__form
+          = f.email_field :email, autofocus: true
+            
+        .login-form-inner-sai__form#login-form-inner-sai__form
+          = f.password_field :password, autocomplete: "off"
+          
+        .recaptcha_tags_padding
+          = recaptcha_tags
+        
+          = f.submit "ログイン", class: "btn-default btn-red"
           .login-sai__passwordlast
-            = link_to root_path do
-              パスワードをお忘れの方
+            = link_to "パスワードをお忘れの方",root_path 
               
   = render 'products/footer'

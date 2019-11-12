@@ -42,7 +42,7 @@
             
                   %span.form-require 必須
 
-                = f.text_field :card_id, class: "payment_card_num input-default", maxlength: "19", placeholder: "半角数字のみ", type: "text", value: "", "data-input-type" => "card"
+                = f.text_field :card_id, class: "payment_card_num input-default has-error", maxlength: "19", placeholder: "半角数字のみ", type: "text", value: "", "data-input-type" => "card"
                 
                 .card-icons-box.displayflex
                   %ul
@@ -58,7 +58,8 @@
                   %li  
                     = image_tag 'dinersclub.svg', size: '32x20'
                   %li  
-                    = image_tag 'discover.svg', size: '32x20'   
+                    = image_tag 'discover.svg', size: '32x20'
+                = render partial: 'error-card', locals: {card: @card, column: "card_id"}   
 
               .form-group.signup-form-expire
                 .form-group.signup-form-expire__heading.displayflex
@@ -71,40 +72,21 @@
                       = fa_icon 'angle-down', class: "credit-card-angle-down__absolute"
 
                       
-                      = f.select :month, [['01',1],['02',2],['03',3],['04',4],['05',5],['06',6],['07',7],['08',8],["09",9],['10',10],['11',11],['12',12]], {}, {id: "payment_card_expiration_mm",class: "select-default"} 
+                      = f.select :month, [['01',1],['02',2],['03',3],['04',4],['05',5],['06',6],['07',7],['08',8],["09",9],['10',10],['11',11],['12',12]], {}, {id: "payment_card_expiration_mm",class: "select-default has-error"} 
                       -# %select#payment_card_expiration_mm.select-default
-                      -#   %option{value: "01"} 01
-                      -#   %option{value: "02"} 02
-                      -#   %option{value: "03"} 03
-                      -#   %option{value: "04"} 04
-                      -#   %option{value: "05"} 05
-                      -#   %option{value: "06"} 06
-                      -#   %option{value: "07"} 07
-                      -#   %option{value: "08"} 08
-                      -#   %option{value: "09"} 09
-                      -#   %option{value: "10"} 10
-                      -#   %option{value: "11"} 11
-                      -#   %option{value: "12"} 12
+                      
                       %h3 月  
-
+                      
                   .card-expiration-year-box
                     .select-card-year.half.displayflex.relative
                       = fa_icon 'angle-down', class: "credit-card-angle-down__absolute"
   
-                      = f.select :year, [['2019',19],['2020',20],['2023',23],['2024',24],['2025',25],['2026',26],['2027',27],['2028',28],["2029",29]], {}, {id: "payment_card_expire_yy",class: "select-default"} 
+                      = f.select :year, [['2019',19],['2020',20],['2023',23],['2024',24],['2025',25],['2026',26],['2027',27],['2028',28],["2029",29]], {}, {id: "payment_card_expire_yy",class: "select-default has-error"} 
                       -# %select#payment_card_expire_yy.select-default
-                      -#   %option{value: "19"} 19
-                      -#   %option{value: "20"} 20
-                      -#   %option{value: "21"} 21
-                      -#   %option{value: "22"} 22
-                      -#   %option{value: "23"} 23
-                      -#   %option{value: "24"} 24
-                      -#   %option{value: "25"} 25
-                      -#   %option{value: "26"} 26
-                      -#   %option{value: "27"} 27
-                      -#   %option{value: "28"} 28
-                      -#   %option{value: "29"} 29
+
                       %h3 年
+                      = render partial: 'error-card', locals: {card: @card, column: "month"}
+                      = render partial: 'error-card', locals: {card: @card, column: "year"}
                     
               .signup-form-security_code
                 .signup-form-security_code__heading.displayflex
@@ -112,7 +94,8 @@
                   -# %label{for: "payment_card_security_code"} セキュリティコード
                   %span.form-require 必須
                 .signup-form-security_code-box 
-                  = f.text_field :security_code, class: "input-default", id: "payment_card_security_code",placeholder: "カード背面4桁もしくは3桁の番号", value: ""
+                  = f.text_field :security_code, class: "input-default has-error", id: "payment_card_security_code",placeholder: "カード背面4桁もしくは3桁の番号", value: ""
+                  = render partial: 'error-card', locals: {card: @card, column: "security_code"}
                   -# %input#payment_card_security_code.input-default{placeholder: "カード背面4桁もしくは3桁の番号", value: ""}/
                 .signup-seqcode-help
                   .signup-seqcode__text.displayflex
@@ -130,6 +113,6 @@
 
 
 
-      .credit-register-footer
-        = render 'signup/footer'
+    
+    = render 'signup/footer'
 

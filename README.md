@@ -44,6 +44,8 @@
   |point|integer||
   |payment_method|string|
   |phone_number|integer|null: false, unique: true|
+  |provider|string||
+  |uid|string||
 
 
   <!-- 商品、いいね、コメント、取引グループ(取引後のメッセージ送信に使用)、取引中のメッセージ、所持ポイント、クレジットカード、レビュー -->

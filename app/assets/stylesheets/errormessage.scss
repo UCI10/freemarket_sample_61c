@@ -1,4 +1,14 @@
-.has-error-text{
+div.field_with_errors{
+
+  .has-error {
+    border-color: #ea352d;
+  }
+
+
+
+}
+
+.has-error-text {
   color: #ea352d;
   line-height: 1.5;
   font-size: 14px;
@@ -9,4 +19,8 @@
 
 ul, ol {
   list-style: none;
+}
+
+div {
+  display: block;
 }
