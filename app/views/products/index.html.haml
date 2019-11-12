@@ -1,3 +1,109 @@
+              -# %span.sell-content-sai__box__require 必須
+              -# %br/
+              -# .select-wrap
+              -#   .select-wrap-box
+              -#     = f.select :category, @category_parent_array, {}, {class: 'select-wrap-sai__default select-icon', id: 'parent_category'}
+              -#     .icon-arrow-bottom-sai
+              -#       = fa_icon 'chevron-down'
+
+
+
+          -# .listing-form-box
+          -#   .listing-product-detail__category
+          -#     = f.label 'カテゴリー', class: 'listing-default__label'
+
+
+
+            .sell-content-sai__box.clearfix
+              .sell-content-sai__box__Category-select
+                = f.label 'カテゴリー', class: 'listing-default__label'
+              %span.sell-content-sai__box__require 必須
+              %br/
+              .select-wrap
+                .select-wrap-box
+                  = f.select :category, @category_parent_array, {}, {class: 'select-wrap-sai__default select-icon', id: 'parent_category'}
+                  .icon-arrow-bottom-sai
+                    = fa_icon 'chevron-down'
+
+
+
+          .listing-form-box.sell-content-sai__box
+            .listing-product-detail__category.sell-content-sai__box__Category-select
+              = f.label 'カテゴリー', class: 'listing-default__label'
+              %span.listing-default--require.sell-content-sai__box__require 必須
+              .listing-select-wrapper.select-wrap
+                .listing-select-wrapper__box.select-wrap-box
+                  = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select select-wrap-sai__default', id: 'parent_category'}
+                  %i.fas.fa-chevron-down.listing-select-wrapper__box--arrow-down.select-icon
+        
+ 
+ 
+                    -# .listing-form-box
+                    -#   .listing-product-detail__category
+                    -#     = f.label 'カテゴリー', class: 'listing-default__label'
+                    -#     %span.listing-default--require 必須
+                    -#     .listing-select-wrapper
+                    -#       .listing-select-wrapper__box
+                    -#         = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+                    -#         %i.fas.fa-chevron-down.listing-select-wrapper__box--arrow-down
+ 
+
+
+                    -# .listing-form-box
+                    -#   .listing-product-detail__category
+                    -#     = f.label 'カテゴリー', class: 'listing-default__label'
+                    -#     %span.listing-default--require 必須
+                    -#     .listing-select-wrapper
+                    -#       .listing-select-wrapper__box
+                    -#         = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+                    -#         %i.fas.fa-chevron-down.listing-select-wrapper__box--arrow-down
+
+
+          -# .sell-content-sai.clearfix
+          -#   %h3.sell-content-sai__sub 商品の詳細
+          -#   .sell-content-sai__box.clearfix
+          -#     .sell-content-sai__box__Category-select
+          -#       = f.label 'カテゴリー', class: 'listing-default__label'
+          -#     %span.sell-content-sai__box__require 必須
+          -#     %br/
+          -#     .select-wrap
+          -#       .select-wrap-box
+          -#         = f.select :category, @category_parent_array, {}, {class: 'select-wrap-sai__default select-icon', id: 'parent_category'}
+          -#         .icon-arrow-bottom-sai
+          -#           = fa_icon 'chevron-down'
+
+
+                -# = f.collection_select :category_ids, @category_parent_array, {}, id: 'parent_category', :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent_category", name: 'item[category_ids][]'  
+                -# = f.collection_select(:name, Category.where(ancestry: nil) , :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form")
+                
+                -# = f.collection_select :category_ids, @parents, :id, :name,{prompt: "---"}, class: "select-wrap-sai__default select-icon", id: "parent-form", name: 'product[category_ids][]'
+                -# =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
+
+
+-# .listing-form-box  .sell-content-sai__box
+-# .listing-product-detail__category  .sell-content-sai__box__Category 
+-# .listing-default--require  .sell-content-sai__box__require
+-# .listing-select-wrapper  .select-wrap
+-# .listing-select-wrapper__box  .select-wrap-box
+-# select-wrap-sai__default select-icon  select-wrap-sai__default select-icon
+
+
+
+-# .listing-form-box
+-#   .listing-product-detail__category
+-#     = f.label 'カテゴリー', class: 'listing-default__label'
+-#     %span.listing-default--require 必須
+-#     .listing-select-wrapper
+-#       .listing-select-wrapper__box
+-#         = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
+-#         %i.fas.fa-chevron-down.listing-select-wrapper__box--arrow-down
+
+
+
+
+
+
+
 -# .single-container-sai
 -#   .header-logo-sai
 -#     %h1.header-logo-sai__link

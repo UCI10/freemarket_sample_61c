@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :images, dependent: :destroy
 
   accepts_nested_attributes_for :images
-  validates :title,:description,presence: true
+  validates :title,:description, presence: true
 
   enum condition:         ["新品、未使用","未使用に近い","目立った傷や汚れなし","やや傷や汚れあり","傷や汚れあり","全体的に状態が悪い"]
   enum shipping_burden:  ["送料込み(出品者負担)","着払い(購入者負担)"]

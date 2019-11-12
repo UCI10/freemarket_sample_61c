@@ -5,7 +5,15 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'tops#index'
-  resources :products
+  resources :products do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+    # collection do
+    # get 'category_chilren', defaults: { format: 'json' }
+    # end
+  end
 
   resources :users do
     member do

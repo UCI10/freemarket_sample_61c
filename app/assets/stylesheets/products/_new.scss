@@ -136,6 +136,7 @@ margin: 0 auto;
   background: White;
   width: 700px;
   margin: 0 auto;
+  display: block;
   &__head{
     border-bottom: 1px solid $gray;
     padding: 24px 8px;
@@ -216,3 +217,5 @@ height: 10px;
 width:100%;
 
 }
+
+
