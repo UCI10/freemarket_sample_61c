@@ -23,17 +23,30 @@
             = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
             %span googleでログイン
 
-      .login-form-inner2-sai
-        = form_with url: user_session_path, class: "formnill",local: true do |f|
+  
+        -# = form_with(resource, as: resource_name, url: session_path(resource_name), html: { class: '.login-form-inner2-sai formnill' }) do |f|
+        = form_with model: @user, url: user_session_path, method: :post, id: '', class: 'formnill login-form-inner2-sai', local: true do |f|
           .login-form-inner-sai__form
-            = f.email_field :email, autofocus: true
-             
+            = f.email_field :email, autofocus: true, class: "has-error"
+            - if notice 
+              %p.alert.alert-notice notice
+            - if resource.errors.messages[:email].present?
+              - resource.errors.messages[:email].each do |message|
+                %p.error= message
+
+            = render partial: 'error-sessionsnew', locals: {user: @user, column: "email"}  
           .login-form-inner-sai__form#login-form-inner-sai__form
             = f.password_field :password, autocomplete: "off"
-            
+            - if resource.errors.messages[:password].present?
+              - resource.errors.messages[:password].each do |message|
+                %p.error= message
+
           .recaptcha_tags_padding
             = recaptcha_tags
-          
+            - if resource.errors.messages[:base].present?
+              - resource.errors.messages[:base].each do |message|
+                %p.error= message
+
             = f.submit "ログイン", class: "btn-default btn-red"
             .login-sai__passwordlast
               = link_to "パスワードをお忘れの方",root_path 

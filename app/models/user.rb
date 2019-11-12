@@ -44,12 +44,11 @@ class User < ApplicationRecord
   has_one :address
   has_one :card
   has_many :products
- 
 
 
   VALID_EMAIL_REGEX =                 /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :email,                 presence: true, length:{maximum: 255}, uniqueness: true, format: {with: VALID_EMAIL_REGEX}, on: :validates_step1
+  validates :email,                 presence: true, length:{maximum: 255}, uniqueness: true, format: {with: VALID_EMAIL_REGEX}, on: [:validates_step1,]
   validates :nickname,              presence: true, length: {maximum: 20}, on: :validates_step1
   validates :password,              presence: true, length: {minimum: 7, maxinum: 128}, on: :validates_step1
   validates :password_confirmation, presence: true, length: {minimum: 7, maxinum: 128}, on: :validates_step1
