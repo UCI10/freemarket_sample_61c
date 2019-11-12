@@ -2,12 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// .default-container-sai{
-//   background-color: gray;
-//   height: 100px;
-//   width: 100px;
 
-// }
 
 .single-main-sai{
   display: block;
@@ -192,7 +187,6 @@ height: 162px;
 width: 520px;
 
 &__file{
-// display: none;
 background: #f5f5f5;
 border: 1px dashed #ccc;
 font-size: 0;
@@ -491,7 +485,6 @@ line-height: 1.5;
 }
 
 }
-// }
 input {
 text-rendering: auto;
 color: initial;
@@ -563,22 +556,6 @@ background-color: #bddfff;
 }
 
 
-
-
-
-// .sell-content-sai__box__Category-select{
-  // height: 20px;
-  // padding: 2px 0 5px 0;
-  // font-size: 18px;
-  // z-index: 3;
-
-// }
-
-
-
-// width: 100%;
-// height: 400px;
-// object-fit: cover;
 
 #preview-image-box{
   display: block;
@@ -652,14 +629,10 @@ display:none;
 
 .sell-content-sai-category{
   padding: 10px;
-  // border-top: 1px solid #eee;
   @include clearfix;
   background-color: white;
 
   
-  // .sell-content-sai__box{
-  //   display: block;
-  // }
 
   .listing-form-box{
     .listing-product-detail__category{
@@ -679,7 +652,6 @@ display:none;
         color: gray;
         font-size: 1.4em;
         font-weight: 900;
-        // font-family: "Font Awesome";
         content: "\f078"; 
        
        }
