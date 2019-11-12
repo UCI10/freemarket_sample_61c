@@ -23,19 +23,19 @@
             = image_tag 'googlelogo.png', width:"20", height: "20",class: "googlesai-icon"
             %span googleでログイン
 
-      .login-form-inner2-sai
-        = form_with url: user_session_path, class: "formnill",local: true do |f|
-          .login-form-inner-sai__form
-            = f.email_field :email, autofocus: true
-             
-          .login-form-inner-sai__form#login-form-inner-sai__form
-            = f.password_field :password, autocomplete: "off"
+      
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: '.login-form-inner2-sai' }) do |f|
+        .login-form-inner-sai__form
+          = f.email_field :email, autofocus: true
             
-          .recaptcha_tags_padding
-            = recaptcha_tags
+        .login-form-inner-sai__form#login-form-inner-sai__form
+          = f.password_field :password, autocomplete: "off"
           
-            = f.submit "ログイン", class: "btn-default btn-red"
-            .login-sai__passwordlast
-              = link_to "パスワードをお忘れの方",root_path 
+        .recaptcha_tags_padding
+          = recaptcha_tags
+        
+          = f.submit "ログイン", class: "btn-default btn-red"
+          .login-sai__passwordlast
+            = link_to "パスワードをお忘れの方",root_path 
               
   = render 'products/footer'

@@ -75,13 +75,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       password: session[:password],
       password_confirmation: session[:password],
 
-      birth_year: session[:birth_year]
-      birth_month: session[:birth_month]
-      birth_day: session[:birth_day]
-      first_name: session[:first_name]
-      last_name: sesion[:last_name]
-      first_name_phonetic: session[:first_name_phonetic]
-      last_name_phonetic: sessopm[:last_name_phonetic]
+      birth_year: session[:birth_year],
+      birth_month: session[:birth_month],
+      birth_day: session[:birth_day],
+      first_name: session[:first_name],
+      last_name: sesion[:last_name],
+      first_name_phonetic: session[:first_name_phonetic],
+      last_name_phonetic: sessopm[:last_name_phonetic],
       phone_number: session[:phone_number]
       )
   end

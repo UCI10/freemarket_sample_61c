@@ -44,9 +44,9 @@
                   -# %label{for: "address_name"} お名前
                   %span.form-require 必須
                 .form-group-address__list
-                  = f.text_field :last_name, class: "address_last_name address-form-box", maxlength: "35", placeholder: "例）山田", name: "last_name", type: "string", value: session[:last_name]
+                  = f.text_field :last_name, class: "address_last_name address-form-box has-error", maxlength: "35", placeholder: "例）山田", name: "last_name", type: "string", value: session[:last_name]
                   -# %input.address_last_name.address-form-box{maxlength: "35", placeholder: "例）山田", name: "last_name", type: "string", value: ""}/
-                  = f.text_field :first_name, class: "address_first_name address-form-box",maxlength: "35", placeholder: "例）彩", name: "first_name", type: "string", value: session[:first_name]
+                  = f.text_field :first_name, class: "address_first_name address-form-box has-error",maxlength: "35", placeholder: "例）彩", name: "first_name", type: "string", value: session[:first_name]
                   
                   -# %input.address_first_name.address-form-box{maxlength: "35", placeholder: "例）彩", name: "first_name", type: "string", value: ""}/
 
@@ -58,9 +58,9 @@
                   %span.form-require 必須
                 .form-group-address__list 
 
-                  = f.text_field :last_name_phonetic, class: "address_last_name address-form-box", maxlength: "35", placeholder: "例）ヤマダ", name: "last_name_phonetic", type: "string", value: session[:last_name_phonetic]
+                  = f.text_field :last_name_phonetic, class: "address_last_name address-form-box has-error", maxlength: "35", placeholder: "例）ヤマダ", name: "last_name_phonetic", type: "string", value: session[:last_name_phonetic]
                   -# %input.address_last_name.address-form-box{maxlength: "35", placeholder: "例）ヤマダ", name: "last_name_phonetic", type: "string", value: ""}/
-                  = f.text_field :first_name_phonetic, class: "address_first_name address-form-box", maxlength: "35", placeholder: "例）アヤ", name: "first_name_phonetic", type: "string", value: session[:first_name_phonetic]
+                  = f.text_field :first_name_phonetic, class: "address_first_name address-form-box has-error", maxlength: "35", placeholder: "例）アヤ", name: "first_name_phonetic", type: "string", value: session[:first_name_phonetic]
                   -# %input.address_first_name.address-form-box{maxlength: "35", placeholder: "例）アヤ", name: "first_name_phonetic", type: "string", value: ""}/
                 
                 .form-group-address__postalcode.address-heading-row
@@ -71,7 +71,7 @@
                   %span.form-require 必須
                 .form-group-address__list 
 
-                  = f.text_field :postalcode, class: "address_postalcode address-form-box", maxlength: "7", placeholder: "例）123-4567", name: "postalcode", type: "integer", value: ""
+                  = f.text_field :postalcode, class: "address_postalcode address-form-box has-error", maxlength: "7", placeholder: "例）123-4567", name: "postalcode", type: "integer", value: ""
                   = render partial: 'error-address', locals: {address: @address, column: "postalcode"}
                   -# %input.address_postalcode.address-form-box{maxlength: "7", placeholder: "例）123-4567", name: "postalcode", type: "integer", value: ""}/
 
@@ -94,7 +94,7 @@
                   -# %label{for: "address_city"} 市区町村
                   %span.form-require 必須
                 .form-group-address__list 
-                  = f.text_field :city, class: "address_city address-form-box", maxlength: "50", placeholder: "例）横浜市緑区", name: "city", type: "string", value: ""
+                  = f.text_field :city, class: "address_city address-form-box has-error", maxlength: "50", placeholder: "例）横浜市緑区", name: "city", type: "string", value: ""
                   = render partial: 'error-address', locals: {address: @address, column: "city"}
                   -# %input.address_city.address-form-box{maxlength: "50", placeholder: "例）横浜市緑区", name: "city", type: "string", value: ""}/
                 
@@ -103,7 +103,7 @@
                   -# %label{for: "address_house_number"} 番地
                   %span.form-require 必須
                 .form-group-address__list 
-                  = f.text_field :house_number, class: "address_house_number address-form-box", maxlength: "100", placeholder: "例）青山1-1-1", name: "house_number", type: "string", value: ""
+                  = f.text_field :house_number, class: "address_house_number address-form-box has-error", maxlength: "100", placeholder: "例）青山1-1-1", name: "house_number", type: "string", value: ""
                   = render partial: 'error-address', locals: {address: @address, column: "house_number"}
                   -# %input.address_house_number.address-form-box{ maxlength: "100", placeholder: "例）青山1-1-1", name: "house_number", type: "string", value: ""}/
                 
@@ -114,7 +114,7 @@
                   %span.form-require.heading-gray 任意
                 .form-group-address__list 
 
-                  = f.text_field :building_name, class: "address_building_name address-form-box", "data-input-type" => "address", maxlength: "100", placeholder: "例）柳ビル103", name: "building_name", type: "string", value: ""
+                  = f.text_field :building_name, class: "address_building_name address-form-box has-error", "data-input-type" => "address", maxlength: "100", placeholder: "例）柳ビル103", name: "building_name", type: "string", value: ""
                   -# %input.address_building_name.address-form-box{"data-input-type" => "address", maxlength: "100", placeholder: "例）柳ビル103", name: "building_name", type: "string", value: ""}/
                 
                 .form-group-address__phonetic.address-heading-row
@@ -122,7 +122,7 @@
                   = f.label :phone_number, "電話"
                   %span.form-require.heading-gray 任意
                 .form-group-address__list 
-                  = f.text_field :phone_number, class: "address_phone_number address-form-box", maxlength: "100", placeholder: "例）09012345678", name: "phone_number", type: "integer", value: session[:phone_number]
+                  = f.text_field :phone_number, class: "address_phone_number address-form-box has-error", maxlength: "100", placeholder: "例）09012345678", name: "phone_number", type: "integer", value: session[:phone_number]
                   -# %input.address_phone_number.address-form-box{maxlength: "100", placeholder: "例）09012345678", name: "phone_number", type: "integer", value: ""}/
             
               .step3-info-submit
