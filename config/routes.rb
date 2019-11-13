@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   end
   resources :sells,only:[:index,:new,:create,:edit,:update]
 
+  resources :cards, only: [:new, :index, :create, :destroy]
+
 end
 
 

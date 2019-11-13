@@ -8,5 +8,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
+    %script{type: "text/javascript"} Payjp.setPublicKey(’公開鍵(pk_test_0ddb364bab7ed621b29956cb’);
+
   %body
     = yield
