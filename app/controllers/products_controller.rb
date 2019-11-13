@@ -25,15 +25,9 @@ class ProductsController < ApplicationController
   end
   
   def show
-    @product = Product.new
-    @product.images.build    
+    @product = Product.all
+    # @product.images.build
   end
-
-
-  def show
-
-  end
-
 
 private  
 
