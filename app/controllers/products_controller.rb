@@ -1,15 +1,15 @@
 class ProductsController < ApplicationController
-  before_action :parent_set, only: [:new, :edit]
-  # before_action :get_category_children, only: [:new, :edit]
+  before_action :parent_set, only: [:new, :edit, :create]
+  # before_action :get_category_children, only: [:new, :edit, :create]
 
   def index
-    @product = Product.all.order("created_at DESC")
+    @products = Product.all.order("created_at DESC").limit(10)
   end
 
   def new
       @product = Product.new
-      @product.images.build  
       @parents = Category.all.order("id ASC").limit(8)
+      @product.images.build  
     # TODO   @category_parent_array = ["---"]
     #   Category.where(ancestry: nil).each do |parent|
     #   @category_parent_array << parent.name
@@ -23,15 +23,16 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    respond_to do |format|
+    # respond_to do |format|
+
     if @product.save
        params[:images][:image_url].each do |image_url|
        @product.images.create(image_url: image_url, product_id: @product.id)
 
       end
-      # respond_to do |format|
-        format.html { redirect_to root_path(@product) }
-        # format.json
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json
       end  
     else
       @product.images.build 
@@ -42,22 +43,22 @@ class ProductsController < ApplicationController
   end
   
   def show
-    @product = Product.new
-    @product.images.build
+    @product = Product.find(params[:id])
+
   end
 
 
-  def search
-    respond_to do |format|
-      format.html
-      format.json do
-       @children = Category.find(params[:parent_id]).children
-       #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
-       @indirects = Category.find(params[:parent_id]).indirects
+  # def search
+  #   respond_to do |format|
+  #     format.html
+  #     format.json do
+  #      @children = Category.find(params[:parent_id]).children
+  #      #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
+  #      @indirects = Category.find(params[:parent_id]).indirects
 
-      end
-    end
-  end
+  #     end
+  #   end
+  # end
   
    # 以下全て、formatはjsonのみ
    # 親カテゴリーが選択された後に動くアクション

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :move_to_tops_index
-  before_action :authenticate_user!
+  # before_action :move_to_tops_index
+  # before_action :authenticate_user!
 
   def index
   end
