@@ -1,8 +1,9 @@
 .u-content{
   &__all{
     background-color: $white;
+    padding:64px 32px;
     &__bar{
-      padding:64px;
+    padding:0;
       &__button{
         max-width: 320px;
         margin:0 auto;
