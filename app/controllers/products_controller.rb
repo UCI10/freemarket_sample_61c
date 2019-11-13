@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :parent_set, only: [:new, :edit]
-  # before_action :get_category_children, only: [:new, :edit]
+  before_action :parent_set, only: [:new, :edit, :create]
+  # before_action :get_category_children, only: [:new, :edit, :create]カテゴリボックスのデータ送信が未完成ですのでコメントアウトします
 
   def pay
     Payjp.api_key = 'sk_test_0ddb364bab7ed621b29956cb'
@@ -16,14 +16,14 @@ class ProductsController < ApplicationController
  end
 
   def index
-    @product = Product.all.order("created_at DESC")
-  
+    @products = Product.all.order("created_at DESC").limit(10)
+
   end
 
   def new
       @product = Product.new
-      @product.images.build  
       @parents = Category.all.order("id ASC").limit(8)
+      @product.images.build  
     # TODO   @category_parent_array = ["---"]
     #   Category.where(ancestry: nil).each do |parent|
     #   @category_parent_array << parent.name
@@ -37,15 +37,16 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    respond_to do |format|
+    # respond_to do |format|JSのデータsave時の情報送信のif文条件分岐が未完成のため
+
     if @product.save
        params[:images][:image_url].each do |image_url|
        @product.images.create(image_url: image_url, product_id: @product.id)
 
       end
-      # respond_to do |format|
-        format.html { redirect_to root_path(@product) }
-        # format.json
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json
       end  
     else
       @product.images.build 
@@ -56,23 +57,22 @@ class ProductsController < ApplicationController
   end
   
   def show
-    # @products = Product.all
-    @product = Product.new
-    @product.images.build
+    @product = Product.find(params[:id])
+
   end
 
 
-  def search
-    respond_to do |format|
-      format.html
-      format.json do
-       @children = Category.find(params[:parent_id]).children
-       #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
-       @indirects = Category.find(params[:parent_id]).indirects
+  # def search カテゴリボックスの仕様変更の可能性があるのでその際のためのコメントアウトです
+  #   respond_to do |format|
+  #     format.html
+  #     format.json do
+  #      @children = Category.find(params[:parent_id]).children
+  #      #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
+  #      @indirects = Category.find(params[:parent_id]).indirects
 
-      end
-    end
-  end
+  #     end
+  #   end
+  # end
   
    # 以下全て、formatはjsonのみ
    # 親カテゴリーが選択された後に動くアクション
@@ -86,7 +86,6 @@ class ProductsController < ApplicationController
    #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
  end
-
 
 private  
 

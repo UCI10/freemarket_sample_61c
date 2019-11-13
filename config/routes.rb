@@ -22,8 +22,8 @@ Rails.application.routes.draw do
     end
     
      collection do
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'get_category_children'
+      get 'get_category_grandchildren'
     end
 
   end
@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get :identification    #本人情報
       get :logout            #ログアウト
       get :profile           #プロフィール編集
+      get :listing           #商品出品リスト
     end  
   end  
 
