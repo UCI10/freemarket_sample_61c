@@ -4,6 +4,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   include CarrierWave::MiniMagick
+  # 画像削除や編集画面にて画像のリサイズの確認ができていないので不具合があればこちらに変更して下さい。
   # process resize_to_limit: [200, 200]
   process resize_to_fit: [220, 220]
   # Choose what kind of storage to use for this uploader:

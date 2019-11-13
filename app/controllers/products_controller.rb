@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit, :create]
-  # before_action :get_category_children, only: [:new, :edit, :create]
+  # before_action :get_category_children, only: [:new, :edit, :create]カテゴリボックスのデータ送信が未完成ですのでコメントアウトします
 
   def pay
     Payjp.api_key = 'sk_test_0ddb364bab7ed621b29956cb'
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    # respond_to do |format|
+    # respond_to do |format|JSのデータsave時の情報送信のif文条件分岐が未完成のため
 
     if @product.save
        params[:images][:image_url].each do |image_url|
@@ -62,7 +62,7 @@ class ProductsController < ApplicationController
   end
 
 
-  # def search
+  # def search カテゴリボックスの仕様変更の可能性があるのでその際のためのコメントアウトです
   #   respond_to do |format|
   #     format.html
   #     format.json do

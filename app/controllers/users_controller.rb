@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  # ログイン画面への遷移ができないため一時的にコメントアウトします。あとで外しましょう。
   # before_action :move_to_tops_index
-  # before_action :authenticate_user!
+  # before_action :authenticate_user! 
 
   def index
   end

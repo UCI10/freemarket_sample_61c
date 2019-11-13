@@ -190,6 +190,7 @@
               .input_area
                 = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
               %p ここをクリックしてください
+              -# jsにて今後仕様予定です。消さないでください
               -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
 
           -# #preview2
