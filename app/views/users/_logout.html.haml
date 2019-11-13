@@ -1,8 +1,5 @@
 .u-content__all
-  .u-content__all
-    %form.u-content__all__bar
-      .u-content__all__bar__button
-        %button.u-content__all__bar__button__red{:type => "submit"} ログアウト
-        
-
-  
+  %form.u-content__all__bar
+  = link_to destroy_user_session_path, method: :delete do
+    .u-content__all__bar__button
+      %button.u-content__all__bar__button__red{:type => "submit"} ログアウト 
