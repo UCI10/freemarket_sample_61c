@@ -2,8 +2,22 @@ class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit, :create]
   # before_action :get_category_children, only: [:new, :edit, :create]
 
+  def pay
+    Payjp.api_key = 'sk_test_0ddb364bab7ed621b29956cb'
+    charge = Payjp::Charge.create(
+    :amount => @product.price,
+    :card => params['payjp-token'],
+    :currency => 'jpy',
+  )
+  end
+
+ def purchase
+  @product = Product.new(id: 1)
+ end
+
   def index
     @products = Product.all.order("created_at DESC").limit(10)
+
   end
 
   def new
@@ -72,7 +86,6 @@ class ProductsController < ApplicationController
    #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
  end
-
 
 private  
 
