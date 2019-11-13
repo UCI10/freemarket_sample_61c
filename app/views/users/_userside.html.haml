@@ -17,10 +17,10 @@
           = link_to 'いいね一覧', users_path
           %i.fa.fa-angle-right    
         %li          
-          = link_to '出品する', users_path
+          = link_to '出品する', new_product_path
           %i.fa.fa-angle-right
         %li          
-          = link_to '出品した商品 - 出品中', users_path
+          = link_to '出品した商品 - 出品中', listing_user_path(current_user)
           %i.fa.fa-angle-right 
         %li          
           = link_to '出品した商品 - 取引中', users_path

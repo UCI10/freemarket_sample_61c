@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :products do
     collection do
       post 'purchase'
+      # post ':product_id/pay' => 'products#pay', as: 'pay'
+      post 'pay/:id' => 'products#pay', as: 'pay'
+
     end
     
      collection do
@@ -31,6 +34,7 @@ Rails.application.routes.draw do
       get :identification    #本人情報
       get :logout            #ログアウト
       get :profile           #プロフィール編集
+      get :listing           #商品出品リスト
     end  
   end  
 
