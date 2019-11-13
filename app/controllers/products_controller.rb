@@ -2,8 +2,22 @@ class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit]
   # before_action :get_category_children, only: [:new, :edit]
 
+  def pay
+    Payjp.api_key = 'sk_test_0ddb364bab7ed621b29956cb'
+    charge = Payjp::Charge.create(
+    :amount => @product.price,
+    :card => params['payjp-token'],
+    :currency => 'jpy',
+  )
+  end
+
+ def purchase
+  @product = Product.new(id: 1)
+ end
+
   def index
     @product = Product.all.order("created_at DESC")
+  
   end
 
   def new
@@ -42,6 +56,7 @@ class ProductsController < ApplicationController
   end
   
   def show
+    # @products = Product.all
     @product = Product.new
     @product.images.build
   end
