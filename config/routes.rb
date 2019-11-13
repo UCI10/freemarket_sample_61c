@@ -1,15 +1,31 @@
 Rails.application.routes.draw do
+
+  devise_for :users, 
+  controllers: {
+   registrations: 'users/registrations' ,
+   omniauth_callbacks: 'users/omniauth_callbacks'
+   }
+
   get 'addresses/index'
   get 'addresses/new'
   get 'addresses/create'
-  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root to: 'products#index'
 
   resources :products do
     collection do
       post 'purchase'
+      # post ':product_id/pay' => 'products#pay', as: 'pay'
+      post 'pay/:id' => 'products#pay', as: 'pay'
+
     end
+    
+     collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+
   end
 
   resources :users do

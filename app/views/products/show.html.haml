@@ -4,7 +4,7 @@
   .products-show-maincontent
     .products-exhibit-box
       %h1
-        uuuuuuu
+        あああああああああ  
       %p
         あああああああああ  
       .products-show-centerbox.displayflex
@@ -119,9 +119,11 @@
         (税込)  
       .products-exhibit-shipping-fee
         着払い
-    .products-exhibit-buy-btn   
-      = link_to root_path do
+    .products-exhibit-buy-btn
+
+      = link_to purchase_products_path, method: :post do
         購入画面に進む
+
     .products-exhibit-description
       .products-exhibit-description__box
         ウール１００％ピンクトップス。
