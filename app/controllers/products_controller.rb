@@ -87,7 +87,6 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
  end
 
-
 private  
 
   def product_params

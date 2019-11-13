@@ -21,6 +21,9 @@ class UsersController < ApplicationController
   def identification 
   end
 
+  def listing
+  end
+
   private
   def move_to_tops_index
     redirect_to controller: :tops, action: :index unless user_signed_in?
