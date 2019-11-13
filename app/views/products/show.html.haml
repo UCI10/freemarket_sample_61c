@@ -8,16 +8,18 @@
       %p
         あああああああああ  
       .products-show-centerbox.displayflex
-        .product-exhibit-photo
-          .product-exhibit-photo__high
-            = image_tag 'topspink.jpg', :height => "300", :width => "300"
-          .ul.product-exhibit-photo__low.displayflex
-            %li
-              = image_tag 'topspink.jpg', :height => "60", :width => "60"
-            %li
-              = image_tag 'blacktops.jpg', :height => "60", :width => "60"
-            %li 
-              = image_tag 'whitetops.jpg', :height => "60", :width => "60"
+        - @product.images.each do |product_image|
+          .product-exhibit-photo
+            .product-exhibit-photo__high
+              = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "300px", height: "420px" 
+          
+            .ul.product-exhibit-photo__low.displayflex
+              %li
+                = image_tag 'topspink.jpg', :height => "60", :width => "60"
+              %li
+                = image_tag 'blacktops.jpg', :height => "60", :width => "60"
+              %li 
+                = image_tag 'whitetops.jpg', :height => "60", :width => "60"
 
 
         .product-exhibit-details__table

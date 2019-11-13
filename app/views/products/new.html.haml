@@ -5,7 +5,7 @@
         = image_tag 'mercari-logo.png', size: '155x50'
 
   .l-single-container-sai2
-  = form_with model: @product, local: true, id:"new_product", multipart: true, html: {class: "sell__form"}  do |f|
+  = form_with model: @product, local: true, multipart: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
     .single-main-sai
       .l-single-container-sai
         .product-menu-sai
@@ -147,7 +147,7 @@
 
               .l-right-sai.clearfix
                 %span.l-right-sai__en ¥
-                = f.number_field :price, class: "price-box", id: 'price-box', placeholder: "例) 300", type: "text", value: ""                
+                = f.text_field :price, class: "price-box", id: 'price-box', placeholder: "例) 300", value: ""                
               .margin-sai.clearfix
                 .l-left
                   販売手数料(10%)
@@ -168,28 +168,31 @@
 
             = f.submit '出品する', class: "form__submit btn-default"
 
-            .btn-gray
+          
+            .footer-btn-gray
               = link_to root_path do
                 戻る
       = render 'products/footer' 
 
 
-  -# TODO = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
-  -#   %h2.sell-form__header
-  -#     商品情報を入力
-  -#   .sell-form-container
-  -#     %label.sell-form-container__label
-  -#       出品画像
-  -#     %span.sell-form-container__require
-  -#       必須
-  -#     = f.fields_for :images do |image|
-  -#       .dropzone-container.clearfix
-  -#         #preview
-  -#         .dropzone-area
-  -#           = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-  -#             .input_area
-  -#               = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
-  -#             %p ここをクリックしてください
+    %h2.sell-form__header
+      商品情報を入力
+    .sell-form-container
+      %label.sell-form-container__label
+        出品画像
+      %span.sell-form-container__require
+        必須
+      = f.fields_for :images do |image|
+        .dropzone-container.clearfix
+          #preview
+          .dropzone-area
+            = image.label :image_url, class: "dropzone-box", for: "upload-image" do
+              .input_area
+                = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
+              %p ここをクリックしてください
+              -# jsにて今後仕様予定です。消さないでください
+              -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
+
           -# #preview2
           -# .dropzone-area2
           -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do

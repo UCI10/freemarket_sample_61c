@@ -3,64 +3,50 @@
       .main-content{
         width: 100%;
         margin:0 auto;
-        
-      .main-advertising{
-        text-align: center;
-        margin:0 auto;
-        justify-content: center;
-        background-color: #eeeeee;
-
-
-        a{
-          width: 100%;
-        }
-      }
-
+        .main-advertising{
+          text-align: center;
+          margin:0 auto;
+          justify-content: center;
+          background-color: #eeeeee;
+          a{
+            width: 100%;
+          }
+        }   
         .popular-list{
           text-align: center;
-
           .popular-category{
             padding: 56px 0px 30px;
             background-color: $white;
             justify-content: center;
-
-        h5{
-          width:1020px;
-          color: rgb(51, 51, 51);
-          box-sizing: border-box;
-          vertical-align: baseline;
-          font-size: 26px;
-          border-width: 0px;
-          align-items: flex-end;
-          display: flex;
-          justify-content: flex-start;
-          margin-bottom: 16px;
-          font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
-          line-height: 1.4em;
-          font-weight: 600;
-
-          }
-            
-
-            .popular-category-header{
-              height: 140px;
-              width: 1020px;
-              margin:0 auto;
-              justify-content: center;
-              text-align: center;
-              color: rgb(51, 51, 51);
-              box-sizing: border-box;
-              font-weight: 600;
-              line-height: 1.4em;
-              padding: 0;
-              font-size: 28px;
-              font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
-              &__highbox{
-              
-
-              }
+          h5{
+            width:1020px;
+            color: rgb(51, 51, 51);
+            box-sizing: border-box;
+            vertical-align: baseline;
+            font-size: 26px;
+            border-width: 0px;
+            align-items: flex-end;
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 16px;
+            font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+            line-height: 1.4em;
+            font-weight: 600;
             }
-
+              .popular-category-header{
+                height: 140px;
+                width: 1020px;
+                margin:0 auto;
+                justify-content: center;
+                text-align: center;
+                color: rgb(51, 51, 51);
+                box-sizing: border-box;
+                font-weight: 600;
+                line-height: 1.4em;
+                padding: 0;
+                font-size: 28px;
+                font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
+              }
               .popular-category-header__lowhbox{
                 font-size: 14px;
                 margin: 10px 0px 0px 10px;
@@ -81,21 +67,11 @@
                   text-align: center;
                   white-space: nowrap;
                   justify-content: center;  
-
-                  ul{
-                    
-                  }
-
                   a{
                     white-space: nowrap;
-                    list-style: none;
                     box-sizing: border-box;
-                    vertical-align: baseline;
                     margin: 10px 0px 0px 10px;
                     border-width: 0px;
-                    border-style: initial;
-                    border-color: initial;
-                    border-image: initial;
                     font-size: 20px;
                     color: inherit;
                     text-decoration: none;
@@ -109,19 +85,13 @@
                     box-sizing: border-box;
                     line-height: 30px;
                     justify-content: center;  
-                  
-                
                   li{
                     color: rgb(51, 51, 51);
-                    white-space: nowrap;
-                    list-style: none;
-                    box-sizing: border-box;
                     vertical-align: baseline;
                     padding: 0px;
                     border-width: 0px;
                     font-size: 20px;
                     margin: 10px 0px 0px 10px;
-                    box-sizing: border-box;
                     border-radius: 6px;
                     justify-content: center;  
 
@@ -134,7 +104,6 @@
               background-color: $gray;
               color: rgb(51, 51, 51);
               box-sizing: border-box;
-              vertical-align: baseline;
               margin:0 auto;
 
               &__box{
@@ -184,31 +153,19 @@
                 width: 1020px;
                 color: rgb(51, 51, 51);
                 box-sizing: border-box;
-                vertical-align: baseline;
                 margin: 0px;
                 padding: 0px;
                 border-width: 0px;
-                border-style: initial;
-                border-color: initial;
-                border-image: initial;
                 font: inherit;
 
                 .new-product-toplist{
                   color: rgb(51, 51, 51);
-                  box-sizing: border-box;
-                  vertical-align: baseline;
-                  padding: 0px;
-                  border-width: 0px;
+                  margin:2px;
                   display: flex;
                   flex-wrap: wrap;
                   justify-content: flex-start;
                   flex-direction: row; 
-                  
-                  ul:hover{
-                    border: 1px solid  $light-blue;
-                  }
-
-
+                
                   &__box{
                     width: 20%;
                     padding: 10px;
@@ -218,34 +175,28 @@
                     vertical-align: baseline;
                     margin: 0px;
                     border-width: 1px;
-
-                  ul{
-
-                  }           
+                    
                   &__image{
-                    list-style: none;
-                    visibility: visible;
-                    color: inherit;
                     cursor: pointer;
-                    -webkit-box-direction: reverse;
                     box-sizing: border-box;
-                    vertical-align: baseline;
                     margin: 0px;
-                    border-width: 0px;
                     position: relative;
                     width: 100%;
+                    max-width: 100%;
+                    max-height: 100%;
+                    height: auto;
                     height: 0;
                     overflow: hidden;
                     padding: 0 0 100%;
-                  
+                    background-color: white;
+                    object-fit: cover;
+                    object-position: center;
+                    animation: ltr 5s alternate infinite;
+
                     .new-product-toplist__price{
                       list-style: none;
-                      visibility: visible;
                       cursor: pointer;
-                      -webkit-box-direction: reverse;
-                      vertical-align: baseline;
                       border-width: 0px;
-                      -webkit-box-align: center;
                       align-items: center;
                       background: rgba(0,0,0,.4);
                       border-radius: 0 14px 14px 0;

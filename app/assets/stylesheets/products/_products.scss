@@ -9,9 +9,11 @@
 }
 
 
-.btn-gray{
+.footer-btn-gray{
   width: 50%;
   height: 50px;
+  text-align: center;
+  line-height: 50px;
   margin: 40px auto;
   padding-top: 5px;
   background: #ea352d;
@@ -22,15 +24,21 @@
   border: 1px solid #aaa;
   color: #fff;
   cursor: pointer;
-
+  text-decoration: none;
+  
+  
   a{
+    color: white;
+    text-decoration: none;
     width: 100%;
     height: 100%;
-    
-    color: white;
     line-height: 1.5;
-    text-decoration: none;
-  }
+    }
+  a:visited {
+      color :white;
+      text-decoration: none;
+      }  
+
 
 }
 .question-link{
