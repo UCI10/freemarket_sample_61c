@@ -208,16 +208,18 @@ select {
   margin: 8px 0 0;
   padding: 0;
 
+  a {
+    text-decoration: none;
+    color: skyblue;
+  
+  
+  }
+
 } 
 
 
 
-a {
-  text-decoration: none;
-  color: skyblue;
 
-
-}
 
 .icon-relative{
   position: relative;
