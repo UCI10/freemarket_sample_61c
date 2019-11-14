@@ -18,19 +18,23 @@
             %br/
             %p 最大10枚までアップロードできます
 
-          .sell-dropbox-container-sai#height-image-container
-            .sell-dropbox-container-take.displayflex
-              .preview-image-box
-              #sell-dropbox-container-result
-                = f.fields_for :images do |g|
-                  = g.label :image_url, for: "preview-image", class: 'form__mask__image' do  
+          
+          .sell-dropbox-container-take.displayflex
+            .preview-image-box
+            .sell-dropbox-container-sai
+              = f.fields_for :images do |g|
+                = g.label :image_url, for: "preview-image", class: 'form__mask__image' do  
+                  .input-area-box
                     .sell-dropbox-container-sai__image{data: {id: 1}}   
                       = fa_icon 'camera', class: "icon-camera"
                       %p.sell-form__upload-box__image-upload__text
+                  
                     = g.file_field :image_url,  multiple: true, name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
                   %pre.sell-dropbox-container-sai__image__visible 
                     ドラッグアンドドロップ またはクリックしてファイルをアップロード
-
+          
+        
+          
           .sell-content-sai.clearfix
             .form-group-sai2.clearfix
               .form-group-sai2__head.clear-fix 商品名
@@ -175,28 +179,31 @@
       = render 'products/footer' 
 
 
-    %h2.sell-form__header
-      商品情報を入力
-    .sell-form-container
-      %label.sell-form-container__label
-        出品画像
-      %span.sell-form-container__require
-        必須
-      = f.fields_for :images do |image|
-        .dropzone-container.clearfix
-          #preview
-          .dropzone-area
-            = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-              .input_area
-                = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
-              %p ここをクリックしてください
-              -# jsにて今後仕様予定です。消さないでください
-              -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
+      %h2.sell-form__header
+        商品情報を入力
+      .sell-form-container
+        %label.sell-form-container__label
+          出品画像
+        %span.sell-form-container__require
+          必須
+        = f.fields_for :images do |image|
 
-          -# #preview2
-          -# .dropzone-area2
-          -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-          -#     %p ここをクリックしてください
+          .dropzone-container.clearfix
+            #preview
+            .dropzone-area
+              = image.label :image_url, class: "dropzone-box", for: "upload-image" do
+                .input_area
+                  = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
+                %p ここをクリックしてください             
+                -# jsにて今後仕様予定です。消さないでください
+                -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
+
+            -# #preview2
+            -# .dropzone-area2
+            -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do
+            -#     %p ここをクリックしてください
+
+
 
 
 

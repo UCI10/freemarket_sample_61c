@@ -11,7 +11,7 @@ $(function(){
                         <div class='listing-select-wrapper__box'>
                         <div class='icon-arrow-bottom-sai'>
                           <i class="fa fa-angle-down chevron-down-icon"></i>
-                          <select class="listing-select-wrapper__box--select" id="child_category" name="category_id">
+                          <select class="listing-select-wrapper__box--select" id="child_category">
                             <option value="---" data-category="---">---</option>
                             ${insertHTML}
                           <select>
