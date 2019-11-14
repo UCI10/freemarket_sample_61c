@@ -190,9 +190,15 @@ margin: 0 auto;
 
 }
 
+.exhibit-error{
+  position: relative;
+  top:-20px;
+
+}
+
 .select-brand-take{
   height: 68px;
-  margin: 0 0 10px 0;
+  margin: 5px 0 2px 0;
 .select-brand-box{
   margin: 0 0 10px 0;
   width:100%;
@@ -203,9 +209,9 @@ margin: 0 auto;
   font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+   appearance: none;
+   -webkit-appearance: none;
+   -moz-appearance: none;
   }
 }
 
@@ -384,6 +390,8 @@ display: none;
 
 
 
+
+// 以下複数画像投稿用cssです消さないで下さい
 // .preview-image{
 // .images-preview-box{
   // width:120px;

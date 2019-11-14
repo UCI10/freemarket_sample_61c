@@ -66,6 +66,8 @@
                           .icon-arrow-bottom-sai
                             %i.fa.fa-angle-down.chevron-down-icon
                           = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
+                        .exhibit-error.clearfix
+                          =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
 
           .sell-content-sai.clearfix
             .sell-content-take
@@ -78,7 +80,10 @@
                     .icon-arrow-bottom-sai
                       = fa_icon 'chevron-down'
                     = f.select :size, Product.sizes.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
-                      
+                  .exhibit-error.clearfix
+                    =  render partial: 'error-messages', locals: {product: @product, column: "size"}
+                
+
                   .sell-content-sai__box__Category ブランド
                   %span
                   %br/
@@ -98,7 +103,10 @@
                     .icon-arrow-bottom-sai
                       = fa_icon 'chevron-down'
                     = f.select :condition , Product.conditions.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
-              
+                  .exhibit-error.clearfix
+                    =  render partial: 'error-messages', locals: {product: @product, column: "condition"}
+                              
+
           .sell-content-sai.clearfix
             %h3.sell-content-sai__sub 配送について 
             %br/
@@ -115,7 +123,9 @@
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
                 = f.select :shipping_burden , Product.shipping_burdens.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
-
+              .exhibit-error.clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "shipping_burden"}
+                
             .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 配送料の方法
               %span.sell-content-sai__box__require 必須
@@ -125,7 +135,9 @@
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
                 = f.select :shipping_method , Product.shipping_methods.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
-
+              .exhibit-error.clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "shipping_method"}
+                
             .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 発送元の地域
               %span.sell-content-sai__box__require 必須
@@ -135,7 +147,9 @@
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
                 = f.collection_select :shipping_area, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
-
+              .clearfix  
+                =  render partial: 'error-messages', locals: {product: @product, column: "shipping_area"}
+                
               .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 発送までの日数
               %span.sell-content-sai__box__require 必須
@@ -145,18 +159,28 @@
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
                 = f.select :shipping_period, Product.shipping_periods.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+              .exhibit-error.clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "shipping_period"}
+                
+
 
           .sell-content-sai.clearfix
             %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
             = link_to root_path, class: "question-link" do
               = fa_icon 'question'
+
             .sell-form-box
+              .price-error-box.clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "price"}
+                
               .sell-content-sai__box__Category 価格
               %span.sell-content-sai__box__require 必須
 
               .l-right-sai.clearfix
-                %span.l-right-sai__en ¥
-                = f.text_field :price, class: "price-box", id: 'price-box', placeholder: "例) 300", value: ""                
+                %span.l-right-sai__en.clearfix ¥
+                = f.text_field :price, class: "price-box.clearfix", id: 'price-box', placeholder: "例) 300", value: ""                
+
+              
               .margin-sai.clearfix
                 .l-left
                   販売手数料(10%)
