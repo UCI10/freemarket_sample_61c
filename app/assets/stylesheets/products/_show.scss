@@ -285,6 +285,7 @@
   margin: 24px 0 24px 0;
   background: #fff;
   padding: 8px 16px 8px 16px;
+  width:750px;
   &__edit{
     background: #ea352d;
     border: 1px solid #ea352d;
@@ -296,6 +297,7 @@
     font-size: 14px;
     cursor: pointer;
     text-align: center;
+    text-decoration: none;
   }
   &__or{
     text-align: center;
@@ -323,6 +325,7 @@
     font-size: 14px;
     cursor: pointer;
     text-align: center;
+    text-decoration: none;
   }
 }
 .products-show-comment{

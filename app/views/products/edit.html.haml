@@ -1,0 +1,35 @@
+.single-container-sai
+  .header-logo-sai
+    %h1.header-logo-sai__link
+      = link_to root_path do
+        = image_tag 'mercari-logo.png', size: '155x50'
+  .l-single-container-sai2
+  = form_with model: @product, local: true, multipart: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
+    .single-main-sai
+      .l-single-container-sai
+        .product-menu-sai
+          商品情報を入力
+
+        .sell-form-sai
+          .sell-form-sai__upload
+            .sell-form-sai__upload__head 出品画像
+            %span.sell-form-sai__upload__require 必須
+            %br/
+            %p 最大10枚までアップロードできます
+
+          .sell-dropbox-container-sai#height-image-container
+            .sell-dropbox-container-take.displayflex
+              .preview-image-box
+              #sell-dropbox-container-result
+                = f.fields_for :images do |g|
+                  = g.label :image_url, for: "preview-image", class: 'form__mask__image' do  
+                    .sell-dropbox-container-sai__image{data: {id: 1}}   
+                      = fa_icon 'camera', class: "icon-camera"
+                      %p.sell-form__upload-box__image-upload__text
+                    = g.file_field :image_url,  multiple: true, name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
+                  %pre.sell-dropbox-container-sai__image__visible 
+                    ドラッグアンドドロップ またはクリックしてファイルをアップロード
+
+
+
+      = render 'products/footer' 
