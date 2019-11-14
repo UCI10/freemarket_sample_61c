@@ -1,0 +1,11 @@
+#親カテゴリ
+chanel = Brand.create(name: "シャネル")
+nike = Brand.create(name: "ナイキ")
+louis_vuitton = Brand.create(name: "ルイヴィトン")
+supreme = Brand.create(name: "シュプリーム")
+adidas = Brand.create(name: "アディダス")
+a_bathing_ape = Brand.create(name: "ア ベイシング エイプ")
+adam_et_rope = Brand.create(name: "アダム エ ロペ")
+aeta = Brand.create(name: "アエタ")
+amaca = Brand.create(name: "アマカ")
+asics = Brand.create(name: "アシックス")

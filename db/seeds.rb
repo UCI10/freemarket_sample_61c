@@ -1,3 +1,4 @@
+require './db/seeds/brand.rb'
 #親カテゴリ:レディース
 lady = Category.create(name: "レディース")
 #親カテゴリ:メンズ

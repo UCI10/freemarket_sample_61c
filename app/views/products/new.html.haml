@@ -65,7 +65,7 @@
                         .listing-select-wrapper__box
                           .icon-arrow-bottom-sai
                             %i.fa.fa-angle-down.chevron-down-icon
-                          = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
+                          = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
 
           .sell-content-sai.clearfix
             .sell-content-take
@@ -84,8 +84,13 @@
                   %br/
                   .select-brand-take
                     .select-brand-box
-                      = f.text_field :name, class:"select-brand-box",placeholder: "例）シャネル",value:""
-                      
+                      %input{:name => "product[brand_id]", :placeholder => "例）シャネル", :list => "brand_parent", :size => "20", :type => "search"}/
+                      %datalist#brand_parent
+                        -  @brand_parent_array.zip(@brand_id_array).each do |brand_parent_array, brand_id_array| 
+                          %option{value: "#{brand_id_array}"}  #{brand_parent_array}
+
+
+
                   .sell-content-sai__box__Category 商品の状態
                   %span.sell-content-sai__box__require 必須
                   %br/
@@ -202,6 +207,8 @@
             -# .dropzone-area2
             -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do
             -#     %p ここをクリックしてください
+            -# = f.text_field :brand_id, class:"select-brand-box",placeholder: "例）シャネル", value:""
+
 
 
 

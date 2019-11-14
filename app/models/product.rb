@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :user
   has_many :images, dependent: :destroy
+  belongs_to :category , optional: true
+  belongs_to :brand  ,optional: true
+  belongs_to :size_type, optional: true
 
   accepts_nested_attributes_for :images
   validates :title,:description, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_10_064527) do
+ActiveRecord::Schema.define(version: 2019_11_14_162933) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2019_11_10_064527) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_brands_on_ancestry"
   end
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -69,8 +71,6 @@ ActiveRecord::Schema.define(version: 2019_11_10_064527) do
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "category_id"
-    t.bigint "brand_id"
     t.string "title"
     t.string "description"
     t.integer "condition"
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2019_11_10_064527) do
     t.integer "buyer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["brand_id"], name: "index_products_on_brand_id"
-    t.index ["category_id"], name: "index_products_on_category_id"
+    t.integer "category_id"
+    t.integer "brand_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -119,7 +119,5 @@ ActiveRecord::Schema.define(version: 2019_11_10_064527) do
   add_foreign_key "cards", "users"
   add_foreign_key "images", "products"
   add_foreign_key "pays", "users"
-  add_foreign_key "products", "brands"
-  add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end
