@@ -98,4 +98,9 @@ $(document).on('turbolinks:load', function() {
       $('#brand_wrapper').remove();
     }
   });
+
+
+  $('.select-brand-box').attr('autocomplete', 'off'); //入力履歴非表示
+
+
 });

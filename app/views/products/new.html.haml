@@ -84,10 +84,10 @@
                   %br/
                   .select-brand-take
                     .select-brand-box
-                      %input{:name => "product[brand_id]", :placeholder => "例）シャネル", :list => "brand_parent", :size => "20", :type => "search"}/
+                      %input{:name => "product[brand_id]", :placeholder => "例）シャネル", :list => "brand_parent", :size => "20", :type => "search", class: "select-brand-box"}/
                       %datalist#brand_parent
-                        -  @brand_parent_array.zip(@brand_id_array).each do |brand_parent_array, brand_id_array| 
-                          %option{value: "#{brand_id_array}"}  #{brand_parent_array}
+                        -  @brand_child_array.zip(@brand_child_id_array).each do |brand_child_array, brand_child_id_array| 
+                          %option{value: "#{brand_child_id_array}:#{brand_child_array}"} 
 
 
 
@@ -184,22 +184,24 @@
       = render 'products/footer' 
 
 
-      %h2.sell-form__header
-        商品情報を入力
-      .sell-form-container
-        %label.sell-form-container__label
-          出品画像
-        %span.sell-form-container__require
-          必須
-        = f.fields_for :images do |image|
 
-          .dropzone-container.clearfix
-            #preview
-            .dropzone-area
-              = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-                .input_area
-                  = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
-                %p ここをクリックしてください             
+      -# 画像の複数枚数保存用のコードです。消さないでください
+      -# %h2.sell-form__header
+      -#   商品情報を入力
+      -# .sell-form-container
+      -#   %label.sell-form-container__label
+      -#     出品画像
+      -#   %span.sell-form-container__require
+      -#     必須
+      -#   = f.fields_for :images do |image|
+
+      -#     .dropzone-container.clearfix
+      -#       #preview
+      -#       .dropzone-area
+      -#         = image.label :image_url, class: "dropzone-box", for: "upload-image" do
+      -#           .input_area
+      -#             = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
+      -#           %p ここをクリックしてください             
                 -# jsにて今後仕様予定です。消さないでください
                 -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
 

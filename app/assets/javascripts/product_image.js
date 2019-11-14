@@ -1,4 +1,4 @@
-
+// 画像の複数枚数保存用のコードです。消さないでください
 // $(document).on('turbolinks:load', function(){
 //   var dropzone = $('.dropzone-area');
 //   var dropzone2 = $('.dropzone-area2');

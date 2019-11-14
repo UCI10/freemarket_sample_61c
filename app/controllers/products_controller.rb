@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit, :create]
   before_action :brand_parent_set, only: [:new, :edit, :create]
+  before_action :brand_child_set, only: [:new, :edit, :create]
+
   # before_action :get_category_children, only: [:new, :edit, :create]カテゴリボックスのデータ送信が未完成ですのでコメントアウトします
 
   def pay
@@ -107,6 +109,8 @@ private
   end
   end
 
+  
+
   def brand_parent_set
   @brand_parent_array   = []
   @brand_id_array   = []
@@ -115,6 +119,15 @@ private
   @brand_id_array << brand_parent.id
   end
   end
+
+  def brand_child_set
+    @brand_child_array   = []
+    @brand_child_id_array   = []
+    Brand.where.not(ancestry: nil).each do |brand_child|
+    @brand_child_array << brand_child.name
+    @brand_child_id_array << brand_child.id
+    end
+    end
 
 
   def product_set

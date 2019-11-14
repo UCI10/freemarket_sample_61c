@@ -1,3 +1,4 @@
+  // 変更途中コードです消さないでください
   // //手数料の計算
   // var $price_input = $('#price-box');// 入力価格のタグID名
   // var $price_fee = $('#fee-box');// 販売手数料
