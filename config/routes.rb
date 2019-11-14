@@ -18,14 +18,12 @@ Rails.application.routes.draw do
       post 'purchase'
       # post ':product_id/pay' => 'products#pay', as: 'pay'
       post 'pay/:id' => 'products#pay', as: 'pay'
-
-    end
-    
-     collection do
       get 'get_category_children'
       get 'get_category_grandchildren'
     end
-
+    member do
+      get :showmine     #ユーザーが出品した商品の詳細
+    end
   end
 
   resources :users do

@@ -33,9 +33,8 @@
                 = link_to root_path do
                   %h7 もっと見る 〉    
         .popular-category-content__box__lowrow
-
           .new-product-toplist.displayflex.clearfix
-            - @product.each do |product|  
+            - @products.each do |product|  
               .new-product-toplist__box
                 = link_to product_path(product) do
                   %ul
@@ -43,8 +42,7 @@
                       = image_tag "#{product.images.first.image_url}", size: "180×180"
                       .new-product-toplist__price
                         %span￥
-                        =product.price
-
+                        =product.price.to_s(:delimited)
                     .new-product-toplist__box__title
                       .new-product-toplist__title
                         = product.title

@@ -1,0 +1,149 @@
+.products-show-header
+  = render 'tops/topheader'
+.u-display-clearfix-ito
+  .u-side-ito
+  .u-content
+    .products-show-content
+      .products-show-maincontent
+        .products-exhibit-box
+          %h1
+            =@product.title
+          .products-show-centerbox.displayflex
+            - @product.images.each do |product_image|
+              .product-exhibit-photo
+                .product-exhibit-photo__high
+                  = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "300px", height: "420px" 
+                .ul.product-exhibit-photo__low.displayflex
+                  %li
+                    = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "60px", height: "60px" 
+                  -# %li
+                  -#   = image_tag 'blacktops.jpg', :height => "60", :width => "60"
+                  -# %li 
+                  -#   = image_tag 'whitetops.jpg', :height => "60", :width => "60"
+
+
+            .product-exhibit-details__table
+              .product-exhibit-details-box.displayflex
+                .product-exhibit-details-box__heading
+                  出品者
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+                    = link_to root_path do
+                      = current_user.nickname
+
+              .product-exhibit-details-box
+                .product-exhibit-details-box__heading
+                  カテゴリー
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+                    = link_to root_path do
+                      レディース
+                  .exhibit-table__middlerow
+                    = link_to root_path do
+                      〉トップス 
+
+                  .exhibit-table__lowrow
+                    = link_to root_path do
+                      〉シャツ/ブラウス（七分/長袖）
+
+              .product-exhibit-details-box
+                .product-exhibit-details-box__heading
+                  ブランド
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+
+              .product-exhibit-details-box
+                .product-exhibit-details-box__heading
+                  商品のサイズ
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+                    = @product.size
+
+              .product-exhibit-details-box
+                .product-exhibit-details-box__heading
+                  商品の状態
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+                    = @product.condition     
+
+              .product-exhibit-details-box
+                .product-exhibit-details-box__heading
+                  配送料の負担
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+                    = @product.shipping_burden
+                      
+              .product-exhibit-details-box
+                .product-exhibit-details-box__heading
+                  配送の方法
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+                    = @product.shipping_method
+
+              .product-exhibit-details-box
+                .product-exhibit-details-box__heading
+                  配送元地域
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+                    = link_to root_path do
+                      = @product.shipping_area
+
+              .product-exhibit-details-box
+                .product-exhibit-details-box__heading
+                  発送日の目安
+                .product-exhibit-details-box__info  
+                  .exhibit-table__highrow
+                    = @product.shipping_period
+
+        .products-exhibit-price-box.displayflex
+          .products-exhibit-price
+            ="￥#{@product.price.to_s(:delimited)}" 
+          .products-exhibit-tax  
+            (税込)  
+          .products-exhibit-shipping-fee
+            = @product.shipping_burden
+
+      .products-show-user
+        = link_to '商品の編集',"/products/#{@product.id}/edit",class: "products-show-user__edit"
+        %p.products-show-user__or or
+        %button.products-show-user__stop{:type => "submit"} 出品を一旦停止する
+        = link_to "この商品を削除する","/products/#{@product.id}", method: :delete,class: "products-show-user__delete"
+
+      .products-show-comment          
+        .products-show-comment__box
+          .products-show-comment__box__form
+            .products-show-comment-container.displayflex
+              .products-show-comment-container__icon
+                = link_to root_path do
+                  %i
+                    = fa_icon 'user-circle', class: 'icon'    
+              .products-show-comment-container__box
+                .products-show-comment__name
+                  =@product.title
+                .products-show-comment-box__text  
+                  .products-show-comment__text
+                    コメント内容
+                  .products-show-comment__time  
+                  .products-show-comment__time__left.displayflex
+                    .comment__time__icon
+                      = image_tag 'icon-watch.png', size: '16x16'
+                    .comment__time__text
+                      ２３時間前
+                  .products-show-comment__time__right
+                    .comment__flag__icon
+                      = image_tag 'icon-flag.png', size: '16x16'
+
+
+            .products-show-comment-caution
+              %p1
+                相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              %input{name: "product_id", type: "hidden", value: ""}/
+            .products-show-comment-textarea  
+              %textarea.textarea-product-comment{name: "content", type: "text", value: ""}
+              %button.textarea-product-comment__btn{type: "submit"}
+                = link_to root_path do
+                  %p2
+                    コメントする   
+
+.footer-take
+  = render 'tops/topfooter'      
