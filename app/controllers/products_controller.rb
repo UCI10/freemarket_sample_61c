@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
  end
 
   def index
-    @product = Product.all.order("created_at DESC")
+    @product = Product.all.order("created_at DESC").limit(10)
   
   end
 
