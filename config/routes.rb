@@ -15,17 +15,16 @@ Rails.application.routes.draw do
 
   resources :products do
     collection do
-      post 'purchase'
-      post ':product_id/pay' => 'products#pay', as: 'pay'
+      post 'purchase' #商品詳細ページ
+      post ':product_id/pay' => 'products#pay', as: 'pay'　#商品購入確認ページ
       # post 'pay/:id' => 'products#pay', as: 'pay'
 
-    end
-    
-     collection do
       get 'get_category_children'
       get 'get_category_grandchildren'
     end
-
+    member do
+      get :showmine     #ユーザーが出品した商品の詳細
+    end
   end
 
   resources :users do
