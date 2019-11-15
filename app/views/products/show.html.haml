@@ -158,26 +158,26 @@
   .products-show-comment          
     .products-show-comment__box
       .products-show-comment__box__form
-        .products-show-comment-container.displayflex
-          .products-show-comment-container__icon
-            = link_to root_path do
-              %i
-                = fa_icon 'user-circle', class: 'icon'    
-          .products-show-comment-container__box
-            .products-show-comment__name
-              =current_user.nickname
-            .products-show-comment-box__text  
-              .products-show-comment__text
-                コメント内容
-              .products-show-comment__time  
-              .products-show-comment__time__left.displayflex
-                .comment__time__icon
-                  = image_tag 'icon-watch.png', size: '16x16'
-                .comment__time__text
-                  ２３時間前
-              .products-show-comment__time__right
-                .comment__flag__icon
-                  = image_tag 'icon-flag.png', size: '16x16'
+        -# .products-show-comment-container.displayflex
+        -#   .products-show-comment-container__icon
+        -#     = link_to root_path do
+        -#       %i
+        -#         = fa_icon 'user-circle', class: 'icon'    
+        -#   .products-show-comment-container__box
+        -#     .products-show-comment__name
+        -#       =current_user.nickname
+        -#     .products-show-comment-box__text  
+        -#       .products-show-comment__text
+        -#         コメント内容
+        -#       .products-show-comment__time  
+        -#       .products-show-comment__time__left.displayflex
+        -#         .comment__time__icon
+        -#           = image_tag 'icon-watch.png', size: '16x16'
+        -#         .comment__time__text
+        -#           ２３時間前
+        -#       .products-show-comment__time__right
+        -#         .comment__flag__icon
+        -#           = image_tag 'icon-flag.png', size: '16x16'
 
 
         .products-show-comment-caution
