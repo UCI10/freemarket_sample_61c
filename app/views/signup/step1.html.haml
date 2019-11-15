@@ -148,7 +148,8 @@
                     %P 
                       次へ進む」のボタンを押すことにより、
 
-                      = link_to "利用規約", "root_path"
+                      = link_to step1_signup_index_path do
+                        利用規約
     
                       に同意したものとみなします
                 
@@ -157,7 +158,7 @@
               
                 .form-group.text-right
                   %p 
-                    = link_to "本人情報の登録について", "root_path"
+                    = link_to "本人情報の登録について", step1_signup_index_path
                     = fa_icon 'angle-right', class: 'angle-right-skyblue'
 
   = render 'products/footer'
