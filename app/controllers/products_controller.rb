@@ -1,18 +1,21 @@
 class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit, :create]
   # before_action :get_category_children, only: [:new, :edit, :create]カテゴリボックスのデータ送信が未完成ですのでコメントアウトします
+  require 'payjp'
 
   def pay
     Payjp.api_key = 'sk_test_0ddb364bab7ed621b29956cb'
     charge = Payjp::Charge.create(
-    :amount => @product.price,
+    # :amount => @product.price,
+    amount: 809, # 決済する値段
     :card => params['payjp-token'],
     :currency => 'jpy',
   )
   end
 
  def purchase
-  @product = Product.new(id: 1)
+  @product = Product.find(params[:id])
+
  end
 
   def index

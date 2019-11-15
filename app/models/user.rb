@@ -42,7 +42,7 @@ class User < ApplicationRecord
         end
 
   has_one :address
-  has_one :card
+  has_many :pays
   has_many :products
 
 
