@@ -42,7 +42,7 @@ class User < ApplicationRecord
         end
 
   has_one :address
-  has_one :card
+  has_many :pays
   has_many :products
 
 
@@ -60,6 +60,6 @@ class User < ApplicationRecord
   validates :birth_month,           presence: true, on: :validates_step1 
   validates :birth_day,             presence: true, on: :validates_step1
   
-  validates :phone_number,          presence: true, on: :validates_step2
+  validates :phone_number,          presence: true, on: :validates_step2 
 
 end

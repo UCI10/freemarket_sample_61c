@@ -4,23 +4,26 @@ class ProductsController < ApplicationController
   before_action :brand_child_set, only: [:new, :edit, :create]
 
   # before_action :get_category_children, only: [:new, :edit, :create]カテゴリボックスのデータ送信が未完成ですのでコメントアウトします
+  require 'payjp'
 
   def pay
     Payjp.api_key = 'sk_test_0ddb364bab7ed621b29956cb'
     charge = Payjp::Charge.create(
-    :amount => @product.price,
+    # :amount => @product.price,
+    amount: 809, # 決済する値段
     :card => params['payjp-token'],
     :currency => 'jpy',
   )
   end
 
  def purchase
-  @product = Product.new(id: 1)
+  @product = Product.find(params[:id])
+
  end
 
   def index
     @products = Product.all.order("created_at DESC").limit(10)
-
+  
   end
 
   def new
@@ -75,10 +78,28 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-
+    if @product.user_id == current_user.id
+      render :showmine
+    end
   end
 
+  def destroy
+    product = Product.find(params[:id])
+    if product.user_id == current_user.id
+      if product.destroy
+        redirect_to root_path, notice: '商品を削除しました'
+      else
+        render :show
+      end
+    end
+  end
 
+  def showmine
+    @product = Product.find(params[:id])
+  end
+
+  def edit
+  end
   # def search カテゴリボックスの仕様変更の可能性があるのでその際のためのコメントアウトです
   #   respond_to do |format|
   #     format.html

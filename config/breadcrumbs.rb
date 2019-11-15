@@ -6,6 +6,16 @@ crumb :users do
   link 'マイページ', users_path
 end
 
+crumb :listing do
+  link '出品した商品 - 出品中', listing_user_path
+  parent :users
+end
+
+crumb :showmine do
+  link '出品商品画面', showmine_product_path
+  parent :listing
+end
+
 crumb :profile do
   link 'プロフィール', profile_user_path
   parent :users
