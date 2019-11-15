@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :products do
     collection do
       post 'purchase' #商品詳細ページ
-      post ':product_id/pay' => 'products#pay', as: 'pay'　#商品購入確認ページ
+      post ':product_id/pay' => 'products#pay', as: 'pay'
       # post 'pay/:id' => 'products#pay', as: 'pay'
 
       get 'get_category_children'
