@@ -17,7 +17,6 @@
             %span.sell-form-sai__upload__require 必須
             %br/
             %p 最大10枚までアップロードできます
-
           
           .sell-dropbox-container-take.displayflex
             .preview-image-box
@@ -29,11 +28,9 @@
                       = fa_icon 'camera', class: "icon-camera"
                       %p.sell-form__upload-box__image-upload__text
                   
-                    = g.file_field :image_url,  multiple: true, name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
+                    = g.file_field :image_url,  multiple: true, required: true, autofocus: true,  name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
                   %pre.sell-dropbox-container-sai__image__visible 
-                    ドラッグアンドドロップ またはクリックしてファイルをアップロード
-          
-        
+                    ドラッグアンドドロップ またはクリックしてファイルをアップロード                
           
           .sell-content-sai.clearfix
             .form-group-sai2.clearfix
@@ -89,7 +86,7 @@
                   %br/
                   .select-brand-take
                     .select-brand-box
-                      %input{:name => "product[brand_id]", :placeholder => "例）シャネル", :list => "brand_parent", :size => "20", :type => "search", class: "select-brand-box"}/
+                      %input{name: "product[brand_id]", placeholder: "例）シャネル", list: "brand_parent", size: "20", type: "search", class: "select-brand-box"}/
                       %datalist#brand_parent
                         -  @brand_child_array.zip(@brand_child_id_array).each do |brand_child_array, brand_child_id_array| 
                           %option{value: "#{brand_child_id_array}:#{brand_child_array}"} 
@@ -164,35 +161,45 @@
                 
 
 
-          .sell-content-sai.clearfix
-            %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
-            = link_to root_path, class: "question-link" do
-              = fa_icon 'question'
+          .sell-content-sai.displayflex.clearfix
 
-            .sell-form-box
-              .price-error-box.clearfix
-                =  render partial: 'error-messages', locals: {product: @product, column: "price"}
-                
-              .sell-content-sai__box__Category 価格
-              %span.sell-content-sai__box__require 必須
 
-              .l-right-sai.clearfix
-                %span.l-right-sai__en.clearfix ¥
-                = f.text_field :price, class: "price-box.clearfix", id: 'price-box', placeholder: "例) 300", value: ""                
+
+            .sell-form-box.displayflex
+              .sell-content-sai-heading.clearfix
+                %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
+                = link_to root_path, class: "question-link" do
+                  = fa_icon 'question'
+              
+              .sell-price-box.displayflex
+                .sell-price-heading.displayflex
+                  .sell-content-sai__box__Category 価格
+                  %span.sell-content-sai__box__require 必須
+
+              .price-input-box
+                .price-input-container.displayflex.clearfix
+                  = f.label '¥', class: 'price-input-container__yen'
+                  .price-input-text-area
+                    = f.text_field :price, class: "price-box.input-default", id: 'price-box', placeholder: "例) 300(半角)", value: ""                
+
+            .price-error-box.clearfix
+              =  render partial: 'error-messages', locals: {product: @product, column: "price"}
+            
+
 
               
-              .margin-sai.clearfix
-                .l-left
-                  販売手数料(10%)
-                %span#fee-box.l-right-sai
-                  
-              .margin-sai.clearfix
-                .margin-sai__margin
+            .margin-sai.clearfix
+              .l-left
+                販売手数料(10%)
+              %span#fee-box.l-right-sai
+                
+            .margin-sai.clearfix
+              .margin-sai__margin
 
-                  販売利益
-                .profits-result-box{id: "profit", class: "profit"}
-                  %span#profit-box.l-right-sai
-  
+                販売利益
+              .profits-result-box{id: "profit", class: "profit"}
+                %span#profit-box.l-right-sai
+
             .sell-content
               %p.sell-content__sentence 禁止されている出品、行為を必ずご確認ください。
               %p.sell-content__sentence またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり
@@ -209,26 +216,30 @@
 
 
 
-      -# 画像の複数枚数保存用のコードです。消さないでください
-      -# %h2.sell-form__header
-      -#   商品情報を入力
-      -# .sell-form-container
-      -#   %label.sell-form-container__label
-      -#     出品画像
-      -#   %span.sell-form-container__require
-      -#     必須
-      -#   = f.fields_for :images do |image|
+      %h2.sell-form__header
+        商品情報を入力
+      .sell-form-container
+        %label.sell-form-container__label
+          出品画像
+        %span.sell-form-container__require
+          必須
+        = f.fields_for :images do |image|
 
-      -#     .dropzone-container.clearfix
-      -#       #preview
-      -#       .dropzone-area
-      -#         = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-      -#           .input_area
-      -#             = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
-      -#           %p ここをクリックしてください             
+          .dropzone-container.clearfix
+            #preview
+            .dropzone-area
+              = image.label :image_url, class: "dropzone-box", for: "upload-image" do
+                .input_area
+                  = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
+                %p ここをクリックしてください   
+                
+                          
                 -# jsにて今後仕様予定です。消さないでください
                 -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
-
+            
+            
+            
+            -# 画像の複数枚数保存用のコードです。消さないでください
             -# #preview2
             -# .dropzone-area2
             -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do

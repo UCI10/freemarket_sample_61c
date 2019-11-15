@@ -27,7 +27,7 @@ $(document).on('turbolinks:load', function(){
   var $price_fee = $('#fee-box');// 販売手数料
   var $price_profit = $('#profit-box');  // 販売利益
   var fee_rate = 0.1; // 販売手数料の割合
-  var maxPriceInput = 100000000; // 入力できる値段の上限
+  var maxPriceInput = 10000000; // 入力できる値段の上限
   var minPriceInput = 300; // 入力できる値段の下限
   $('#price-box').attr('autocomplete', 'off'); //入力履歴非表示
   $('#fee-box').text('-')  //デフォルトの表示

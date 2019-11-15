@@ -110,14 +110,13 @@ private
   end
 
   
-
   def brand_parent_set
-  @brand_parent_array   = []
-  @brand_id_array   = []
-  Brand.where(ancestry: nil).each do |brand_parent|
-  @brand_parent_array << brand_parent.name
-  @brand_id_array << brand_parent.id
-  end
+    @brand_parent_array   = []
+    @brand_id_array   = []
+    Brand.where(ancestry: nil).each do |brand_parent|
+    @brand_parent_array << brand_parent.name
+    @brand_id_array << brand_parent.id
+    end
   end
 
   def brand_child_set
@@ -127,7 +126,7 @@ private
     @brand_child_array << brand_child.name
     @brand_child_id_array << brand_child.id
     end
-    end
+  end
 
 
   def product_set
