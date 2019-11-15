@@ -1,23 +1,30 @@
 class SignupController < ApplicationController
+  require 'payjp'
+
   before_action :validates_step1, only: :step2
   before_action :validates_step2, only: :step3
   before_action :validates_step3, only: :step4
-  before_action :validates_step4, only: :create
 
-  def validates_step4
-    session[:card_id] = card_params[:card_id]
-    session[:security_code] = card_params[:security_code]
-    session[:month] = card_params[:month]
-    session[:year] = card_params[:year]
-  
-    @card = Card.new(
-      card_id: session[:card_id],
-      security_code: session[:security_code],
-      month: session[:month],
-      year: session[:year]
-    )
-    render '/signup/step4' unless @card.valid?
-  end
+
+
+  # def pay
+  #   # payjp.api_key = Rails.application.application.credentials.aws[:payjp_private_key]
+  #   Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+  #   if params['payjp-token'].blank?
+  #     redirect_to complete_signup_signup_index_path
+ 
+  #   else
+  #     customer = Payjp::Customer.create(
+  #       card: params['payjp-token']
+  #     )
+
+  #     @card = Card.new(user_id: @user.id, customer_id: )
+  #     if @card.save
+  #       redirect_to complete_signup_signup_index_path
+  #     else
+  #       render '/signup/step4'
+
+  # end
 
   def validates_step3
 
@@ -105,8 +112,6 @@ end
     )
     # 仮で作成したインスタンスのバリデーションチェックを行う
 
-   
-
   render '/signup/step2' unless @user.valid?(:validates_step2)
 
   end 
@@ -119,12 +124,10 @@ end
 
 def step4
 
-@card = Card.new
-
 end
 
 def create
-
+ 
   @user = User.new(
     nickname: session[:nickname], # sessionに保存された値をインスタンスに渡す
     email: session[:email],
@@ -140,20 +143,26 @@ def create
     phone_number: session[:phone_number]
 
   )
-
   if @user.save
+
 # ログインするための情報を保管
     session[:id] = @user.id
-  
-    @card = Card.new(
-      user_id: @user.id,
-      card_id: session[:card_id],
-      security_code: session[:security_code],
-      month: session[:month],
-      year: session[:year]
-    )
-  
-    @card.save
+
+
+    Payjp.api_key = "sk_test_a0947663b395402fc1e150b4"
+    if params['payjp-token'].blank?
+      render '/signup/step4'
+    else
+      customer = Payjp::Customer.create(
+      description: '登録テスト', #なくてもOK
+      # email: @user.email, #なくてもOK
+      card: params['payjp-token'],
+      metadata: {user_id: @user.id}
+      ) #念の為metadataにuser_idを入れましたがなくてもOK
+      @pay = Pay.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
+   
+      @pay.save
+    end
 
     @address = Address.new(
       user_id: @user.id,
@@ -164,13 +173,10 @@ def create
       prefectures: session[:prefectures]    
     )
 
-
-
     @address.save
 
     redirect_to done_signup_index_path
 
-    
   else
     render '/signup/entry_signup'
   end
@@ -206,20 +212,7 @@ end
   def address_params
     params.require(:address).permit(
       :prefectures
-      # :postalcode,
-      # :city,
-      # :house_number,
-      # :building_name
-    )
-
-  end
-
-  def card_params
-    params.require(:card).permit(
-      :card_id,
-      :year,
-      :month,
-      :security_code
     )
   end
+
 end

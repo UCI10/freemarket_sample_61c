@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   resources :products do
     collection do
       post 'purchase'
-      # post ':product_id/pay' => 'products#pay', as: 'pay'
-      post 'pay/:id' => 'products#pay', as: 'pay'
+      post ':product_id/pay' => 'products#pay', as: 'pay'
+      # post 'pay/:id' => 'products#pay', as: 'pay'
 
     end
     
@@ -41,7 +41,6 @@ Rails.application.routes.draw do
 
   resources :signup do
     collection do
-      get 'entry_signin'
       get 'entry_signup'
 
       get 'step1'
@@ -53,7 +52,7 @@ Rails.application.routes.draw do
   end
   resources :sells,only:[:index,:new,:create,:edit,:update]
 
-  resources :cards, only: [:new, :index, :create, :destroy]
+  resources :pays, only: [:new, :index, :create, :destroy]
 
 end
 
