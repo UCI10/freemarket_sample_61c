@@ -6,9 +6,11 @@ set :default_env, {
   path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
   BASIC_AUTH_USER: ENV["BASIC_AUTH_USER"],
   BASIC_AUTH_PASSWORD: ENV["BASIC_AUTH_PASSWORD"]
+  AWS_ACCESS_KEY_ID: ENV["AWS_ACCESS_KEY_ID"],
+  AWS_SECRET_ACCESS_KEY: ENV["AWS_SECRET_ACCESS_KEY"]
 }
 
-set :linked_files, %w{ config/credentials.yml.enc}
+set :linked_files, %w{ config/master.key}
 
 set :application, "freemarket_sample_61c"
 set :repo_url, 'git@github.com:feelspecial/freemarket_sample_61c.git'
@@ -32,13 +34,13 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 
-  desc 'upload credentials.yml.enc'
+  desc 'upload master.key'
   task :upload do
     on roles(:app) do |host|
       if test "[ ! -d #{shared_path}/config ]"
         execute "mkdir -p #{shared_path}/config"
       end
-      upload!('config/credentials.yml.enc', "#{shared_path}/config/credentials.yml.enc")
+      upload!('config/master.key', "#{shared_path}/config/master.key")
     end
   end
   before :starting, 'deploy:upload'
