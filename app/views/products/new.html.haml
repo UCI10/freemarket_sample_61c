@@ -17,20 +17,21 @@
             %span.sell-form-sai__upload__require 必須
             %br/
             %p 最大10枚までアップロードできます
-
-          .sell-dropbox-container-sai#height-image-container
-            .sell-dropbox-container-take.displayflex
-              .preview-image-box
-              #sell-dropbox-container-result
-                = f.fields_for :images do |g|
-                  = g.label :image_url, for: "preview-image", class: 'form__mask__image' do  
+          
+          .sell-dropbox-container-take.displayflex
+            .preview-image-box
+            .sell-dropbox-container-sai
+              = f.fields_for :images do |g|
+                = g.label :image_url, for: "preview-image", class: 'form__mask__image' do  
+                  .input-area-box
                     .sell-dropbox-container-sai__image{data: {id: 1}}   
                       = fa_icon 'camera', class: "icon-camera"
                       %p.sell-form__upload-box__image-upload__text
-                    = g.file_field :image_url,  multiple: true, name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
+                  
+                    = g.file_field :image_url,  multiple: true, required: true, autofocus: true,  name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
                   %pre.sell-dropbox-container-sai__image__visible 
-                    ドラッグアンドドロップ またはクリックしてファイルをアップロード
-
+                    ドラッグアンドドロップ またはクリックしてファイルをアップロード                
+          
           .sell-content-sai.clearfix
             .form-group-sai2.clearfix
               .form-group-sai2__head.clear-fix 商品名
@@ -61,7 +62,9 @@
                         .listing-select-wrapper__box
                           .icon-arrow-bottom-sai
                             %i.fa.fa-angle-down.chevron-down-icon
-                          = f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
+                          = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
+                        .exhibit-error.clearfix
+                          =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
 
           .sell-content-sai.clearfix
             .sell-content-take
@@ -74,14 +77,22 @@
                     .icon-arrow-bottom-sai
                       = fa_icon 'chevron-down'
                     = f.select :size, Product.sizes.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
-                      
+                  .exhibit-error.clearfix
+                    =  render partial: 'error-messages', locals: {product: @product, column: "size"}
+                
+
                   .sell-content-sai__box__Category ブランド
                   %span
                   %br/
                   .select-brand-take
                     .select-brand-box
-                      = f.text_field :name, class:"select-brand-box",placeholder: "例）シャネル",value:""
-                      
+                      %input{name: "product[brand_id]", placeholder: "例）シャネル", list: "brand_parent", size: "20", type: "search", class: "select-brand-box"}/
+                      %datalist#brand_parent
+                        -  @brand_child_array.zip(@brand_child_id_array).each do |brand_child_array, brand_child_id_array| 
+                          %option{value: "#{brand_child_id_array}:#{brand_child_array}"} 
+
+
+
                   .sell-content-sai__box__Category 商品の状態
                   %span.sell-content-sai__box__require 必須
                   %br/
@@ -89,7 +100,10 @@
                     .icon-arrow-bottom-sai
                       = fa_icon 'chevron-down'
                     = f.select :condition , Product.conditions.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
-              
+                  .exhibit-error.clearfix
+                    =  render partial: 'error-messages', locals: {product: @product, column: "condition"}
+                              
+
           .sell-content-sai.clearfix
             %h3.sell-content-sai__sub 配送について 
             %br/
@@ -106,7 +120,9 @@
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
                 = f.select :shipping_burden , Product.shipping_burdens.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
-
+              .exhibit-error.clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "shipping_burden"}
+                
             .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 配送料の方法
               %span.sell-content-sai__box__require 必須
@@ -116,7 +132,9 @@
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
                 = f.select :shipping_method , Product.shipping_methods.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
-
+              .exhibit-error.clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "shipping_method"}
+                
             .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 発送元の地域
               %span.sell-content-sai__box__require 必須
@@ -126,7 +144,9 @@
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
                 = f.collection_select :shipping_area, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
-
+              .clearfix  
+                =  render partial: 'error-messages', locals: {product: @product, column: "shipping_area"}
+                
               .sell-content-sai__box.clearfix
               .sell-content-sai__box__Category 発送までの日数
               %span.sell-content-sai__box__require 必須
@@ -136,30 +156,50 @@
                 .icon-arrow-bottom-sai
                   = fa_icon 'chevron-down'
                 = f.select :shipping_period, Product.shipping_periods.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+              .exhibit-error.clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "shipping_period"}
+                
 
-          .sell-content-sai.clearfix
-            %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
-            = link_to root_path, class: "question-link" do
-              = fa_icon 'question'
-            .sell-form-box
-              .sell-content-sai__box__Category 価格
-              %span.sell-content-sai__box__require 必須
 
-              .l-right-sai.clearfix
-                %span.l-right-sai__en ¥
-                = f.text_field :price, class: "price-box", id: 'price-box', placeholder: "例) 300", value: ""                
-              .margin-sai.clearfix
-                .l-left
-                  販売手数料(10%)
-                %span#fee-box.l-right-sai
-                  
-              .margin-sai.clearfix
-                .margin-sai__margin
+          .sell-content-sai.displayflex.clearfix
 
-                  販売利益
-                .profits-result-box{id: "profit", class: "profit"}
-                  %span#profit-box.l-right-sai
-  
+
+
+            .sell-form-box.displayflex
+              .sell-content-sai-heading.clearfix
+                %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
+                = link_to root_path, class: "question-link" do
+                  = fa_icon 'question'
+              
+              .sell-price-box.displayflex
+                .sell-price-heading.displayflex
+                  .sell-content-sai__box__Category 価格
+                  %span.sell-content-sai__box__require 必須
+
+              .price-input-box
+                .price-input-container.displayflex.clearfix
+                  = f.label '¥', class: 'price-input-container__yen'
+                  .price-input-text-area
+                    = f.text_field :price, class: "price-box.input-default", id: 'price-box', placeholder: "例) 300(半角)", value: ""                
+
+            .price-error-box.clearfix
+              =  render partial: 'error-messages', locals: {product: @product, column: "price"}
+            
+
+
+              
+            .margin-sai.clearfix
+              .l-left
+                販売手数料(10%)
+              %span#fee-box.l-right-sai
+                
+            .margin-sai.clearfix
+              .margin-sai__margin
+
+                販売利益
+              .profits-result-box{id: "profit", class: "profit"}
+                %span#profit-box.l-right-sai
+
             .sell-content
               %p.sell-content__sentence 禁止されている出品、行為を必ずご確認ください。
               %p.sell-content__sentence またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり
@@ -175,28 +215,39 @@
       = render 'products/footer' 
 
 
-    %h2.sell-form__header
-      商品情報を入力
-    .sell-form-container
-      %label.sell-form-container__label
-        出品画像
-      %span.sell-form-container__require
-        必須
-      = f.fields_for :images do |image|
-        .dropzone-container.clearfix
-          #preview
-          .dropzone-area
-            = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-              .input_area
-                = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
-              %p ここをクリックしてください
-              -# jsにて今後仕様予定です。消さないでください
-              -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
 
-          -# #preview2
-          -# .dropzone-area2
-          -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-          -#     %p ここをクリックしてください
+      %h2.sell-form__header
+        商品情報を入力
+      .sell-form-container
+        %label.sell-form-container__label
+          出品画像
+        %span.sell-form-container__require
+          必須
+        = f.fields_for :images do |image|
+
+          .dropzone-container.clearfix
+            #preview
+            .dropzone-area
+              = image.label :image_url, class: "dropzone-box", for: "upload-image" do
+                .input_area
+                  = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
+                %p ここをクリックしてください   
+                
+                          
+                -# jsにて今後仕様予定です。消さないでください
+                -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
+            
+            
+            
+            -# 画像の複数枚数保存用のコードです。消さないでください
+            -# #preview2
+            -# .dropzone-area2
+            -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do
+            -#     %p ここをクリックしてください
+            -# = f.text_field :brand_id, class:"select-brand-box",placeholder: "例）シャネル", value:""
+
+
+
 
 
 

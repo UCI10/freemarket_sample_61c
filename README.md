@@ -99,8 +99,8 @@
   |Column|Type|Options|
   |------|----|-------|
   |user|references|null: false, foreign_key: true|
-  |category|references|null: false, foreign_key|
-  |brand|references|null: false, foreign_key|
+  |category_id|integer||null: false, foreign_key|
+  |brand_id|integer||null: false, foreign_key|
   |title|string|null: false, add_index|
   |description|text|null: false|
   |condition|string|null: false|
