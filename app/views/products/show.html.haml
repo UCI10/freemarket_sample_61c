@@ -4,9 +4,7 @@
   .products-show-maincontent
     .products-exhibit-box
       %h1
-        あああああああああ  
-      %p
-        あああああああああ  
+        =@product.title  
       .products-show-centerbox.displayflex
         - @product.images.each do |product_image|
           .product-exhibit-photo
@@ -15,7 +13,7 @@
           
             .ul.product-exhibit-photo__low.displayflex
               %li
-                = image_tag 'topspink.jpg', :height => "60", :width => "60"
+                = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "60px", height: "60px" 
               %li
                 = image_tag 'blacktops.jpg', :height => "60", :width => "60"
               %li 
@@ -29,7 +27,7 @@
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
                 = link_to root_path do
-                  name
+                  = current_user.nickname
               .exhibit-table__lowrow
                 .product-exhibit-reviewrate-rating.displayflex
                   .product-exhibit-reviewrate-rating__good.displayflex
@@ -68,36 +66,34 @@
               ブランド
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
-                = link_to root_path do
-                  スライ
 
           .product-exhibit-details-box
             .product-exhibit-details-box__heading
               商品のサイズ
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
-                FREE SIZE
+                = @product.size
 
           .product-exhibit-details-box
             .product-exhibit-details-box__heading
               商品の状態
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
-                新品、未使用         
+                = @product.condition         
 
           .product-exhibit-details-box
             .product-exhibit-details-box__heading
               配送料の負担
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
-                送料込み(出品者負担)
+                = @product.shipping_burden
                   
           .product-exhibit-details-box
             .product-exhibit-details-box__heading
               配送の方法
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
-                らくらくメルカリ便
+                = @product.shipping_method
 
           .product-exhibit-details-box
             .product-exhibit-details-box__heading
@@ -105,22 +101,22 @@
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
                 = link_to root_path do
-                  東京都
+                  = @product.shipping_area
 
           .product-exhibit-details-box
             .product-exhibit-details-box__heading
               発送日の目安
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
-                1~2日で発送
+                = @product.shipping_period
 
     .products-exhibit-price-box.displayflex
       .products-exhibit-price
-        ¥1,111      
+        ="￥#{@product.price.to_s(:delimited)}"  
       .products-exhibit-tax  
         (税込)  
       .products-exhibit-shipping-fee
-        着払い
+        = @product.shipping_burden
     .products-exhibit-buy-btn
 
       = link_to purchase_products_path, method: :post do
@@ -169,7 +165,7 @@
                 = fa_icon 'user-circle', class: 'icon'    
           .products-show-comment-container__box
             .products-show-comment__name
-              nozomi
+              =current_user.nickname
             .products-show-comment-box__text  
               .products-show-comment__text
                 コメント内容

@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all.order("created_at DESC").limit(10)
-
+  
   end
 
   def new
@@ -61,10 +61,28 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-
+    if @product.user_id == current_user.id
+      render :showmine
+    end
   end
 
+  def destroy
+    product = Product.find(params[:id])
+    if product.user_id == current_user.id
+      if product.destroy
+        redirect_to root_path, notice: '商品を削除しました'
+      else
+        render :show
+      end
+    end
+  end
 
+  def showmine
+    @product = Product.find(params[:id])
+  end
+
+  def edit
+  end
   # def search カテゴリボックスの仕様変更の可能性があるのでその際のためのコメントアウトです
   #   respond_to do |format|
   #     format.html
