@@ -8,7 +8,7 @@
     width:700px;
     margin:0 auto;
     background-color: white;
-    padding: 24px 40px 40px;
+    padding: 24px 0 40px 0;
     .products-exhibit-box{
       width:620px;
       margin:0 auto;
@@ -285,7 +285,6 @@
   margin: 24px 0 24px 0;
   background: #fff;
   padding: 8px 16px 8px 16px;
-  width:750px;
   &__edit{
     background: #ea352d;
     border: 1px solid #ea352d;
@@ -331,7 +330,7 @@
 .products-show-comment{
   width:700px;
   background-color: white;
-  padding: 24px 40px 40px;
+  padding: 24px 0 40px 0;
   margin: 8px auto;
   &__box{
     height:100%;
@@ -404,7 +403,8 @@
       }
       .products-show-comment-caution{
         height:44px;
-        width: 700px;
+        margin:0 auto;
+        width:660px;
         background-color: #fff6de;
         p1{
           height:44px;
@@ -415,12 +415,12 @@
       .products-show-comment-textarea {  
         .textarea-product-comment{
           height: 104px;
-          width: 700px;
-          margin: 8px 0px 0px auto;
+          width: 660px;
+          margin: 8px 20px 0px 20px;
           &__btn{
             height: 50px;
-            width: 100%;
-            margin: 8px 0 0;
+            width: 660px;
+            margin: 8px 20px 0px 20px;
             text-align: center;
             background: #aaa;
             border: 1px solid #aaa;
@@ -443,7 +443,7 @@
 }
 .products-show-prevnext{
   height: 38px;
-  width: 780px;
+  width: 700px;
   margin: auto;
   &__box {
     a{
@@ -467,12 +467,12 @@
   }
 } 
 .products-show-sns{
-  width: 780px;
+  width: 700px;
   margin: auto;
   &__box{
     margin: 24px auto;
     padding: 32px 0 24px;
-    width: 780px;
+    width: 700px;
     background-color: $white;
     ul{
       justify-content: center; 
@@ -504,7 +504,7 @@
     }
   }
   .products-show-seller-exhidition {
-    width: 780px;
+    width: 700px;
     margin:0 auto;
     &__box {
     a{
@@ -524,12 +524,11 @@
     }
   }
   .products-show-other-exhidition {
-    width: 780px;
     margin: auto;
     &__box{
       margin: 24px auto;
       padding: 32px 0 24px;
-      width: 780px;
+      width: 700px;
       background-color: $white;
     }
     .product-otherlist{
