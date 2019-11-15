@@ -159,6 +159,7 @@ def create
       card: params['payjp-token'],
       metadata: {user_id: @user.id}
       ) #念の為metadataにuser_idを入れましたがなくてもOK
+
       @pay = Pay.new(user_id: @user.id, customer_id: customer.id, card_id: customer.default_card)
    
       @pay.save
