@@ -10,7 +10,12 @@
           .product-exhibit-photo
             .product-exhibit-photo__high
               = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "300px", height: "420px" 
-          
+
+              -if @product.buyer_id.present?
+                .items-box_photo__sold
+                  .items-box_photo__sold__inner
+                    SOLD
+
             .ul.product-exhibit-photo__low.displayflex
               %li
                 = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "60px", height: "60px" 
@@ -27,7 +32,7 @@
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
                 = link_to root_path do
-                  = current_user.nickname
+                  = @product.user.nickname
               .exhibit-table__lowrow
                 .product-exhibit-reviewrate-rating.displayflex
                   .product-exhibit-reviewrate-rating__good.displayflex
@@ -117,10 +122,21 @@
         (税込)  
       .products-exhibit-shipping-fee
         = @product.shipping_burden
-    .products-exhibit-buy-btn
 
-      = link_to purchase_products_path, method: :post do
-        購入画面に進む
+    
+    -if @product.buyer_id
+      .products-exhibit-buy-btn#buyer_id_gray
+        売り切れました。
+    
+    -else
+      -if user_signed_in?
+        .products-exhibit-buy-btn
+          = link_to pay_products_path(@product) do
+            購入画面に進む
+      -else
+        .products-exhibit-buy-btn
+          = link_to entry_signup_signup_index_path do
+            購入画面に進む
 
     .products-exhibit-description
       .products-exhibit-description__box
@@ -165,7 +181,7 @@
                 = fa_icon 'user-circle', class: 'icon'    
           .products-show-comment-container__box
             .products-show-comment__name
-              =current_user.nickname
+              = @product.user.nickname
             .products-show-comment-box__text  
               .products-show-comment__text
                 コメント内容

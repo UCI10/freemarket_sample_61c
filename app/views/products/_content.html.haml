@@ -39,7 +39,15 @@
                 = link_to product_path(product) do
                   %ul
                     .new-product-toplist__box__image
+
+
                       = image_tag "#{product.images.first.image_url}", size: "180×180"
+                      
+                      -if product.buyer_id.present? 
+                        .items-box_photo__sold
+                          .items-box_photo__sold__inner
+                            SOLD
+           
                       .new-product-toplist__price
                         %span￥
                         =product.price.to_s(:delimited)
