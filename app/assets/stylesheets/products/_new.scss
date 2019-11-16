@@ -190,9 +190,15 @@ margin: 0 auto;
 
 }
 
+.exhibit-error{
+  position: relative;
+  top:-20px;
+
+}
+
 .select-brand-take{
   height: 68px;
-  margin: 0 0 10px 0;
+  margin: 5px 0 2px 0;
 .select-brand-box{
   margin: 0 0 10px 0;
   width:100%;
@@ -203,6 +209,9 @@ margin: 0 auto;
   font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
+   appearance: none;
+   -webkit-appearance: none;
+   -moz-appearance: none;
   }
 }
 
@@ -218,126 +227,399 @@ width:100%;
 
 }
 
-.dropzone-container{
+
+
+.sell-dropbox-container-take{
+  width: 600px;
+  height:200px;
+  display: block;
+  margin: 0 auto;
+  background-color: #ccc;
+
+
+.sell-dropbox-container-sai{
+  // 複数画像投稿用cssのコメントアウトです消さないで下さい
+  // height:200px;
+  // display: block;
+  // width: 600px;
+
+
+  
   
 
-}
+
+.sell-dropbox-container-sai__image {
+cursor: pointer;
+position: relative;
+// height: 162px;
+// width: 520px;
 
 
-  
-
-
-.dropzone-container{
-  
-
-}
-
-.dropzone-area{
-  box-sizing: border-box;
-  width: 100%;
-  height: 160px;
-  margin-top: 20px;
-  border: 1px dashed #ccc;
-  font-size: 14px;
+.icon-camera{
+  // position: absolute;
+  // top: 50%;
+  // left:40%;
+  // transform: translate(-50%, -50%);
+  font-size: 60px;
+  i{
+  display: inline-block;
+  font-family: 'icon-font';
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
   text-align: center;
-  cursor: pointer;
-  background: #f5f5f5;
-  .dropzone-box{
-    width: 100%;
-    height: 160px;
-    .input_area{
-      #upload-image__btn{
-        display: none;
-      }
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  }
+  }
+
+
+
+&__file{
+// background: #f5f5f5;
+// border: 1px dashed #ccc;
+font-size: 0;
+text-align: center;
+position: relative;
+// height: 160px;
+// background: #f5f5f5;
+// border: 1px dashed #ccc;
+font-size: 0;
+text-align: center;
+// width: 100%;
+border: 0;
+outline: 0;
+cursor: pointer;
+}
+&__visible{
+display: none;
+}
+
+
+}
+}
+
+
+.preview-image-box{
+  height: 160px;
+  width:120px;
+  display:block;
+  // background-color: white;
+  // margin:0 auto;
+
+.img-box{
+  display:block;
+  width:120px;
+  height:160px;
+  background-color: white;
+  
+  
+  img{
+    margin:0 auto;
+    display:block;
+    max-width:100%;
+    max-height:100%;
+  }
+}
+
+.preview-box-btn-list{
+  width:120px;
+  height:40px;
+  background-color: white;
+  display:block;
+  position: relative;
+
+  a:link {
+    color: $light-blue;
+    text-decoration: none;
     }
-    p{
+  a:visited {
+      color :$light-blue;
+      }  
+  a:hover {
+    color: $light-blue;
+    }
+  a:active {
+      color: $light-blue;
+  }
+
+  .preview-box-btn{
+    display:block;
+    width: 120px;
+    height:40px;
+    float:left;
+    text-align: center;
+    color: $light-blue;
+    background-color: white;
+
+
+  .preview__box__edit{
+    display:block;
+    width: 60px;
+    height:38px;
+    line-height: 38px;
+    float:left;
+    text-align: center;
+    background-color: white;
+    
+
+  }
+
+  .preview__box__delete{
+    display:block;
+    width:60px;
+    height:38px;
+    line-height: 38px;
+    float:left;
+    text-align: center;
+    background-color: white;
+    position: relative;
+
+
+  }
+}
+
+}
+
+
+}
+}
+
+
+
+
+// 以下複数画像投稿用cssです消さないで下さい
+// .preview-image{
+// .images-preview-box{
+  // width:120px;
+  // display:block;
+  // background-color: white;
+//   .img-box{
+    // display:block;
+    // width:120px;
+    // height:120px;
+//     img{
+//       margin:0 auto;
+//       display:block;
+//       max-width:100%;
+//       max-height:100%;
+//     }
+//   }
+  // .preview-box-btn-list{
+  //   display: flex;
+  //   flex-direction: row;  
+  //   align-items: stretch; 
+
+  // }
+// }
+
+// }
+
+
+// .sell-dropbox-container-sai{
+//   display: block;
+//   height: 200px;
+//   width: 500px;
+//   margin: 0 auto;
+//   background-color: #ccc;
+//   border: 1px dashed #ccc;
+
+
+.dropzone-container{
+  // background: #f5f5f5;
+  display: block;
+  height: 200px;
+  width: 500px;
+  margin: 0 auto;
+  background-color: #ccc;
+  border: 1px dashed #ccc;
+
+  .dropzone-area{
+    // box-sizing: border-box;
+    width: 100%;
+    height: 180px;
+    margin:0 auto;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #ccc;
+
+
+//   .sell-dropbox-container-sai__image {
+// cursor: pointer;
+// position: relative;
+
+// &__file{
+// background: #f5f5f5;
+// border: 1px dashed #ccc;
+// font-size: 0;
+// text-align: center;
+
+// position: relative;
+// height: 162px;
+// background: #f5f5f5;
+// border: 1px dashed #ccc;
+// font-size: 0;
+// text-align: center;
+// width: 100%;
+// border: 0;
+// outline: 0;
+// cursor: pointer;
+
+
+// .icon-camera{
+//   position: absolute;
+//   top: 50px;
+//   left: 50px;
+//   transform: translate(-50%, -50%);
+//   font-size: 14px;
+//   i{
+//   display: inline-block;
+//   font-family: 'icon-font';
+//   font-style: normal;
+//   font-weight: 400;
+//   font-variant: normal;
+//   text-transform: none;
+//   line-height: 1;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   }
+//   }
+}
+}
+// &__visible{
+// display: none;
+// }
+
+
+  //   .input-area-box{
+  //     width:100%;
+  //     height: 100%;
+  //     justify-content: center;
+  //     flex-direction: column; 
+  //     align-items: center; 
+  //   .input_area{
+  //     #upload-image__btn{
+  //       display: none;
+  //     }
+  //   }
+  // }
+  
+
+    .image-preview-nav-text{
+      // text-align: center;
+      // justify-content: center;
+      // flex-direction: column; 
+      // align-items: center; 
+      padding-top: 20px;
+
+    h2{
+      
       font-weight: bold;
       cursor: pointer;
       height: 160px;
-      padding: 50px;
+      text-align: center;
+      margin: 10px 0 auto;
+      
+      
     }
   }
-}
+// }
+  // }
 
 
 
-.dropzone-area2{
-  display: none;
-  box-sizing: border-box;
-  width: 100%;
-  height: 155px;
-  background: #f5f5f5;
-  border: 1px dashed #ccc;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-  .dropzone-box{
-    padding: 0;
-    width: 100%;
-    height: 155px;
-    .input_area{
-      #upload-image__btn{
-        display: none;
-      }
-    }
-    p{
-      font-weight: bold;
-      cursor: pointer;
-      height: 155px;
-      padding: 50px;
-    }
-  }
-}
 
-.dropzone-preview {
-  display: flex;
-}
 
-#preview{
-  display: flex;
-}
 
-#preview2{
-  display: flex;
-}
 
-.dropzone-preview2 {
-  display: flex;
-}
 
-.upload-image {
-  display: none;
-}
 
-.img_view img {
-  margin: 20px 5px 0 0;
-  height: 120px;
-  width: 120px;
-}
 
-.btn_wrapper{
-  display: flex;
-  justify-content: space-between;
-  background-color:#f5f5f5;
-  height: 35px;
-  width: 120px;
-}
 
-.edit{
-  cursor: pointer;
-  color: #0099e8;
-  font-size: 14px;
-  line-height: 35px;
-  text-align: center;
-  width: 60px;
-}
 
-.delete {
-  cursor: pointer;
-  color: #0099e8;
-  font-size: 14px;
-  line-height: 35px;
-  text-align: center;
-  width: 60px;
-}
+
+
+
+// .dropzone-area2{
+//   display: none;
+//   box-sizing: border-box;
+//   width: 100%;
+//   height: 155px;
+//   background: #f5f5f5;
+//   border: 1px dashed #ccc;
+//   font-size: 14px;
+//   text-align: center;
+//   cursor: pointer;
+//   .dropzone-box{
+//     padding: 0;
+//     width: 100%;
+//     height: 155px;
+//     .input_area{
+//       #upload-image__btn{
+//         display: none;
+//       }
+//     }
+//     p{
+//       font-weight: bold;
+//       cursor: pointer;
+//       height: 155px;
+//       padding: 50px;
+//     }
+//   }
+// }
+
+// .dropzone-preview {
+//   display: flex;
+// }
+
+// #preview{
+//   display: flex;
+// }
+
+// #preview2{
+//   display: flex;
+// }
+
+// .dropzone-preview2 {
+//   display: flex;
+// }
+
+// .upload-image {
+//   display: none;
+// }
+
+// .img_view img {
+//   margin: 20px 5px 0 0;
+//   height: 120px;
+//   width: 120px;
+// }
+
+// .btn_wrapper{
+//   display: flex;
+//   justify-content: space-between;
+//   background-color:#f5f5f5;
+//   height: 35px;
+//   width: 120px;
+// }
+
+// .edit{
+//   cursor: pointer;
+//   color: #0099e8;
+//   font-size: 14px;
+//   line-height: 35px;
+//   text-align: center;
+//   width: 60px;
+// }
+
+// .delete {
+//   cursor: pointer;
+//   color: #0099e8;
+//   font-size: 14px;
+//   line-height: 35px;
+//   text-align: center;
+//   width: 60px;
+// }
 

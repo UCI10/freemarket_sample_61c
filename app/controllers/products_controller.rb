@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit, :create]
+  before_action :brand_parent_set, only: [:new, :edit, :create]
+  before_action :brand_child_set, only: [:new, :edit, :create]
+
   # before_action :get_category_children, only: [:new, :edit, :create]カテゴリボックスのデータ送信が未完成ですのでコメントアウトします
   before_action :set_card, only: [:pay, :purchase]
   require 'payjp'
@@ -50,6 +53,7 @@ class ProductsController < ApplicationController
       @product = Product.new
       @parents = Category.all.order("id ASC").limit(8)
       @product.images.build  
+      
     # TODO   @category_parent_array = ["---"]
     #   Category.where(ancestry: nil).each do |parent|
     #   @category_parent_array << parent.name
@@ -61,10 +65,23 @@ class ProductsController < ApplicationController
 
   end
 
+    
+   # 以下全て、formatはjsonのみ
+   # 親カテゴリーが選択された後に動くアクション
+  def get_category_children
+    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+ # 子カテゴリーが選択された後に動くアクション
+ def get_category_grandchildren
+   #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+ end
+
   def create
     @product = Product.new(product_params)
     # respond_to do |format|JSのデータsave時の情報送信のif文条件分岐が未完成のため
-
     if @product.save
        params[:images][:image_url].each do |image_url|
        @product.images.create(image_url: image_url, product_id: @product.id)
@@ -118,19 +135,7 @@ class ProductsController < ApplicationController
   #     end
   #   end
   # end
-  
-   # 以下全て、formatはjsonのみ
-   # 親カテゴリーが選択された後に動くアクション
-   def get_category_children
-    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
- end
 
- # 子カテゴリーが選択された後に動くアクション
- def get_category_grandchildren
-   #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
- end
 
 private  
 
@@ -147,6 +152,25 @@ private
   Category.where(ancestry: nil).each do |parent|
   @category_parent_array << parent.name
   end
+  end
+
+  
+  def brand_parent_set
+    @brand_parent_array   = []
+    @brand_id_array   = []
+    Brand.where(ancestry: nil).each do |brand_parent|
+    @brand_parent_array << brand_parent.name
+    @brand_id_array << brand_parent.id
+    end
+  end
+
+  def brand_child_set
+    @brand_child_array   = []
+    @brand_child_id_array   = []
+    Brand.where.not(ancestry: nil).each do |brand_child|
+    @brand_child_array << brand_child.name
+    @brand_child_id_array << brand_child.id
+    end
   end
 
 
