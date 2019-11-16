@@ -9,7 +9,7 @@
         - @product.images.each do |product_image|
           .product-exhibit-photo
             .product-exhibit-photo__high
-              = image_tag "#{ product_image.image_url.url}", class:"product-box-container__main__photo__img", width: "300px", height: "420px" 
+              = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "300px", height: "420px" 
           
             .ul.product-exhibit-photo__low.displayflex
               %li
