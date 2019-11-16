@@ -4,26 +4,49 @@ class ProductsController < ApplicationController
   before_action :brand_child_set, only: [:new, :edit, :create]
 
   # before_action :get_category_children, only: [:new, :edit, :create]カテゴリボックスのデータ送信が未完成ですのでコメントアウトします
+  before_action :set_card, only: [:pay, :purchase]
   require 'payjp'
 
+  def set_card
+    @pay = Pay.where(user_id: current_user.id).first if Pay.where(user_id: current_user.id).present?
+  end
+  
   def pay
-    Payjp.api_key = 'sk_test_0ddb364bab7ed621b29956cb'
-    charge = Payjp::Charge.create(
-    # :amount => @product.price,
-    amount: 809, # 決済する値段
-    :card => params['payjp-token'],
-    :currency => 'jpy',
-  )
+    @product = Product.find(params[:product_id])
+    pay = Pay.where(user_id: current_user.id).first
+    Payjp.api_key = 'sk_test_a0947663b395402fc1e150b4'
+    customer = Payjp::Customer.retrieve(pay.customer_id)
+    @default_card_information = customer.cards.retrieve(pay.card_id)
+    # redirect_to action: "show" if card.present?
+
   end
 
- def purchase
-  @product = Product.find(params[:id])
 
+ def purchase
+    @product_purchaser= Product.find(params[:product_id])
+    # @product = Product.find(params[:product_id])
+   # 購入した際の情報を元に引っ張ってくる
+   # テーブル紐付けてるのでログインユーザーのクレジットカードを引っ張ってくる
+    Payjp.api_key = "sk_test_a0947663b395402fc1e150b4"
+   # キーをセットする(環境変数においても良い)
+    Payjp::Charge.create(
+    amount: @product_purchaser.price, #支払金額
+    customer: @pay.customer_id, #顧客ID
+    currency: 'jpy', #日本円
+    )
+    
+    @product_purchaser.update( buyer_id: current_user.id)
+
+   # ↑商品の金額をamountへ、cardの顧客idをcustomerへ、currencyをjpyへ入れる
+    # if @product.update(status: 1, buyer_id: current_user.id)
+    #   flash[:notice] = '購入しました。'
+    #   flash[:alert] = '購入に失敗しました。'
+      redirect_to root_path
+  
  end
 
   def index
     @products = Product.all.order("created_at DESC").limit(10)
-  
   end
 
   def new
@@ -78,9 +101,10 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-    if @product.user_id == current_user.id
-      render :showmine
-    end
+
+      if user_signed_in? && @product.user_id == current_user.id
+        render :showmine
+      end
   end
 
   def destroy
