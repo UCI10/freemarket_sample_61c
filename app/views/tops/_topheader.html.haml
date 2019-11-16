@@ -1,4 +1,4 @@
-.top-header-take
+.top-header-take#0
   .top-header-box-take
     .top-high-row
       .top-header-box-take-left__box
@@ -16,7 +16,7 @@
       .top-low-row-left
         .top-low-row-left__category
           .top-low-row-left__category__btn.displayflex
-            = link_to root_path do
+            = link_to '#category' do
               %i
                 = fa_icon 'list-ul', class: 'icon'
 
@@ -24,7 +24,7 @@
 
         .top-low-row-left__brand
           .top-low-row-left__brand__btn
-            = link_to root_path do
+            = link_to '#brand' do
               %i
                 = fa_icon 'tags', class: 'icon'              
               %h2 ブランドから探す
@@ -34,19 +34,19 @@
         - if user_signed_in?
           .top-low-row-right-list__like
             .top-low-row-right-list__like__btn
-              = link_to root_path do
+              = link_to '#0' do
                 %i
                   = fa_icon 'heart', class: 'icon'              
                 %h4 いいね！一覧
           .top-low-row-right-list__news
             .top-low-row-right-list__news__btn
-              = link_to root_path do
+              = link_to '#0' do
                 %i
                   = fa_icon 'bell', class: 'icon'              
                 %h4 お知らせ
           .top-low-row-right-list__todo   
             .top-low-row-right-list__todo__btn 
-              = link_to root_path do
+              = link_to '#0' do
                 %i
                   = fa_icon 'check', class: 'icon'              
                 %h4 やることリスト
