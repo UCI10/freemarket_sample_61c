@@ -5,7 +5,7 @@
         = image_tag 'mercari-logo.png', size: '155x50'
 
   .l-single-container-sai2
-  = form_with model: @product, local: true, multipart: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
+  = form_with model: @product, local: true, multipart: true, retuired: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
     .single-main-sai
       .l-single-container-sai
         .product-menu-sai
@@ -28,7 +28,7 @@
                       = fa_icon 'camera', class: "icon-camera"
                       %p.sell-form__upload-box__image-upload__text
                   
-                    = g.file_field :image_url,  multiple: true, required: true, autofocus: true,  name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
+                    = g.file_field :image_url,  multiple: true, autofocus: true,  name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
                   %pre.sell-dropbox-container-sai__image__visible 
                     ドラッグアンドドロップ またはクリックしてファイルをアップロード                
           

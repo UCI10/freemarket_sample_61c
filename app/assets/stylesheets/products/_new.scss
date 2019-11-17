@@ -262,7 +262,6 @@ position: relative;
   // transform: translate(-50%, -50%);
   font-size: 60px;
   i{
-  display: inline-block;
   font-family: 'icon-font';
   font-style: normal;
   font-weight: 400;
@@ -295,6 +294,12 @@ cursor: pointer;
 }
 &__visible{
 display: none;
+}
+
+.pre{
+  text-align: center;
+  line-height: 200px;
+
 }
 
 

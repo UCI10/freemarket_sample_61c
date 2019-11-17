@@ -4,7 +4,7 @@
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
   .l-single-container-sai2
-  = form_with model: @product, local: true, multipart: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
+  = form_with model: @product, local: true, multipart: true  do |f|
     .single-main-sai
       .l-single-container-sai
         .product-menu-sai
@@ -17,19 +17,321 @@
             %br/
             %p 最大10枚までアップロードできます
 
+
           .sell-dropbox-container-sai#height-image-container
             .sell-dropbox-container-take.displayflex
-              .preview-image-box
+              .preview-image-edit
               #sell-dropbox-container-result
-                = f.fields_for :images do |g|
-                  = g.label :image_url, for: "preview-image", class: 'form__mask__image' do  
-                    .sell-dropbox-container-sai__image{data: {id: 1}}   
-                      = fa_icon 'camera', class: "icon-camera"
-                      %p.sell-form__upload-box__image-upload__text
-                    = g.file_field :image_url,  multiple: true, name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
-                  %pre.sell-dropbox-container-sai__image__visible 
-                    ドラッグアンドドロップ またはクリックしてファイルをアップロード
+
+              
+                - @product.images.first(@length).each_with_index do |image, i|
+                  .previews{data:{id: "#{i}"}}
+                    %img.open-pic{src: "#{image.image_url}"} 
+                      = link_to "削除", "", class: "kill-preview-image-box"
+                        
+
+              = f.fields_for :images do |i|
+                = i.label :image_url, for: "edit-image", class: 'form__mask__image' do
+                  .sell-dropbox-container-sai__image.pic-form
+                    = fa_icon 'camera', class: "icon-camera"
+                    %p.sell-form__upload-box__image-upload__text.sell-dropbox-container-sai__image__visible 
+                  = i.file_field :image_url,  multiple: true, name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file pic-gone-edit', id: "edit-image"
+                %pre
+                  ドラッグアンドドロップ またはクリックしてファイルをアップロード
+
+
+
+            .sell-content-sai.clearfix
+              .form-group-sai2.clearfix
+                .form-group-sai2__head.clear-fix 商品名
+                %span.form-group-sai2__require 必須
+                %br/
+                
+                = f.text_field :title, class: 'form-group-sai__default', placeholder: '商品名（必須 40文字まで)'
+              .clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "title"}
+
+              .form-group-sai2.clearfix
+                .form-group-sai2__head.clear-fix 商品の説明
+                %span.form-group-sai2__require 必須
+                %br/
+                = f.text_area :description, class: 'form-group-sai2__default', placeholder: '商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。'
+                =  render partial: 'error-messages', locals: {product: @product, column: "description"}
+
+            .sell-content-sai.clearfix
+              .sell-content-take
+                %h3.sell-content-sai__sub 商品の詳細
+                .select-box-take
+                  .sell-content-sai-category.clearfix
+                    .listing-form-box.clearfix
+                      .listing-product-detail__category
+                        = f.label 'カテゴリー', class: 'listing-default__label'
+                        %span.listing-default--require 必須 
+                        .listing-select-wrapper
+                          .listing-select-wrapper__box
+                            .icon-arrow-bottom-sai
+                              %i.fa.fa-angle-down.chevron-down-icon
+
+                            = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'select-default', id: 'parent_category'}
+
+                        .listing-select-wrapper
+                          .listing-select-wrapper__box
+                            .icon-arrow-bottom-sai
+                              %i.fa.fa-angle-down.chevron-down-icon
+
+                            = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'select-default', id: 'child_category'}
+
+
+
+                        .listing-select-wrapper
+                          .listing-select-wrapper__box
+                            .icon-arrow-bottom-sai
+                              %i.fa.fa-angle-down.chevron-down-icon
+
+
+                            = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'select-default', id: 'grandchild_category'}
+
+
+                            -# = f.select :category_id, options_for_select(@category_parent_array.map{@category_parent_array , @category_parent_id_array}, @product.category.root), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'} 
+
+                            -# = f.select :category_id, @category_parent_array, selected: @product, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
+
+
+                          .exhibit-error.clearfix
+                            =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
+
+
+                        .listing-select-wrapper
+                          .listing-select-wrapper__box
+                            .icon-arrow-bottom-sai
+                              %i.fa.fa-angle-down.chevron-down-icon
+
+
+                        .listing-select-wrapper
+                          .listing-select-wrapper__box
+                            .icon-arrow-bottom-sai
+                              %i.fa.fa-angle-down.chevron-down-icon
+
+
+
+
+
+                          .exhibit-error.clearfix
+                            =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
+
+            .sell-content-sai.clearfix
+              .sell-content-take
+                .sell-content-sai-category.clearfix
+                  .sell-content-sai__box.clearfix
+                    .sell-content-sai__box__Category サイズ
+                    %span.sell-content-sai__box__require 必須
+                    %br/
+                    .select-wrap
+                      .icon-arrow-bottom-sai
+                        = fa_icon 'chevron-down'
+                      = f.select :size, Product.sizes.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                    .exhibit-error.clearfix
+                      =  render partial: 'error-messages', locals: {product: @product, column: "size"}
+                  
+
+                    .sell-content-sai__box__Category ブランド
+                    %span
+                    %br/
+                    .select-brand-take
+                      .select-brand-box
+                        %input{name: "product[brand_id]", placeholder: "例）シャネル", list: "brand_parent", size: "20", type: "search", class: "select-brand-box"}/
+                        %datalist#brand_parent
+                          -  @brand_child_array.zip(@brand_child_id_array).each do |brand_child_array, brand_child_id_array| 
+                            %option{value: "#{brand_child_id_array}:#{brand_child_array}"} 
+
+
+
+                    .sell-content-sai__box__Category 商品の状態
+                    %span.sell-content-sai__box__require 必須
+                    %br/
+                    .select-wrap
+                      .icon-arrow-bottom-sai
+                        = fa_icon 'chevron-down'
+                      = f.select :condition , Product.conditions.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                    .exhibit-error.clearfix
+                      =  render partial: 'error-messages', locals: {product: @product, column: "condition"}
+                                
+
+            .sell-content-sai.clearfix
+              %h3.sell-content-sai__sub 配送について 
+              %br/
+              .question-link
+                = link_to root_path  do
+                  = fa_icon 'question'
+                %br/
+              .sell-content-sai__box.clearfix
+                .sell-content-sai__box__Category 配送料の負担
+                %span.sell-content-sai__box__require 必須
+                %br/
+                
+                .select-wrap
+                  .icon-arrow-bottom-sai
+                    = fa_icon 'chevron-down'
+                  = f.select :shipping_burden , Product.shipping_burdens.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                .exhibit-error.clearfix
+                  =  render partial: 'error-messages', locals: {product: @product, column: "shipping_burden"}
+                  
+              .sell-content-sai__box.clearfix
+                .sell-content-sai__box__Category 配送料の方法
+                %span.sell-content-sai__box__require 必須
+                %br/
+                
+                .select-wrap
+                  .icon-arrow-bottom-sai
+                    = fa_icon 'chevron-down'
+                  = f.select :shipping_method , Product.shipping_methods.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                .exhibit-error.clearfix
+                  =  render partial: 'error-messages', locals: {product: @product, column: "shipping_method"}
+                  
+              .sell-content-sai__box.clearfix
+                .sell-content-sai__box__Category 発送元の地域
+                %span.sell-content-sai__box__require 必須
+                %br/
+                
+                .select-wrap
+                  .icon-arrow-bottom-sai
+                    = fa_icon 'chevron-down'
+                  = f.collection_select :shipping_area, Prefecture.all, :id, :name, {prompt: "--"},{class:"input-default"}
+                .clearfix  
+                  =  render partial: 'error-messages', locals: {product: @product, column: "shipping_area"}
+                  
+                .sell-content-sai__box.clearfix
+                .sell-content-sai__box__Category 発送までの日数
+                %span.sell-content-sai__box__require 必須
+                %br/
+                
+                .select-wrap
+                  .icon-arrow-bottom-sai
+                    = fa_icon 'chevron-down'
+                  = f.select :shipping_period, Product.shipping_periods.keys.to_a ,{prompt: "---"}, class:"select-wrap-sai__default select-icon"
+                .exhibit-error.clearfix
+                  =  render partial: 'error-messages', locals: {product: @product, column: "shipping_period"}
+                  
+
+
+            .sell-content-sai.displayflex.clearfix
+
+
+
+              .sell-form-box.displayflex
+                .sell-content-sai-heading.clearfix
+                  %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
+                  = link_to root_path, class: "question-link" do
+                    = fa_icon 'question'
+                
+                .sell-price-box.displayflex
+                  .sell-price-heading.displayflex
+                    .sell-content-sai__box__Category 価格
+                    %span.sell-content-sai__box__require 必須
+
+                .price-input-box
+                  .price-input-container.displayflex.clearfix
+                    = f.label '¥', class: 'price-input-container__yen'
+                    .price-input-text-area
+                      = f.text_field :price, class: "price-box.input-default", id: 'price-box', placeholder: "例) 300(半角)", value: ""                
+
+              .price-error-box.clearfix
+                =  render partial: 'error-messages', locals: {product: @product, column: "price"}
+              
+
+
+                
+              .margin-sai.clearfix
+                .l-left
+                  販売手数料(10%)
+                %span#fee-box.l-right-sai
+                  
+              .margin-sai.clearfix
+                .margin-sai__margin
+
+                  販売利益
+                .profits-result-box{id: "profit", class: "profit"}
+                  %span#profit-box.l-right-sai
+
+              .sell-content
+                %p.sell-content__sentence 禁止されている出品、行為を必ずご確認ください。
+                %p.sell-content__sentence またブランド品でシリアルナンバー等がある場合はご記載ください。偽ブランドの販売は犯罪であり
+                %p.sell-content__sentence 処罰される可能性があります。
+                %p.sell-content__sentence また、出品をもちまして加盟店規約に同意したことになります。
+
+              = f.submit '編集する', class: "form__submit btn-default"
+
+            
+              .footer-btn-gray
+                = link_to root_path do
+                  戻る      
 
 
 
       = render 'products/footer' 
+
+
+      -# %div
+      -# .select-wrap
+      -#   = icon("fas", "chevron-down tag fa-1g")
+      -#   = f.collection_select :category_id, @parent, :id, :name,{prompt: "---",selected: @parent_current.id}, class: "select-default", id: "parent-form", name: 'product[category_id1]'
+      -# .select-wrap.children-form
+      -#   = icon("fas", "chevron-down tag fa-1g")
+      -#   = f.collection_select :category_id, @category_children , :id, :name,{prompt: "---"}, class: "select-default", id: "children-form", name:'product[category_id2]'   
+      -# .select-wrap.grandchildren-form
+      -#   = icon("fas", "chevron-down tag fa-1g")
+      -#   = f.collection_select :category_id, @category_grandchildren, :id, :name,{prompt: "---"}, class: "select-default", id: "grandchildren-form", name: 'product[category_id]' 
+      
+      -# = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
+      -#   %option{value: @category_grandchildren}= @category_parent_array.name
+                                
+                                
+      
+      -#     %div
+      -# .select-wrap
+      -#   %i.fa.fa-angle-down.chevron-down-icon
+      -#   = f.collection_select :category_id, @category_parent_array, :id, :name,{prompt: "---",selected: @parent_current.id}, class: "parent_category_edit", id: "parent_category_edit", name: 'product[category_id1]'
+      -# .select-wrap.children-form
+      -#   %i.fa.fa-angle-down.chevron-down-icon
+      -#   = f.collection_select :category_id, @category_children , :id, :name,{prompt: "---"}, class: "children_category_edit", id: "children_category_edit", name:'product[category_id2]'   
+      -# .select-wrap.grandchildren-form
+      -#   %i.fa.fa-angle-down.chevron-down-icon
+        -# = f.collection_select :category_id, @category_grandchildren, :id, :name,{prompt: "---"}, class: "grandchildren_category_edit", id: "grandchildren_category_edit", name: 'product[category_id]' 
+
+
+      -# .select-wrap
+      -#   %i.fa.fa-angle-down.chevron-down-icon
+      -#   = f.collection_select :category_id, @parent, :id, :name,{prompt: "---",selected: @parent_current.id}, class: "parent_category_edit", id: "parent_category_edit", name: 'product[category_id_parent]'
+      -# .select-wrap.children-form
+      -#   %i.fa.fa-angle-down.chevron-down-icon
+      -#   = f.collection_select :category_id, @category_children , :id, :name,{prompt: "---"}, class: "children_category_edit", id: "children_category_edit", name:'product[category_id_child]'   
+      -# .select-wrap.grandchildren-form
+      -#   %i.fa.fa-angle-down.chevron-down-icon
+      -#   = f.collection_select :category_id, @category_grandchildren, :id, :name,{prompt: "---"}, class: "grandchildren_category_edit", id: "grandchildren_category_edit", name: 'product[category_id]' 
+
+
+
+                            -# = f.select :category_id, options_for_select(@category_parent_array.map{|c|[c[:name], c[:id], {}]}, @product.category.root) {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}  
+
+                            -# %option{"data-category" => "${category.id}", :value => "#{@product.category.root}"} #{category.name}
+
+                            -# %select.listing-select-wrapper__box--select.relative.select-icon#parent_category
+                            -#   %option{selected: @product.category.root, array:  @parent} #{@product.category.root.name}
+                          
+
+      
+                          -# %select.listing-select-wrapper__box--select.relative.select-icon#grandchild_category
+                            -# %option{value: @product.category}  #{@product.category.name}
+                            -# %option{value: @product.category}  #{@product.category.name}
+                            -# = f.select :category_id, @category_grandchildren, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'grandchild_category'}  
+                            -# %option{"data-category" => "${category.id}", :value => "#{category.id}"} #{category.name}    
+
+
+
+
+                          -# %select.listing-select-wrapper__box--select.relative.select-icon#child_category
+                            -# %option{value: @product.category.parent} #{@product.category.parent.name}
+                            -# = f.select :category_id, @category_children , {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'child_category'}  
+                            -# %option{"data-category" => "${category.id}", :value => "#{category.id}"} #{category.name}       
+
+

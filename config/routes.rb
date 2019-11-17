@@ -19,8 +19,8 @@ Rails.application.routes.draw do
       post ':product_id/pay' => 'products#pay', as: 'pay'
       # post 'pay/:id' => 'products#pay', as: 'pay'
 
-      get 'get_category_children'
-      get 'get_category_grandchildren'
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
     member do
       get :showmine     #ユーザーが出品した商品の詳細

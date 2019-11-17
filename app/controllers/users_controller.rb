@@ -23,6 +23,10 @@ class UsersController < ApplicationController
   end
 
   def listing
+    @products=current_user.products
+    @product = Product.find(params[:id])
+    @product.images.build
+    @length =@product.images.length
   end
 
   private
