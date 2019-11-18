@@ -25,6 +25,7 @@
                         .items-box_photo__sold
                           .items-box_photo__sold__inner
                             SOLD
+
                   -# %li
                   -#   = image_tag 'blacktops.jpg', :height => "60", :width => "60"
                   -# %li 
@@ -38,7 +39,7 @@
                 .product-exhibit-details-box__info  
                   .exhibit-table__highrow
                     = link_to root_path do
-                      = current_user.nickname
+                      = @product.user.nickname
 
               .product-exhibit-details-box
                 .product-exhibit-details-box__heading
@@ -111,7 +112,7 @@
             (税込)  
           .products-exhibit-shipping-fee
             = @product.shipping_burden
-
+        
       .products-show-user
         = link_to '商品の編集',"/products/#{@product.id}/edit",class: "products-show-user__edit"
         %p.products-show-user__or or
@@ -128,7 +129,7 @@
                     = fa_icon 'user-circle', class: 'icon'    
               .products-show-comment-container__box
                 .products-show-comment__name
-                  =current_user.nickname
+                  = @product.user.nickname
 
 
                 .products-show-comment-box__text  
