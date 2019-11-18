@@ -72,14 +72,17 @@
                             .icon-arrow-bottom-sai
                               %i.fa.fa-angle-down.chevron-down-icon
 
-                            = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'select-default', id: 'parent_category'}
+                            = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
+
+                          .exhibit-error.clearfix
+                            =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
 
                         .listing-select-wrapper
                           .listing-select-wrapper__box
                             .icon-arrow-bottom-sai
                               %i.fa.fa-angle-down.chevron-down-icon
 
-                            = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'select-default', id: 'child_category'}
+                            = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'child_category_edit'}
 
 
 
@@ -89,7 +92,7 @@
                               %i.fa.fa-angle-down.chevron-down-icon
 
 
-                            = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'select-default', id: 'grandchild_category'}
+                            = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'grandchild_category_edit'}
 
 
                             -# = f.select :category_id, options_for_select(@category_parent_array.map{@category_parent_array , @category_parent_id_array}, @product.category.root), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'} 
@@ -111,8 +114,6 @@
                           .listing-select-wrapper__box
                             .icon-arrow-bottom-sai
                               %i.fa.fa-angle-down.chevron-down-icon
-
-
 
 
 
@@ -139,11 +140,11 @@
                     %br/
                     .select-brand-take
                       .select-brand-box
-                        %input{name: "product[brand_id]", placeholder: "例）シャネル", list: "brand_parent", size: "20", type: "search", class: "select-brand-box"}/
+                        %input{name: "product[brand_id]", placeholder: "例）シャネル", list: "brand_parent", size: "20", type: "search", class: "select-brand-box", value: ""}/
                         %datalist#brand_parent
                           -  @brand_child_array.zip(@brand_child_id_array).each do |brand_child_array, brand_child_id_array| 
                             %option{value: "#{brand_child_id_array}:#{brand_child_array}"} 
-
+                      
 
 
                     .sell-content-sai__box__Category 商品の状態
@@ -233,7 +234,7 @@
                   .price-input-container.displayflex.clearfix
                     = f.label '¥', class: 'price-input-container__yen'
                     .price-input-text-area
-                      = f.text_field :price, class: "price-box.input-default", id: 'price-box', placeholder: "例) 300(半角)", value: ""                
+                      = f.text_field :price, class: "price-box.input-default", id: 'price-box', placeholder: "例) 300(半角)", value: "#{@product.price}"                
 
               .price-error-box.clearfix
                 =  render partial: 'error-messages', locals: {product: @product, column: "price"}
@@ -245,6 +246,7 @@
                 .l-left
                   販売手数料(10%)
                 %span#fee-box.l-right-sai
+                  = "¥" + "#{@fee}"
                   
               .margin-sai.clearfix
                 .margin-sai__margin
@@ -252,6 +254,7 @@
                   販売利益
                 .profits-result-box{id: "profit", class: "profit"}
                   %span#profit-box.l-right-sai
+                    = "¥" + "#{@profit}"
 
               .sell-content
                 %p.sell-content__sentence 禁止されている出品、行為を必ずご確認ください。
@@ -269,69 +272,4 @@
 
 
       = render 'products/footer' 
-
-
-      -# %div
-      -# .select-wrap
-      -#   = icon("fas", "chevron-down tag fa-1g")
-      -#   = f.collection_select :category_id, @parent, :id, :name,{prompt: "---",selected: @parent_current.id}, class: "select-default", id: "parent-form", name: 'product[category_id1]'
-      -# .select-wrap.children-form
-      -#   = icon("fas", "chevron-down tag fa-1g")
-      -#   = f.collection_select :category_id, @category_children , :id, :name,{prompt: "---"}, class: "select-default", id: "children-form", name:'product[category_id2]'   
-      -# .select-wrap.grandchildren-form
-      -#   = icon("fas", "chevron-down tag fa-1g")
-      -#   = f.collection_select :category_id, @category_grandchildren, :id, :name,{prompt: "---"}, class: "select-default", id: "grandchildren-form", name: 'product[category_id]' 
-      
-      -# = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
-      -#   %option{value: @category_grandchildren}= @category_parent_array.name
-                                
-                                
-      
-      -#     %div
-      -# .select-wrap
-      -#   %i.fa.fa-angle-down.chevron-down-icon
-      -#   = f.collection_select :category_id, @category_parent_array, :id, :name,{prompt: "---",selected: @parent_current.id}, class: "parent_category_edit", id: "parent_category_edit", name: 'product[category_id1]'
-      -# .select-wrap.children-form
-      -#   %i.fa.fa-angle-down.chevron-down-icon
-      -#   = f.collection_select :category_id, @category_children , :id, :name,{prompt: "---"}, class: "children_category_edit", id: "children_category_edit", name:'product[category_id2]'   
-      -# .select-wrap.grandchildren-form
-      -#   %i.fa.fa-angle-down.chevron-down-icon
-        -# = f.collection_select :category_id, @category_grandchildren, :id, :name,{prompt: "---"}, class: "grandchildren_category_edit", id: "grandchildren_category_edit", name: 'product[category_id]' 
-
-
-      -# .select-wrap
-      -#   %i.fa.fa-angle-down.chevron-down-icon
-      -#   = f.collection_select :category_id, @parent, :id, :name,{prompt: "---",selected: @parent_current.id}, class: "parent_category_edit", id: "parent_category_edit", name: 'product[category_id_parent]'
-      -# .select-wrap.children-form
-      -#   %i.fa.fa-angle-down.chevron-down-icon
-      -#   = f.collection_select :category_id, @category_children , :id, :name,{prompt: "---"}, class: "children_category_edit", id: "children_category_edit", name:'product[category_id_child]'   
-      -# .select-wrap.grandchildren-form
-      -#   %i.fa.fa-angle-down.chevron-down-icon
-      -#   = f.collection_select :category_id, @category_grandchildren, :id, :name,{prompt: "---"}, class: "grandchildren_category_edit", id: "grandchildren_category_edit", name: 'product[category_id]' 
-
-
-
-                            -# = f.select :category_id, options_for_select(@category_parent_array.map{|c|[c[:name], c[:id], {}]}, @product.category.root) {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}  
-
-                            -# %option{"data-category" => "${category.id}", :value => "#{@product.category.root}"} #{category.name}
-
-                            -# %select.listing-select-wrapper__box--select.relative.select-icon#parent_category
-                            -#   %option{selected: @product.category.root, array:  @parent} #{@product.category.root.name}
-                          
-
-      
-                          -# %select.listing-select-wrapper__box--select.relative.select-icon#grandchild_category
-                            -# %option{value: @product.category}  #{@product.category.name}
-                            -# %option{value: @product.category}  #{@product.category.name}
-                            -# = f.select :category_id, @category_grandchildren, {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'grandchild_category'}  
-                            -# %option{"data-category" => "${category.id}", :value => "#{category.id}"} #{category.name}    
-
-
-
-
-                          -# %select.listing-select-wrapper__box--select.relative.select-icon#child_category
-                            -# %option{value: @product.category.parent} #{@product.category.parent.name}
-                            -# = f.select :category_id, @category_children , {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'child_category'}  
-                            -# %option{"data-category" => "${category.id}", :value => "#{category.id}"} #{category.name}       
-
 

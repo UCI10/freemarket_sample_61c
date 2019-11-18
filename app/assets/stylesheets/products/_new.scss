@@ -238,6 +238,9 @@ width:100%;
 
 
 .sell-dropbox-container-sai{
+  position: relative;
+  height:200px;
+  width: 120px;
   // 複数画像投稿用cssのコメントアウトです消さないで下さい
   // height:200px;
   // display: block;
@@ -246,31 +249,41 @@ width:100%;
 
   
   
-
+.input-area-box{
+  position: relative;
+  height:200px;
+  width: 120px;
+   
 
 .sell-dropbox-container-sai__image {
 cursor: pointer;
 position: relative;
-// height: 162px;
-// width: 520px;
+height: 200px;
+width: 120px;
+padding:70px 35px;
+box-sizing: border-box;
+
 
 
 .icon-camera{
-  // position: absolute;
+  position: relative;
   // top: 50%;
   // left:40%;
   // transform: translate(-50%, -50%);
-  font-size: 60px;
+  font-size: 50px;
   i{
-  font-family: 'icon-font';
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  text-align: center;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    // top: 50%;
+    // left:40%;
+  // font-family: 'icon-font';
+  // font-style: normal;
+  // font-weight: 400;
+  // font-variant: normal;
+  // text-transform: none;
+  // text-align: center;
+  // line-height: 1;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
   }
   }
 
@@ -298,23 +311,39 @@ display: none;
 
 .pre{
   text-align: center;
-  line-height: 200px;
-
-}
-
+  // line-height: 200px;
 
 }
 }
+}
+}
 
+
+// .preview-container{
+//   position: relative;
+//   height: 200px;
+//   width:120px;
 
 .preview-image-box{
-  height: 160px;
+  position: relative;
+  height: 200px;
   width:120px;
   display:block;
+
   // background-color: white;
   // margin:0 auto;
 
+  .images-preview-box{
+    position: relative;
+    height: 160px;
+    width:120px;
+    display:block;
+    background-color: white;
+    top: -200px;
+    // display: none;
+
 .img-box{
+  position: relative;
   display:block;
   width:120px;
   height:160px;
@@ -322,6 +351,7 @@ display: none;
   
   
   img{
+    position: relative;
     margin:0 auto;
     display:block;
     max-width:100%;
@@ -387,10 +417,10 @@ display: none;
 }
 
 }
-
-
+  }
 }
 }
+// }
 
 
 
@@ -398,9 +428,9 @@ display: none;
 // 以下複数画像投稿用cssです消さないで下さい
 // .preview-image{
 // .images-preview-box{
-  // width:120px;
-  // display:block;
-  // background-color: white;
+//   width:120px;
+//   display:block;
+//   background-color: white;
 //   .img-box{
     // display:block;
     // width:120px;

@@ -1,8 +1,4 @@
 $(document).on('turbolinks:load', function(){
-
-
-
-
   function buildImage(loadedImageUri){
     var html =
     `<div class="images-preview-box">
@@ -16,8 +12,6 @@ $(document).on('turbolinks:load', function(){
         </div>
       </div>
     </div>
-
-    
     `
     return html
   };
@@ -30,9 +24,9 @@ $(document).on('turbolinks:load', function(){
   var maxPriceInput = 10000000; // 入力できる値段の上限
   var minPriceInput = 300; // 入力できる値段の下限
   $('#price-box').attr('autocomplete', 'off'); //入力履歴非表示
-  $('#fee-box').text('-')  //デフォルトの表示
-  $('#profit-box').text('-') //デフォルトの表示
+
   $price_input.on('input', function(event) {
+
     var input_val = $(this).val();  //入力した値
     var input_val_num = Number(input_val.replace(/[^[0-9]+$/g, '')); // 整数以外の文字列を削除し整数限定にする
     if(input_val_num >= minPriceInput && input_val_num < maxPriceInput) { // 入力数値が上限と下限の間の場合
@@ -70,21 +64,12 @@ $(document).on('turbolinks:load', function(){
 
 $('#preview-image').on('change', function (e) {
   e.preventDefault();
-  
-
   files = $(this)[0].files;
-
-  
   if( images_array.length + files.length <= total_image_max){
     for (var i=0; i<files.length; i++) {
       images_array.push(files[i]);
-
-  var reader = new FileReader();
-
-  reader.onload = function (e) {
-
-  
-
+      var reader = new FileReader();
+      reader.onload = function (e) {
       var loadedImageUri = e.target.result;
       $(buildImage(loadedImageUri,)).appendTo(".preview-image-box").trigger("create").trigger("create");
   };
@@ -127,18 +112,49 @@ else{
 
 
 
-  // クリックされたaタグの順番から、削除すべき画像を特定し、配列から削除する。
+  // クリックされた画像を削除する。
   $(document).on('click','.preview__box__delete', function(){
-    var index = $(".preview__box__delete").index(this);
-    // images_array.splice(index - 1, 1);
+    // var index = $(".preview__box__delete").index(this);
+    var target_image = $(this).parent().parent().parent();
+    var img_id = target_image.data('id')
     $(this).parent().parent().parent().remove();
+    $('preview-image').after('<input type="file" id="file_new" name="file">');
+    $('preview-image').remove();
+    debugger;
+    $('#file_new').attr('id','file');
   });
+  });
+
+  
 
 
 
   
 
-});  
+
+
+$(document).on('click','.kill-preview-image-box', function(){
+  var index = $(".preview__box__delete").index(this);
+  $(this).parent().parent().parent().remove();
+});
+$.ajax({
+  url:         url,
+  type:        "PATCH",
+  data:        formData,
+  contentType: false,
+  processData: false,
+  dataType:   'json',
+})
+.done(function(data){
+  valid_Result_Disp(data);
+})
+.fail(function(){
+  alert('画像編集に失敗しました！');
+  $(".btn-submit").removeAttr("disabled");
+});
+
+
+// });  
 
 
 // $(document).on('change', '.preview-image',function(e) {

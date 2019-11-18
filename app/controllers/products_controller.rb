@@ -57,24 +57,23 @@ class ProductsController < ApplicationController
   
   end
 
- def select_category_m
-  parent = Category.find_by(id: params[:category_id_parent])
-  @children = parent.children
-  respond_to do |format|
-    format.json
-  end
-end
-def select_category_s
-  child= Category.find_by(id: params[:category_id_child])
-  @grandchildren = child.children
-  respond_to do |format|
-    format.json
-  end
-end
+#  def select_category_m
+#   parent = Category.find_by(id: params[:category_id_parent])
+#   @children = parent.children
+#   respond_to do |format|
+#     format.json
+#   end
+# end
+# def select_category_s
+#   child= Category.find_by(id: params[:category_id_child])
+#   @grandchildren = child.children
+#   respond_to do |format|
+#     format.json
+#   end
+# end
 
   def create
     @product = Product.new(product_params)
-    # respond_to do |format|JSのデータsave時の情報送信のif文条件分岐が未完成のため
     if @product.save
        params[:images][:image_url].each do |image_url|
        @product.images.create(image_url: image_url, product_id: @product.id)
@@ -87,7 +86,6 @@ end
     else
       @product.images.build
       render action: :new
-      # format.html { redirect_to root_path(@product) }
     end
 
   end
@@ -116,81 +114,47 @@ end
 
   def edit
     @product = Product.find(params[:id])
+    @profit = (@product.price * 0.9).round
+    @fee = @product.price - @profit
+    # 画像の枚数取得
     @length =@product.images.length
-
-    
-    # @length =@product.images.length 
-    # if @length == 1
-    #   4.times{@product.images.build}
-    # elsif @length == 2
-    #   3.times{@product.images.build}
-    # elsif @length == 3
-    #   2.times{@product.images.build}
-    # elsif @length == 4
-    #   1.times{@product.images.build}
-    # end
-
-
+    # 以下孫カテゴリーから親カテゴリーを辿る際の記述
+    # 選択された孫カテゴリ
     @selected_grandchild_category = @product.category
+    # idとnameをハッシュの配列化
     @category_grandchildren_array = [{id: "---", name: "---"}]
-    Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild| #siblingsで同じ階層の要素をすべて取得
+    #siblingsにて同じ階層の要素をすべて取得
+    Category.find("#{@selected_grandchild_category.id}").siblings.each do |grandchild|
       grandchildren_hash = {id: "#{grandchild.id}", name: "#{grandchild.name}"}
       @category_grandchildren_array << grandchildren_hash
     end
+    # 子カテゴリで上記と同様の記述
     @selected_child_category = @selected_grandchild_category.parent
     @category_children_array = [{id: "---", name: "---"}]
     Category.find("#{@selected_child_category.id}").siblings.each do |child|
       children_hash = {id: "#{child.id}", name: "#{child.name}"}
       @category_children_array << children_hash
     end
+    # 親カテゴリで上記と同様の記述
     @selected_parent_category = @selected_child_category.parent
     @category_parents_array = [{id: "---", name: "---"}]
     Category.find("#{@selected_parent_category.id}").siblings.each do |parent|
       parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
       @category_parents_array << parent_hash
     end
-
-
-    @category = @product.category
-    @parents = @product.category.parent
-    @parents_sib =@parents.siblings
-    @grands = @product.category.root
-    @grands_sib = @grands.siblings
-
-    @category_grandchildren  = Category.where(id: @product.category_id)
-    @category_children     = Category.where(id: @category_grandchildren[0].parent)
-    @parent         = Category.where(ancestry: nil)
-    @parent_current = Category.find_by(id: @category_children[0].parent.id)
+        
+    
     redirect_to root_path unless @product.user_id == current_user.id
-  
-
   end
 
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to action: :show
-       
-      # redirect_to root_path
     else
       redirect_to action: 'edit'
     end
   end
-
-  # def edit
-  # end
-  # def search カテゴリボックスの仕様変更の可能性があるのでその際のためのコメントアウトです
-  #   respond_to do |format|
-  #     format.html
-  #     format.json do
-  #      @children = Category.find(params[:parent_id]).children
-  #      #親ボックスのidから子ボックスのidの配列を作成してインスタンス変数で定義
-  #      @indirects = Category.find(params[:parent_id]).indirects
-
-  #     end
-  #   end
-  # end
-
 
 private  
 
@@ -204,10 +168,8 @@ private
 
   def parent_set
   @category_parent_array = ["---"]
-  # @category_parent_id_array = ["---"]
   Category.where(ancestry: nil).each do |parent|
   @category_parent_array << parent.name
-  # @category_parent_id_array << parent.id
   end
   end
 

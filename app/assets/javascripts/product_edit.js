@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function() {
-  
 
   var array = []
   $(".previews").each(function(){
@@ -11,7 +10,7 @@ $(document).on('turbolinks:load', function() {
     var picId = $(pic).data('id');
 
     if ($.inArray(picId, array) == -1){
-      $(pic).removeClass("kumogakure")
+      $(pic).removeClass(".sell-dropbox-container-sai__image__file")
       return false    
     }
   });
@@ -54,30 +53,20 @@ $(document).on('turbolinks:load', function() {
   // 新規追加画像データだけの配列（DB用）
   var new_image_files = [];
 
+
+  // 画像編集
 $('#edit-image').on('change', function (e) {
   e.preventDefault();
-  
-
   files = $(this)[0].files;
-
-  
   if( images_array.length + files.length <= total_image_max){
     for (var i=0; i<files.length; i++) {
       images_array.push(files[i]);
-
-  var reader = new FileReader();
-
-  reader.onload = function (e) {
-
-  
-
+      var reader = new FileReader();
+      reader.onload = function (e) {
       var loadedImageUri = e.target.result;
       $(buildImage(loadedImageUri,)).appendTo(".preview-image-edit").trigger("create").trigger("create");
-  };
-  reader.readAsDataURL(e.target.files[i]);
-
-
-
+      };
+      reader.readAsDataURL(e.target.files[i]);
   // $(this).parent().parent().remove();
 
     }
@@ -91,8 +80,6 @@ $('#edit-image').on('change', function (e) {
     // .sell-dropbox-container-sai__file.css({
     //   'width': `calc(600px - (120px * ${images_array.length}))`
     // })
-
-    
 
 }
 
@@ -129,11 +116,41 @@ else{
       if ($(this).siblings(".pic-form").data("id") == killPoint) {
         $(this).val("");
         $(this).parents(".form__mask__image").siblings(".form__mask__image").find(".pic-form").addClass("kumogakure");
-        $(this).siblings(".pic-form").removeClass(".sell-dropbox-container-sai__image__file ");
+        $(this).siblings(".pic-form").removeClass(".sell-dropbox-container-sai__image__file");
       }
     });
   });
 
+  //編集処理
+  $('#edit-image').on('input', function(e){
+    e.preventDefault();
+    var productid = $(".item__form__sellcontent__submit__done").data("productid")
+    var url = "/products/"+productid;      
+    // そのほかのform情報を以下の記述でformDataに追加
+    var formData = new FormData($(this).get(0));
+    // ドラッグアンドドロップで、取得したファイルをformDataに入れる。
+    files_array.forEach(function(file){
+    formData.append("image[images][]" , file)
+    });
+    delete_request_index.forEach(function(data){
+      formData.append("product[delete_request_index][]" , data)
+    });
+    $.ajax({
+      url:         url,
+      type:        "PATCH",
+      data:        formData,
+      contentType: false,
+      processData: false,
+      dataType:   'json',
+    })
+    .done(function(data){
+      valid_Result_Disp(data);
+    })
+    .fail(function(XMLHttpRequest, textStatus, errorThrown){
+      alert('出品に失敗しました！');
+      $(".btn-submit").removeAttr("disabled");
+    });
+  });
 
 
 
