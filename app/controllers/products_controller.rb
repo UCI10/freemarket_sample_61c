@@ -6,6 +6,9 @@ class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit, :create]
   before_action :brand_parent_set, only: [:new, :edit, :create]
   before_action :brand_child_set, only: [:new, :edit, :create]
+  # product_setをbefore_actionに設定しました。担当箇所にて重複記載がありましたら消してください
+  before_action :product_set
+
 
   require 'payjp'
 
@@ -146,7 +149,6 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
     @profit = (@product.price * 0.9).round
     @fee = @product.price - @profit
     # 画像の枚数取得
@@ -181,7 +183,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to action: :show
     else
