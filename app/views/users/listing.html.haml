@@ -1,14 +1,17 @@
-%body
-  .wrapper-ito
-    = render 'tops/topheader'
-    - breadcrumb :listing
-  = render 'breadcrumbs'
-  .u-display-clearfix-ito
-    .u-side-ito
-      = render 'userside'
-    .u-content
-      = render "listing"
-  .top-exhibit-fix-btn
-    = render 'tops/topexhibit'
-  .footer-ito
-    = render "tops/topfooter"
+= render "listing" 
+
+-# listingのルーティングをusersからproductへ移動した事により再設定が必要になったのでコメントアウトしました。
+-# %body
+-#   .wrapper-ito
+-#     = render 'tops/topheader'
+-#     - breadcrumb :listing
+-#   = render 'breadcrumbs'
+-#   .u-display-clearfix-ito
+-#     .u-side-ito
+-#       = render 'userside'
+-#     .u-content
+      -# = render "listing" 
+-#   .top-exhibit-fix-btn
+-#     = render 'tops/topexhibit'
+-#   .footer-ito
+-#     = render "tops/topfooter"

@@ -253,6 +253,8 @@ width:100%;
   position: relative;
   height:200px;
   width: 120px;
+  font-size: 50px;
+  margin-left: 0px;
    
 
 .sell-dropbox-container-sai__image {
@@ -267,37 +269,20 @@ box-sizing: border-box;
 
 .icon-camera{
   position: relative;
-  // top: 50%;
-  // left:40%;
-  // transform: translate(-50%, -50%);
-  font-size: 50px;
+
   i{
     position: absolute;
-    // top: 50%;
-    // left:40%;
-  // font-family: 'icon-font';
-  // font-style: normal;
-  // font-weight: 400;
-  // font-variant: normal;
-  // text-transform: none;
-  // text-align: center;
-  // line-height: 1;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
+ 
   }
   }
 
 
 
 &__file{
-// background: #f5f5f5;
-// border: 1px dashed #ccc;
 font-size: 0;
 text-align: center;
 position: relative;
-// height: 160px;
-// background: #f5f5f5;
-// border: 1px dashed #ccc;
+
 font-size: 0;
 text-align: center;
 // width: 100%;
@@ -319,10 +304,43 @@ display: none;
 }
 
 
-// .preview-container{
-//   position: relative;
+
+
+#preview-image{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display:none;
+}
+
+// #preview-image-2{
+//   width: 100%;
 //   height: 200px;
-//   width:120px;
+//   object-fit: cover;
+//   display:none;
+// }
+
+// #preview-image-3{
+//   width: 100%;
+//   height: 200px;
+//   object-fit: cover;
+//   display:none;
+// }
+
+// #preview-image-4{
+//   width: 100%;
+//   height: 200px;
+//   object-fit: cover;
+//   display:none;
+// }
+
+// #preview-image-5{
+//   width: 100%;
+//   height: 200px;
+//   object-fit: cover;
+//   display:none;
+// }
+
 
 .preview-image-box{
   position: relative;
@@ -330,20 +348,158 @@ display: none;
   width:120px;
   display:block;
 
-  // background-color: white;
-  // margin:0 auto;
+  // .preview-image-box-2{
+  //   position: relative;
+  //   height: 200px;
+  //   width:120px;
+  //   display:block;
+    
+    
+//   .images-preview-box{
+//     position: relative;
+//     height: 160px;
+//     width:120px;
+//     display:block;
+//     background-color: white;
+//     top: -200px;
+//     // display: none;
+
+//   .images-preview-block{
+//     position: absolute;
+//     height: 160px;
+//     width:120px;
+//     display:block;
+//     background-color: white;
+
+// .img-box{
+//   position: relative;
+//   display:block;
+//   width:120px;
+//   height:160px;
+//   background-color: white;
+  
+  
+//   img{
+//     position: relative;
+//     margin:0 auto;
+//     display:block;
+//     max-width:100%;
+//     max-height:100%;
+//   }
+// }
+
+// .preview-box-btn-list{
+//   width:120px;
+//   height:40px;
+//   background-color: white;
+//   display:block;
+//   position: relative;
+
+//   a:link {
+//     color: $light-blue;
+//     text-decoration: none;
+//     }
+//   a:visited {
+//       color :$light-blue;
+//       }  
+//   a:hover {
+//     color: $light-blue;
+//     }
+//   a:active {
+//       color: $light-blue;
+//   }
+
+//   .preview-box-btn{
+//     display:block;
+//     width: 120px;
+//     height:40px;
+//     float:left;
+//     text-align: center;
+//     color: $light-blue;
+//     background-color: white;
+
+
+//   .preview__box__edit{
+//     display:block;
+//     width: 60px;
+//     height:38px;
+//     line-height: 38px;
+//     float:left;
+//     text-align: center;
+//     background-color: white;
+    
+
+//   }
+
+//   .preview__box__delete{
+//     display:block;
+//     width:60px;
+//     height:38px;
+//     line-height: 38px;
+//     float:left;
+//     text-align: center;
+//     background-color: white;
+//     position: relative;
+
+
+//   }
+// }
+
+// }
+//   }
+// }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // }
+}
+}
+
+
+
+
+// 以下複数画像投稿用cssです消さないで下さい
+
+
+
+
+.dropzone-container{
+  width: 600px;
+  height:200px;
+  display: block;
+  margin: 0 auto;
+  background-color: #ccc;
+
+
+
 
   .images-preview-box{
-    position: relative;
     height: 160px;
     width:120px;
     display:block;
     background-color: white;
-    top: -200px;
+    // top: -200px;
     // display: none;
 
+  // .images-preview-block{
+  //   position: absolute;
+  //   height: 200px;
+  //   width:120px;
+  //   display:block;
+  //   background-color: white;
+
 .img-box{
-  position: relative;
   display:block;
   width:120px;
   height:160px;
@@ -351,20 +507,19 @@ display: none;
   
   
   img{
-    position: relative;
-    margin:0 auto;
     display:block;
-    max-width:100%;
-    max-height:100%;
+    width:120px;
+    height:160px;
+    background-color: white;
   }
 }
 
-.preview-box-btn-list{
-  width:120px;
-  height:40px;
-  background-color: white;
-  display:block;
-  position: relative;
+// .preview-box-btn-list{
+//   width:120px;
+//   height:40px;
+//   background-color: white;
+//   display:block;
+//   position: relative;
 
   a:link {
     color: $light-blue;
@@ -381,7 +536,7 @@ display: none;
   }
 
   .preview-box-btn{
-    display:block;
+    display: flex;
     width: 120px;
     height:40px;
     float:left;
@@ -391,7 +546,7 @@ display: none;
 
 
   .preview__box__edit{
-    display:block;
+    display: flex;
     width: 60px;
     height:38px;
     line-height: 38px;
@@ -403,7 +558,7 @@ display: none;
   }
 
   .preview__box__delete{
-    display:block;
+    display: flex;
     width:60px;
     height:38px;
     line-height: 38px;
@@ -416,16 +571,161 @@ display: none;
   }
 }
 
+// }
+  // }
 }
+
+
+
+// .btn_wrapper{
+//   display: flex;
+//   justify-content: space-between;
+//   background-color:#f5f5f5;
+//   height: 35px;
+//   width: 120px;
+// }
+
+// .edit{
+//   cursor: pointer;
+//   color: #0099e8;
+//   font-size: 14px;
+//   line-height: 35px;
+//   text-align: center;
+//   width: 60px;
+// }
+
+// .delete {
+//   cursor: pointer;
+//   color: #0099e8;
+//   font-size: 14px;
+//   line-height: 35px;
+//   text-align: center;
+//   width: 60px;
+}
+
+
+
+
+
+
+.dropzone-area{
+  box-sizing: border-box;
+  width: 600px;
+  height: 200px;
+  // margin-top: 20px;
+  // border: 1px dashed #ccc;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  background: #ccc;
+  .dropzone-box{
+    width: 100%;
+    height: 200px;
+    .input_area{
+      #upload-image__btn{
+        display: none;
+      }
+    }
+    p{
+      font-weight: bold;
+      cursor: pointer;
+      height: 200px;
+      padding: 50px;
+    }
   }
 }
+
+
+
+.dropzone-area2{
+  display: none;
+  box-sizing: border-box;
+  width: 100%;
+  height: 155px;
+  background: #f5f5f5;
+  border: 1px dashed #ccc;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  .dropzone-box{
+    padding: 0;
+    width: 100%;
+    height: 155px;
+    .input_area{
+      #upload-image__btn{
+        display: none;
+      }
+    }
+    p{
+      font-weight: bold;
+      cursor: pointer;
+      height: 155px;
+      padding: 50px;
+    }
+  }
+}
+
+.dropzone-preview {
+  display: flex;
+}
+
+.preview-image-box{
+  height: 200px;
+  display: flex;
+}
+
+.preview-image-box2{
+  display: flex;
+}
+
+.dropzone-preview2 {
+  display: flex;
+}
+
+.preview-image {
+  display: none;
+}
+
+.img_box img {
+  // margin: 20px 5px 0 0;
+  height: 160px;
+  width: 120px;
+  background-color: white;
+}
+
+
+.btn_wrapper{
+  display: flex;
+  justify-content: space-between;
+  background-color:#f5f5f5;
+  height: 35px;
+  width: 120px;
+}
+
+.btn_edit{
+  cursor: pointer;
+  color: #0099e8;
+  font-size: 14px;
+  line-height: 35px;
+  text-align: center;
+  width: 60px;
+}
+
+.btn_delete {
+  cursor: pointer;
+  color: #0099e8;
+  font-size: 14px;
+  line-height: 35px;
+  text-align: center;
+  width: 60px;
 }
 // }
 
 
 
 
-// 以下複数画像投稿用cssです消さないで下さい
+
+
 // .preview-image{
 // .images-preview-box{
 //   width:120px;
@@ -462,24 +762,24 @@ display: none;
 //   border: 1px dashed #ccc;
 
 
-.dropzone-container{
-  // background: #f5f5f5;
-  display: block;
-  height: 200px;
-  width: 500px;
-  margin: 0 auto;
-  background-color: #ccc;
-  border: 1px dashed #ccc;
+// .dropzone-container{
+//   // background: #f5f5f5;
+//   display: block;
+//   height: 200px;
+//   width: 500px;
+//   margin: 0 auto;
+//   background-color: #ccc;
+//   border: 1px dashed #ccc;
 
-  .dropzone-area{
-    // box-sizing: border-box;
-    width: 100%;
-    height: 180px;
-    margin:0 auto;
-    font-size: 14px;
-    text-align: center;
-    cursor: pointer;
-    background-color: #ccc;
+//   .dropzone-area{
+//     // box-sizing: border-box;
+//     width: 100%;
+//     height: 180px;
+//     margin:0 auto;
+//     font-size: 14px;
+//     text-align: center;
+//     cursor: pointer;
+//     background-color: #ccc;
 
 
 //   .sell-dropbox-container-sai__image {
@@ -522,8 +822,8 @@ display: none;
 //   -moz-osx-font-smoothing: grayscale;
 //   }
 //   }
-}
-}
+// }
+// }
 // &__visible{
 // display: none;
 // }
@@ -543,24 +843,24 @@ display: none;
   // }
   
 
-    .image-preview-nav-text{
-      // text-align: center;
-      // justify-content: center;
-      // flex-direction: column; 
-      // align-items: center; 
-      padding-top: 20px;
+  //   .image-preview-nav-text{
+  //     // text-align: center;
+  //     // justify-content: center;
+  //     // flex-direction: column; 
+  //     // align-items: center; 
+  //     padding-top: 20px;
 
-    h2{
+  //   h2{
       
-      font-weight: bold;
-      cursor: pointer;
-      height: 160px;
-      text-align: center;
-      margin: 10px 0 auto;
+  //     font-weight: bold;
+  //     cursor: pointer;
+  //     height: 160px;
+  //     text-align: center;
+  //     margin: 10px 0 auto;
       
       
-    }
-  }
+  //   }
+  // }
 // }
   // }
 
@@ -610,9 +910,9 @@ display: none;
 //   display: flex;
 // }
 
-// #preview{
-//   display: flex;
-// }
+#preview{
+  display: flex;
+}
 
 // #preview2{
 //   display: flex;
@@ -626,35 +926,10 @@ display: none;
 //   display: none;
 // }
 
-// .img_view img {
+// .img_box img {
 //   margin: 20px 5px 0 0;
 //   height: 120px;
 //   width: 120px;
 // }
 
-// .btn_wrapper{
-//   display: flex;
-//   justify-content: space-between;
-//   background-color:#f5f5f5;
-//   height: 35px;
-//   width: 120px;
-// }
-
-// .edit{
-//   cursor: pointer;
-//   color: #0099e8;
-//   font-size: 14px;
-//   line-height: 35px;
-//   text-align: center;
-//   width: 60px;
-// }
-
-// .delete {
-//   cursor: pointer;
-//   color: #0099e8;
-//   font-size: 14px;
-//   line-height: 35px;
-//   text-align: center;
-//   width: 60px;
-// }
 

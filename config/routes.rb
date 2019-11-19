@@ -21,9 +21,12 @@ Rails.application.routes.draw do
 
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      
     end
     member do
       get :showmine     #ユーザーが出品した商品の詳細
+      # listingのルーティングをusersからproductへ移動しましたそれに伴い変更箇所がある可能性があるのであとで確認しましょう。
+      get :listing      #商品出品リスト
     end
   end
 
@@ -33,7 +36,7 @@ Rails.application.routes.draw do
       get :identification    #本人情報
       get :logout            #ログアウト
       get :profile           #プロフィール編集
-      get :listing           #商品出品リスト
+      
     end  
   end  
 

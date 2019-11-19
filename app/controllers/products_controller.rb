@@ -2,8 +2,6 @@ class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit, :create]
   before_action :brand_parent_set, only: [:new, :edit, :create]
   before_action :brand_child_set, only: [:new, :edit, :create]
-
-  # before_action :get_category_children, only: [:new, :edit, :create]カテゴリボックスのデータ送信が未完成ですのでコメントアウトします
   require 'payjp'
 
   def pay
@@ -30,20 +28,9 @@ class ProductsController < ApplicationController
       @product = Product.new
       @parents = Category.all.order("id ASC").limit(8)
       @product.images.build
-      
-    # TODO   @category_parent_array = ["---"]
-    #   Category.where(ancestry: nil).each do |parent|
-    #   @category_parent_array << parent.name
-    #  end
-
-    # @product = Product.new
-    # @product.images.build  
-  
-
   end
 
     
-   # 以下全て、formatはjsonのみ
    # 親カテゴリーが選択された後に動くアクション
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
@@ -56,21 +43,6 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   
   end
-
-#  def select_category_m
-#   parent = Category.find_by(id: params[:category_id_parent])
-#   @children = parent.children
-#   respond_to do |format|
-#     format.json
-#   end
-# end
-# def select_category_s
-#   child= Category.find_by(id: params[:category_id_child])
-#   @grandchildren = child.children
-#   respond_to do |format|
-#     format.json
-#   end
-# end
 
   def create
     @product = Product.new(product_params)
@@ -156,6 +128,30 @@ class ProductsController < ApplicationController
     end
   end
 
+  # マージ後の実装の可否が試さないと判断できない箇所の前の設定です。マージ後問題があれば戻してください
+  # def listing
+
+  #   @products = current_user.products
+  #   @product = Product.find(params[:id])
+  #   # @products = Product.find(params[:id])
+  #   @product.images.build
+  #   # @length =@product.images.length
+
+  #   @user_products= Product.where(user_id: @product.user.id)
+  # end
+
+  def listing
+
+    # @products = current_user.products
+    # @product = Product.find(params[:id])
+    # @products = Product.find(params[:id])
+    # @product.images.build
+    # @length =@product.images.length
+
+    @user_products= Product.where(user_id: current_user.id)
+    render '/users/listing'
+  end
+
 private  
 
   def product_params
@@ -173,7 +169,6 @@ private
   end
   end
 
-  
   def brand_parent_set
     @brand_parent_array   = []
     @brand_id_array   = []
@@ -196,10 +191,6 @@ private
   def product_set
     @product = Product.find(params[:id])
   end
-
-  # def category_set
-  #   @category = Category.where(ancestry: nil) 
-  # end
 
   def sell
     @category = Category.where(ancestry: nil) 

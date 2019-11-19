@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # before_action :authenticate_user! 
 
   def index
+
   end
   
 
@@ -20,14 +21,13 @@ class UsersController < ApplicationController
   end
 
   def identification 
+
   end
 
-  def listing
-    @products=current_user.products
-    @product = Product.find(params[:id])
-    @product.images.build
-    @length =@product.images.length
-  end
+
+  
+  
+
 
   private
   def move_to_tops_index
