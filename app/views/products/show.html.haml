@@ -6,19 +6,16 @@
       %h1
         =@product.title  
       .products-show-centerbox.displayflex
-        - @product.images.each do |product_image|
-          .product-exhibit-photo
-            .product-exhibit-photo__high
-              = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "300px", height: "420px" 
-          
-            .ul.product-exhibit-photo__low.displayflex
-              %li
-                = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "60px", height: "60px" 
-              %li
-                = image_tag 'blacktops.jpg', :height => "60", :width => "60"
-              %li 
-                = image_tag 'whitetops.jpg', :height => "60", :width => "60"
-
+        .product-exhibit-photo 
+          .product-exhibit-photo__high
+            - @product.images.each do |image| 
+              .product-exhibit-photo__high__image
+                = image_tag "#{ image.image_url}",  width: "300px", height: "420px"  
+          .product-exhibit-photo__low.displayflex
+            - @product.images.each do |image| 
+              .product-exhibit-photo__low__image
+                .product-exhibit-photo__low__image__1
+                  = image_tag "#{ image.image_url}", width: "60px", height: "60px"
 
         .product-exhibit-details__table
           .product-exhibit-details-box.displayflex
@@ -27,7 +24,7 @@
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
                 = link_to root_path do
-                  = current_user.nickname
+                  = @product.user.nickname
               .exhibit-table__lowrow
                 .product-exhibit-reviewrate-rating.displayflex
                   .product-exhibit-reviewrate-rating__good.displayflex
@@ -117,10 +114,21 @@
         (税込)  
       .products-exhibit-shipping-fee
         = @product.shipping_burden
-    .products-exhibit-buy-btn
 
-      = link_to purchase_products_path, method: :post do
-        購入画面に進む
+    
+    -if @product.buyer_id
+      .products-exhibit-buy-btn#buyer_id_gray
+        売り切れました。
+    
+    -else
+      -if user_signed_in?
+        .products-exhibit-buy-btn
+          = link_to pay_products_path(@product) do
+            購入画面に進む
+      -else
+        .products-exhibit-buy-btn
+          = link_to new_user_session_path do
+            購入画面に進む
 
     .products-exhibit-description
       .products-exhibit-description__box
@@ -158,6 +166,7 @@
   .products-show-comment          
     .products-show-comment__box
       .products-show-comment__box__form
+
         -# .products-show-comment-container.displayflex
         -#   .products-show-comment-container__icon
         -#     = link_to root_path do
@@ -229,73 +238,14 @@
           %ul
             .product-otherlist__box__image
               = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
+                - @product.images.each do |image| 
+                  = image_tag "#{ image.image_url}", size: '220x220'
                 .product-otherlist__box__price
-                  ¥1,200
+                  ="￥#{@product.price.to_s(:delimited)}"  
             .product-otherlist__box__title
               .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
+                = @product.title
 
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
-
-
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
-
-
-
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
-
-
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
-
-
-
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
 
 .footer-take
   = render 'tops/topfooter'        
