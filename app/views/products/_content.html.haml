@@ -1,7 +1,24 @@
-.main-advertising
+
+.main-advertising.slick
   .main-advertising__image
     = link_to '#0' do
-      = image_tag 'topadvatisingimg.png', :height => "380", :width => "680"
+      = image_tag 'slick1.png', :height => "380", :width => "100%" 
+  .main-advertising__image
+    = link_to '#0' do
+      = image_tag 'slick2.png', :height => "380", :width => "100%"
+  .main-advertising__image
+    = link_to '#0' do
+      = image_tag 'slick3.png', :height => "380", :width => "100%"
+
+-# .main-advertising.witch-img.js-switch-img
+-#   .main-advertising__image.switch-img_item.is-current
+-#     = image_tag 'topadvatisingimg.png', :height => "380", :width => "680"
+-#   .main-advertising__image.switch-img_item
+-#     = image_tag 'blacktops.jpg', :height => "380", :width => "680"
+-#   .main-advertising__image.switch-img_item  
+-#     = image_tag 'icon-bad', :height => "380", :width => "680"
+-#     -# = link_to '#0',class: "switch-img_item" do
+      
 
 .popular-list
   .popular-category
@@ -37,8 +54,8 @@
             - @products.each do |product|  
               .new-product-toplist__box
                 = link_to product_path(product) do
-                  %ul
-                    .new-product-toplist__box__image
+                  %ul.fadein
+                    %li.new-product-toplist__box__image
 
 
                       = image_tag "#{product.images.first.image_url}", size: "180×180"
@@ -51,7 +68,7 @@
                       .new-product-toplist__price
                         %span￥
                         =product.price.to_s(:delimited)
-                    .new-product-toplist__box__title
+                    %li.new-product-toplist__box__title
                       .new-product-toplist__title
                         = product.title
 
