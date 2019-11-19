@@ -7,12 +7,3 @@ $(document).on('turbolinks:load', function() {
         return false;
     });
   });
-  // $(document).on('turbolinks:load', function() {
-  //   // mouseoverを使用
-  //   $(".product-exhibit-photo__low__image__1").mouseover(function() {
-  //     $(this).animate({opacity : 1});
-  //   });
-  //   $(".product-exhibit-photo__low__image__1").mouseout(function(){
-  //     $(this).animate({opacity : 0.4});
-  //   });
-  // });
