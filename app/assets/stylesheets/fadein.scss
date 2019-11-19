@@ -1,0 +1,17 @@
+// .fadein  li {
+//   margin: 15px;
+//   float: left;
+//   // visibility: hidden;
+//   display: none;
+// }
+
+.fadein {
+  opacity : 0;
+  transform : translate(100px,0);
+  transition : all 1s;
+}
+ 
+.fadein.active{
+  opacity : 1;
+  transform : translate(0, 0);
+}
