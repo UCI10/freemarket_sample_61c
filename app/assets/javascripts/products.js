@@ -44,9 +44,17 @@ $(document).on('turbolinks:load', function(){
         dropzone.css({
           'width': `calc(100% - (120px * ${images.length - 5}))`
         })
+        dropzone.css({
+          'display': `block`
+        })
+
+       
       })
       }
       else {
+        dropzone.css({
+          'display': `none`
+        })
 
       return;
       }
@@ -68,6 +76,22 @@ $(document).on('turbolinks:load', function(){
     $(".preview-image").splice(del_num , 1);
     preview_delete.val('');
     preview_delete.remove();
+
+
+    if(images.length <= 4){
+      dropzone.css({
+        'display': `block`
+      })
+    }
+    else {
+      dropzone.css({
+        'display': `none`
+      })
+
+    return;
+    }  
+
+
     // 商品編集用です
     // hidden_form = `<input type="hidden", name="[delete_ids][]", value="${img_id}">`
     // $('.dropzone-container3').append(hidden_form)

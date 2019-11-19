@@ -67,9 +67,9 @@ $('#edit-image').on('change', function (e) {
       $(buildImage(loadedImageUri,)).appendTo(".preview-image-edit").trigger("create").trigger("create");
       };
       reader.readAsDataURL(e.target.files[i]);
-  // $(this).parent().parent().remove();
-
     }
+   　// 画像編集は１枚のみしかまだできません。以下複数枚投稿用コメントアウトです。消さないでください
+
     // preview-image-box.css({
     //   'display': 'block'
     // })
@@ -155,7 +155,7 @@ else{
 
 
 
-
+// カテゴリボックスに連動したサイズボックス作成用です。消さないでください。
   //   // カテゴリーセレクトボックスのオプションを作成
   // function appendOption(category){
   //   var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
