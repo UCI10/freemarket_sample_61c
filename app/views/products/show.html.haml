@@ -6,24 +6,16 @@
       %h1
         =@product.title  
       .products-show-centerbox.displayflex
-        - @product.images.each do |product_image|
-          .product-exhibit-photo
-            .product-exhibit-photo__high
-              = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "300px", height: "420px" 
-
-              -if @product.buyer_id.present?
-                .items-box_photo__sold
-                  .items-box_photo__sold__inner
-                    SOLD
-
-            .ul.product-exhibit-photo__low.displayflex
-              %li
-                = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "60px", height: "60px" 
-              %li
-                = image_tag 'blacktops.jpg', :height => "60", :width => "60"
-              %li 
-                = image_tag 'whitetops.jpg', :height => "60", :width => "60"
-
+        .product-exhibit-photo 
+          .product-exhibit-photo__high
+            - @product.images.each do |image| 
+              .product-exhibit-photo__high__image
+                = image_tag "#{ image.image_url}",  width: "300px", height: "420px"  
+          .product-exhibit-photo__low.displayflex
+            - @product.images.each do |image| 
+              .product-exhibit-photo__low__image
+                .product-exhibit-photo__low__image__1
+                  = image_tag "#{ image.image_url}", width: "60px", height: "60px"
 
         .product-exhibit-details__table
           .product-exhibit-details-box.displayflex
@@ -246,73 +238,14 @@
           %ul
             .product-otherlist__box__image
               = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
+                - @product.images.each do |image| 
+                  = image_tag "#{ image.image_url}", size: '220x220'
                 .product-otherlist__box__price
-                  ¥1,200
+                  ="￥#{@product.price.to_s(:delimited)}"  
             .product-otherlist__box__title
               .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
+                = @product.title
 
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
-
-
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
-
-
-
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
-
-
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
-
-
-
-        .product-otherlist__box
-          %ul
-            .product-otherlist__box__image
-              = link_to root_path do
-                = image_tag 'topspink.jpg', size: '220x220'
-                .product-otherlist__box__price
-                  ¥1,200
-            .product-otherlist__box__title
-              .product-otherlist__title
-                %h6 ピンクトップスピンクトップスピンクトップスピンクトップス
 
 .footer-take
   = render 'tops/topfooter'        
