@@ -15,8 +15,8 @@ Rails.application.routes.draw do
 
   resources :products do
     collection do
-      post 'purchase' #商品詳細ページ
-      post ':product_id/pay' => 'products#pay', as: 'pay'
+      post ':product_id/purchase' => 'products#purchase', as: 'purchase'
+      get ':product_id/pay' => 'products#pay', as: 'pay'
       # post 'pay/:id' => 'products#pay', as: 'pay'
 
       get 'get_category_children', defaults: { format: 'json' }
@@ -53,8 +53,8 @@ Rails.application.routes.draw do
     end
   end
   resources :sells,only:[:index,:new,:create,:edit,:update]
-
-  resources :pays, only: [:new, :index, :create, :destroy]
+  resources :pays, only:[:create,:new,:index,:show, :destroy]
+  
 
 end
 

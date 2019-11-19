@@ -1,3 +1,6 @@
+@import "slick-theme"; 
+@import "slick";
+@import "carousel";
 
 @import "config/variable";
 @import "config/reset";
@@ -29,6 +32,11 @@
 @import "users/step3";
 @import "users/identification";
 @import "errormessage";
+@import "pays";
+
+
+
+@import "fadein";
 
 
 .wrapper-take{

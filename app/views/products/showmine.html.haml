@@ -11,13 +11,21 @@
           %h1
             =@product.title
           .products-show-centerbox.displayflex
-            - @product.images.each do |product_image|
-              .product-exhibit-photo
-                .product-exhibit-photo__high
-                  = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "300px", height: "420px" 
-                .ul.product-exhibit-photo__low.displayflex
-                  %li
-                    = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "60px", height: "60px" 
+            .product-exhibit-photo 
+              .product-exhibit-photo__high
+                - @product.images.each do |image| 
+                  .product-exhibit-photo__high__image
+                    = image_tag "#{ image.image_url}", class:".product-exhibit-photo__high__image",id:"mainphoto", width: "300px", height: "420px"  
+              .product-exhibit-photo__low.displayflex
+                - @product.images.each do |image| 
+                  .product-exhibit-photo__low__image
+                    .product-exhibit-photo__low__image__1
+                      = image_tag "#{ image.image_url}", width: "60px", height: "60px",class:"details__photo__under__image"
+                      -if @product.buyer_id.present?
+                        .items-box_photo__sold
+                          .items-box_photo__sold__inner
+                            SOLD
+
                   -# %li
                   -#   = image_tag 'blacktops.jpg', :height => "60", :width => "60"
                   -# %li 
@@ -31,7 +39,7 @@
                 .product-exhibit-details-box__info  
                   .exhibit-table__highrow
                     = link_to root_path do
-                      = current_user.nickname
+                      = @product.user.nickname
 
               .product-exhibit-details-box
                 .product-exhibit-details-box__heading
@@ -104,7 +112,7 @@
             (税込)  
           .products-exhibit-shipping-fee
             = @product.shipping_burden
-
+        
       .products-show-user
         = link_to '商品の編集',"/products/#{@product.id}/edit",class: "products-show-user__edit"
         %p.products-show-user__or or
@@ -121,7 +129,7 @@
                     = fa_icon 'user-circle', class: 'icon'    
               .products-show-comment-container__box
                 .products-show-comment__name
-                  =current_user.nickname
+                  = @product.user.nickname
 
 
                 .products-show-comment-box__text  
