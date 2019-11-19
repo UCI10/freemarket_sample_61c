@@ -38,7 +38,7 @@
           .buy-form__inner
             %h3 配送先
             %address.buy-form__inner__user
-              = current_user.address.postalcode 
+              = current_user.address.postalcode
               %br
               = Prefecture.find(current_user.address.prefectures).name
               = current_user.address.city
