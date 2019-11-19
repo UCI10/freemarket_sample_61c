@@ -54,6 +54,7 @@
             - @products.each do |product|  
               .new-product-toplist__box
                 = link_to product_path(product) do
+
                   %ul.fadein
                     %li.new-product-toplist__box__image
 
@@ -65,6 +66,7 @@
                           .items-box_photo__sold__inner
                             SOLD
            
+
                       .new-product-toplist__price
                         %span￥
                         =product.price.to_s(:delimited)

@@ -24,10 +24,9 @@ class Product < ApplicationRecord
   validates  :shipping_period,  presence: true
   validates  :shipping_method,  presence: true
   validates  :size,  presence: true
-  validates  :category_id,  presence: true, numericality: { only_integer: true,
-    greater_than: 1, message:  "を選択して下さい"}
+  validates  :category_id,  presence: true, numericality: { only_integer: true,  greater_than: 1, message:  "を選択して下さい"}
   validates  :price,  presence: true, format: {with: VALID_PRICEL_HALF, message: "を半角数字で入力して下さい"},numericality: { only_integer: true,
-    greater_than: 300, less_than: 10000000, message: "を300以上9999999で入力して下さい"}
+    greater_than: 300, less_than: 10000000, message: "を300以上9999999(半角数字)で入力して下さい"}
  # JS側でも入力制限をかけています
 
 

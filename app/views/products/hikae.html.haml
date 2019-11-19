@@ -1,0 +1,13 @@
+            .sell-dropbox-container-take.displayfle
+              .preview-image-box
+                .sell-dropbox-container-sai
+                  .input-area-box 
+                    = g.label :image_url, for: "preview-image", class: 'form__mask__image input-area dropzone-box' do  
+                     
+                      .sell-dropbox-container-sai__image.input-area 
+                        = fa_icon 'camera', class: "icon-camera input-area"
+                        %p.sell-form__upload-box__image-upload__text.input-area
+                      .file-input_area
+                        = g.file_field :image_url,  multiple: true,  name: 'images[image_url][]', class: 'preview-image sell-dropbox-container-sai__image__file input-area', id: "preview-image", 'data-image': 0
+                      %pre.sell-dropbox-container-sai__image__visible.input-area
+                
