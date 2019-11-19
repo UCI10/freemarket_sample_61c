@@ -1,13 +1,9 @@
 $(document).on('turbolinks:load', function(){
   var dropzone = $('.dropzone-area');
-  var dropzone2 = $('.dropzone-area2');
-  var dropzone_box = $('.dropzone-box');
   var images = [];
   var inputs  =[];
-  var input_area = $('.input_area');
   var preview = $('#preview');
-  var preview2 = $('#preview2');
-  // 画像プレビュー画面
+  // 画像プレビュー画面用HTML
   function buildImage(loadedImageUri){
     var html =
     `<div class="images-preview-box">
@@ -29,14 +25,14 @@ $(document).on('turbolinks:load', function(){
       var reader = new FileReader();
       inputs.push($(this));
       var img = $(`<div class= "img-box"><img></div>`);
-
-
       reader.onload = function (e) {
       var loadedImageUri = e.target.result;
+      // HTML形成
       $(buildImage(loadedImageUri,)).appendTo(".preview-image-box");
       };
       reader.readAsDataURL(file);
       images.push(img);
+      // 画像枚数による表示変更条件分岐
       if(images.length <= 4){
         $.each(images, function(index, image) {
         image.attr('data-image', index);
@@ -47,8 +43,6 @@ $(document).on('turbolinks:load', function(){
         dropzone.css({
           'display': `block`
         })
-
-       
       })
       }
       else {
@@ -64,7 +58,7 @@ $(document).on('turbolinks:load', function(){
   // クリックされた画像を削除する。
   $(document).on('click','.preview__box__delete','turbolinks:load', function(){
     var index = $(".preview__box__delete").index(this);
-    var inp_num = images.length - index
+    var inp_num = images.length - index - 1
     var target_image = $(this).parent().parent();
     var preview_delete = $(".preview-image").eq(inp_num);
     var del_num = inp_num
@@ -73,11 +67,10 @@ $(document).on('turbolinks:load', function(){
     $(this).parent().val('');
     target_image.remove();
     $(this).parent().remove();
-    $(".preview-image").splice(del_num , 1);
+    $(".preview-image").splice(del_num - 1 , 1);
     preview_delete.val('');
-    preview_delete.remove();
-
-
+    preview_delete.remove()
+    // 画像枚数による表示変更条件分岐
     if(images.length <= 4){
       dropzone.css({
         'display': `block`
@@ -90,8 +83,6 @@ $(document).on('turbolinks:load', function(){
 
     return;
     }  
-
-
     // 商品編集用です
     // hidden_form = `<input type="hidden", name="[delete_ids][]", value="${img_id}">`
     // $('.dropzone-container3').append(hidden_form)

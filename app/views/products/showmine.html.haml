@@ -96,7 +96,8 @@
                 .product-exhibit-details-box__info  
                   .exhibit-table__highrow
                     = link_to root_path do
-                      = @product.shipping_area
+                      = Prefecture.find(@product.shipping_area).name
+                     
 
               .product-exhibit-details-box
                 .product-exhibit-details-box__heading

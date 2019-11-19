@@ -1,3 +1,4 @@
+%meta{:content => "”no-cache”", "http-equiv" => "”Pragma”"}/
 .single-container-sai
   .header-logo-sai
     %h1.header-logo-sai__link
@@ -21,7 +22,7 @@
           = f.fields_for :images do |g|  
             .dropzone-container
               .dropzone-preview
-                .preview-image-box#preview-image-boxid
+                .preview-image-box
                 .dropzone-area
                   = g.label :image_url, class: "dropzone-box ", for: "preview-image" do
                     .file_input_area
@@ -212,42 +213,4 @@
               = link_to root_path do
                 戻る
       = render 'products/footer' 
-
-
-
-      %h2.sell-form__header
-        商品情報を入力
-      .sell-form-container
-        %label.sell-form-container__label
-          出品画像
-        %span.sell-form-container__require
-          必須
-        = f.fields_for :images do |image|
-
-          .dropzone-container.clearfix
-            #preview
-            .dropzone-area
-              = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-                .input_area
-                  = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
-                %p ここをクリックしてください   
-                
-                          
-                -# jsにて今後仕様予定です。消さないでください
-                -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
-            
-            
-            
-            -# 画像の複数枚数保存用のコードです。消さないでください
-            -# #preview2
-            -# .dropzone-area2
-            -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-            -#     %p ここをクリックしてください
-            -# = f.text_field :brand_id, class:"select-brand-box",placeholder: "例）シャネル", value:""
-
-
-
-
-
-
 
