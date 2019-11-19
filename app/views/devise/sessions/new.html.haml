@@ -28,13 +28,13 @@
         = form_with model: @user, url: user_session_path, method: :post, id: '', class: 'formnill login-form-inner2-sai', local: true do |f|
           .login-form-inner-sai__form
             = f.email_field :email, autofocus: true, class: "has-error"
-            - if notice 
-              %p.alert.alert-notice notice
+            -# - if notice 
+            -#   %p.alert.alert-notice notice
             - if resource.errors.messages[:email].present?
               - resource.errors.messages[:email].each do |message|
                 %p.error= message
 
-            = render partial: 'error-sessionsnew', locals: {user: @user, column: "email"}  
+            -# = render partial: 'error-sessionsnew', locals: {user: @user, column: "email"}  
           .login-form-inner-sai__form#login-form-inner-sai__form
             = f.password_field :password, autocomplete: "off"
             - if resource.errors.messages[:password].present?

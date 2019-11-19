@@ -1,4 +1,8 @@
 class ProductsController < ApplicationController
+
+  # include CommonActions
+  # before_action :set_categories
+
   before_action :parent_set, only: [:new, :edit, :create]
   before_action :brand_parent_set, only: [:new, :edit, :create]
   before_action :brand_child_set, only: [:new, :edit, :create]
@@ -12,18 +16,27 @@ class ProductsController < ApplicationController
   end
   
   def pay
+
+
     @product = Product.find(params[:product_id])
-    pay = Pay.where(user_id: current_user.id).first
+  
+
+    pay = Pay.where(user_id: current_user.id).first 
     Payjp.api_key = 'sk_test_a0947663b395402fc1e150b4'
     customer = Payjp::Customer.retrieve(pay.customer_id)
     @default_card_information = customer.cards.retrieve(pay.card_id)
     # redirect_to action: "show" if card.present?
+  
 
   end
 
 
  def purchase
+    # if current_user.pay.array? 
+    # redirect_to  root_path 
+    # else
     @product_purchaser= Product.find(params[:product_id])
+    
     # @product = Product.find(params[:product_id])
    # 購入した際の情報を元に引っ張ってくる
    # テーブル紐付けてるのでログインユーザーのクレジットカードを引っ張ってくる
@@ -42,17 +55,36 @@ class ProductsController < ApplicationController
     #   flash[:notice] = '購入しました。'
     #   flash[:alert] = '購入に失敗しました。'
       redirect_to root_path
-  
+  # end
  end
 
   def index
     @products = Product.all.order("created_at DESC").limit(10)
+
+    
+
+    # @category = Category.find(1)
+    # # 下記でレディースに紐付く子カテゴリーであるトップス、パンツ、靴を全て取得出来る
+
+    # @category = Category.find(2)
+    # # 下記でトップスに紐付く子カテゴリーであるTシャツ、セーター、パーカーを全て取得出来る
+    # # 下記でトップスの親カテゴリーであるレディースのカテゴリーを取得出来る
+
+    # @category = Category.find(3)
+    # #下記でTシャツの親カテゴリーであるトップスのカテゴリーを取得出来る
+    # @category.children = @category
+    # # 下記でTシャツの親の親のカテゴリーであるレディースのカテゴリーを取得出来る
+
+
+
   end
 
   def new
       @product = Product.new
       @parents = Category.all.order("id ASC").limit(8)
       @product.images.build  
+
+
       
     # TODO   @category_parent_array = ["---"]
     #   Category.where(ancestry: nil).each do |parent|
@@ -81,11 +113,12 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+  
     # respond_to do |format|JSのデータsave時の情報送信のif文条件分岐が未完成のため
     if @product.save
        params[:images][:image_url].each do |image_url|
        @product.images.create(image_url: image_url, product_id: @product.id)
-
+      
       end
       respond_to do |format|
         format.html { redirect_to root_path }
@@ -101,6 +134,9 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
+    
+    # @user_items= Item.where(seller_id: @item.seller.id).order(“created_at DESC”).page(params[:item]).per(6)
+    @user_products= Product.where(user_id: @product.user.id)
 
       if user_signed_in? && @product.user_id == current_user.id
         render :showmine
@@ -109,7 +145,7 @@ class ProductsController < ApplicationController
 
   def destroy
     product = Product.find(params[:id])
-    if product.user_id == current_user.id
+    if user_signed_in? && product.user_id == current_user.id
       if product.destroy
         redirect_to root_path, notice: '商品を削除しました'
       else
