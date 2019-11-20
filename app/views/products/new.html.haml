@@ -22,7 +22,7 @@
           = f.fields_for :images do |g|  
             .dropzone-container
               .dropzone-preview
-                .preview-image-box
+                #preview-image-box.preview_append
                 .dropzone-area
                   = g.label :image_url, class: "dropzone-box ", for: "preview-image" do
                     .file_input_area
