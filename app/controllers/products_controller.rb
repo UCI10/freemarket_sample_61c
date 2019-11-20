@@ -65,6 +65,7 @@ class ProductsController < ApplicationController
     @products = Product.all.order("created_at DESC").limit(10)
     @products_mens = Product.where(:category_id => 145..267).order("created_at DESC").limit(10)
     @products_ladies = Product.where(:category_id => 9..144).order("created_at DESC").limit(10)
+    @products_chanel = Product.where(:brand_id => 22).order("created_at DESC").limit(10)
     
 
     # @category = Category.find(1)
