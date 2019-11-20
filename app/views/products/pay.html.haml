@@ -29,10 +29,10 @@
             ="￥#{@product.price.to_s(:delimited)}"
             %span.buy-form__fee#sihari-sai
               支払い金額
-          %ul.buy-accordion#red-sai
-            %li
-              = form_tag(purchase_products_path(@product.id), method: :post) do
-                %script.payjp-button{class: "buy-accordion__toggle", :src => "https://checkout.pay.jp", :type => "text/javascript" ,"data-text" => "購入する" ,"data-key" => "pk_test_0ddb364bab7ed621b29956cb"}
+          -# %ul.buy-accordion#red-sai
+          -#   %li
+          = form_tag(purchase_products_path(@product.id), method: :post) do
+            %script.payjp-button{class: "buy-accordion__toggle", :src => "https://checkout.pay.jp", :type => "text/javascript" ,"data-text" => "購入する" ,"data-key" => "pk_test_0ddb364bab7ed621b29956cb"}
 
         %sction.buy-form
           .buy-form__inner
