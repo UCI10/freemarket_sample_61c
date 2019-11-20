@@ -54,11 +54,8 @@
             - @products.each do |product|  
               .new-product-toplist__box
                 = link_to product_path(product) do
-
                   %ul.fadein
                     %li.new-product-toplist__box__image
-
-
                       = image_tag "#{product.images.first.image_url}", size: "180×180"
                       
                       -if product.buyer_id.present? 
