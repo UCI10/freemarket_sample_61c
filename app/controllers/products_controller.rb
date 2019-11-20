@@ -178,7 +178,6 @@ class ProductsController < ApplicationController
       @category_parents_array << parent_hash
     end
         
-    
     redirect_to root_path unless @product.user_id == current_user.id
   end
 

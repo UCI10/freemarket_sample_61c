@@ -1,10 +1,11 @@
+%meta{:content => "”no-cache”", "http-equiv" => "”Pragma”"}/
 .single-container-sai
   .header-logo-sai
     %h1.header-logo-sai__link
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
     .l-single-container-sai2
-    = form_with model: @product, local: true, multipart: true  do |f|
+    = form_with model: @product, local: true, html: {class: "sell__form"}  do |f|
       .single-main-sai
         .l-single-container-sai
           .product-menu-sai
@@ -22,32 +23,27 @@
             .dropzone-container
               .dropzone-preview
                 = f.fields_for :images do |g|  
+                 
                   
                     
                   #preview-image-box
-                    - @product.images.each do |image|
-                      .images-preview-box
-                        .img-box
-                          = image_tag "#{image.image_url}", class: "open-pic"
-                        .preview-box-btn 
-                          .preview__box__edit
+                    .images-preview-box
+                      - @product.images.first(@length).each_with_index do |image, i|
+                        .img-box.images{data:{id: "#{i}"}}
+                          = image_tag "#{image.image_url}"
+                        .preview-box-btn.images
+                          .preview__box__edit.images
                             編集
-                          .preview__box__delete
+                          .preview__box__delete.images
                             削除
-                        
+                          
                   .dropzone-area
-                    = g.label :image_url, class: "dropzone-box ", for: "preview-image" do
+                    = g.label :image_url, class: "dropzone-box preview-image", for: "preview-image" do
                       .file_input_area
-                        = g.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: 'preview-image', 'data-image': 0
+                        = g.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: "preview-image", 'data-image': 0
                       %p.text
                         ファイルをアップロード
                         %br 
-
-
-
-
-
-
 
             .sell-content-sai.clearfix
               .form-group-sai2.clearfix

@@ -6,7 +6,7 @@
         = image_tag 'mercari-logo.png', size: '155x50'
 
   .l-single-container-sai2
-  = form_with model: @product, local: true, multipart: true, retuired: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
+  = form_with model: @product, local: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
     .single-main-sai
       .l-single-container-sai
         .product-menu-sai
@@ -22,7 +22,7 @@
           = f.fields_for :images do |g|  
             .dropzone-container
               .dropzone-preview
-                #preview-image-box.preview_append
+                #preview-image-box
                 .dropzone-area
                   = g.label :image_url, class: "dropzone-box ", for: "preview-image" do
                     .file_input_area
