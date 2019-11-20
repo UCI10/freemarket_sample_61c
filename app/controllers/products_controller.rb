@@ -36,6 +36,7 @@ class ProductsController < ApplicationController
     # if current_user.pay.array? 
     # redirect_to  root_path 
     # else
+    @pay = Pay.where(user_id: current_user.id).first 
     @product_purchaser= Product.find(params[:product_id])
     
     # @product = Product.find(params[:product_id])
@@ -61,7 +62,8 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all.order("created_at DESC").limit(10)
-
+    @products_mens = Product.where(:category_id => 145..267).order("created_at DESC").limit(10)
+    @products_ladies = Product.where(:category_id => 9..144).order("created_at DESC").limit(10)
     
 
     # @category = Category.find(1)
