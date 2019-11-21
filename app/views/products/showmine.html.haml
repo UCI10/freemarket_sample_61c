@@ -63,6 +63,7 @@
                   ブランド
                 .product-exhibit-details-box__info  
                   .exhibit-table__highrow
+                  -if @product.brand_id.present?
                     = @product.brand.name
 
               .product-exhibit-details-box
