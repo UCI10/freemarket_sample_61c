@@ -7,7 +7,9 @@ class ProductsController < ApplicationController
   before_action :brand_parent_set, only: [:new, :edit, :create]
   before_action :brand_child_set, only: [:new, :edit, :create]
   # product_setをbefore_actionに設定しました。担当箇所にて重複記載がありましたら消してください
-  before_action :product_set, only: [:show]
+  before_action :product_set, only: [:edit, :update, :show]
+  before_action :set_card, only: [:pay, :purchase]
+  
 
 
   require 'payjp'
@@ -153,11 +155,22 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def edit
+def edit
+  @product = Product.find(params[:id])
+  if user_signed_in? && @product.user_id == current_user.id
     @profit = (@product.price * 0.9).round
     @fee = @product.price - @profit
     # 画像の枚数取得
     @length =@product.images.length
+
+    # @images = @product.images
+    # @uniq_image_array = @product.images.uniq!(&:first)
+
+  #   @uniq_image_array = @product.images.filter(function (x, i, self) {
+  #     return self.indexOf(x) == i
+  # });
+    
+
     # 以下孫カテゴリーから親カテゴリーを辿る際の記述
     # 選択された孫カテゴリ
     @selected_grandchild_category = @product.category
@@ -182,10 +195,12 @@ class ProductsController < ApplicationController
       parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
       @category_parents_array << parent_hash
     end
+
+  else
         
-    
     redirect_to root_path unless @product.user_id == current_user.id
   end
+end
 
   def update
     if @product.update(product_params)
