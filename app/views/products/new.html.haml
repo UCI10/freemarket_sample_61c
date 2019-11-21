@@ -1,3 +1,7 @@
+%meta{:content => "no-cache", "http-equiv" => "pragma"}/
+%meta{:content => "0", :name => "expires"}/
+%meta{:content => "no-cache, no-store", "http-equiv" => "cache-control"}/
+
 .single-container-sai
   .header-logo-sai
     %h1.header-logo-sai__link
@@ -5,7 +9,7 @@
         = image_tag 'mercari-logo.png', size: '155x50'
 
   .l-single-container-sai2
-  = form_with model: @product, local: true, multipart: true, retuired: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
+  = form_with model: @product, local: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
     .single-main-sai
       .l-single-container-sai
         .product-menu-sai
@@ -19,9 +23,11 @@
             %p 最大10枚までアップロードできます
           
           = f.fields_for :images do |g|  
-            .dropzone-container
+            .dropzone-container.block-image
               .dropzone-preview
-                .preview-image-box#preview-image-boxid
+              
+
+                #preview-image-box
                 .dropzone-area
                   = g.label :image_url, class: "dropzone-box ", for: "preview-image" do
                     .file_input_area
@@ -212,42 +218,4 @@
               = link_to root_path do
                 戻る
       = render 'products/footer' 
-
-
-
-      %h2.sell-form__header
-        商品情報を入力
-      .sell-form-container
-        %label.sell-form-container__label
-          出品画像
-        %span.sell-form-container__require
-          必須
-        = f.fields_for :images do |image|
-
-          .dropzone-container.clearfix
-            #preview
-            .dropzone-area
-              = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-                .input_area
-                  = image.file_field :image_url, multiple: true, name: 'images[image_url][]', id: "upload-image", class: "upload-image.sell-dropbox-container-sai__image__file", 'data-image': 0
-                %p ここをクリックしてください   
-                
-                          
-                -# jsにて今後仕様予定です。消さないでください
-                -# = form_for @product, html: {class: "sell-form dropzone", id: "item-dropzone"} do |f|
-            
-            
-            
-            -# 画像の複数枚数保存用のコードです。消さないでください
-            -# #preview2
-            -# .dropzone-area2
-            -#   = image.label :image_url, class: "dropzone-box", for: "upload-image" do
-            -#     %p ここをクリックしてください
-            -# = f.text_field :brand_id, class:"select-brand-box",placeholder: "例）シャネル", value:""
-
-
-
-
-
-
 

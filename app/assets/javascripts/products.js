@@ -1,83 +1,90 @@
-$(document).on('turbolinks:load', function(){
+// 完成品
+$(function(){
+  $('.select-brand-box').attr('autocomplete', 'off'); //入力履歴非表示
   var dropzone = $('.dropzone-area');
-  var dropzone2 = $('.dropzone-area2');
-  var dropzone_box = $('.dropzone-box');
   var images = [];
   var inputs  =[];
-  var input_area = $('.input_area');
-  var preview = $('#preview');
-  var preview2 = $('#preview2');
-  // 画像プレビュー画面
+  var preview = $('preview-image-box');
+
+  $(function(){
+  // 画像プレビュー画面用HTML
   function buildImage(loadedImageUri){
     var html =
-    `<div class="images-preview-box">
-      <div class="img-box">
+    `
+    <div class="images-preview-box image${images.length}">
+      <div class="img-box image${images.length}">
         <img src=${loadedImageUri} >
       </div>  
-      <div class="preview-box-btn">
-        <div class="preview__box__edit">編集</div>
-        <div class="preview__box__delete">削除</a></div>
+      <div class="preview-box-btn image${images.length}">
+        <div class="preview__box__edit image${images.length}">編集</div>
+        <div class="preview__box__delete image${images.length}">削除</a></div>
       </div>
     </div>
     `
     return html
   };
+  
   // 商品画像の選択後イベント
-    $(document).on('change','input[type= "file"].preview-image', function (e) {
-      e.preventDefault();
+  $(document).off('change')
+    $(document).on('change','input[type= "file"].preview-image', function () {
       var file = $(this).prop('files')[0];
       var reader = new FileReader();
-      inputs.push($(this));
-      var img = $(`<div class= "img-box"><img></div>`);
-
-
+      inputs.unshift($(this));
       reader.onload = function (e) {
       var loadedImageUri = e.target.result;
-      $(buildImage(loadedImageUri,)).appendTo(".preview-image-box");
+      // HTML形成
+      $(buildImage(loadedImageUri)).prependTo("#preview-image-box");
       };
+      var img_box = $(`<div class= "img-box"><img></div>`);
       reader.readAsDataURL(file);
-      images.push(img);
+      var index_num = $(".preview__box__delete").index(this);
+      // 画像枚数による表示変更条件分岐
       if(images.length <= 4){
         $.each(images, function(index, image) {
         image.attr('data-image', index);
-        preview.append(image);
+        preview.prepend(image);
         dropzone.css({
           'width': `calc(100% - (120px * ${images.length - 5}))`
         })
         dropzone.css({
           'display': `block`
         })
-
-       
       })
       }
       else {
+        $.each(images, function(index, image) {
+        image.attr('data-image', index);
         dropzone.css({
           'display': `none`
         })
-
+      })
       return;
       }
-      var new_image = $(`<input multiple= "multiple" name="images[image_url][]" class="preview-image ${images.length}" data-image= ${images.length} type="file" id="preview-image" style="display:none;">`);
+      var new_image = $(`<input multiple= "multiple" name="images[image_url][]" class="preview-image image${images.length}" data-image= ${images.length} type="file" id="preview-image" style="display:none;">`);
       $('.file_input_area').prepend(new_image);
+
+    })
   });
-  // クリックされた画像を削除する。
-  $(document).on('click','.preview__box__delete','turbolinks:load', function(){
-    var index = $(".preview__box__delete").index(this);
-    var inp_num = images.length - index
-    var target_image = $(this).parent().parent();
-    var preview_delete = $(".preview-image").eq(inp_num);
-    var del_num = inp_num
-    images.splice(index , 1);
-    target_image.val('');
-    $(this).parent().val('');
-    target_image.remove();
-    $(this).parent().remove();
-    $(".preview-image").splice(del_num , 1);
+
+  //出品時の画像数を取得
+  var savedtotal = 0
+  if ( $(".block-image").data("savedtotal") ){
+    savedtotal = $(".block-image").data("savedtotal");
+  }
+  var delete_request_index = [];
+   // クリックされた画像を削除する。
+  $(document).on('click','.preview__box__delete', function(){
+    var index_num = $(".preview__box__delete").index(this);
+    var del_num = index_num + 1
+    var preview_delete = $(".preview-image").eq(del_num);
+    images.splice(index_num , 1);
+    inputs.splice(index_num , 1);
+    delete_request_index.push($(this).parent().parent().data("image"));
+    $(this).parent().parent().remove();
     preview_delete.val('');
     preview_delete.remove();
-
-
+    $(document).on('change')
+    // 画像枚数による表示変更条件分岐
     if(images.length <= 4){
       dropzone.css({
         'display': `block`
@@ -87,15 +94,17 @@ $(document).on('turbolinks:load', function(){
       dropzone.css({
         'display': `none`
       })
-
-    return;
     }  
-
-
-    // 商品編集用です
-    // hidden_form = `<input type="hidden", name="[delete_ids][]", value="${img_id}">`
-    // $('.dropzone-container3').append(hidden_form)
-
-  });
+  })
 });  
+
+
+
+
+
+
+
+
+
+
 

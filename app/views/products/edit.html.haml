@@ -1,45 +1,51 @@
+%meta{:content => "no-cache", "http-equiv" => "pragma"}/
+%meta{:content => "0", :name => "expires"}/
+%meta{:content => "no-cache, no-store", "http-equiv" => "cache-control"}/
+
 .single-container-sai
   .header-logo-sai
     %h1.header-logo-sai__link
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
-  .l-single-container-sai2
-  = form_with model: @product, local: true, multipart: true  do |f|
-    .single-main-sai
-      .l-single-container-sai
-        .product-menu-sai
-          商品情報を入力
-
-        .sell-form-sai
-          .sell-form-sai__upload
-            .sell-form-sai__upload__head 出品画像
-            %span.sell-form-sai__upload__require 必須
-            %br/
-            %p 最大10枚までアップロードできます
+    .l-single-container-sai2
+    = form_with model: @product, local: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
+      .single-main-sai
+        .l-single-container-sai
+          .product-menu-sai
+            商品情報を入力
 
 
-          .sell-dropbox-container-sai#height-image-container
-            .sell-dropbox-container-take.displayflex
-              .preview-image-edit
-              #sell-dropbox-container-result
+          .sell-form-sai
+            .sell-form-sai__upload
+              .sell-form-sai__upload__head 出品画像
+              %span.sell-form-sai__upload__require 必須
+              %br/
+              %p 最大10枚までアップロードできます
+      
+            
+             
+            .dropzone-container
+              .dropzone-preview
+                = f.fields_for :images do |g| 
+                  #preview-image-box
+                    .images-preview-box
+                      .img-box.images
+                        = image_tag "#{@product.images[@index].image_url}"
+                      .preview-box-btn.images
+                        .preview__box__edit.images
+                          編集
+                        .preview__box__delete.images
+                          削除
+                        - @index -=1  
 
-              
-                - @product.images.first(@length).each_with_index do |image, i|
-                  .previews{data:{id: "#{i}"}}
-                    %img.open-pic{src: "#{image.image_url}"} 
-                      = link_to "削除", "", class: "kill-preview-image-box"
-                        
-
-              = f.fields_for :images do |i|
-                = i.label :image_url, for: "edit-image", class: 'form__mask__image' do
-                  .sell-dropbox-container-sai__image.pic-form
-                    = fa_icon 'camera', class: "icon-camera"
-                    %p.sell-form__upload-box__image-upload__text.sell-dropbox-container-sai__image__visible 
-                  = i.file_field :image_url,  multiple: true, name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file pic-gone-edit', id: "edit-image"
-                %pre
-                  ドラッグアンドドロップ またはクリックしてファイルをアップロード
-
-
+    
+                .dropzone-area
+                  = f.label :image_url, class: "dropzone-box", for: "preview-image" do
+                    .file_input_area
+                      = f.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: "preview-image"
+                    %p.text
+                      ファイルをアップロード  
+                      %br 
 
             .sell-content-sai.clearfix
               .form-group-sai2.clearfix

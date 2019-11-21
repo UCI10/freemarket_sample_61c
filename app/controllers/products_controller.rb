@@ -7,7 +7,9 @@ class ProductsController < ApplicationController
   before_action :brand_parent_set, only: [:new, :edit, :create]
   before_action :brand_child_set, only: [:new, :edit, :create]
   # product_setをbefore_actionに設定しました。担当箇所にて重複記載がありましたら消してください
-  before_action :product_set, only: [:show]
+  before_action :product_set, only: [:edit, :update, :show]
+  before_action :set_card, only: [:pay, :purchase]
+  
 
 
   require 'payjp'
@@ -17,7 +19,7 @@ class ProductsController < ApplicationController
   end
   
   def pay
-
+   
     @product = Product.find(params[:product_id])
 
     if current_user.pays.blank?
@@ -34,6 +36,7 @@ class ProductsController < ApplicationController
 
 
  def purchase
+  redirect_to new_user_session_path unless user_signed_in?
     # if current_user.pay.array? 
     # redirect_to  root_path 
     # else
@@ -129,7 +132,6 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
 
-
     # @user_items= Item.where(seller_id: @item.seller.id).order(“created_at DESC”).page(params[:item]).per(6)
     @user_product = Product.where(user_id: @product.user.id).where.not(id: @product.id)
       if user_signed_in? && @product.user_id == current_user.id
@@ -152,11 +154,24 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def edit
+def edit
+  @product = Product.find(params[:id])
+  if user_signed_in? && @product.user_id == current_user.id
     @profit = (@product.price * 0.9).round
     @fee = @product.price - @profit
     # 画像の枚数取得
     @length =@product.images.length
+    @index = -1
+    
+
+    # @images = @product.images
+    # @uniq_image_array = @product.images.uniq!(&:first)
+
+  #   @uniq_image_array = @product.images.filter(function (x, i, self) {
+  #     return self.indexOf(x) == i
+  # });
+    
+
     # 以下孫カテゴリーから親カテゴリーを辿る際の記述
     # 選択された孫カテゴリ
     @selected_grandchild_category = @product.category
@@ -181,17 +196,26 @@ class ProductsController < ApplicationController
       parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
       @category_parents_array << parent_hash
     end
+
+  else
         
-    
     redirect_to root_path unless @product.user_id == current_user.id
   end
+end
 
   def update
-    if @product.update(product_params)
-      redirect_to action: :show
-    else
-      redirect_to action: 'edit'
-    end
+      @product.update(product_params)
+      params[:images][:image_url].each do |image_url|
+        @product.images.update(image_url: image_url, product_id: @product.id)
+       
+       end
+       respond_to do |format|
+         format.html { redirect_to root_path }
+         format.json
+       end  
+
+      # redirect_to action: 'edit'
+
   end
 
   # マージ後の実装の可否が試さないと判断できない箇所の前の設定です。マージ後問題があれば戻してください
