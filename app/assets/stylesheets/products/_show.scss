@@ -170,6 +170,19 @@
         text-align: center;
       }
     }
+    .products-exhibit-description-box-take{
+      margin: 24px 0 0;
+      padding: 10px 30px;
+      text-align: left;
+      font-size: 26px;
+      text-align: center;
+      word-wrap: break-word;
+      line-height: 1.4;
+      align-items: baseline; 
+      .products-exhibit-description-take{
+        font-size: 16px;
+      }
+    }
     .products-exhibit-buy-btn {
       
       a{

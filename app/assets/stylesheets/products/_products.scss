@@ -732,3 +732,27 @@ display:none;
 }
 
 
+
+
+.u-content__index__footer__list{
+  display: block;
+
+  &__text{
+    height:100%;
+    width:20%;   
+    word-break: break-all;
+    display: block;
+
+  }
+
+  &__text__box{
+    height:100%;
+    width:80%;
+    word-break: break-all;
+    display: block;
+  }
+
+
+
+
+}

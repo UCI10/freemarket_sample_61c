@@ -1,10 +1,11 @@
-// 完成品
+// 商品出品用 完成
 $(function(){
   $('.select-brand-box').attr('autocomplete', 'off'); //入力履歴非表示
   var dropzone = $('.dropzone-area');
   var images = [];
   var inputs  =[];
   var preview = $('preview-image-box');
+  var im_num = 0
 
   $(function(){
   // 画像プレビュー画面用HTML
@@ -38,8 +39,9 @@ $(function(){
       var img_box = $(`<div class= "img-box"><img></div>`);
       reader.readAsDataURL(file);
       var index_num = $(".preview__box__delete").index(this);
+      im_num += 1
       // 画像枚数による表示変更条件分岐
-      if(images.length <= 4){
+      if(im_num <= 4){
         $.each(images, function(index, image) {
         image.attr('data-image', index);
         preview.prepend(image);
@@ -50,6 +52,12 @@ $(function(){
           'display': `block`
         })
       })
+      }
+      else if (im_num == 5){
+        dropzone.css({
+          'display': `none`
+        })
+
       }
       else {
         $.each(images, function(index, image) {
@@ -84,8 +92,9 @@ $(function(){
     preview_delete.val('');
     preview_delete.remove();
     $(document).on('change')
+    im_num -= 1
     // 画像枚数による表示変更条件分岐
-    if(images.length <= 4){
+    if(im_num <= 4){
       dropzone.css({
         'display': `block`
       })
