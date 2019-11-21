@@ -65,6 +65,7 @@
               ブランド
             .product-exhibit-details-box__info  
               .exhibit-table__highrow
+              -if @product.brand_id.present?
                 = @product.brand.name
 
           .product-exhibit-details-box
@@ -136,7 +137,7 @@
     .products-exhibit-description-box-take
       .products-exhibit-description-take 
         = @product.description 
-        
+
     .products-exhibit-button-container
       .products-exhibit-button-left.displayflex
         .products-exhibit-button-like.displayflex
