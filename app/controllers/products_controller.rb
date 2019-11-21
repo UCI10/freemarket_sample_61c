@@ -7,7 +7,9 @@ class ProductsController < ApplicationController
   before_action :brand_parent_set, only: [:new, :edit, :create]
   before_action :brand_child_set, only: [:new, :edit, :create]
   # product_setをbefore_actionに設定しました。担当箇所にて重複記載がありましたら消してください
-  before_action :product_set, only: [:edit, :update]
+  before_action :product_set, only: [:edit, :update, :show]
+  before_action :set_card, only: [:pay, :purchase]
+  
 
 
   require 'payjp'
@@ -18,17 +20,18 @@ class ProductsController < ApplicationController
   
   def pay
 
-
     @product = Product.find(params[:product_id])
-  
 
+    if current_user.pays.blank?
+    redirect_to root_path
+    else
     pay = Pay.where(user_id: current_user.id).first 
     Payjp.api_key = 'sk_test_a0947663b395402fc1e150b4'
     customer = Payjp::Customer.retrieve(pay.customer_id)
     @default_card_information = customer.cards.retrieve(pay.card_id)
     # redirect_to action: "show" if card.present?
   
-
+    end
   end
 
 
@@ -36,6 +39,7 @@ class ProductsController < ApplicationController
     # if current_user.pay.array? 
     # redirect_to  root_path 
     # else
+    @pay = Pay.where(user_id: current_user.id).first 
     @product_purchaser= Product.find(params[:product_id])
     
     # @product = Product.find(params[:product_id])
@@ -61,7 +65,9 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all.order("created_at DESC").limit(10)
-
+    @products_mens = Product.where(:category_id => 145..267).order("created_at DESC").limit(10)
+    @products_ladies = Product.where(:category_id => 9..144).order("created_at DESC").limit(10)
+    @products_chanel = Product.where(:brand_id => 22).order("created_at DESC").limit(10)
     
 
     # @category = Category.find(1)
@@ -81,6 +87,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+      redirect_to new_user_session_path unless user_signed_in?
       @product = Product.new
       @parents = Category.all.order("id ASC").limit(8)
 
@@ -124,10 +131,10 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
-    
-    # @user_items= Item.where(seller_id: @item.seller.id).order(“created_at DESC”).page(params[:item]).per(6)
-    @user_products= Product.where(user_id: @product.user.id)
 
+
+    # @user_items= Item.where(seller_id: @item.seller.id).order(“created_at DESC”).page(params[:item]).per(6)
+    @user_product = Product.where(user_id: @product.user.id).where.not(id: @product.id)
       if user_signed_in? && @product.user_id == current_user.id
         render :showmine
       end

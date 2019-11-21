@@ -60,6 +60,6 @@ class User < ApplicationRecord
   validates :birth_month,           presence: true, on: :validates_step1 
   validates :birth_day,             presence: true, on: :validates_step1
   
-  validates :phone_number,          presence: true, on: :validates_step2 
+  validates :phone_number,          presence: true, uniqueness: true, on: :validates_step2 
 
 end

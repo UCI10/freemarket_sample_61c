@@ -1,6 +1,6 @@
 .products-show-header
   = render 'tops/topheader'
- 
+  - breadcrumb :listing
   = render 'users/breadcrumbs'
 .u-display-clearfix-ito
   .u-side-ito
@@ -28,11 +28,7 @@
                     = image_tag "#{product.images.first.image_url}", width: "80px", height: "80px" 
                   %h3.u-content__index__footer__list__text  
                     =product.title
-    
-    %ul.u-content__icon
-      = link_to root_path do
-        %li.u-content__icon__left
-        %i.fa.fa-angle-left
-      = link_to root_path do
-        %li.u-content__icon__right
-        %i.fa.fa-angle-right
+.top-exhibit-fix-btn
+  = render 'tops/topexhibit'
+.footer-ito
+  = render "tops/topfooter"

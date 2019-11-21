@@ -6,16 +6,15 @@ crumb :users do
   link 'マイページ', users_path
 end
 
-# listingのルーティングをusersからproductへ移動した事により再設定が必要になったのでコメントアウトしました。
-# crumb :listing do
-#   link '出品した商品 - 出品中', listing_product_path
-#   parent :products
-# end
+crumb :listing do
+  link '出品した商品 - 出品中', listing_product_path
+  parent :users
+end
 
-# crumb :showmine do
-#   link '出品商品画面', showmine_product_path
-#   parent :listing
-# end
+crumb :showmine do
+  link '出品商品画面', showmine_product_path
+  parent :listing
+end
 
 crumb :profile do
   link 'プロフィール', profile_user_path
