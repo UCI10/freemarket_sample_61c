@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   end
   
   def pay
-
+   
     @product = Product.find(params[:product_id])
 
     if current_user.pays.blank?
@@ -33,6 +33,7 @@ class ProductsController < ApplicationController
 
 
  def purchase
+  redirect_to new_user_session_path unless user_signed_in?
     # if current_user.pay.array? 
     # redirect_to  root_path 
     # else
