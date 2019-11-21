@@ -5,7 +5,7 @@
         = image_tag 'mercari-logo.png', size: '155x50'
 
   .l-single-container-sai2
-  = form_with model: @product, local: true, multipart: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
+  = form_with model: @product, local: true, multipart: true, retuired: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
     .single-main-sai
       .l-single-container-sai
         .product-menu-sai
@@ -18,20 +18,19 @@
             %br/
             %p 最大10枚までアップロードできます
           
-          .sell-dropbox-container-take.displayflex
-            .preview-image-box
-            .sell-dropbox-container-sai
-              = f.fields_for :images do |g|
-                = g.label :image_url, for: "preview-image", class: 'form__mask__image' do  
-                  .input-area-box
-                    .sell-dropbox-container-sai__image{data: {id: 1}}   
-                      = fa_icon 'camera', class: "icon-camera"
-                      %p.sell-form__upload-box__image-upload__text
-                  
-                    = g.file_field :image_url,  multiple: true, required: true, autofocus: true,  name: 'images[image_url][]', class: 'preview-image.sell-dropbox-container-sai__image__file', id: "preview-image", 'data-image': 0, accept: "image/*"
-                  %pre.sell-dropbox-container-sai__image__visible 
-                    ドラッグアンドドロップ またはクリックしてファイルをアップロード                
-          
+          = f.fields_for :images do |g|  
+            .dropzone-container
+              .dropzone-preview
+                .preview-image-box#preview-image-boxid
+                .dropzone-area
+                  = g.label :image_url, class: "dropzone-box ", for: "preview-image" do
+                    .file_input_area
+                      = g.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: 'preview-image', 'data-image': 0
+                    %p.text
+                      ファイルをアップロード
+                      %br 
+
+
           .sell-content-sai.clearfix
             .form-group-sai2.clearfix
               .form-group-sai2__head.clear-fix 商品名
