@@ -230,14 +230,15 @@ end
   # end
 
   def listing
-
+    
     # @products = current_user.products
     # @product = Product.find(params[:id])
     # @products = Product.find(params[:id])
     # @product.images.build
     # @length =@product.images.length
 
-    @user_products= Product.where(user_id: current_user.id)
+    @user_products = Product.where(user_id: current_user.id)
+    redirect_to users_path  if @user_products.blank? 
     render '/users/listing'
   end
 

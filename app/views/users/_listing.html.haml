@@ -1,0 +1,37 @@
+.products-show-header
+  = render 'tops/topheader'
+  - breadcrumb :listing
+  = render 'users/breadcrumbs'
+.u-display-clearfix-ito
+  .u-side-ito
+    = render 'users/userside'
+  .u-content
+    %section.u-content__index
+      %h4.u-content__index__header 出品した商品
+      %ul.u-content__index__body
+        %li.u-content__index__body__select
+          %h3
+            = link_to '出品中',''
+        %li
+          %h3
+            = link_to '取引中',''
+        %li
+          %h3
+            = link_to '売却済',''
+      .u-content__index__footer
+        - if @user_products.present?
+
+          - @user_products.each do |product|
+            %ul.u-content__index__footer__list
+              = link_to edit_product_path(product) do
+                %li
+                  %figure
+                    = image_tag "#{product.images.first.image_url}", width: "80px", height: "80px" 
+                    %h3.u-content__index__footer__list__text  
+                      =product.title
+                    %h3.u-content__index__footer__list__text__box
+                      =product.description
+.top-exhibit-fix-btn
+  = render 'tops/topexhibit'
+.footer-ito
+  = render "tops/topfooter"

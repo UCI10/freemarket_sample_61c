@@ -7,7 +7,7 @@ crumb :users do
 end
 
 crumb :listing do
-  link '出品した商品 - 出品中', listing_product_path
+  link '出品した商品 - 出品中', listing_user_path
   parent :users
 end
 
