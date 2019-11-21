@@ -115,7 +115,7 @@
             = @product.shipping_burden
         
       .products-show-user
-        = link_to '商品の編集',"/products/#{@product.id}/edit",class: "products-show-user__edit"
+        = link_to '商品の編集',edit_product_path(@product),class: "products-show-user__edit"
         %p.products-show-user__or or
         %button.products-show-user__stop{:type => "submit"} 出品を一旦停止する
         = link_to "この商品を削除する","/products/#{@product.id}", method: :delete,class: "products-show-user__delete"

@@ -20,8 +20,10 @@
             %p 最大10枚までアップロードできます
           
           = f.fields_for :images do |g|  
-            .dropzone-container
+            .dropzone-container.block-image
               .dropzone-preview
+              
+
                 #preview-image-box
                 .dropzone-area
                   = g.label :image_url, class: "dropzone-box ", for: "preview-image" do

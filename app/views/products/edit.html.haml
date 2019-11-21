@@ -18,29 +18,29 @@
               %span.sell-form-sai__upload__require 必須
               %br/
               %p 最大10枚までアップロードできます
+      
             
             
             .dropzone-container
               .dropzone-preview
                 = f.fields_for :images do |g|  
-                 
-                  
+             
+          
                     
                   #preview-image-box
                     .images-preview-box
-                      - @product.images.first(@length).each_with_index do |image, i|
-                        .img-box.images{data:{id: "#{i}"}}
-                          = image_tag "#{image.image_url}"
-                        .preview-box-btn.images
-                          .preview__box__edit.images
-                            編集
-                          .preview__box__delete.images
-                            削除
+                      .img-box.images
+                        = image_tag "#{@product.images.first.image_url}"
+                      .preview-box-btn.images
+                        .preview__box__edit.images
+                          編集
+                        .preview__box__delete.images
+                          削除
                           
                   .dropzone-area
                     = g.label :image_url, class: "dropzone-box preview-image", for: "preview-image" do
                       .file_input_area
-                        = g.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: "preview-image", 'data-image': 0
+                        = g.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: "preview-image"
                       %p.text
                         ファイルをアップロード
                         %br 

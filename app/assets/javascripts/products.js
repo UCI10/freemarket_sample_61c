@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(function(){
   $('.select-brand-box').attr('autocomplete', 'off'); //入力履歴非表示
 
 // $(document).on('turbolinks:load', function(){
@@ -37,9 +37,11 @@ $(document).on('turbolinks:load', function(){
 
   // $("form")[0].reset();
   var dropzone = $('.dropzone-area');
-  var images = [];
-  var inputs  =[];
-  var preview = $('preview-image-box');
+  // var images = [];
+  // var inputs  =[];
+  var preview = $('#preview-image-box');
+  var images = 0
+  var inputs  =0
 
 
   $(function(){
@@ -70,7 +72,7 @@ $(document).on('turbolinks:load', function(){
       // file = $(this)[0].files;
       // var file = $(this).prop('files')[0];
       var reader = new FileReader();
-      inputs.push($(this));
+      // inputs.unshift($(this));
 
       reader.onload = function (e) {
       var loadedImageUri = e.target.result;
@@ -78,171 +80,264 @@ $(document).on('turbolinks:load', function(){
       
       
       // HTML形成
-      $(buildImage(loadedImageUri)).appendTo("#preview-image-box");
+      $(buildImage(loadedImageUri)).prependTo("#preview-image-box");
       };
 
       var img_box = $(`<div class= "img-box"><img></div>`);
       reader.readAsDataURL(file);
-      images.push(img_box);
+      // images.unshift(img_box);
+
+
+      var index_num = $(".preview__box__delete").index(this);
+      // console.log(images.length)
+      // console.log(inputs.length)
+      // console.log(images)
+      // console.log(index_num)
+      // console.log(".preview-image")
+
 
       // 画像枚数による表示変更条件分岐
-      if(images.length <= 4){
-        $.each(images, function(index, image) {
-        image.attr('data-image', index);
-        preview.append(image);
-        dropzone.css({
-          'width': `calc(100% - (120px * ${images.length - 5}))`
-        })
-        dropzone.css({
-          'display': `block`
-        })
-      })
-      }
-      else if(images.length == 5) {
-        dropzone.css({
-          'display': 'none'
-        })
+      // if(images.length <= 4){
+      //   $.each(images, function(index, image) {
+      //   image.attr('data-image', index);
+      //   preview.prepend(image);
+      //   dropzone.css({
+      //     'width': `calc(100% - (120px * ${images.length - 5}))`
+      //   })
+      //   dropzone.css({
+      //     'display': `block`
+      //   })
+      // })
+      // }
+      // else {
+      //   $.each(images, function(index, image) {
+      //   image.attr('data-image', index);
+      //   dropzone.css({
+      //     'display': `none`
+      //   })
+      // })
 
-        $.each(images, function(index, image) {
-          image.attr('data-image', index);
-          preview.append(image);
-          dropzone.css({
-            'width': `calc(100% - (135px * ${images.length - 5}))`
-          })
-        })
-        $.each(images, function(index, image) {
-          image.attr('data-image', index);
 
-        })
-        
-      }
-      else {
-        dropzone.css({
-          'display': `none`
-        })
-
-      return;
-      }
+      // return;
+      // }
     
       var new_image = $(`<input multiple= "multiple" name="images[image_url][]" class="preview-image image${images.length}" data-image= ${images.length} type="file" id="preview-image" style="display:none;">`);
       $('.file_input_area').prepend(new_image);
 
+      // var new_image = $(`<input multiple= "multiple" name="images[image_url][]" class="preview-image image${images.length}" data-image= ${images.length} type="file" id="preview-image" style="display:none;">`);
+      // $('.file_input_area').prepend(new_image);
     })
   });
 
 
+
+
+
+
+// 控え
 // -----------------削除--------------------------
 
 
-$(document).on('click', '.preview__box__delete', function() {
+// $(document).on('click', '.preview__box__delete', function() {
 
-  var target_image = $(this).parent().parent();
+//   var target_image = $(this).parent().parent();
 
-  console.log(target_image.data('image'))
+//   console.log(target_image.data('image'))
 
-  $.each(inputs, function(index, input){
-    if ($(this).data('image') == target_image.data('image')){
-      $(this).remove();
-      target_image.remove();
-      var num = $(this).data('image');
-      images.splice(num, 1);
-      inputs.splice(num, 1);
-
-
-
-      console.log(num)
+//   $.each(inputs, function(index, input){
+//     if ($(this).data('image') == target_image.data('image')){
+//       $(this).remove();
+//       target_image.remove();
+//       var num = $(this).data('image');
+//       images.splice(num, 1);
+//       inputs.splice(num, 1);
 
 
-      if(inputs.length == 0) {
-        $('input[type= "file"].preview-image').attr({'data-image': 0})
-      }
-    }
-  })
+
+//       console.log(num)
+
+
+//       if(inputs.length == 0) {
+//         $('input[type= "file"].preview-image').attr({'data-image': 0})
+//       }
+//     }
+//   })
 
 
 
   
 
   
-  $('input[type= "file"].preview-image:first').attr({
-    'data-image': inputs.length
-  })
-  $.each(inputs, function(index, input) {
-    var input = $(this)
-    input.attr({
-      'data-image': index
-    })
-    $('input[type= "file"].preview-image:first').after(input)
-  })
-  // if (images.length >= 5) {
-  //   dropzone2.css({
-  //     'display': 'block'
+  // $('input[type= "file"].preview-image:first').attr({
+  //   'data-image': inputs.length
+  // })
+  // $.each(inputs, function(index, input) {
+  //   var input = $(this)
+  //   input.attr({
+  //     'data-image': index
   //   })
-  //   $.each(images, function(index, image) {
-  //     image.attr('data-image', index);
-  //     preview2.append(image);
-  //   })
-  //   dropzone2.css({
-  //     'width': `calc(100% - (126px * ${images.length - 5}))`
-  //   })
-  //   if(images.length == 9) {
-  //     dropzone2.find('p').replaceWith('<i class="fa fa-camera"></i>')
-  //   }
-  //   if(images.length == 8) {
-  //     dropzone2.find('i').replaceWith('<p>ドラッグ&ドロップまたはクリックしてファイルをアップロード</p>')
-  //   }
-  // } else {
-    dropzone.css({
-      'display': 'block'
-    })
-    $.each(images, function(index, image) {
-      image.attr('data-image', index);
-      preview.append(image);
-    })
-    dropzone.css({
-      'width': `calc(100% - (126px * ${images.length}))`
-    })
-  // }
-  if(images.length == 4) {
-    // dropzone2.css({
-    //   'display': 'none'
-    // })
+  //   $('input[type= "file"].preview-image:first').after(input)
+  // })
+
+
+
+
+
+//     dropzone.css({
+//       'display': 'block'
+//     })
+//     $.each(images, function(index, image) {
+//       image.attr('data-image', index);
+//       preview.append(image);
+//     })
+//     dropzone.css({
+//       'width': `calc(100% - (126px * ${images.length}))`
+//     })
+
+//   if(images.length == 4) {
+
+//   }
+//   if(images.length == 3) {
+//     dropzone.find('i').replaceWith('<p>ドラッグ&ドロップまたはクリックしてファイルをアップロード</p>')
+//   }
+// })
+
+// $(".preview__box__delete").on("click", function() {
+//   var target_image = $(this).parent().parent();
+//   var img_id = target_image.data('id')
+//   target_image.remove();
+//   hidden_form = `<input type="hidden", name="[delete_ids][]", value="${img_id}">`
+//   $('.dropzone-container2').append(hidden_form)
+
+
+// });
+// });
+
+
+
+
+
+
+
+
+
+
+  //出品時の画像数を取得
+
+  var savedtotal = 0
+  if ( $(".block-image").data("savedtotal") ){
+    savedtotal = $(".block-image").data("savedtotal");
   }
-  if(images.length == 3) {
-    dropzone.find('i').replaceWith('<p>ドラッグ&ドロップまたはクリックしてファイルをアップロード</p>')
-  }
-})
-
-$(".preview__box__delete").on("click", function() {
-  var target_image = $(this).parent().parent();
-  var img_id = target_image.data('id')
-  target_image.remove();
-  hidden_form = `<input type="hidden", name="[delete_ids][]", value="${img_id}">`
-  $('.dropzone-container2').append(hidden_form)
+  var delete_request_index = [];
 
 
-});
-});
+  // console.log(images.length)
+  // console.log(inputs.length)
+  // console.log(images)
+  // console.log($(".preview__box__delete").index(this))
+  // console.log(".preview-image")
+  // console.log(".img-box")
 
+  
+  // $(document).on("click",".delete_btn_box2", function(){
 
+    // var index = $(".delete_btn_box2").index(this);
+    // // クリックされたaタグの順番から、削除すべき画像を特定し、配列から削除する。
+    // // files_array.splice(index - 1, 1);
+    // delete_request_index.push($(this).parent().parent().data("alreadysaved"));
+    // $(this).parent().parent().remove();
 
-
-
-
-
-
-
-
-
-
-
-
+  // });
 
 
 
 //  // クリックされた画像を削除する。
-//  $(document).on('click','.preview__box__delete','turbolinks:load', function(){
-//   var index_num = $(".preview__box__delete").index(this);
+//  $(document).on('click','.preview__box__delete', function(){
+  
+//   var index = $(".preview__box__delete").index(this);
+//   // クリックされたaタグの順番から、削除すべき画像を特定し、配列から削除する。
+//   images.splice(index - 1, 1);
+//   inputs.splice(index - 1, 1);
+  // delete_request_index.push($(this).parent().parent().data("saved"));
+  // $(this).parent().parent().remove();
+
+//   console.log(index)
+//   console.log(images)
+//   console.log(inputs)
+//   console.log(delete_request_index)
+//   console.log(savedtotal)
+//   console.log(delete_request_index)
+
+  
+// });  
+// });  
+
+
+
+
+
+
+
+
+
+   // クリックされた画像を削除する。
+
+  $(document).on('click','.preview__box__delete', function(){
+
+  
+  
+  var index_num = $(".preview__box__delete").index(this);
+  var del_num = index_num + 1
+  var preview_delete = $(".preview-image").eq(del_num);
+
+  // images.splice(index_num , 1);
+  // inputs.splice(index_num , 1);
+  
+
+  delete_request_index.push($(this).parent().parent().data("image"));
+  $(this).parent().parent().remove();
+  preview_delete.val('');
+  preview_delete.remove();
+
+
+  // $(".preview-image").splice(del_num , 1);
+  // 画像枚数による表示変更条件分岐
+  // if(images.length <= 4){
+  //   dropzone.css({
+  //     'display': `block`
+  //   })
+  // }
+  // else {
+  //   dropzone.css({
+  //     'display': `none`
+  //   })
+
+  // }  
+  // 商品編集用です
+  // hidden_form = `<input type="hidden", name="[delete_ids][]", value="${img_id}">`
+  // $('.dropzone-container3').append(hidden_form)
+
+  
+
+  // console.log(images.length)
+  // console.log(inputs.length)
+  // console.log(images)
+  // console.log(index_num)
+  // console.log(del_num)
+  // console.log(".img-box")
+
+
+ 
+
+
+})
+
+});  
+
+
+
+//   途中から控え
+
 //   var target_image = $(this).parent().parent();
 //   var target_image_box = $(this).parent().closest().find("img-box");
 //   var target_image_img = $(this).parent().closest().find("img");
@@ -252,7 +347,6 @@ $(".preview__box__delete").on("click", function() {
 //   // var preview_delete = $(".preview-image").eq(- del_num);
 //   var del_img = index_num
 
-//   var num = $(this).data('image');
 
 
 //   $.each(inputs, function(index, input){
@@ -284,48 +378,45 @@ $(".preview__box__delete").on("click", function() {
 //   $(this).parent().remove();
 
 
-//   var dataimg = $(this).data('image')
 //   $(this).parent().remove();
-//   // console.log(preview_delete)
-//   // console.log(target_image)
-//   // console.log(target_image_box)
-//   // console.log(target_image_img)
-//   // console.log(images)
-//   // console.log(inputs)
-//   // console.log(del_num)
-//   // console.log(index_num)
-//   // console.log(images.length)
-//   // console.log(del_img)
-//   // console.log(num)
-//   // console.log(dataimg)
+
 
 //   // img_box_delete.val('');
 //   preview_delete.val('');
 //   preview_delete.remove();
-//   $(this).remove();
-//   // $(".preview-image").splice(del_num , 1);
-//   // 画像枚数による表示変更条件分岐
-//   if(images.length <= 4){
-//     dropzone.css({
-//       'display': `block`
-//     })
-//   }
-//   else {
-//     dropzone.css({
-//       'display': `none`
-//     })
 
-//   }  
-//   // 商品編集用です
-//   // hidden_form = `<input type="hidden", name="[delete_ids][]", value="${img_id}">`
-//   // $('.dropzone-container3').append(hidden_form)
+
+
+
+
+//   delete_request_index.push($(this).parent().parent().data("saved"));
+//   $(this).parent().parent().remove();
+
+
+  // $(this).remove();
+  // // $(".preview-image").splice(del_num , 1);
+  // // 画像枚数による表示変更条件分岐
+  // if(images.length <= 4){
+  //   dropzone.css({
+  //     'display': `block`
+  //   })
+  // }
+  // else {
+  //   dropzone.css({
+  //     'display': `none`
+  //   })
+
+  // }  
+  // // 商品編集用です
+  // // hidden_form = `<input type="hidden", name="[delete_ids][]", value="${img_id}">`
+  // // $('.dropzone-container3').append(hidden_form)
 
 
 // })
 
 // });
 
-
+// });  
 
 
 
