@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   before_action :brand_child_set, only: [:new, :edit, :create]
   # product_setをbefore_actionに設定しました。担当箇所にて重複記載がありましたら消してください
   before_action :product_set, only: [:show]
-
+  before_action :set_card, only: [:pay, :purchase]
 
   require 'payjp'
 
