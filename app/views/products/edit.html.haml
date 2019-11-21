@@ -1,11 +1,14 @@
-%meta{:content => "”no-cache”", "http-equiv" => "”Pragma”"}/
+%meta{:content => "no-cache", "http-equiv" => "pragma"}/
+%meta{:content => "0", :name => "expires"}/
+%meta{:content => "no-cache, no-store", "http-equiv" => "cache-control"}/
+
 .single-container-sai
   .header-logo-sai
     %h1.header-logo-sai__link
       = link_to root_path do
         = image_tag 'mercari-logo.png', size: '155x50'
     .l-single-container-sai2
-    = form_with model: @product, local: true, html: {class: "sell__form"}  do |f|
+    = form_with model: @product, local: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
       .single-main-sai
         .l-single-container-sai
           .product-menu-sai
@@ -20,30 +23,29 @@
               %p 最大10枚までアップロードできます
       
             
-            
+             
             .dropzone-container
               .dropzone-preview
-                = f.fields_for :images do |g|  
-             
-          
-                    
+                = f.fields_for :images do |g| 
                   #preview-image-box
                     .images-preview-box
                       .img-box.images
-                        = image_tag "#{@product.images.first.image_url}"
+                        = image_tag "#{@product.images[@index].image_url}"
                       .preview-box-btn.images
                         .preview__box__edit.images
                           編集
                         .preview__box__delete.images
                           削除
-                          
-                  .dropzone-area
-                    = g.label :image_url, class: "dropzone-box preview-image", for: "preview-image" do
-                      .file_input_area
-                        = g.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: "preview-image"
-                      %p.text
-                        ファイルをアップロード
-                        %br 
+                        - @index -=1  
+
+    
+                .dropzone-area
+                  = f.label :image_url, class: "dropzone-box", for: "preview-image" do
+                    .file_input_area
+                      = f.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: "preview-image"
+                    %p.text
+                      ファイルをアップロード  
+                      %br 
 
             .sell-content-sai.clearfix
               .form-group-sai2.clearfix

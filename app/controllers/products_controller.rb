@@ -133,7 +133,6 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
 
-
     # @user_items= Item.where(seller_id: @item.seller.id).order(“created_at DESC”).page(params[:item]).per(6)
     @user_product = Product.where(user_id: @product.user.id).where.not(id: @product.id)
       if user_signed_in? && @product.user_id == current_user.id
@@ -163,6 +162,8 @@ def edit
     @fee = @product.price - @profit
     # 画像の枚数取得
     @length =@product.images.length
+    @index = -1
+    
 
     # @images = @product.images
     # @uniq_image_array = @product.images.uniq!(&:first)
@@ -204,11 +205,18 @@ def edit
 end
 
   def update
-    if @product.update(product_params)
-      redirect_to action: :show
-    else
-      redirect_to action: 'edit'
-    end
+      @product.update(product_params)
+      params[:images][:image_url].each do |image_url|
+        @product.images.update(image_url: image_url, product_id: @product.id)
+       
+       end
+       respond_to do |format|
+         format.html { redirect_to root_path }
+         format.json
+       end  
+
+      # redirect_to action: 'edit'
+
   end
 
   # マージ後の実装の可否が試さないと判断できない箇所の前の設定です。マージ後問題があれば戻してください
