@@ -47,20 +47,23 @@
                 .product-exhibit-details-box__info  
                   .exhibit-table__highrow
                     = link_to root_path do
-                      レディース
+                      = @product.category.root.name
                   .exhibit-table__middlerow
                     = link_to root_path do
-                      〉トップス 
+                      〉
+                      = @product.category.parent.name
 
                   .exhibit-table__lowrow
                     = link_to root_path do
-                      〉シャツ/ブラウス（七分/長袖）
+                      〉
+                      = @product.category.name
 
               .product-exhibit-details-box
                 .product-exhibit-details-box__heading
                   ブランド
                 .product-exhibit-details-box__info  
                   .exhibit-table__highrow
+                    = @product.brand.name
 
               .product-exhibit-details-box
                 .product-exhibit-details-box__heading
@@ -113,6 +116,10 @@
             (税込)  
           .products-exhibit-shipping-fee
             = @product.shipping_burden
+
+        .products-exhibit-description-box-take
+          .products-exhibit-description-take
+            = @product.description
         
       .products-show-user
         = link_to '商品の編集',edit_product_path(@product),class: "products-show-user__edit"

@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   before_action :brand_parent_set, only: [:new, :edit, :create]
   before_action :brand_child_set, only: [:new, :edit, :create]
   # product_setをbefore_actionに設定しました。担当箇所にて重複記載がありましたら消してください
-  before_action :product_set, only: [:edit, :update, :show]
+  before_action :product_set, only: [:edit, :update, :show, :listing]
   before_action :set_card, only: [:pay, :purchase]
   
 
@@ -131,6 +131,7 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find(params[:id])
+    
 
     # @user_items= Item.where(seller_id: @item.seller.id).order(“created_at DESC”).page(params[:item]).per(6)
     @user_product = Product.where(user_id: @product.user.id).where.not(id: @product.id)
@@ -204,17 +205,14 @@ def edit
 end
 
   def update
-      @product.update(product_params)
-      params[:images][:image_url].each do |image_url|
-        @product.images.update(image_url: image_url, product_id: @product.id)
-       
-       end
+    if @product.update(product_params)
        respond_to do |format|
          format.html { redirect_to root_path }
          format.json
        end  
-
-      # redirect_to action: 'edit'
+    else   
+      redirect_to action: 'edit'
+    end  
 
   end
 

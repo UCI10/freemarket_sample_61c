@@ -20,32 +20,22 @@
               .sell-form-sai__upload__head 出品画像
               %span.sell-form-sai__upload__require 必須
               %br/
-              %p 最大10枚までアップロードできます
-      
-            
+              %p 画像は変更出来ません。
+
              
             .dropzone-container
               .dropzone-preview
-                = f.fields_for :images do |g| 
+                - @product.images.each do |image| 
                   #preview-image-box
                     .images-preview-box
                       .img-box.images
-                        = image_tag "#{@product.images[@index].image_url}"
+                        = image_tag "#{ image.image_url}"
                       .preview-box-btn.images
-                        .preview__box__edit.images
-                          編集
-                        .preview__box__delete.images
-                          削除
+                        .preview__box__empty.images
+                          
+                        .preview__box__empty.images
+                          
                         - @index -=1  
-
-    
-                .dropzone-area
-                  = f.label :image_url, class: "dropzone-box", for: "preview-image" do
-                    .file_input_area
-                      = f.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: "preview-image"
-                    %p.text
-                      ファイルをアップロード  
-                      %br 
 
             .sell-content-sai.clearfix
               .form-group-sai2.clearfix
@@ -99,12 +89,6 @@
 
 
                             = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'grandchild_category_edit'}
-
-
-                            -# = f.select :category_id, options_for_select(@category_parent_array.map{@category_parent_array , @category_parent_id_array}, @product.category.root), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'} 
-
-                            -# = f.select :category_id, @category_parent_array, selected: @product, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
-
 
                           .exhibit-error.clearfix
                             =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
