@@ -741,15 +741,20 @@ display:none;
     height:100%;
     width:20%;   
     word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: block;
 
   }
 
   &__text__box{
     height:100%;
-    width:80%;
+    width:60%;
     word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: block;
+    margin-left: 20%;
   }
 
 

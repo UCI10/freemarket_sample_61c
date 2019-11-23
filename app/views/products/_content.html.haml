@@ -34,11 +34,12 @@
             = link_to "#1" do
               メンズ
           %li
-            = link_to '#0' do
-              家電・スマホ・カメラ 
+            = link_to '#2' do
+              ベビー・キッズ
           %li 
-            = link_to '#0' do 
+            = link_to '#3' do 
               おもちゃ・ホビー・グッズ  
+    
     .popular-category-content.displayflex
       .popular-category-content__box
         .newproduct-margin
@@ -49,98 +50,45 @@
               .popular-category__highrow__rightbox
                 = link_to '#0' do
                   %h7 もっと見る 〉    
+
+
+                  
         .popular-category-content__box__lowrow
           .new-product-toplist.displayflex.clearfix
-            - @products.each do |product|  
-              .new-product-toplist__box
-                = link_to product_path(product) do
-                  %ul.fadein
-                    %li.new-product-toplist__box__image
-                      = image_tag "#{product.images.first.image_url}", size: "180×180"
-                      
-                      -if product.buyer_id.present? 
-                        .items-box_photo__sold
-                          .items-box_photo__sold__inner
-                            SOLD
-           
+            - @products.each do |product| 
+              -  if product.images.present? 
+                .new-product-toplist__box
+                  = link_to product_path(product) do
+                    %ul.fadein
+                      %li.new-product-toplist__box__image
+                        = image_tag "#{product.images.first.image_url}", size: "180×180"
+                        
+                        -if product.buyer_id.present? 
+                          .items-box_photo__sold
+                            .items-box_photo__sold__inner
+                              SOLD
+            
 
-                      .new-product-toplist__price
-                        %span￥
-                        =product.price.to_s(:delimited)
-                    %li.new-product-toplist__box__title
-                      .new-product-toplist__title
-                        = product.title
+                        .new-product-toplist__price
+                          %span￥
+                          =product.price.to_s(:delimited)
+                      %li.new-product-toplist__box__title
+                        .new-product-toplist__title
+                          = product.title
 
-        .newproduct-margin
-          .popular-category-content__box__highrow
-            .popular-category__highrow.displayflex
-              .popular-category__highrow__leftbox#1
-                = link_to '#0' do
-                  %h5 レディース新着アイテム
-              .popular-category__highrow__rightbox
-                = link_to '#0' do
-                  %h7 もっと見る 〉   
-        .popular-category-content__box__lowrow
-          .new-product-toplist.displayflex.clearfix
-            - @products_ladies.each do |product|  
-              .new-product-toplist__box
-                = link_to product_path(product) do
-                  %ul.fadein
-                    %li.new-product-toplist__box__image
-                      = image_tag "#{product.images.first.image_url}", size: "180×180"
-                      
-                      -if product.buyer_id.present? 
-                        .items-box_photo__sold
-                          .items-box_photo__sold__inner
-                            SOLD
-           
-
-                      .new-product-toplist__price
-                        %span￥
-                        =product.price.to_s(:delimited)
-                    %li.new-product-toplist__box__title
-                      .new-product-toplist__title
-                        = product.title          
+        = render 'products/toprender/newladies'
+        = render 'products/toprender/newmens'
+        = render 'products/toprender/newbk'
+        = render 'products/toprender/newtoy'
 
 
-        .newproduct-margin
-          .popular-category-content__box__highrow
-            .popular-category__highrow.displayflex
-              .popular-category__highrow__leftbox#1
-                = link_to '#1' do
-                  %h5 メンズ新着アイテム
-              .popular-category__highrow__rightbox
-                = link_to '#1' do
-                  %h7 もっと見る 〉   
-        .popular-category-content__box__lowrow
-          .new-product-toplist.displayflex.clearfix
-            - @products_mens.each do |product|  
-              .new-product-toplist__box
-                = link_to product_path(product) do
-                  %ul.fadein
-                    %li.new-product-toplist__box__image
-                      = image_tag "#{product.images.first.image_url}", size: "180×180"
-                      
-                      -if product.buyer_id.present? 
-                        .items-box_photo__sold
-                          .items-box_photo__sold__inner
-                            SOLD
-           
 
-                      .new-product-toplist__price
-                        %span￥
-                        =product.price.to_s(:delimited)
-                    %li.new-product-toplist__box__title
-                      .new-product-toplist__title
-                        = product.title
-  
-
-  .popular-brand
-    .popular-brand-header
-      .popular-brand-header__highbox#brand
+  .popular-category
+    .popular-category-header
+      .popular-category-header__highbox#category
         人気のブランド
-      .popular-brand-header__lowhbox.displayflex
-        %ul.popular-brand-header__lowhbox__btn.displayflex
+      .popular-category-header__lowhbox.displayflex
+        %ul.popular-category-header__lowhbox__btn.displayflex
           %li
             = link_to '#11' do
               シャネル
@@ -151,11 +99,12 @@
             = link_to '#13' do
               シュプリーム
           %li 
-            = link_to '#14' do 
+            = link_to '#14' do
               ナイキ
 
-    .popular-brand-content.displayflex
-      .popular-brand-content__box
-        = render 'newchanel'
-        = render 'newlouisvuitton'
-        = render 'newnike'
+    .popular-category-content.displayflex
+      .popular-category-content__box
+        = render 'products/toprender/newchanel'
+        = render 'products/toprender/newlouisvuitton'
+        = render 'products/toprender/newsupreme'
+        = render 'products/toprender/newnike'

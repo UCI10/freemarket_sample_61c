@@ -6,7 +6,7 @@
   .header-logo-sai
     %h1.header-logo-sai__link
       = link_to root_path do
-        = image_tag 'mercari-logo.png', size: '155x50'
+        = image_tag 'mercari-logo.png', size: '155x50', class: "exhibit_new_link_btn"
 
   .l-single-container-sai2
   = form_with model: @product, local: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
@@ -25,13 +25,11 @@
           = f.fields_for :images do |g|  
             .dropzone-container.block-image
               .dropzone-preview
-              
-
                 #preview-image-box
                 .dropzone-area
-                  = g.label :image_url, class: "dropzone-box ", for: "preview-image" do
+                  = g.label :image_url, class: "dropzone-box", for: "preview-image" do
                     .file_input_area
-                      = g.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: 'preview-image', 'data-image': 0
+                      = g.file_field :image_url, multiple: true, name: 'images[image_url][]', id: 'preview-image', class: 'preview-image image0', 'data-image': 0
                     %p.text
                       ファイルをアップロード
                       %br 
@@ -211,10 +209,10 @@
               %p.sell-content__sentence 処罰される可能性があります。
               %p.sell-content__sentence また、出品をもちまして加盟店規約に同意したことになります。
 
-            = f.submit '出品する', class: "form__submit btn-default"
+            = f.submit '出品する', class: "form__new btn-default", id: "form__create__new"
 
           
-            .footer-btn-gray
+            .footer-btn-gray.exhibit_new_link_btn
               = link_to root_path do
                 戻る
       = render 'products/footer' 

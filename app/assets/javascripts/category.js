@@ -47,7 +47,7 @@ $(document).on('turbolinks:load', function() {
         dataType: 'json'
       })
       .done(function(children){
-        $('#children_wrapper').remove(); //親が変更された時、子以下を削除するする
+        $('#children_wrapper').remove(); //親が変更された時、子以下を削除する
         $('#grandchildren_wrapper').remove();
         $('#child_category_edit').remove(); 
         $('#grandchild_category_edit').remove(); 
@@ -63,7 +63,7 @@ $(document).on('turbolinks:load', function() {
         alert('カテゴリー取得に失敗しました');
       })
     }else{
-      $('#children_wrapper').remove(); //親カテゴリーが初期値になった時、子以下を削除するする
+      $('#children_wrapper').remove(); //親カテゴリーが初期値になった時、子以下を削除する
       $('#grandchildren_wrapper').remove();
       $('#size_wrapper').remove();
       $('#brand_wrapper').remove();

@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  # include ActiveModel::Model
+
   belongs_to :user
   has_many :images, dependent: :destroy
   belongs_to :category , optional: true
@@ -6,7 +8,7 @@ class Product < ApplicationRecord
   belongs_to :size_type, optional: true
 
   accepts_nested_attributes_for :images, allow_destroy: true
-  validates_associated  :images
+  # validates_associated  :images_attributes
 
   enum condition:         ["新品、未使用","未使用に近い","目立った傷や汚れなし","やや傷や汚れあり","傷や汚れあり","全体的に状態が悪い"]
   enum shipping_burden:  ["送料込み(出品者負担)","着払い(購入者負担)"]
@@ -16,8 +18,8 @@ class Product < ApplicationRecord
   
   VALID_PRICEL_HALF = /\A[0-9]+\z/
 
-  validates  :title,  presence: true
-  validates  :description,  presence: true
+  validates  :title,  presence: true, length:{maximum: 40}
+  validates  :description,  presence: true, length:{maximum: 1000}
   validates  :condition,  presence: true
   validates  :shipping_burden,  presence: true
   validates  :shipping_area,  presence: true
@@ -27,9 +29,6 @@ class Product < ApplicationRecord
   validates  :category_id,  presence: true, numericality: { only_integer: true,  greater_than: 1, message:  "を選択して下さい"}
   validates  :price,  presence: true, format: {with: VALID_PRICEL_HALF, message: "を半角数字で入力して下さい"},numericality: { only_integer: true,
     greater_than: 300, less_than: 10000000, message: "を300以上9999999(半角数字)で入力して下さい"}
- # JS側でも入力制限をかけています
-
-
-
-
+  # JS側でも入力制限をかけています
+   
 end

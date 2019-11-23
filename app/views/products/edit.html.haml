@@ -6,43 +6,38 @@
   .header-logo-sai
     %h1.header-logo-sai__link
       = link_to root_path do
-        = image_tag 'mercari-logo.png', size: '155x50'
+        = image_tag 'mercari-logo.png', size: '155x50', html: {class: "exhibit_new_link_btn"}
     .l-single-container-sai2
     = form_with model: @product, local: true, html: {class: "sell__form", id: "item-dropzone"}  do |f|
       .single-main-sai
         .l-single-container-sai
           .product-menu-sai
             商品情報を入力
-
-
           .sell-form-sai
             .sell-form-sai__upload
               .sell-form-sai__upload__head 出品画像
               %span.sell-form-sai__upload__require 必須
               %br/
               %p 画像は変更出来ません。
-
              
             .dropzone-container
               .dropzone-preview
-                - @product.images.each do |image| 
-                  #preview-image-box
-                    .images-preview-box
-                      .img-box.images
-                        = image_tag "#{ image.image_url}"
-                      .preview-box-btn.images
-                        .preview__box__empty.images
-                          
-                        .preview__box__empty.images
-                          
-                        - @index -=1  
+                - @product.images.each do |image|
+                  -  if image.present? 
+                    #preview-image-box
+                      .images-preview-box
+                        .img-box.images
+                          = image_tag "#{ image.image_url}"
+                        .preview-box-btn.images
+                          .preview__box__empty.images
+                          .preview__box__empty.images
+                          - @index -=1  
 
             .sell-content-sai.clearfix
               .form-group-sai2.clearfix
                 .form-group-sai2__head.clear-fix 商品名
                 %span.form-group-sai2__require 必須
                 %br/
-                
                 = f.text_field :title, class: 'form-group-sai__default', placeholder: '商品名（必須 40文字まで)'
               .clearfix
                 =  render partial: 'error-messages', locals: {product: @product, column: "title"}
@@ -67,29 +62,19 @@
                           .listing-select-wrapper__box
                             .icon-arrow-bottom-sai
                               %i.fa.fa-angle-down.chevron-down-icon
-
                             = f.select :category_id, options_for_select(@category_parents_array.map{|c|[c[:name], c[:name]]}, @selected_parent_category.name), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'parent_category'}
-
                           .exhibit-error.clearfix
                             =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
-
                         .listing-select-wrapper
                           .listing-select-wrapper__box
                             .icon-arrow-bottom-sai
                               %i.fa.fa-angle-down.chevron-down-icon
-
                             = f.select :category_id, options_for_select(@category_children_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_child_category.id), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'child_category_edit'}
-
-
-
                         .listing-select-wrapper
                           .listing-select-wrapper__box
                             .icon-arrow-bottom-sai
                               %i.fa.fa-angle-down.chevron-down-icon
-
-
                             = f.select :category_id, options_for_select(@category_grandchildren_array.map{|c|[c[:name], c[:id], {'data-category'=>c[:id]}]}, @selected_grandchild_category.id), {}, {class: 'listing-select-wrapper__box--select relative select-icon', id: 'grandchild_category_edit'}
-
                           .exhibit-error.clearfix
                             =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
 
@@ -98,15 +83,10 @@
                           .listing-select-wrapper__box
                             .icon-arrow-bottom-sai
                               %i.fa.fa-angle-down.chevron-down-icon
-
-
                         .listing-select-wrapper
                           .listing-select-wrapper__box
                             .icon-arrow-bottom-sai
                               %i.fa.fa-angle-down.chevron-down-icon
-
-
-
                           .exhibit-error.clearfix
                             =  render partial: 'error-messages', locals: {product: @product, column: "category_id"}
 
@@ -124,7 +104,6 @@
                     .exhibit-error.clearfix
                       =  render partial: 'error-messages', locals: {product: @product, column: "size"}
                   
-
                     .sell-content-sai__box__Category ブランド
                     %span
                     %br/
@@ -195,7 +174,6 @@
                 .sell-content-sai__box__Category 発送までの日数
                 %span.sell-content-sai__box__require 必須
                 %br/
-                
                 .select-wrap
                   .icon-arrow-bottom-sai
                     = fa_icon 'chevron-down'
@@ -206,41 +184,29 @@
 
 
             .sell-content-sai.displayflex.clearfix
-
-
-
               .sell-form-box.displayflex
                 .sell-content-sai-heading.clearfix
                   %h3.sell-content-sai__sub 販売価格(300〜9,999,999) 
                   = link_to root_path, class: "question-link" do
                     = fa_icon 'question'
-                
                 .sell-price-box.displayflex
                   .sell-price-heading.displayflex
                     .sell-content-sai__box__Category 価格
                     %span.sell-content-sai__box__require 必須
-
                 .price-input-box
                   .price-input-container.displayflex.clearfix
                     = f.label '¥', class: 'price-input-container__yen'
                     .price-input-text-area
                       = f.text_field :price, class: "price-box.input-default", id: 'price-box', placeholder: "例) 300(半角)", value: "#{@product.price}"                
-
               .price-error-box.clearfix
                 =  render partial: 'error-messages', locals: {product: @product, column: "price"}
-              
-
-
-                
               .margin-sai.clearfix
                 .l-left
                   販売手数料(10%)
                 %span#fee-box.l-right-sai
                   = "¥" + "#{@fee}"
-                  
               .margin-sai.clearfix
                 .margin-sai__margin
-
                   販売利益
                 .profits-result-box{id: "profit", class: "profit"}
                   %span#profit-box.l-right-sai
@@ -253,13 +219,10 @@
                 %p.sell-content__sentence また、出品をもちまして加盟店規約に同意したことになります。
 
               = f.submit '編集する', class: "form__submit btn-default"
-
             
               .footer-btn-gray
                 = link_to root_path do
                   戻る      
-
-
 
       = render 'products/footer' 
 

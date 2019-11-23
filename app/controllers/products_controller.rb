@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
   before_action :parent_set, only: [:new, :edit, :create]
   before_action :brand_parent_set, only: [:new, :edit, :create]
   before_action :brand_child_set, only: [:new, :edit, :create]
-  # product_setをbefore_actionに設定しました。担当箇所にて重複記載がありましたら消してください
   before_action :product_set, only: [:edit, :update, :show, :listing]
   before_action :set_card, only: [:pay, :purchase]
   
@@ -65,10 +64,21 @@ class ProductsController < ApplicationController
  end
 
   def index
+   
     @products = Product.all.order("created_at DESC").limit(10)
     @products_mens = Product.where(:category_id => 145..267).order("created_at DESC").limit(10)
     @products_ladies = Product.where(:category_id => 9..144).order("created_at DESC").limit(10)
-    
+    @products_baby_kids = Product.where(:category_id => 268..314).order("created_at DESC").limit(10)
+    @products_toy_hobby  = Product.where(:category_id => 421..461).order("created_at DESC").limit(10)
+    @products_chanel = Product.where(:brand_id => 22).order("created_at DESC").limit(10)
+    @products_louisvuitton = Product.where(:brand_id => 22).order("created_at DESC").limit(10)
+    @products_supreme = Product.where(:brand_id => 23).order("created_at DESC").limit(10)
+    @products_nike = Product.where(:brand_id => 32).order("created_at DESC").limit(10)
+
+
+
+
+    # @user_products = Product.where(user_id: current_user.id)
 
     # @category = Category.find(1)
     # # 下記でレディースに紐付く子カテゴリーであるトップス、パンツ、靴を全て取得出来る
@@ -90,13 +100,9 @@ class ProductsController < ApplicationController
       redirect_to new_user_session_path unless user_signed_in?
       @product = Product.new
       @parents = Category.all.order("id ASC").limit(8)
-
       @product.images.build
-
-
   end
 
-    
    # 親カテゴリーが選択された後に動くアクション
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
@@ -104,40 +110,33 @@ class ProductsController < ApplicationController
   end
 
  # 子カテゴリーが選択された後に動くアクション
- def get_category_grandchildren
+  def get_category_grandchildren
    #選択された子カテゴリーに紐付く孫カテゴリーの配列を取得
     @category_grandchildren = Category.find("#{params[:child_id]}").children
-  
   end
 
   def create
     @product = Product.new(product_params)
-
     if @product.save
-       params[:images][:image_url].each do |image_url|
-       @product.images.create(image_url: image_url, product_id: @product.id)
-      
-      end
-      respond_to do |format|
-        format.html { redirect_to root_path }
-        format.json
-      end  
+        params[:images][:image_url].each do |image_url|
+        @product.images.create(image_url: image_url, product_id: @product.id)
+        end
+        respond_to do |format|
+          format.html { redirect_to root_path }
+          format.json
+        end  
     else
       @product.images.build
       render action: :new
     end
-
   end
-  
+
   def show
     @product = Product.find(params[:id])
-    
-
-    # @user_items= Item.where(seller_id: @item.seller.id).order(“created_at DESC”).page(params[:item]).per(6)
-    @user_product = Product.where(user_id: @product.user.id).where.not(id: @product.id)
-      if user_signed_in? && @product.user_id == current_user.id
-        render :showmine
-      end
+    @user_product = Product.where(user_id: @product.user.id).where.not(id: @product.id).limit(12)
+    if user_signed_in? && @product.user_id == current_user.id
+      render :show
+    end
   end
 
   def destroy
@@ -163,15 +162,6 @@ def edit
     # 画像の枚数取得
     @length =@product.images.length
     @index = -1
-    
-
-    # @images = @product.images
-    # @uniq_image_array = @product.images.uniq!(&:first)
-
-  #   @uniq_image_array = @product.images.filter(function (x, i, self) {
-  #     return self.indexOf(x) == i
-  # });
-    
 
     # 以下孫カテゴリーから親カテゴリーを辿る際の記述
     # 選択された孫カテゴリ
@@ -197,9 +187,7 @@ def edit
       parent_hash = {id: "#{parent.id}", name: "#{parent.name}"}
       @category_parents_array << parent_hash
     end
-
   else
-        
     redirect_to root_path unless @product.user_id == current_user.id
   end
 end
@@ -216,26 +204,7 @@ end
 
   end
 
-  # マージ後の実装の可否が試さないと判断できない箇所の前の設定です。マージ後問題があれば戻してください
-  # def listing
-
-  #   @products = current_user.products
-  #   @product = Product.find(params[:id])
-  #   # @products = Product.find(params[:id])
-  #   @product.images.build
-  #   # @length =@product.images.length
-
-  #   @user_products= Product.where(user_id: @product.user.id)
-  # end
-
   def listing
-    
-    # @products = current_user.products
-    # @product = Product.find(params[:id])
-    # @products = Product.find(params[:id])
-    # @product.images.build
-    # @length =@product.images.length
-
     @user_products = Product.where(user_id: current_user.id)
     redirect_to users_path  if @user_products.blank? 
     render '/users/listing'
@@ -247,8 +216,8 @@ private
     params.require(:product).permit(:title, :description, :category_id, :brand_id, :size, :brand_id, :condition, :shipping_burden, :shipping_area, :shipping_method, :shipping_period, :price, :buyer_id, :created_at, :updated_at, images_attributes: [:image_url, :id]).merge(user_id: current_user.id)
   end
 
-  def new_image_params
-    params[:new_images].permit({images: []})
+  def product_image_params
+    params.require(:image).permit({images: []})
   end
 
   def parent_set
@@ -276,14 +245,12 @@ private
     end
   end
 
-
   def product_set
     @product = Product.find(params[:id])
   end
 
   def sell
     @category = Category.where(ancestry: nil) 
-
   end 
 
 end

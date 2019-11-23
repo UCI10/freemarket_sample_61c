@@ -10,8 +10,10 @@
         %sction.buy-content-sai
           .buy-content-sai__inner
             %h3.buy-content-sai__inner__image
+            
               - @product.images.each do |product_image|
-                = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "64px", height: "64px" 
+                - if product_image.present?
+                  = image_tag "#{ product_image.image_url}", class:"product-box-container__main__photo__img", width: "64px", height: "64px" 
                 
               -# = @product.images
               -# = image_tag 'mercari-logo-footer.png', size: '64x64'

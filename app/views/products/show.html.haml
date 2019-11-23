@@ -9,13 +9,15 @@
         .product-exhibit-photo 
           .product-exhibit-photo__high
             - @product.images.each do |image| 
-              .product-exhibit-photo__high__image
-                = image_tag "#{ image.image_url}",  width: "300px", height: "420px"  
+              -  if image.present? 
+                .product-exhibit-photo__high__image
+                  = image_tag "#{ image.image_url}",  width: "300px", height: "420px"  
           .product-exhibit-photo__low.displayflex
             - @product.images.each do |image| 
-              .product-exhibit-photo__low__image
-                .product-exhibit-photo__low__image__1
-                  = image_tag "#{ image.image_url}", width: "60px", height: "60px"
+              -  if image.present? 
+                .product-exhibit-photo__low__image
+                  .product-exhibit-photo__low__image__1
+                    = image_tag "#{ image.image_url}", width: "60px", height: "60px"
 
         .product-exhibit-details__table
           .product-exhibit-details-box.displayflex
@@ -125,7 +127,15 @@
         売り切れました。
     
     -else
-      -if user_signed_in?
+
+      -if user_signed_in? && @product.user_id == current_user.id
+        .products-show-user
+          = link_to '商品の編集',edit_product_path(@product),class: "products-show-user__edit"
+          %p.products-show-user__or or
+          %button.products-show-user__stop{:type => "submit"} 出品を一旦停止する
+          = link_to "この商品を削除する","/products/#{@product.id}", method: :delete,class: "products-show-user__delete"
+
+      -elsif user_signed_in?
         .products-exhibit-buy-btn
           = link_to pay_products_path(@product) do
             購入画面に進む
@@ -238,21 +248,20 @@
 
   .products-show-other-exhidition
     .products-show-other-exhidition__box
-      - @user_product.each do |product| 
-        .product-otherlist.displayflex
-          .product-otherlist__box
-            %ul.fadein
-              .product-otherlist__box__image
-                = link_to product_path(product) do
-              
-                
-                  = image_tag "#{product.images.first.image_url}", size: "220×220"
-                  
-                  -if product.buyer_id.present? 
-                    .items-box_photo__sold
-                      .items-box_photo__sold__inner
-                        SOLD
-           
+      .product-otherlist.displayflex.clearfix
+        - @user_product.each do |product| 
+          -  if product.images.present? 
+            .product-otherlist__box
+              %ul.fadein
+                %li.product-otherlist__box__image
+                  = link_to product_path(product) do
+                    = image_tag "#{product.images.first.image_url}", size: "220×220"
+                    
+                    -if product.buyer_id.present? 
+                      .items-box_photo__sold
+                        .items-box_photo__sold__inner
+                          SOLD
+            
                 -#   .new-product-toplist__price
                 -#     %span￥
                 -#     =product.price.to_s(:delimited)
