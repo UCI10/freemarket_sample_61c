@@ -7,8 +7,6 @@
 .single-main-sai{
   display: block;
 }
-
-
 .footer-btn-gray{
   width: 50%;
   height: 50px;
@@ -25,40 +23,33 @@
   color: #fff;
   cursor: pointer;
   text-decoration: none;
-  
-  
   a{
     color: white;
     text-decoration: none;
     width: 100%;
     height: 100%;
     line-height: 1.5;
-    }
+  }
   a:visited {
-      color :white;
-      text-decoration: none;
-      }  
-
-
+    color :white;
+    text-decoration: none;
+  }  
 }
 .question-link{
 padding-left: 2px;
 float:left;
 cursor: pointer;
 }
-
 .select-icon{
 width: 10px;
 height: 10px;
 }
-
 #preview-image{
   width: 100%;
   height: 400px;
   object-fit: cover;
   display:none;
 }
-
 .item__images__container__preview__box{
   display:block;
   box-sizing: border-box;
@@ -80,41 +71,28 @@ height: 10px;
     color:red;
   }
 }
-
-
-
-
-
-
-
 @mixin clearfix {
 clear: both;
 }
-
 .clearfix {
 clear: both;
 }
-
 .single-container-sai{
-padding: 0 0 250px;
-background: #f5f5f5;
-
-.btn-default{
-  cursor: pointer;
-  width: 100%;
-  height: 50px;
-  margin: 40px 0 0;
-  background: #ea352d;
-  border: 1px solid #ea352d;
-  color: #fff;
-  font-size: 15px;
-  
-}
-
-.sell-content{
-  padding: 40px 0px;
+  padding: 0 0 250px;
+  background: #f5f5f5;
+  .btn-default{
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    margin: 40px 0 0;
+    background: #ea352d;
+    border: 1px solid #ea352d;
+    color: #fff;
+    font-size: 15px;
+  }
+  .sell-content{
+    padding: 40px 0px;
     border-top: 1px solid #eee;
-
     &__sentence{
       float: left;
       font-size: 13px;
@@ -122,621 +100,464 @@ background: #f5f5f5;
     }
   }
 
-.header-logo-sai{
-text-align: center;
-
-&__link {
-display: inline-block;
-margin: 11px 0 12px;
-}
-}
-
-.l-single-container-sai{
-background: White;
-width: 700px;
-margin: 0 auto;
-display:block;
-
-.product-menu-sai{
-padding: 24px 8px;
-font-size: 18px;
-line-height: 1.5;
-text-align: center;
-
-}
-
-.sell-form-sai{
-border-top: 1px solid #eee;
-
-
-&__upload{
-padding: 40px 2.5%;
-
-&__head{
-float: left;
-font-size: 16px;
-}
-
-&__require {
-float: left;
-background: #ea352d;
-margin: 0 0 0 8px;
-padding: 2px 4px;
-border-radius: 2px;
-color: #fff;
-font-size: 12px;
-vertical-align: top;
-
-}
-
-p{
-float: left;
-margin: 8px 0 0;
-line-height: 1.5;
-font-size: 10px;
-}
-}
-
-
-
-
-
-.sell-content-sai{
-padding: 20px;
-border-top: 1px solid #eee;
-@include clearfix;
-background-color: white;
-display:block;
-
-.margin-sai{
-  width: 100%;
-  padding: 40px 0;
-  background-color: white;
-  display:block;
-
-  &__margin{
-    float: left;
-
-  }
-
-  .l-left{
-  float: left;
-  color: #888;
-  }
-
-}
-
-.price-error-box{
-float:right;
-
-}
-
-
-.l-right-sai{
-float: right;
-display: flex;
-
-  &__en{
-    line-height: 60px;
-    padding-right: 10px;
-  }
-
-  &__input{
-    margin-bottom: 10px;
-    line-height: 48px;
-    height: 48px;
-    padding: 10px 16px 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: #fff;
-    line-height: 1.5;
-    font-size: 16px;
-    width:350px;
-    margin-right: 10px;
-
-  }
-
-
-
-}
-
-.sell-form-box{
-  width: 100%;
-  margin: 10px 0px 0px 0;
-
-  .sell-content-sai-heading{
-    width: 180px;
-    margin: 10px 0px 0 ;
-
-  }
-
-
-  .sell-price-box{
-    width: 200px;
-    float:right;
-    align-items: baseline;
-    .sell-price-heading{
-      height: 20px;
-      width: 100px;
-      margin: 20px;
-
-
+  .header-logo-sai{
+    text-align: center;
+    &__link {
+      display: inline-block;
+      margin: 11px 0 12px;
     }
-
   }
-
-  .price-input-box{
-    height: 20px;
-    width: 300px;
-    float:right;
-    .price-input-container{
-      width: 150px;
-      float:right;
-      margin:10px 0 0;
-      align-items: baseline;
-      &__yen{
-        height: 20px;
-        width: 20px;
+  .l-single-container-sai{
+    background: White;
+    width: 700px;
+    margin: 0 auto;
+    display:block;
+    .product-menu-sai{
+      padding: 24px 8px;
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .sell-form-sai{
+      border-top: 1px solid #eee;
+      &__upload{
+        padding: 40px 2.5%;
+        &__head{
+          float: left;
+          font-size: 16px;
+        }
+        &__require {
+          float: left;
+          background: #ea352d;
+          margin: 0 0 0 8px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          color: #fff;
+          font-size: 12px;
+          vertical-align: top;
+        }
+        p{
+          float: left;
+          margin: 8px 0 0;
+          line-height: 1.5;
+          font-size: 10px;
+        }
       }
-      .price-input-text-area{
-        width: 100%;
-        height: 20px;
-        float:right;
-        .price-box{
-          height: 20px;
-          padding: 10px 0px 8px;
+      .sell-content-sai{
+        padding: 20px;
+        border-top: 1px solid #eee;
+        @include clearfix;
+        background-color: white;
+        display:block;
+        .margin-sai{
+          width: 100%;
+          padding: 40px 0;
+          background-color: white;
+          display:block;
+          &__margin{
+            float: left;
+          }
+          .l-left{
+          float: left;
+          color: #888;
+          }
+        }
+        .price-error-box{
+          float:right;
+        }
+        .l-right-sai{
+          float: right;
+          display: flex;
+          &__en{
+            line-height: 60px;
+            padding-right: 10px;
+          }
+          &__input{
+            margin-bottom: 10px;
+            line-height: 48px;
+            height: 48px;
+            padding: 10px 16px 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: #fff;
+            line-height: 1.5;
+            font-size: 16px;
+            width:350px;
+            margin-right: 10px;
+          }
+        }
+        .sell-form-box{
+          width: 100%;
+          margin: 10px 0px 0px 0;
+          .sell-content-sai-heading{
+            width: 180px;
+            margin: 10px 0px 0 ;
+          }
+          .sell-price-box{
+            width: 200px;
+            float:right;
+            align-items: baseline;
+            .sell-price-heading{
+              height: 20px;
+              width: 100px;
+              margin: 20px;
+            }
+          }
+          .price-input-box{
+            height: 20px;
+            width: 300px;
+            float:right;
+            .price-input-container{
+              width: 150px;
+              float:right;
+              margin:10px 0 0;
+              align-items: baseline;
+              &__yen{
+                height: 20px;
+                width: 20px;
+              }
+              .price-input-text-area{
+                width: 100%;
+                height: 20px;
+                float:right;
+                .price-box{
+                  height: 20px;
+                  padding: 10px 0px 8px;
+                  border-radius: 4px;
+                  border: 1px solid #ccc;
+                  background: #fff;
+                  line-height: 1.5;
+                  font-size: 16px;
+                  float:right;
+                }
+              }
+            }
+          }
+          &__price{
+            list-style: none;
+            .form-group-sai{
+              padding: 0 0 24px;
+              .l-left-sai{
+                width: 50%;
+                line-height: 48px;
+                float: right;
+                &__require{
+                  margin: 0 0 0 8px;
+                  padding: 2px 4px;
+                  border-radius: 2px;
+                  color: #fff;
+                  font-size: 12px;
+                  vertical-align: top;
+                }
+              }
+              .l-right-sai{
+                padding: 5px;
+                width: 100%;
+                line-height: 48px;
+                float: right;
+              }
+            }
+          }
+        }
+        &__sub{
+          background-color: white;
+          float: left;
+          color: #888;
+          font-size: 14px;
+        }
+        &__box{
+          float: right;
+          width: 400px;
+          &__Category {
+            float: left;
+            font-size: 16px;
+          }
+          &__require{
+            float: left;
+            background: #ea352d;
+            margin: 0 0 0 8px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            color: #fff;
+            font-size: 12px;
+            vertical-align: top;
+          }
+          .listing-default--require {
+            float: left;
+            background: #ea352d;
+            margin: 0 0 0 8px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            color: #fff;
+            font-size: 12px;
+            vertical-align: top;
+          }
+          .select-wrap{
+            position: relative;
+            background: #fff;
+            margin: 10px 0;
+            .icon-arrow-bottom-sai{
+              position: absolute;
+              right: 16px;
+              top: 50%;
+              z-index: 2;
+              color: #888;
+              font-size: 8px;
+              width: 10px;
+              height: 10px;
+            }
+            .select-wrap-sai__default{
+              width:100%;
+              position: relative;
+              z-index: 2;
+              height: 48px;
+              padding: 0 16px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: 0;
+              font-size: 16px;
+              line-height: 1.5;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .form-group-sai{
+        &__head{
+          float: left;
+        }
+        &__require{
+          float: left;
+          background: #ea352d;
+          margin: 0 0 0 8px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          color: #fff;
+          font-size: 12px;
+          vertical-align: top;
+        }
+        &__default{
+          margin: 0 auto;
+          margin-top:  5px;
+          width: 90%;
+          float: left;
+          height: 43px;
+          padding: 10px 16px 8px;
           border-radius: 4px;
           border: 1px solid #ccc;
           background: #fff;
           line-height: 1.5;
           font-size: 16px;
-          float:right;
-
-
-
-
-
+          touch-action: manipulation;
         }
-    }
-
-
-    }
-}
-
-
-  
-
-
-&__price{
-list-style: none;
-
-
-.form-group-sai{
-  padding: 0 0 24px;
-  
-  
-  
-  .l-left-sai{
-
-    width: 50%;
-    line-height: 48px;
-    float: right;
-
-    &__require{
-      margin: 0 0 0 8px;
-      padding: 2px 4px;
-      border-radius: 2px;
-      color: #fff;
-      font-size: 12px;
-      vertical-align: top;
-
-    }
+      }
+      .form-group-sai2{
+        padding-top: 40px;
+        &__head{
+          float: left;
+        }
+        &__require{
+          float: left;
+          background: #ea352d;
+          margin: 0 0 0 8px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          color: #fff;
+          font-size: 12px;
+          vertical-align: top;
+        }
+        &__default{
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          min-height: 104px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          background: #fff;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+      }
+    } 
   }
-
-  .l-right-sai{
-    padding: 5px;
-    width: 100%;
-    line-height: 48px;
-    float: right;
-
-  }
-
-
-
-}
-}
-}
-
-&__sub{
-background-color: white;
-float: left;
-color: #888;
-font-size: 14px;
-}
-
-&__box{
-    float: right;
-    width: 400px;
-
-&__Category {
-float: left;
-font-size: 16px;
-}
-
-&__require{
-float: left;
-background: #ea352d;
-margin: 0 0 0 8px;
-padding: 2px 4px;
-border-radius: 2px;
-color: #fff;
-font-size: 12px;
-vertical-align: top;
-
-}
-
-.listing-default--require {
-  float: left;
-  background: #ea352d;
-  margin: 0 0 0 8px;
-  padding: 2px 4px;
-  border-radius: 2px;
-  color: #fff;
-  font-size: 12px;
-  vertical-align: top;
-
-}
-
-
-.select-wrap{
-position: relative;
-background: #fff;
-margin: 10px 0;
-.icon-arrow-bottom-sai{
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  z-index: 2;
-  color: #888;
-  font-size: 8px;
-  width: 10px;
-  height: 10px;
-
-}
-
-
-
-
-
-
-
-.select-wrap-sai__default{
-  width:100%;
-  position: relative;
-  z-index: 2;
-  height: 48px;
-  padding: 0 16px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background: 0;
-  font-size: 16px;
-  line-height: 1.5;
-  cursor: pointer;
-}
-
-}
-
-
-}
-
-
-
-}
-
-.form-group-sai{
-
-&__head{
-float: left;
-}
-
-&__require{
-float: left;
-background: #ea352d;
-margin: 0 0 0 8px;
-padding: 2px 4px;
-border-radius: 2px;
-color: #fff;
-font-size: 12px;
-vertical-align: top;
-}
-
-
-&__default{
-  margin: 0 auto;
-  margin-top:  5px;
-  width: 90%;
-float: left;
-height: 43px;
-padding: 10px 16px 8px;
-border-radius: 4px;
-border: 1px solid #ccc;
-background: #fff;
-line-height: 1.5;
-font-size: 16px;
-
-touch-action: manipulation;
-}
-}
-
-.form-group-sai2{
-padding-top: 40px;
-&__head{
-float: left;
-}
-
-&__require{
-float: left;
-background: #ea352d;
-margin: 0 0 0 8px;
-padding: 2px 4px;
-border-radius: 2px;
-color: #fff;
-font-size: 12px;
-vertical-align: top;
-}
-
-&__default{
-display: block;
-width: 100%;
-max-width: 100%;
-min-height: 104px;
-padding: 10px;
-border: 1px solid #ccc;
-background: #fff;
-font-size: 16px;
-line-height: 1.5;
-}
-
-
-}
-
-
-
-} 
-
-
-}
-
 }
 input {
-text-rendering: auto;
-color: initial;
-letter-spacing: normal;
-word-spacing: normal;
-text-transform: none;
-text-indent: 0px;
-text-shadow: none;
-display: inline-block;
-text-align: start;
-background-color: white;
-cursor: text;
-margin: 0em;
-font: 400 11px system-ui;
-padding: 1px;
-border-width: 2px;
-border-style: inset;
-border-color: initial;
-border-image: initial;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  background-color: white;
+  cursor: text;
+  margin: 0em;
+  font: 400 11px system-ui;
+  padding: 1px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: initial;
+  border-image: initial;
 }
-
-
-
 .sell-content3{
-padding: 40px;
-border-top: 1px solid #eee;
-
+  padding: 40px;
+  border-top: 1px solid #eee;
 }
-
 select {
--webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
-margin-bottom: 20px;
-padding: 7px 30px 7px 10px;
-font-size: 93%;
-line-height: 1.1em;
-border-radius: 5px;
-border: none;
-background-image: url(./images/icon_arrow.svg);
-background-repeat: no-repeat;
-background-size: 12px 10px;
-background-position: right 10px center;
-background-color: #bddfff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-bottom: 20px;
+  padding: 7px 30px 7px 10px;
+  font-size: 93%;
+  line-height: 1.1em;
+  border-radius: 5px;
+  border: none;
+  background-image: url(./images/icon_arrow.svg);
+  background-repeat: no-repeat;
+  background-size: 12px 10px;
+  background-position: right 10px center;
+  background-color: #bddfff;
 }
-
 footer {
   display: block;
 }
-
-
 .single-footer {
     width: 456px;
     height: 220px;
     margin: 0 auto;
 }
-
-
 .single-footer-sai a {
   display: block;
   color: #333;
 }
-
 .single-footer-sai li {
   margin: 16px 0 0;
   font-size: 12px;
 }
-
-
 .single-footer-sai{
-
   position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    padding: 40px 0;
-    text-align: center;
-
-&__nokori{
-  color: black;
-  padding: 0 5px;
-  margin: 0 auto;
-  display: flex;
-  font-size: 15px;
-  list-style: none;
-
-  justify-content: center;
-  &__p{
-    padding: 0 30px;
-  a{
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: 40px 0;
+  text-align: center;
+  &__nokori{
     color: black;
-    text-decoration: none;
-  }
-
+    padding: 0 5px;
+    margin: 0 auto;
+    display: flex;
+    font-size: 15px;
+    list-style: none;
+    justify-content: center;
+    &__p{
+      padding: 0 30px;
+      a{
+        color: black;
+        text-decoration: none;
+      }
+    }
   }
 }
-}
-
-
-
-// #preview-image-box{
-//   display: block;
-
-// }
-
 #sell-dropbox-container-result{
   display: block;
 }
-
-
-
 .dropzone{
   height:200px;
   width:600px;
   background-color: gray;
   display: block;
-  
-  
-  }
-
-
+}
 .dropzone2{
 height:200px;
 width:600px;
 background-color: gray;
 display: none;
-
 }
-
 .upload-image{
   width: 100%;
   height: 400px;
   object-fit: cover;
   display:none;
 }
-
 .input_area{
 display:none;
-
 }
-
-
 .sell-content-sai{
-.sell-content-take{
-  .sell-content-sai__sub{
-    font-size: 20px;
-    color: black;
-    float: left;
-  }
-  
-.select-box-take{
-  width: 60%;
-  margin: 0;
-  padding: 0;
-  color: black;
-  float: right;
-  display:block;
-
-.sell-content-sai-category{
-  padding: 10px;
-  @include clearfix;
-  background-color: white;
-
-  
-
-  .listing-form-box{
-    .listing-product-detail__category{
-      padding: 2px 0 5px 0;
-      font-size: 16px;
-      z-index: 3;
-      display: block;
-      .listing-default--require{
-        color: white;
-        background-color: red;
-        font-size: 14px;
-      }
-      .chevron-down-icon{
-        position: absolute;
-        top:20px;
-        left:320px;
-        color: gray;
-        font-size: 1.4em;
-        font-weight: 900;
-        content: "\f078"; 
-       
-       }
-      
-      .listing-select-wrapper {
-        position: relative;
-        background: #fff;
-        margin: 10px 0;
-        .listing-select-wrapper__box{
-          display: block;
-        .listing-select-wrapper__box--select{
-          width:100%;
-          position: relative;
-          z-index: 2;
-          height: 48px;
-          padding: 0 16px;
-          border-radius: 4px;
-          border: 1px solid #ccc;
-          background: 0;
-          font-size: 16px;
-          line-height: 1.5;
-          cursor: pointer;
-          display: block;
-        }
+  .sell-content-take{
+    .sell-content-sai__sub{
+      font-size: 20px;
+      color: black;
+      float: left;
+    }
+    .select-box-take{
+      width: 60%;
+      margin: 0;
+      padding: 0;
+      color: black;
+      float: right;
+      display:block;
+      .sell-content-sai-category{
+        padding: 10px;
+        @include clearfix;
+        background-color: white;
+        .listing-form-box{
+          .listing-product-detail__category{
+            padding: 2px 0 5px 0;
+            font-size: 16px;
+            z-index: 3;
+            display: block;
+            .listing-default--require{
+              color: white;
+              background-color: red;
+              font-size: 14px;
+            }
+            .chevron-down-icon{
+              position: absolute;
+              top:20px;
+              left:320px;
+              color: gray;
+              font-size: 1.4em;
+              font-weight: 900;
+              content: "\f078"; 
+            }
+            .listing-select-wrapper {
+              position: relative;
+              background: #fff;
+              margin: 10px 0;
+              .listing-select-wrapper__box{
+                display: block;
+                .listing-select-wrapper__box--select{
+                  width:100%;
+                  position: relative;
+                  z-index: 2;
+                  height: 48px;
+                  padding: 0 16px;
+                  border-radius: 4px;
+                  border: 1px solid #ccc;
+                  background: 0;
+                  font-size: 16px;
+                  line-height: 1.5;
+                  cursor: pointer;
+                  display: block;
+                }
+              }
+            }
+          }
         }
       }
     }
-  }
-      }
-    }
-
   }
 }
-
 .single-footer-sai li {
   display: inline-block;
   margin: 0 0 0 16px;
 }
-
-
-
-
 .u-content__index__footer__list{
   display: block;
-
   &__text{
     height:100%;
     width:20%;   
@@ -744,9 +565,7 @@ display:none;
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
-
   }
-
   &__text__box{
     height:100%;
     width:60%;
@@ -756,8 +575,4 @@ display:none;
     display: block;
     margin-left: 20%;
   }
-
-
-
-
 }
