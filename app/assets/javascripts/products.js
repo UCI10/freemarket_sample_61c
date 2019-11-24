@@ -40,7 +40,6 @@ $(document).on('turbolinks:load', function() {
       reader.readAsDataURL(file);
       var index_num = $(".preview__box__delete").index(this);
       im_num += 1
-      console.log(im_num)
       // 画像枚数による表示変更条件分岐
       if(im_num <= 4){
         $.each(images, function(index, image) {
