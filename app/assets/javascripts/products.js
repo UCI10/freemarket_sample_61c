@@ -1,5 +1,5 @@
 // 商品出品用 完成
-$(function(){
+$(document).on('turbolinks:load', function() {
   $('.select-brand-box').attr('autocomplete', 'off'); //入力履歴非表示
   var dropzone = $('.dropzone-area');
   var images = [];
@@ -40,13 +40,14 @@ $(function(){
       reader.readAsDataURL(file);
       var index_num = $(".preview__box__delete").index(this);
       im_num += 1
+      console.log(im_num)
       // 画像枚数による表示変更条件分岐
       if(im_num <= 4){
         $.each(images, function(index, image) {
         image.attr('data-image', index);
         preview.prepend(image);
         dropzone.css({
-          'width': `calc(100% - (120px * ${images.length - 5}))`
+          'width': `calc(100% - (120px * ${im_num  - 5}))`
         })
         dropzone.css({
           'display': `block`
@@ -57,7 +58,6 @@ $(function(){
         dropzone.css({
           'display': `none`
         })
-
       }
       else {
         $.each(images, function(index, image) {
@@ -72,6 +72,7 @@ $(function(){
       $('.file_input_area').prepend(new_image);
 
     })
+    
   });
 
   //出品時の画像数を取得
@@ -91,7 +92,6 @@ $(function(){
     $(this).parent().parent().remove();
     preview_delete.val('');
     preview_delete.remove();
-    $(document).on('change')
     im_num -= 1
     // 画像枚数による表示変更条件分岐
     if(im_num <= 4){
@@ -104,7 +104,17 @@ $(function(){
         'display': `none`
       })
     }  
+    $(document).on('change')
   })
+
+  // ページ遷移時の値リセット
+  $('.form__submit').click(function() {
+    im_num = 0
+    })
+  $('.exhibit_new_link_btn').click(function() {
+    im_num = 0
+    })  
+
 });  
 
 

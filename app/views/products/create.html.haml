@@ -1,14 +1,15 @@
-= render 'tops/topheader'
-.completed-ito
-  .completed-ito__head
-    .completed-ito__head__wait
+.wrapper-take
+  = render 'tops/topheader'
+  .completed-ito
+    .completed-ito__head
+      .completed-ito__head__wait
 
-  .completed-ito__main
-    %h2 出品が完了しました。
-    .completed-ito__main__image
+    .completed-ito__main
+      %h2 出品が完了しました。
+      .completed-ito__main__image
 
-    .btn-gray
-      = link_to root_path do
-        戻る
-= render 'products/footer'
+      .btn-gray
+        = link_to root_path do
+          戻る
+  = render 'products/footer'
 

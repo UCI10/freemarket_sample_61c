@@ -25,13 +25,6 @@ class UsersController < ApplicationController
   end
 
   def listing
-
-    # @products = current_user.products
-    # @product = Product.find(params[:id])
-    # @products = Product.find(params[:id])
-    # @product.images.build
-    # @length =@product.images.length
-
     @user_products= Product.where(user_id: current_user.id)
     render '/users/listing'
   end
